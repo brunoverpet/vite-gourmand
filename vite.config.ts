@@ -18,7 +18,11 @@ export default defineConfig({
    */
   resolve: {
     alias: {
+      '@': `${new URL('./inertia/', import.meta.url).pathname}`,
       '~/': `${import.meta.dirname}/inertia/`,
+      '@pages': `${new URL('./inertia/pages', import.meta.url).pathname}`,
+      '@hooks': `${new URL('./inertia/lib/hooks', import.meta.url).pathname}`,
+      '@utils': `${new URL('./inertia/lib/utils', import.meta.url).pathname}`,
       '@generated': `${import.meta.dirname}/.adonisjs/client/`,
     },
   },
