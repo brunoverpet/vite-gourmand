@@ -1,0 +1,18 @@
+# Fichiers de dépendances et de build/compilation
+node_modules
+build
+public/assets # Si Vite place les assets ici
+resources/assets # Si vous utilisez un ancien chemin d'assets
+
+# Fichiers de configuration, temporaires et de cache (Adonis)
+.env
+.env.*
+.tmp
+tmp
+cache
+npm-debug.log
+
+# Fichiers d'environnement (OS / Editeur)
+.DS_Store
+.git
+.vscode
