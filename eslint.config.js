@@ -10,5 +10,7 @@ export default configApp(...react, {
         case: 'kebabCase',
       },
     ],
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-shadow': 'off',
   },
 })
