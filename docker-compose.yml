@@ -5,13 +5,13 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-database}
+      POSTGRES_DB: ${DB_DATABASE:-database}
     volumes:
       - postgres-data:/var/lib/postgresql
     ports:
       - '5434:5432'
     healthcheck:
-      test: ['cmd-shell', 'pg_isready -q -d ${db_name:-database} -u ${db_user:-postgres}']
+      test: ['CMD-SHELL', 'pg_isready -q -d ${DB_DATABASE:-database} -U ${DB_PASSWORD:-postgres}']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,13 +23,13 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-database}-test
+      POSTGRES_DB: ${DB_DATABASE:-database}-test
     volumes:
       - postgres-data-test:/var/lib/postgresql
     ports:
       - '5435:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -q -d ${DB_NAME:-database}-test -U ${DB_USER:-postgres}']
+      test: ['CMD-SHELL', 'pg_isready -q -d ${DB_DATABASE:-database}-test -U ${DB_USER:-postgres}']
       interval: 10s
       timeout: 5s
       retries: 5
