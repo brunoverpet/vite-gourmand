@@ -34,7 +34,8 @@
     "#database/*": "./database/*.js",
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
-    "#config/*": "./config/*.js"
+    "#config/*": "./config/*.js",
+    "#enums/*": "./enums/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^8.4.0",
@@ -81,6 +82,7 @@
     "edge.js": "^6.5.1",
     "lucide-react": "^1.17.0",
     "luxon": "^3.7.2",
+    "pg": "^8.21.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
