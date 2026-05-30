@@ -7,19 +7,48 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class RoleSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = RoleSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
+  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
   $columns = UserSchema.$columns
+  @column()
+  declare adress: string | null
+  @column()
+  declare city: string | null
+  @column()
+  declare country: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()
   declare email: string
   @column()
-  declare fullName: string | null
+  declare firstname: string
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+  @column()
+  declare lastname: string
   @column({ serializeAs: null })
   declare password: string
+  @column()
+  declare passwordChange: boolean
+  @column()
+  declare passwordReset: boolean
+  @column()
+  declare phone: string | null
+  @column()
+  declare roleId: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }
