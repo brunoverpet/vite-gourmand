@@ -32,12 +32,10 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
 
   return (
     <SidebarProvider>
-      {/* 1. La barre latérale */}
       <AppSidebar />
 
-      {/* 2. Tout le contenu de droite vit à l'intérieur de SidebarInset */}
+      {/* Tout le contenu de droite vit à l'intérieur de SidebarInset */}
       <SidebarInset>
-        {/* Le Header avec le div de padding restauré */}
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
