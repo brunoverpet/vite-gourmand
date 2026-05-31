@@ -10,7 +10,7 @@ function subscribe(onStoreChange: () => void) {
   return () => mql.removeEventListener('change', onStoreChange)
 }
 
-export function useMobile() {
+export function useIsMobile() {
   return React.useSyncExternalStore(
     subscribe,
     () => window.innerWidth < MOBILE_BREAKPOINT,
