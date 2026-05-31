@@ -19,7 +19,7 @@ export interface Registry {
       errorResponse: unknown
     }
   }
-  'new_account.create': {
+  'register.create': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
     types: {
@@ -27,11 +27,11 @@ export interface Registry {
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['create']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['create']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/register_controller').default['create']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/register_controller').default['create']>>>
     }
   }
-  'new_account.store': {
+  'register.store': {
     methods: ["POST"]
     pattern: '/signup'
     types: {
@@ -39,8 +39,8 @@ export interface Registry {
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/user').signupValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/new_account_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/register_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/register_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'session.create': {
