@@ -15,16 +15,16 @@ router.on('/').renderInertia('home', {}).as('home')
 
 router
   .group(() => {
-    router.get('signup', [controllers.Register, 'create'])
-    router.post('signup', [controllers.Register, 'store'])
+    router.get('signup', [controllers.auth.Register, 'create'])
+    router.post('signup', [controllers.auth.Register, 'store'])
 
-    router.get('login', [controllers.Session, 'create'])
-    router.post('login', [controllers.Session, 'store'])
+    router.get('login', [controllers.auth.Session, 'create'])
+    router.post('login', [controllers.auth.Session, 'store'])
   })
   .use(middleware.guest())
 
 router
   .group(() => {
-    router.post('logout', [controllers.Session, 'destroy'])
+    router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())

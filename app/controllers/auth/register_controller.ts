@@ -1,16 +1,11 @@
-import { Roles } from '#enums/roles'
-import { RoleService } from '#services/role_service'
-import { UserService } from '#services/user_service'
-import { registerValidator } from '#validators/user'
+import { RegisterFlowService } from '#services/auth/register_flow_service'
+import { registerValidator } from '#validators/auth/user'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class RegisterController {
-  constructor(
-    private userService: UserService,
-    private roleService: RoleService
-  ) {}
+  constructor(private registerFlow: RegisterFlowService) {}
 
   async create({ inertia }: HttpContext) {
     return inertia.render('auth/signup', {})
@@ -18,9 +13,8 @@ export default class RegisterController {
 
   async store({ request, response, auth }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
-    const userRole = await this.roleService.getRoleId(Roles.USER)
 
-    const user = await this.userService.createUser(payload, userRole)
+    const user = await this.registerFlow.execute(payload)
 
     await auth.use('web').login(user)
     response.redirect().toRoute('home')

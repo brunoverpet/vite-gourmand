@@ -21,7 +21,22 @@ export class RoleSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
+  static $columns = [
+    'adress',
+    'city',
+    'country',
+    'createdAt',
+    'email',
+    'firstname',
+    'id',
+    'lastname',
+    'password',
+    'passwordChange',
+    'passwordReset',
+    'phone',
+    'roleId',
+    'updatedAt',
+  ] as const
   $columns = UserSchema.$columns
   @column()
   declare adress: string | null
