@@ -25,15 +25,15 @@ import {
   LogOutIcon,
 } from 'lucide-react'
 
-export function NavUser({
-  user,
-}: {
+export interface UserInfo {
   user: {
     name: string
     email: string
     avatar: string
   }
-}) {
+}
+
+export function NavUser({ user }: UserInfo) {
   const { isMobile } = useSidebar()
 
   return (
