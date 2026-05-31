@@ -19,7 +19,7 @@ export class RegisterFlowService {
 
     const user = await this.userService.createUser(payload, userRole)
 
-    await mail.sendLater(new WelcomeNotification(user))
+    await mail.send(new WelcomeNotification(user))
 
     return user
   }
