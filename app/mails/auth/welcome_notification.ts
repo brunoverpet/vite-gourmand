@@ -14,6 +14,6 @@ export default class WelcomeNotification extends BaseMail {
     this.message
       .to(this.user.email)
       .subject('Bienvenue chez Vite & Gourmand')
-      .htmlView('emails/auth/welcome')
+      .htmlView('emails/auth/welcome', { user: this.user })
   }
 }
