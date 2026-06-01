@@ -8,7 +8,7 @@ export default class RequestPasswordResetController {
   constructor(private requestPasswordResetAction: RequestPasswordResetAction) {}
 
   show({ inertia }: HttpContext) {
-    return inertia.render('auth/forgot_password', {})
+    return inertia.render('auth/forgot-password', {})
   }
 
   async handle({ request, response, session }: HttpContext) {
@@ -20,6 +20,6 @@ export default class RequestPasswordResetController {
       'Si cet e-mail correspond à un compte, un lien de réinitialisation vous a été envoyé.'
     )
 
-    return response.redirect().back()
+    return response.redirect().toRoute('session.create')
   }
 }
