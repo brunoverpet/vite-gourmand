@@ -19,7 +19,7 @@ export class RegisterAction {
 
     const user = await this.userService.createUser(payload, userRole)
 
-    await mail.send(new WelcomeNotification(user))
+    mail.sendLater(new WelcomeNotification(user))
 
     return user
   }
