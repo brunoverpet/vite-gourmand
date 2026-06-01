@@ -8,7 +8,7 @@ import { inject } from '@adonisjs/core'
 import mail from '@adonisjs/mail/services/main'
 
 @inject()
-export class RegisterFlowService {
+export class RegisterAction {
   constructor(
     private userService: UserService,
     private roleService: RoleService
