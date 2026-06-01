@@ -11,8 +11,6 @@ import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').renderInertia('home', {}).as('home')
-
 router
   .group(() => {
     router.get('signup', [controllers.auth.Register, 'create'])
@@ -21,7 +19,7 @@ router
     router.get('login', [controllers.auth.Session, 'create'])
     router.post('login', [controllers.auth.Session, 'store'])
 
-    router.get('forgot-password/', [controllers.auth.RequestPasswordReset, 'show'])
+    router.get('forgot-password', [controllers.auth.RequestPasswordReset, 'show'])
     router.post('forgot-password', [controllers.auth.RequestPasswordReset, 'handle'])
 
     router.get('reset-password/:id', [controllers.auth.ResetPassword, 'show'])
@@ -31,6 +29,7 @@ router
 
 router
   .group(() => {
+    router.on('/').renderInertia('home', {}).as('home')
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())

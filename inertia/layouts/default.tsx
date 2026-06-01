@@ -1,7 +1,5 @@
 import { type Data } from '@generated/data'
-import { toast, Toaster } from 'sonner'
-import { usePage } from '@inertiajs/react'
-import { type ReactElement, useEffect } from 'react'
+import { type ReactElement } from 'react'
 import { AppSidebar } from '~/components/app-sidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '~/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
@@ -13,23 +11,9 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from '@/components/ui/breadcrumb'
+import { FlashToaster } from '~/components/flash-toaster'
 
 export default function Layout({ children }: { children: ReactElement<Data.SharedProps> }) {
-  const { url } = usePage()
-
-  useEffect(() => {
-    toast.dismiss()
-  }, [url])
-
-  useEffect(() => {
-    if (children.props.flash.error) {
-      toast.error(children.props.flash.error)
-    }
-    if (children.props.flash.success) {
-      toast.success(children.props.flash.success)
-    }
-  })
-
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -57,7 +41,7 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
       </SidebarInset>
 
-      <Toaster position="top-center" richColors />
+      <FlashToaster />
     </SidebarProvider>
   )
 }

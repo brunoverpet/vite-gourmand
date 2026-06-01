@@ -1,11 +1,19 @@
 import { LoginForm } from '~/components/login-form'
+import AuthLayout from '~/layouts/auth-layout'
 
 export default function Login() {
-  return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <LoginForm />
-      </div>
-    </div>
-  )
+  return <LoginForm />
 }
+
+Login.layout = (page: React.ReactNode) => (
+  <AuthLayout
+    title="Bienvenue chez Vite & Gourmand."
+    description={
+      <>
+        Pas encore de compte ? <a href="/signup">S&apos;inscrire</a>
+      </>
+    }
+  >
+    {page}
+  </AuthLayout>
+)
