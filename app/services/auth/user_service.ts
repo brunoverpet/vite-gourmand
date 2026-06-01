@@ -10,6 +10,10 @@ export class UserService {
     return User.findBy('email', email)
   }
 
+  async findById(id: string) {
+    return User.find(id)
+  }
+
   async updatePassword(id: string, password: string) {
     const user = await User.findBy('id', id)
     if (!user) return null

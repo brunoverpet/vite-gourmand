@@ -25,6 +25,6 @@ export class RequestPasswordResetAction {
       }
     )
 
-    mail.sendLater(new ForgotPasswordNotification(user, signedUrl))
+    await mail.send(new ForgotPasswordNotification(user, signedUrl))
   }
 }
