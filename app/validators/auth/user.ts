@@ -27,7 +27,7 @@ const sharedMessages = new SimpleMessagesProvider({
   'password.regex':
     'Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial.',
   'password.minLength': 'Le mot de passe doit faire au moins 10 caractères.',
-  'email.unique': 'Cette adresse email est déjà utilisée.',
+  'database.unique': 'Cette adresse email est déjà utilisée.',
 })
 
 // =============================================================================
