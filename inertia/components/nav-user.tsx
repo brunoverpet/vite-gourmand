@@ -1,5 +1,3 @@
-'use client'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -16,6 +14,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { Form } from '@adonisjs/inertia/react'
 import {
   ChevronsUpDownIcon,
   SparklesIcon,
@@ -97,10 +96,14 @@ export function NavUser({ user }: UserInfo) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOutIcon />
-              Log out
-            </DropdownMenuItem>
+            <Form route="session.destroy">
+              <DropdownMenuItem asChild>
+                <button type="submit" className="w-full flex items-center gap-2 cursor-pointer">
+                  <LogOutIcon className="size-4" />
+                  <span>Déconnexion</span>
+                </button>
+              </DropdownMenuItem>
+            </Form>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

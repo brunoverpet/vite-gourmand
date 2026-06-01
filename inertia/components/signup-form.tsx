@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Form } from '@adonisjs/inertia/react'
@@ -11,7 +9,6 @@ import {
   FieldSeparator,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { GalleryVerticalEndIcon } from 'lucide-react'
 
 export function SignupForm({ className, ...props }: React.ComponentProps<'div'>) {
   return (
@@ -20,22 +17,18 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
         {({ errors }) => (
           <>
             <FieldGroup>
-              <div className="flex flex-col items-center gap-2 text-center">
-                <a href="#" className="flex flex-col items-center gap-2 font-medium">
-                  <div className="flex size-8 items-center justify-center rounded-md">
-                    <GalleryVerticalEndIcon className="size-6" />
-                  </div>
-                  <span className="sr-only">Vite & Gourmand.</span>
-                </a>
-                <h1 className="text-xl font-bold">Bienvenue chez Vite & Gourmand.</h1>
-                <FieldDescription>
-                  Vous possédez déjà un compte? <a href="/login">Se connecter</a>
-                </FieldDescription>
-              </div>
               <FieldGroup>
                 <Field>
                   <FieldLabel htmlFor="lastname">Nom</FieldLabel>
-                  <Input id="lastname" name="lastname" type="text" placeholder="Doe" required />
+                  <Input
+                    id="lastname"
+                    autoComplete="family-name"
+                    autoFocus
+                    name="lastname"
+                    type="text"
+                    placeholder="Doe"
+                    required
+                  />
                   {errors.lastname && <div className="text-destructive">{errors.lastname}</div>}
                 </Field>
                 <Field>
@@ -92,10 +85,6 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
           </>
         )}
       </Form>
-      <FieldDescription className="px-6 text-center">
-        En cliquant sur continuer, vous acceptez nos <a href="#">conditions d’utilisation</a> et
-        notre <a href="#">politique de confidentialité</a>.
-      </FieldDescription>
     </div>
   )
 }

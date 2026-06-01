@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react'
 
 import { NavMain } from '@/components/nav-main'
@@ -32,10 +30,10 @@ import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 
 type PageProps = InertiaProps<{
-  user: Data.User
+  user: Data.Auth.User
 }>
 
-const getSidebarData = (user: Data.User | undefined | null) => ({
+const getSidebarData = (user: Data.Auth.User | undefined | null) => ({
   user: {
     name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
     email: user?.email || '',
