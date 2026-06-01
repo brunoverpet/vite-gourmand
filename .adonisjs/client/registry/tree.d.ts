@@ -12,4 +12,10 @@ export interface ApiDefinition {
     store: typeof routes['session.store']
     destroy: typeof routes['session.destroy']
   }
+  requestPasswordReset: typeof routes['request_password_reset'] & {
+    show: typeof routes['request_password_reset.show']
+  }
+  resetPassword: typeof routes['reset_password'] & {
+    show: typeof routes['reset_password.show']
+  }
 }

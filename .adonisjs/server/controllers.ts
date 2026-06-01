@@ -7,5 +7,7 @@ export const controllers = {
   auth: {
     Register: () => import('#controllers/auth/register_controller'),
     Session: () => import('#controllers/auth/session_controller'),
+    RequestPasswordReset: () => import('#controllers/auth/request_password_reset_controller'),
+    ResetPassword: () => import('#controllers/auth/reset_password_controller'),
   },
 }

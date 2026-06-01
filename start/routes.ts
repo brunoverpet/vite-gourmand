@@ -20,6 +20,12 @@ router
 
     router.get('login', [controllers.auth.Session, 'create'])
     router.post('login', [controllers.auth.Session, 'store'])
+
+    router.get('forgot-password/', [controllers.auth.RequestPasswordReset, 'show'])
+    router.post('forgot-password', [controllers.auth.RequestPasswordReset, 'handle'])
+
+    router.get('reset-password/:id', [controllers.auth.ResetPassword, 'show'])
+    router.post('reset-password/:id', [controllers.auth.ResetPassword, 'handle'])
   })
   .use(middleware.guest())
 

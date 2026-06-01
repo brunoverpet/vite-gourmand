@@ -17,6 +17,6 @@ export default class RegisterController {
     const user = await this.registerAction.execute(payload)
 
     await auth.use('web').login(user)
-    response.redirect().toRoute('home')
+    return response.redirect().toRoute('home')
   }
 }
