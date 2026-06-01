@@ -15,7 +15,12 @@ export default function render(page: any) {
       return resolvePageComponent(
         `./pages/${name}.tsx`,
         import.meta.glob('./pages/**/*.tsx', { eager: true }),
-        (resolvedPage: ReactElement<Data.SharedProps>) => <Layout children={resolvedPage} />
+        (resolvedPage: ReactElement<Data.SharedProps>) => {
+          if (name.startsWith('auth/')) {
+            return resolvedPage
+          }
+          return <Layout children={resolvedPage} />
+        }
       )
     },
     setup: ({ App, props }) => {
