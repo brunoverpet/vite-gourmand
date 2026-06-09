@@ -1,14 +1,15 @@
-import './css/app.css'
-import { type ReactElement } from 'react'
-import { client } from './client'
-import Layout from '~/layouts/default'
-import { type Data } from '@generated/data'
-import { createRoot } from 'react-dom/client'
-import { createInertiaApp } from '@inertiajs/react'
-import { TuyauProvider } from '@adonisjs/inertia/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
+import { TuyauProvider } from '@adonisjs/inertia/react'
+import { type Data } from '@generated/data'
+import { createInertiaApp } from '@inertiajs/react'
+import { type ReactElement } from 'react'
+import { createRoot } from 'react-dom/client'
+import Layout from '~/layouts/default'
+import PublicLayout from '~/layouts/public-layout'
+import { client } from './client'
+import './css/app.css'
 
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
+const appName = import.meta.env.VITE_APP_NAME || 'Vite & Gourmand'
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -20,6 +21,11 @@ createInertiaApp({
         if (name.startsWith('auth/')) {
           return page
         }
+
+        if (name.startsWith('public/')) {
+          return <PublicLayout>{page}</PublicLayout>
+        }
+
         return <Layout children={page} />
       }
     )

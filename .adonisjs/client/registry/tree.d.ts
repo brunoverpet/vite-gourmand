@@ -2,6 +2,7 @@
 import type { routes } from './index.ts'
 
 export interface ApiDefinition {
+  home: typeof routes['home']
   register: {
     create: typeof routes['register.create']
     store: typeof routes['register.store']
@@ -17,5 +18,4 @@ export interface ApiDefinition {
   resetPassword: typeof routes['reset_password'] & {
     show: typeof routes['reset_password.show']
   }
-  home: typeof routes['home']
 }

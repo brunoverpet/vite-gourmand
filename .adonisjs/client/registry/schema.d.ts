@@ -7,6 +7,18 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
+  'home': {
+    methods: ["GET","HEAD"]
+    pattern: '/'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'register.create': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
@@ -101,18 +113,6 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/auth/forgot_password').resetPasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
-  'home': {
-    methods: ["GET","HEAD"]
-    pattern: '/'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-      errorResponse: unknown
     }
   }
   'session.destroy': {

@@ -4,6 +4,7 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
+    'home': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'register.store': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -12,22 +13,21 @@ export type ScannedRoutes = {
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
+    'home': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
+    'home': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'register.store': { paramsTuple?: []; params?: {} }

@@ -6,6 +6,9 @@ import ReactDOMServer from 'react-dom/server'
 import { createInertiaApp } from '@inertiajs/react'
 import { TuyauProvider } from '@adonisjs/inertia/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
+import Header from '~/layouts/header'
+import MainWrapper from '~/layouts/main-wrapper'
+import PublicLayout from '~/layouts/public-layout'
 
 export default function render(page: any) {
   return createInertiaApp({
@@ -19,6 +22,11 @@ export default function render(page: any) {
           if (name.startsWith('auth/')) {
             return resolvedPage
           }
+
+          if (name.startsWith('public/')) {
+            return <PublicLayout>{page}</PublicLayout>
+          }
+
           return <Layout children={resolvedPage} />
         }
       )
