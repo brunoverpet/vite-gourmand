@@ -5,6 +5,106 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Fonts auto-hébergées ─────────────────────────────────────── */
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans-normal-300_700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans-italic-300_700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-700.woff2') format('woff2');
+}
+
+/* ─── Tokens DA Bordeaux & Champagne ───────────────────────────── */
+
 :root {
   --background: oklch(0.977 0.006 70);
   --foreground: oklch(0.171 0 0);
@@ -40,7 +140,6 @@
   --sidebar-ring: oklch(0.720 0.095 78);
   --font-sans: 'DM Sans', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
-  --font-mono: 'JetBrains Mono', monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -58,6 +157,14 @@
   --shadow-2xl: 0px 4px 12px 0px hsl(145 15% 10% / 0.1);
   --tracking-normal: -0.015em;
   --spacing: 0.25rem;
+
+  /* Statuts commandes (6 statuts brief) */
+  --status-en-attente: oklch(0.75 0.04 80);
+  --status-confirmee: oklch(0.50 0.12 240);
+  --status-en-preparation: oklch(0.68 0.14 55);
+  --status-livree: oklch(0.52 0.10 155);
+  --status-attente-retour: oklch(0.75 0.12 85);
+  --status-cloturee: oklch(0.55 0.02 60);
 }
 
 .dark {
@@ -93,9 +200,8 @@
   --sidebar-accent-foreground: oklch(0.9061 0.035 173.4132);
   --sidebar-border: oklch(0.2923 0.0178 175.813);
   --sidebar-ring: oklch(0.8441 0.058 172.3993);
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Fraunces', serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 10px;
@@ -147,8 +253,15 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Statuts commandes → classes Tailwind bg-status-*, text-status-* */
+  --color-status-en-attente: var(--status-en-attente);
+  --color-status-confirmee: var(--status-confirmee);
+  --color-status-en-preparation: var(--status-en-preparation);
+  --color-status-livree: var(--status-livree);
+  --color-status-attente-retour: var(--status-attente-retour);
+  --color-status-cloturee: var(--status-cloturee);
+
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
 
   --radius-sm: calc(var(--radius) - 4px);

@@ -24,6 +24,7 @@ yarn-error.log
 
 # AI config — never commit
 .claude/
+CLAUDE.md
 
 # Platform specific
 .DS_Store
