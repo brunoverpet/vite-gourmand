@@ -1,0 +1,70 @@
+graph LR
+    %% 1. Déclaration des acteurs
+    Visiteur(("👤 Visiteur<br>(Non connecté)"))
+    Client(("🧑‍💻 Client<br>(Connecté)"))
+    Employe(("⚙️ Employé<br>(Employé)"))
+    Admin(("⚙️ Admin<br>(Admin)"))
+
+    %% Relation d'héritage (Le client hérite des droits du visiteur)
+    Client -- hérite de --> Visiteur
+    Admin -- hérite de --> Employe
+
+    %% 2. Périmètre de l'application
+    subgraph Systeme ["Système - Vite & Gourmand"]
+        %% Actions accessibles via le rôle Visiteur (et donc aussi par le Client)
+        uc_contact("(Contacter l'entreprise via le formulaire)")
+        uc_carte("(Consulter la carte des menus et plats)")
+        uc_filtre("(Filtrer par thème, régime et allergènes)")
+        uc_horaires("(Consulter les horaires d'ouverture)")
+        uc_compte("(Créer un compte et s'authentifier)")
+
+        %% Actions strictement réservées au Client connecté
+        uc_commande("(Passer et envoyer une commande)")
+        uc_avis("(Publier un avis et une note)")
+        uc_mon_compte("(Visualiser l'ensemble des commandes et modifier ses informations personnelles)")
+        uc_suivi_commande("(Suivi chronologique de sa commande une fois acceptée)")
+
+        %% Actions strictement réservées a l'employé et à l'Admin
+        uc_g_menu("(Gérer le catalogue : menus, plats, allergènes)")
+        uc_g_comm("(Suivre et changer le statut des commandes)")
+        uc_g_avis("(Modérer les avis clients)")
+        uc_g_horaires("(Modifier les horaires de l'établissement)")
+
+        %% Actions strictement réservées a l'Admin
+        uc_creer_employe("(Créer un compte Employé)")
+        uc_desactiver_employe("(Désactiver un compte Employé)")
+        uc_stats("(Consulter les statistiques de commandes par menu)")
+        uc_ca("(Calculer le chiffre d'affaires par menu et par période)")
+    end
+
+    %% 3. Liaisons épurées
+    
+    %% Flèches du bloc "Public" (gérées par le Visiteur)
+    Visiteur --> uc_contact
+    Visiteur --> uc_carte
+    Visiteur --> uc_filtre
+    Visiteur --> uc_horaires
+    Visiteur --> uc_compte
+
+    %% Flèches spécifiques au Client (uniquement ses actions propres)
+    Client --> uc_commande
+    Client --> uc_avis
+    Client --> uc_mon_compte
+    Client --> uc_suivi_commande
+
+    %% Flèches de l'Admin
+    Employe --> uc_g_menu
+    Employe --> uc_g_comm
+    Employe --> uc_g_avis
+    Employe --> uc_g_horaires
+
+    Admin --> uc_creer_employe
+    Admin --> uc_desactiver_employe
+    Admin --> uc_stats
+    Admin --> uc_ca
+
+    %% Styles
+    style Visiteur fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Client fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style Employe fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style Admin fill:#ffebee,stroke:#c62828,stroke-width:2px
