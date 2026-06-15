@@ -1,4 +1,4 @@
-import { LoginForm } from '~/components/login-form'
+import { LoginForm } from '~/components/auth/login-form'
 import AuthLayout from '~/layouts/auth-layout'
 
 export default function Login() {

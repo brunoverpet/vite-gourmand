@@ -6,7 +6,6 @@ import ReactDOMServer from 'react-dom/server'
 import { createInertiaApp } from '@inertiajs/react'
 import { TuyauProvider } from '@adonisjs/inertia/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
-import Header from '~/layouts/header'
 import MainWrapper from '~/layouts/main-wrapper'
 import PublicLayout from '~/layouts/public-layout'
 

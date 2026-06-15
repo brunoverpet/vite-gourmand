@@ -4,6 +4,7 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
+    'home-public': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'register.store': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -16,6 +17,7 @@ export type ScannedRoutes = {
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
+    'home-public': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
@@ -23,6 +25,7 @@ export type ScannedRoutes = {
     'home': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
+    'home-public': { paramsTuple?: []; params?: {} }
     'register.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }

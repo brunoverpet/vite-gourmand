@@ -2,6 +2,7 @@
 import type { routes } from './index.ts'
 
 export interface ApiDefinition {
+  homePublic: typeof routes['home-public']
   register: {
     create: typeof routes['register.create']
     store: typeof routes['register.store']
