@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@adonisjs/inertia/react'
+import { usePage } from '@inertiajs/react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import NavLink from '~/components/nav/nav-link'
@@ -13,6 +14,9 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const isHome = usePage().url === '/'
+  const isTransparent = isHome && !isScrolled
 
   useEffect(() => {
     if (isOpen) {
@@ -25,14 +29,28 @@ export default function Navbar() {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    if (!isHome) return
+    const onScroll = () => setIsScrolled(window.scrollY > 50)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isHome])
+
   return (
     <>
       <header
         role="banner"
-        className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md"
+        className={cn(
+          'fixed top-0 left-0 right-0 z-40 transition-colors duration-300',
+          isTransparent ? 'bg-transparent' : 'bg-background'
+        )}
       >
-        <div className="max-w-full mx-auto h-20 px-4 md:px-20 flex items-center justify-between">
-          <Link href="/" className="text-h4 text-foreground">
+        <div className="max-w-full mx-auto h-20 px-6 md:px-20 flex items-center justify-between">
+          <Link
+            href="/"
+            className={`text-h4 transition-colors duration-300 ${isTransparent ? 'text-primary-foreground' : 'text-foreground'}`}
+          >
             Vite & Gourmand
           </Link>
 
@@ -51,7 +69,10 @@ export default function Navbar() {
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(true)}
-            className="md:hidden"
+            className={cn(
+              'md:hidden transition-colors duration-300',
+              isTransparent ? 'text-primary-foreground' : 'text-foreground'
+            )}
             aria-label="Ouvrir le menu"
           >
             <Menu className="size-5" />
@@ -64,7 +85,7 @@ export default function Navbar() {
           'fixed inset-0 z-50 bg-primary flex flex-col px-5 py-10 transition-transform duration-300 ease-in-out',
           isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
-        aria-hidden={!isOpen}
+        inert={!isOpen}
       >
         <div className="flex items-center justify-between">
           <Link
