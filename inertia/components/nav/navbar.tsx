@@ -43,13 +43,13 @@ export default function Navbar() {
         role="banner"
         className={cn(
           'fixed top-0 left-0 right-0 z-40 transition-colors duration-300',
-          isTransparent ? 'bg-transparent' : 'bg-background'
+          isTransparent ? 'bg-transparent md:bg-background' : 'bg-background'
         )}
       >
         <div className="max-w-full mx-auto h-20 px-6 md:px-20 flex items-center justify-between">
           <Link
             href="/"
-            className={`text-h4 transition-colors duration-300 ${isTransparent ? 'text-primary-foreground' : 'text-foreground'}`}
+            className={`text-h4 transition-colors duration-300 ${isTransparent ? 'text-primary-foreground md:text-foreground' : 'text-foreground'}`}
           >
             Vite & Gourmand
           </Link>
