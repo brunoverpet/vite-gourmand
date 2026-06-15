@@ -17,7 +17,7 @@ const LEGAL_LINKS = [
 
 export default function Footer({}: FooterProps) {
   return (
-    <footer className="bg-primary text-primary-foreground py-10 px-4">
+    <footer className="bg-primary text-primary-foreground py-10 px-6">
       <h4 className="text-h4 md:text-center">Vite & Gourmand</h4>
       <p className="text-primary-foreground/60 md:text-center">
         Traiteur événementiel à Bordeaux depuis 2001.
