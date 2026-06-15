@@ -106,38 +106,38 @@
 /* ─── Tokens DA Bordeaux & Champagne ───────────────────────────── */
 
 :root {
-  --background: oklch(0.977 0.006 70);
-  --foreground: oklch(0.171 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.171 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.171 0 0);
-  --primary: oklch(0.255 0.095 15);
-  --primary-foreground: oklch(0.977 0.006 70);
-  --secondary: oklch(0.920 0.025 15);
-  --secondary-foreground: oklch(0.171 0 0);
-  --muted: oklch(0.942 0.006 70);
-  --muted-foreground: oklch(0.520 0.030 15);
-  --accent: oklch(0.720 0.095 78);
-  --accent-foreground: oklch(0.171 0 0);
-  --destructive: oklch(0.4877 0.1814 27.2815);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.868 0.010 70);
-  --input: oklch(0.868 0.010 70);
-  --ring: oklch(0.255 0.095 15);
-  --chart-1: oklch(0.255 0.095 15);
-  --chart-2: oklch(0.720 0.095 78);
-  --chart-3: oklch(0.520 0.030 15);
-  --chart-4: oklch(0.650 0.060 78);
-  --chart-5: oklch(0.840 0.060 78);
-  --sidebar: oklch(0.200 0.085 15);
-  --sidebar-foreground: oklch(0.977 0.006 70);
-  --sidebar-primary: oklch(0.720 0.095 78);
-  --sidebar-primary-foreground: oklch(0.171 0 0);
-  --sidebar-accent: oklch(0.310 0.085 15);
-  --sidebar-accent-foreground: oklch(0.977 0.006 70);
-  --sidebar-border: oklch(0.330 0.080 15);
-  --sidebar-ring: oklch(0.720 0.095 78);
+  --background: #faf7f2;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #5c1f2e;
+  --primary-foreground: #faf7f2;
+  --secondary: #fbf3f4;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f0ede8;
+  --muted-foreground: #6b6460;
+  --accent: #c9a55a;
+  --accent-foreground: #1a1a1a;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --border: #ddd8d1;
+  --input: #ddd8d1;
+  --ring: #5c1f2e;
+  --chart-1: #5c1f2e;
+  --chart-2: #c9a55a;
+  --chart-3: #6b6460;
+  --chart-4: #b08a40;
+  --chart-5: #e5cb8a;
+  --sidebar: #471828;
+  --sidebar-foreground: #faf7f2;
+  --sidebar-primary: #c9a55a;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #6b2432;
+  --sidebar-accent-foreground: #faf7f2;
+  --sidebar-border: #5c1f2e;
+  --sidebar-ring: #c9a55a;
   --font-sans: 'DM Sans', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
   --radius: 0.5rem;
@@ -159,12 +159,12 @@
   --spacing: 0.25rem;
 
   /* Statuts commandes (6 statuts brief) */
-  --status-pending: #D1A84B;
-  --status-confirmed: #006AA0;
-  --status-preparing: #D97E38;
-  --status-delivered: #307A4F;
-  --status-awaiting-return: #60428D;
-  --status-closed: #7B6F66;
+  --status-pending: #d1a84b;
+  --status-confirmed: #006aa0;
+  --status-preparing: #d97e38;
+  --status-delivered: #307a4f;
+  --status-awaiting-return: #60428d;
+  --status-closed: #7b6f66;
 }
 
 .dark {
