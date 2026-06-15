@@ -127,7 +127,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Button asChild variant="outline" className="w-full">
+        <Button asChild variant="outline" className="w-full text-primary-foreground">
           <Link href="/login" onClick={() => setIsOpen(false)}>
             Connexion
           </Link>
