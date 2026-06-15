@@ -159,12 +159,12 @@
   --spacing: 0.25rem;
 
   /* Statuts commandes (6 statuts brief) */
-  --status-en-attente: oklch(0.75 0.04 80);
-  --status-confirmee: oklch(0.50 0.12 240);
-  --status-en-preparation: oklch(0.68 0.14 55);
-  --status-livree: oklch(0.52 0.10 155);
-  --status-attente-retour: oklch(0.75 0.12 85);
-  --status-cloturee: oklch(0.55 0.02 60);
+  --status-pending: #D1A84B;
+  --status-confirmed: #006AA0;
+  --status-preparing: #D97E38;
+  --status-delivered: #307A4F;
+  --status-awaiting-return: #60428D;
+  --status-closed: #7B6F66;
 }
 
 .dark {
@@ -254,12 +254,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Statuts commandes → classes Tailwind bg-status-*, text-status-* */
-  --color-status-en-attente: var(--status-en-attente);
-  --color-status-confirmee: var(--status-confirmee);
-  --color-status-en-preparation: var(--status-en-preparation);
-  --color-status-livree: var(--status-livree);
-  --color-status-attente-retour: var(--status-attente-retour);
-  --color-status-cloturee: var(--status-cloturee);
+  --color-status-pending: var(--status-pending);
+  --color-status-confirmed: var(--status-confirmed);
+  --color-status-preparing: var(--status-preparing);
+  --color-status-delivered: var(--status-delivered);
+  --color-status-awaiting-return: var(--status-awaiting-return);
+  --color-status-closed: var(--status-closed);
 
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
@@ -298,4 +298,97 @@
 
 button {
   cursor: pointer;
+}
+
+/* ─── Text styles (DA Bordeaux & Champagne) ─────────────────────── */
+
+@layer components {
+  .text-h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+
+  .text-h2 {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+
+  .text-h3 {
+    font-family: var(--font-serif);
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.37;
+    letter-spacing: -0.025em;
+  }
+
+  .text-h4 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.37;
+    letter-spacing: -0.025em;
+  }
+
+  .text-body-lg {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.62;
+    letter-spacing: -0.025em;
+  }
+
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+  }
+
+  .text-body-sm {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+  }
+
+  .text-caption {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .text-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.37;
+    letter-spacing: 0;
+  }
+
+  .text-label-sm {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.37;
+    letter-spacing: 0;
+  }
+
+  .text-label-caps {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.37;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 }
