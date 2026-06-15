@@ -21,7 +21,9 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Button asChild variant="outline">
-              <Link href="/contact">Nous contacter</Link>
+              <Link href="/contact" className="text-primary-foreground">
+                Nous contacter
+              </Link>
             </Button>
             <Button asChild>
               <Link href="/menu">Voir nos menus</Link>
