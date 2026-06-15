@@ -9,7 +9,7 @@ type ReviewCardProps = {
 
 export default function ReviewCard({ rating, comment, author }: ReviewCardProps) {
   return (
-    <article className="rounded-2xl bg-secondary p-6 border border-border">
+    <article className="rounded-2xl bg-card p-6 border border-border md:flex-1">
       <div className="flex gap-1 mb-4">
         {Array.from({ length: 5 }, (_, i) => (
           <Star

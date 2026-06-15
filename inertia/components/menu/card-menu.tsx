@@ -12,7 +12,7 @@ export default function CardMenu({ name, price, minPersons, image, tags = [] }: 
   const [tagLeft, tagRight] = tags
 
   return (
-    <article className="relative overflow-hidden rounded-2xl aspect-3/4">
+    <article className="relative overflow-hidden rounded-2xl aspect-3/4 md:aspect-auto md:h-96 md:flex-1">
       <img src={image} alt={name} className="absolute inset-0 w-full h-full object-cover" />
 
       <div
