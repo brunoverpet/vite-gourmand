@@ -1,4 +1,5 @@
 import type React from 'react'
+import Footer from '~/components/footer/footer'
 import Navbar from '~/components/nav/navbar'
 import MainWrapper from '~/layouts/main-wrapper'
 
@@ -8,6 +9,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       <Navbar />
 
       <MainWrapper>{children}</MainWrapper>
+      <Footer />
     </div>
   )
 }
