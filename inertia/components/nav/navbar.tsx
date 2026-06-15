@@ -1,79 +1,117 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from '@adonisjs/inertia/react'
 import { Menu, X } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { usePage } from '@inertiajs/react'
+import { Button } from '~/components/ui/button'
+import NavLink from '~/components/nav/nav-link'
+import { cn } from '~/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Accueil', href: '/' },
-  { label: 'La Carte', href: '/carte' },
-  { label: 'Formules', href: '/formules' },
-  { label: 'À propos', href: '/a-propos' },
+  { label: 'Nos menus', href: '/menu' },
+  { label: 'Contact', href: '/contact' },
 ]
 
-export default function Header() {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const currentUrl = usePage().url
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   return (
-    <header
-      role="banner"
-      className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100"
-    >
-      <div className="max-w-7xl mx-auto h-24 px-5 md:px-10 flex items-center justify-between">
-        {/* LOGO */}
-        <Link href="/" className="font-bold text-xl tracking-tight">
-          Vite & Gourmand.
-        </Link>
+    <>
+      <header
+        role="banner"
+        className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md"
+      >
+        <div className="max-w-full mx-auto h-20 px-4 md:px-20 flex items-center justify-between">
+          <Link href="/" className="text-h4 text-foreground">
+            Vite & Gourmand
+          </Link>
 
-        {/* NAVIGATION DESKTOP (Masquée sur mobile, flex à partir de md) */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <NavLink key={link.href} href={link.href}>
+                {link.label}
+              </NavLink>
+            ))}
+            <Button asChild>
+              <Link href="/login">Connexion</Link>
+            </Button>
+          </nav>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(true)}
+            className="md:hidden"
+            aria-label="Ouvrir le menu"
+          >
+            <Menu className="size-5" />
+          </Button>
+        </div>
+      </header>
+
+      <div
+        className={cn(
+          'fixed inset-0 z-50 bg-primary flex flex-col px-5 py-10 transition-transform duration-300 ease-in-out',
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        )}
+        aria-hidden={!isOpen}
+      >
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-h4 text-sidebar-foreground"
+            onClick={() => setIsOpen(false)}
+          >
+            Vite & Gourmand
+          </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(false)}
+            className="text-sidebar-foreground hover:bg-sidebar-accent"
+            aria-label="Fermer le menu"
+          >
+            <X className="size-5" />
+          </Button>
+        </div>
+
+        <nav className="flex flex-col gap-6 mt-12 flex-1">
+          {NAV_LINKS.map((link, index) => (
+            <div
               key={link.href}
-              href={link.href}
               className={cn(
-                'text-sm font-medium transition-colors ',
-                currentUrl === link.href
-                  ? 'text-accent-foreground font-semibold'
-                  : 'text-foreground'
+                'transition-all duration-300',
+                isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               )}
+              style={{ transitionDelay: isOpen ? `${index * 100 + 150}ms` : '0ms' }}
             >
-              {link.label}
-            </Link>
+              <NavLink
+                href={link.href}
+                className="text-h2 text-sidebar-foreground"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            </div>
           ))}
         </nav>
 
-        {/* BOUTON BURGER (Mobile-first : visible par défaut, masqué sur md) */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 md:hidden text-gray-600 hover:text-black"
-          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-        >
-          {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        <Button asChild variant="outline" className="w-full">
+          <Link href="/login" onClick={() => setIsOpen(false)}>
+            Connexion
+          </Link>
+        </Button>
       </div>
-
-      {/* MENU MOBILE EXPANSIBLE */}
-      {isOpen && (
-        <nav className="md:hidden bg-white border-t border-gray-100 px-5 py-4 flex flex-col gap-4 shadow-lg">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)} // Ferme le menu au clic
-              className={cn(
-                'text-base font-medium py-2 transition-colors',
-                currentUrl === link.href
-                  ? 'text-foreground font-semibold'
-                  : 'text-accent-foreground'
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-    </header>
+    </>
   )
 }
