@@ -12,6 +12,18 @@ const routes = {
     tokens: [{"old":"/","type":0,"val":"/","end":""}],
     types: placeholder as Registry['home-public']['types'],
   },
+  'contact.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/contact',
+    tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
+    types: placeholder as Registry['contact.render']['types'],
+  },
+  'contact': {
+    methods: ["POST"],
+    pattern: '/contact',
+    tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
+    types: placeholder as Registry['contact']['types'],
+  },
   'register.create': {
     methods: ["GET","HEAD"],
     pattern: '/signup',

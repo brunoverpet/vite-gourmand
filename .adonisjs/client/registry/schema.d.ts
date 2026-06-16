@@ -19,6 +19,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'contact.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/contact'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/contact/contact_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/contact/contact_controller').default['render']>>>
+    }
+  }
+  'contact': {
+    methods: ["POST"]
+    pattern: '/contact'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/contact/contact').createContactValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/contact/contact').createContactValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/contact/contact_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/contact/contact_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'register.create': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
