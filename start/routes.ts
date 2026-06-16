@@ -12,6 +12,9 @@ import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
 router.on('/').renderInertia('public/home-public', {}).as('home-public')
+router.get('/contact', [controllers.contact.Contact, 'render'])
+router.post('/contact', [controllers.contact.Contact, 'handle'])
+
 router
   .group(() => {
     router.get('signup', [controllers.auth.Register, 'create'])
