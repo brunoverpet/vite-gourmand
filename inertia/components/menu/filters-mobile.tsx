@@ -1,5 +1,6 @@
 import type { Data } from '@generated/data'
 import { Filter, X } from 'lucide-react'
+import { useState } from 'react'
 import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import {
@@ -40,6 +41,21 @@ export default function FiltersMobile({
   onRemoveFilter,
   onReset,
 }: FiltersMobileProps) {
+  const [exiting, setExiting] = useState<Set<string>>(new Set())
+
+  function handleRemove(type: 'diet' | 'theme', label: string) {
+    const key = `${type}-${label}`
+    setExiting((prev) => new Set(prev).add(key))
+    setTimeout(() => {
+      setExiting((prev) => {
+        const next = new Set(prev)
+        next.delete(key)
+        return next
+      })
+      onRemoveFilter(type, label)
+    }, 200)
+  }
+
   return (
     <div className="md:hidden mt-6">
       <div className="flex flex-col items-end gap-3">
@@ -97,20 +113,25 @@ export default function FiltersMobile({
           </SheetContent>
         </Sheet>
 
-        {selectedFilters.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {selectedFilters.map((f) => (
-              <Badge
-                key={`${f.type}-${f.label}`}
-                className="px-3 py-4 gap-1 cursor-pointer"
-                onClick={() => onRemoveFilter(f.type, f.label)}
-              >
-                {f.label}
-                <X className="w-3 h-3" />
-              </Badge>
-            ))}
+        <div
+          className={`grid transition-all duration-300 overflow-hidden ${selectedFilters.length > 0 ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+        >
+          <div className="min-h-0 flex flex-wrap gap-2">
+            {selectedFilters.map((f) => {
+              const key = `${f.type}-${f.label}`
+              return (
+                <Badge
+                  key={key}
+                  className={`px-3 py-4 gap-1 cursor-pointer transition-all duration-200 ${exiting.has(key) ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
+                  onClick={() => handleRemove(f.type, f.label)}
+                >
+                  {f.label}
+                  <X className="w-3 h-3" />
+                </Badge>
+              )
+            })}
           </div>
-        )}
+        </div>
       </div>
     </div>
   )
