@@ -2,13 +2,14 @@ import { Badge } from '~/components/ui/badge'
 
 type CardMenuProps = {
   name: string
+  description: string
   price: number
   minPersons: number
   image: string
   tags?: string[]
 }
 
-export default function CardMenu({ name, price, minPersons, image, tags = [] }: CardMenuProps) {
+export default function CardMenu({ name, description, price, minPersons, image, tags = [] }: CardMenuProps) {
   const [tagLeft, tagRight] = tags
 
   return (
@@ -29,14 +30,19 @@ export default function CardMenu({ name, price, minPersons, image, tags = [] }: 
         </Badge>
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <h3 className="text-h2 text-primary-foreground">{name}</h3>
-        <p className="text-h3 text-accent">
-          {price}€<span className="text-body text-primary-foreground/70">/pers</span>
-        </p>
-        <p className="text-body-sm text-primary-foreground/60">
-          À partir de {minPersons} personnes
-        </p>
+      <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
+        <div>
+          <h3 className="text-h2 text-primary-foreground">{name}</h3>
+          <p className="text-body-sm text-primary-foreground/80 mt-1 line-clamp-2">{description}</p>
+        </div>
+        <div className="text-right shrink-0">
+          <p className="text-h3 text-accent">
+            {price}€<span className="text-body text-primary-foreground/70">/pers</span>
+          </p>
+          <p className="text-body-sm text-primary-foreground/60">
+            À partir de {minPersons} personnes
+          </p>
+        </div>
       </div>
     </article>
   )

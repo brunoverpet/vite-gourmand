@@ -6,6 +6,7 @@ import { Button } from '~/components/ui/button'
 const MENUS = [
   {
     name: 'Menu Noël',
+    description: 'Un menu festif généreux pour célébrer les fêtes en grande compagnie, avec des produits du terroir bordelais.',
     price: 68,
     minPersons: 8,
     image: '/assets/christmas.webp',
@@ -13,6 +14,7 @@ const MENUS = [
   },
   {
     name: 'Menu Pâques',
+    description: 'Un menu de saison autour des saveurs printanières, idéal pour réunir famille et amis à Pâques.',
     price: 54,
     minPersons: 6,
     image: '/assets/easters.webp',
@@ -20,6 +22,7 @@ const MENUS = [
   },
   {
     name: 'Menu Classique',
+    description: 'Une sélection végétale fraîche et colorée pour un événement écoresponsable et savoureux.',
     price: 48,
     minPersons: 5,
     image: '/assets/classique.webp',
