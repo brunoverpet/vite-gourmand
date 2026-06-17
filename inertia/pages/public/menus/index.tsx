@@ -1,10 +1,11 @@
 import type { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CardMenu from '~/components/menu/card-menu'
 import CardMenuSkeleton from '~/components/menu/card-menu-skeleton'
 import FiltersDesktop from '~/components/menu/filters-desktop'
 import FiltersMobile from '~/components/menu/filters-mobile'
+import PaginationNav from '~/components/pagination-nav'
 import type { InertiaProps } from '~/types'
 
 type IndexProps = InertiaProps<{
@@ -30,10 +31,17 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
   const [selectedThemes, setSelectedThemes] = useState<string[]>(activeFilters.theme)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const scrollToTop = useRef(false)
 
   useEffect(() => {
     const startHandler = router.on('start', () => setLoading(true))
-    const finishHandler = router.on('finish', () => setLoading(false))
+    const finishHandler = router.on('finish', () => {
+      setLoading(false)
+      if (scrollToTop.current) {
+        scrollToTop.current = false
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    })
     return () => {
       startHandler()
       finishHandler()
@@ -79,7 +87,20 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     const newThemes = type === 'theme' ? selectedThemes.filter((t) => t !== label) : selectedThemes
     setSelectedDiets(newDiets)
     setSelectedThemes(newThemes)
-    router.get('/menus', { diet: newDiets, theme: newThemes }, { preserveState: true, preserveScroll: true, only: ONLY })
+    router.get(
+      '/menus',
+      { diet: newDiets, theme: newThemes },
+      { preserveState: true, preserveScroll: true, only: ONLY }
+    )
+  }
+
+  function goToPage(page: number) {
+    scrollToTop.current = true
+    router.get(
+      '/menus',
+      { diet: selectedDiets, theme: selectedThemes, page },
+      { preserveState: true, preserveScroll: true, only: ONLY }
+    )
   }
 
   function reset() {
@@ -113,7 +134,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
         open={sheetOpen}
         onOpenChange={(open) => {
           setSheetOpen(open)
-          if (!open) applyFilter()
+          if (!open) setTimeout(applyFilter, 300)
         }}
       />
 
@@ -123,7 +144,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
         <p className="text-body-sm text-muted-foreground">{menus.data.length} résultats</p>
 
         {loading ? (
-          <div className="flex flex-col mt-4 gap-5 md:flex-row">
+          <div className="animate-in fade-in duration-200 flex flex-col mt-4 gap-5 md:flex-row">
             {Array.from({ length: 3 }).map((_, i) => (
               <CardMenuSkeleton key={i} />
             ))}
@@ -136,7 +157,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
             </p>
           </div>
         ) : (
-          <div className="flex flex-col mt-4 gap-5 md:flex-row">
+          <div className="animate-in fade-in duration-300 flex flex-col mt-4 gap-5 md:flex-row">
             {menus.data.map((menu) => (
               <CardMenu
                 key={menu.id}
@@ -154,6 +175,12 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
             ))}
           </div>
         )}
+
+        <PaginationNav
+          currentPage={menus.metadata.currentPage}
+          lastPage={menus.metadata.lastPage}
+          onPageChange={goToPage}
+        />
       </div>
     </div>
   )
