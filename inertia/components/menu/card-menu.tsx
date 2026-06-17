@@ -20,11 +20,11 @@ export default function CardMenu({
   const [tagLeft, tagRight] = tags
 
   return (
-    <article className="relative overflow-hidden rounded-2xl aspect-3/4 md:aspect-auto md:h-96 md:flex-1">
+    <article className="relative overflow-hidden rounded-2xl aspect-3/4 md:aspect-auto md:h-80 xl:h-72 2xl:h-96 w-full cursor-pointer transition-transform duration-300 hover:scale-[1.02]">
       <img src={image} alt={name} className="absolute inset-0 w-full h-full object-cover" />
 
       <div
-        className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"
+        className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent"
         aria-hidden="true"
       />
 
@@ -49,7 +49,7 @@ export default function CardMenu({
             </p>
           </div>
         </div>
-        <p className="text-body text-primary-foreground/90 mt-4 line-clamp-2">{description}</p>
+        <p className="text-body text-primary-foreground/90 mt-4 line-clamp-1 2xl:line-clamp-2">{description}</p>
       </div>
     </article>
   )
