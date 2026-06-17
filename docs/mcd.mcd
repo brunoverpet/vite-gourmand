@@ -16,7 +16,7 @@ ORDER_STATUS_HISTORY: id_status_history, status VARCHAR(30), changed_at TIMESTAM
 
 THEME: id_theme, label VARCHAR(50)
 SUITS, 11 MENU, 0N THEME
-MENU: id_menu, title VARCHAR(100), min_people INT, price_per_people DECIMAL(10,2), description VARCHAR(255), conditions VARCHAR(255), stock INT
+MENU: id_menu, title VARCHAR(100), min_people INT, price_per_people DECIMAL(10,2), description VARCHAR(255), conditions VARCHAR(255), stock INT, theme_id, diet_id
 MATCHES, 11 MENU, 0N DIET
 DIET: id_diet, label VARCHAR(50)
 
