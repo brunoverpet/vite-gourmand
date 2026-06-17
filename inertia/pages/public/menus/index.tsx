@@ -243,6 +243,9 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
         selectedDiets={selectedDiets}
         selectedThemes={selectedThemes}
         selectedFilters={selectedFilters}
+        priceMin={priceMin}
+        priceMax={priceMax}
+        minPeople={minPeople}
         open={sheetOpen}
         onOpenChange={(open) => {
           setSheetOpen(open)
@@ -251,6 +254,9 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
         onToggleDiet={toggleDiet}
         onToggleTheme={toggleTheme}
         onRemoveFilter={removeFilter}
+        onPriceMinChange={setPriceMin}
+        onPriceMaxChange={setPriceMax}
+        onMinPeopleChange={setMinPeople}
         onReset={reset}
       />
 
