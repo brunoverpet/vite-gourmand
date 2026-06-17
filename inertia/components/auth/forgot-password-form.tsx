@@ -33,7 +33,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
       </Form>
       <Field className="flex items-center">
         <Button variant="outline" type="button" asChild>
-          <Link href="/login">Se connecter</Link>
+          <Link route="session.render">Se connecter</Link>
         </Button>
       </Field>
     </div>

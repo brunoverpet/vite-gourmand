@@ -8,7 +8,7 @@ import { cn } from '~/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Accueil', href: '/' },
-  { label: 'Nos menus', href: '/menu' },
+  { label: 'Nos menus', href: '/menus' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -48,7 +48,7 @@ export default function Navbar() {
       >
         <div className="max-w-full mx-auto h-20 px-6 md:px-20 flex items-center justify-between">
           <Link
-            href="/"
+            route="home-public"
             className={`text-h4 transition-colors duration-300 ${isTransparent ? 'text-primary-foreground md:text-foreground' : 'text-foreground'}`}
           >
             Vite & Gourmand
@@ -61,7 +61,7 @@ export default function Navbar() {
               </NavLink>
             ))}
             <Button asChild>
-              <Link href="/login">Connexion</Link>
+              <Link route="session.render">Connexion</Link>
             </Button>
           </nav>
 
@@ -89,7 +89,7 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between">
           <Link
-            href="/"
+            route="home-public"
             className="text-h4 text-sidebar-foreground"
             onClick={() => setIsOpen(false)}
           >
@@ -128,7 +128,7 @@ export default function Navbar() {
         </nav>
 
         <Button asChild variant="outline" className="w-full text-primary-foreground">
-          <Link href="/login" onClick={() => setIsOpen(false)}>
+          <Link route="session.render" onClick={() => setIsOpen(false)}>
             Connexion
           </Link>
         </Button>

@@ -34,6 +34,6 @@ export default class ResetPasswordController {
 
     session.flash('success', 'Votre mot de passe a été modifié.')
 
-    return response.redirect().toRoute('session.create')
+    return response.redirect().toRoute('session.render')
   }
 }

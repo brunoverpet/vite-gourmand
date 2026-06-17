@@ -7,11 +7,11 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class RegisterController {
   constructor(private registerAction: RegisterAction) {}
 
-  async create({ inertia }: HttpContext) {
+  async render({ inertia }: HttpContext) {
     return inertia.render('auth/signup', {})
   }
 
-  async store({ request, response, auth }: HttpContext) {
+  async handle({ request, response, auth }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
     const user = await this.registerAction.execute(payload)

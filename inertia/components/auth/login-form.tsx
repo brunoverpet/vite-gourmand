@@ -7,7 +7,7 @@ import { Form, Link } from '@adonisjs/inertia/react'
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Form route="session.store">
+      <Form route="session">
         {({ errors }) => (
           <FieldGroup>
             <Field>
@@ -45,7 +45,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
 
             <Field className="flex items-center">
               <Button variant="outline" type="button" asChild>
-                <Link href="/forgot-password">Mot de passe oublié</Link>
+                <Link route="request_password_reset.show">Mot de passe oublié</Link>
               </Button>
             </Field>
           </FieldGroup>

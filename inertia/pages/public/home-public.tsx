@@ -1,3 +1,4 @@
+import { Link } from '@adonisjs/inertia/react'
 import Hero from '~/components/home/hero'
 import ReviewCard from '~/components/home/review-card'
 import CardMenu from '~/components/menu/card-menu'
@@ -6,7 +7,8 @@ import { Button } from '~/components/ui/button'
 const MENUS = [
   {
     name: 'Menu Noël',
-    description: 'Un menu festif généreux pour célébrer les fêtes en grande compagnie, avec des produits du terroir bordelais.',
+    description:
+      'Un menu festif généreux pour célébrer les fêtes en grande compagnie, avec des produits du terroir bordelais.',
     price: 68,
     minPersons: 8,
     image: '/assets/christmas.webp',
@@ -14,7 +16,8 @@ const MENUS = [
   },
   {
     name: 'Menu Pâques',
-    description: 'Un menu de saison autour des saveurs printanières, idéal pour réunir famille et amis à Pâques.',
+    description:
+      'Un menu de saison autour des saveurs printanières, idéal pour réunir famille et amis à Pâques.',
     price: 54,
     minPersons: 6,
     image: '/assets/easters.webp',
@@ -22,7 +25,8 @@ const MENUS = [
   },
   {
     name: 'Menu Classique',
-    description: 'Une sélection végétale fraîche et colorée pour un événement écoresponsable et savoureux.',
+    description:
+      'Une sélection végétale fraîche et colorée pour un événement écoresponsable et savoureux.',
     price: 48,
     minPersons: 5,
     image: '/assets/classique.webp',
@@ -68,7 +72,7 @@ export default function HomePublic() {
         </div>
         <div className="flex justify-center">
           <Button variant="outline">
-            Voir nos menus
+            <Link route="menus.render">Voir nos menus</Link>
           </Button>
         </div>
       </section>
@@ -113,7 +117,9 @@ export default function HomePublic() {
         <h3 className="text-h3 text-center">Prêt à commander ?</h3>
         <p className="text-primary/70 mx-3 text-center">Commandez en quelques clics.</p>
         <div className="flex justify-center mt-4">
-          <Button variant="outline">Voir nos menus</Button>
+          <Button variant="outline">
+            <Link route="menus.render">Voir nos menus</Link>
+          </Button>
         </div>
       </section>
     </>

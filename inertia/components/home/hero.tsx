@@ -20,12 +20,12 @@ export default function Hero() {
             </h1>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild variant="outline">
-                <Link href="/contact" className="text-primary-foreground">
+                <Link route="contact.render" className="text-primary-foreground">
                   Nous contacter
                 </Link>
               </Button>
               <Button asChild>
-                <Link href="/menu">Voir nos menus</Link>
+                <Link route="menus.render">Voir nos menus</Link>
               </Button>
             </div>
           </div>
@@ -46,10 +46,10 @@ export default function Hero() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button asChild variant="outline">
-              <Link href="/contact">Nous contacter</Link>
+              <Link route="contact.render">Nous contacter</Link>
             </Button>
             <Button asChild>
-              <Link href="/menu">Voir nos menus</Link>
+              <Link route="menus.render">Voir nos menus</Link>
             </Button>
           </div>
         </div>
