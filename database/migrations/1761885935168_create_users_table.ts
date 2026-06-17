@@ -17,6 +17,7 @@ export default class extends BaseSchema {
       table.string('country', 100).nullable()
       table.boolean('password_change').defaultTo(false).notNullable()
       table.boolean('password_reset').defaultTo(false).notNullable()
+      table.boolean('is_active').defaultTo(true).notNullable()
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
