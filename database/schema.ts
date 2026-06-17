@@ -7,6 +7,32 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AllergenSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = AllergenSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DietSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = DietSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class RoleSchema extends BaseModel {
   static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
   $columns = RoleSchema.$columns
@@ -20,23 +46,21 @@ export class RoleSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class ThemeSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = ThemeSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = [
-    'adress',
-    'city',
-    'country',
-    'createdAt',
-    'email',
-    'firstname',
-    'id',
-    'lastname',
-    'password',
-    'passwordChange',
-    'passwordReset',
-    'phone',
-    'roleId',
-    'updatedAt',
-  ] as const
+  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column()
   declare adress: string | null
