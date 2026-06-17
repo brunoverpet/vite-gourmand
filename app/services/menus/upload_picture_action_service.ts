@@ -1,0 +1,16 @@
+import Menu from '#models/menu'
+import type { FileService } from '#services/shared/file_service'
+import type { UploadPicturePayload } from '#validators/menus/picture'
+import { inject } from '@adonisjs/core'
+
+@inject()
+export class UploadPictureActionService {
+  constructor(private fileService: FileService) {}
+
+  async execute(payload: UploadPicturePayload, menuId: string) {
+    const menu = await Menu.findOrFail(menuId)
+
+    const key = await this.fileService.upload(payload.picture, 'pictures')
+    return await menu.related('pictures').create({ imagePath: key })
+  }
+}

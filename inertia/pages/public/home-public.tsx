@@ -1,31 +1,14 @@
+import { Link } from '@adonisjs/inertia/react'
+import type { Data } from '@generated/data'
 import Hero from '~/components/home/hero'
 import ReviewCard from '~/components/home/review-card'
 import CardMenu from '~/components/menu/card-menu'
 import { Button } from '~/components/ui/button'
+import type { InertiaProps } from '~/types'
 
-const MENUS = [
-  {
-    name: 'Menu Noël',
-    price: 68,
-    minPersons: 8,
-    image: '/assets/christmas.webp',
-    tags: ['Classique', 'Noël'],
-  },
-  {
-    name: 'Menu Pâques',
-    price: 54,
-    minPersons: 6,
-    image: '/assets/easters.webp',
-    tags: ['Classique', 'Pâques'],
-  },
-  {
-    name: 'Menu Classique',
-    price: 48,
-    minPersons: 5,
-    image: '/assets/classique.webp',
-    tags: ['Classique'],
-  },
-]
+type HomeProps = InertiaProps<{
+  menus: Data.Menus.Menu[]
+}>
 
 const REVIEWS = [
   {
@@ -48,7 +31,7 @@ const REVIEWS = [
   },
 ]
 
-export default function HomePublic() {
+export default function HomePublic({ menus }: HomeProps) {
   return (
     <>
       <Hero />
@@ -59,13 +42,24 @@ export default function HomePublic() {
           Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
         </p>
         <div className="flex flex-col my-10 gap-5 md:flex-row">
-          {MENUS.map((menu) => (
-            <CardMenu key={menu.name} {...menu} />
+          {menus.map((menu) => (
+            <CardMenu
+              key={menu.id}
+              name={menu.title}
+              description={menu.description}
+              price={menu.pricePerPeople}
+              minPersons={menu.minPeople}
+              image={
+                menu.pictures?.[0]
+                  ? `/uploads/${menu.pictures[0].imagePath}`
+                  : 'https://placehold.co/600x400'
+              }
+            />
           ))}
         </div>
         <div className="flex justify-center">
           <Button variant="outline">
-            Voir nos menus
+            <Link route="menus.render">Voir nos menus</Link>
           </Button>
         </div>
       </section>
@@ -110,7 +104,9 @@ export default function HomePublic() {
         <h3 className="text-h3 text-center">Prêt à commander ?</h3>
         <p className="text-primary/70 mx-3 text-center">Commandez en quelques clics.</p>
         <div className="flex justify-center mt-4">
-          <Button variant="outline">Voir nos menus</Button>
+          <Button variant="outline">
+            <Link route="menus.render">Voir nos menus</Link>
+          </Button>
         </div>
       </section>
     </>

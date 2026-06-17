@@ -6,26 +6,26 @@ export default function Hero() {
     <section aria-labelledby="hero-title" className="relative w-full">
       {/* Mobile : image en background full-bleed */}
       <div
-        className="md:hidden relative min-h-svh w-full bg-cover bg-center"
+        className="md:hidden relative h-dvh w-full bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/hero.webp')" }}
       >
         <div
           className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/70"
           aria-hidden="true"
         />
-        <div className="relative z-10 flex min-h-svh flex-col justify-end px-5 pt-32 pb-12">
+        <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-12">
           <div className="max-w-3xl">
             <h1 id="hero-title" className="text-h1 text-primary-foreground">
               Cuisinés avec soin. Livrés avec amour.
             </h1>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild variant="outline">
-                <Link href="/contact" className="text-primary-foreground">
+                <Link route="contact.render" className="text-primary-foreground">
                   Nous contacter
                 </Link>
               </Button>
               <Button asChild>
-                <Link href="/menu">Voir nos menus</Link>
+                <Link route="menus.render">Voir nos menus</Link>
               </Button>
             </div>
           </div>
@@ -46,10 +46,10 @@ export default function Hero() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button asChild variant="outline">
-              <Link href="/contact">Nous contacter</Link>
+              <Link route="contact.render">Nous contacter</Link>
             </Button>
             <Button asChild>
-              <Link href="/menu">Voir nos menus</Link>
+              <Link route="menus.render">Voir nos menus</Link>
             </Button>
           </div>
         </div>

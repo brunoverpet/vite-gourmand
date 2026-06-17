@@ -13,4 +13,9 @@ export const controllers = {
   contact: {
     Contact: () => import('#controllers/contact/contact_controller'),
   },
+  HomePublic: () => import('#controllers/home_public_controller'),
+  menus: {
+    Menus: () => import('#controllers/menus/menus_controller'),
+    Pictures: () => import('#controllers/menus/pictures_controller'),
+  },
 }

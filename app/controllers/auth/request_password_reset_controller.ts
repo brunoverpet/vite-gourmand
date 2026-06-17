@@ -20,6 +20,6 @@ export default class RequestPasswordResetController {
       'Si cet e-mail correspond à un compte, un lien de réinitialisation vous a été envoyé.'
     )
 
-    return response.redirect().toRoute('session.create')
+    return response.redirect().toRoute('session.render')
   }
 }

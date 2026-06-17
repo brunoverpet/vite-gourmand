@@ -51,7 +51,7 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
 
             <Field className="flex items-center">
               <Button variant="outline" type="button" asChild>
-                <Link href="/login">Se connecter</Link>
+                <Link route="session.render">Se connecter</Link>
               </Button>
             </Field>
           </FieldGroup>
