@@ -12,9 +12,20 @@ export default class MenusController {
   async render({ request, inertia }: HttpContext) {
     const page = request.input('page', 1)
     const qs = request.qs()
+
     const diet = qs.diet as string[] | undefined
     const theme = qs.theme as string[] | undefined
-    const menus = await this.menuService.getAllValidMenu(page, 2, diet, theme)
+    const priceMin = qs.priceMin ? Number(qs.priceMin) : undefined
+    const priceMax = qs.priceMax ? Number(qs.priceMax) : undefined
+    const minPeople = qs.minPeople ? Number(qs.minPeople) : undefined
+
+    const menus = await this.menuService.getAllValidMenu(page, 4, {
+      diet,
+      theme,
+      priceMin,
+      priceMax,
+      minPeople,
+    })
 
     return inertia.render('public/menus/index', {
       diets: async () => {
@@ -29,6 +40,9 @@ export default class MenusController {
       activeFilters: {
         diet: diet ?? [],
         theme: theme ?? [],
+        priceMin: priceMin ?? null,
+        priceMax: priceMax ?? null,
+        minPeople: minPeople ?? null,
       },
     })
   }
