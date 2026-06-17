@@ -33,6 +33,82 @@ export class DietSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class DishAllergenSchema extends BaseModel {
+  static $columns = ['allergenId', 'createdAt', 'dishId', 'id', 'updatedAt'] as const
+  $columns = DishAllergenSchema.$columns
+  @column()
+  declare allergenId: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dishId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DishMenuSchema extends BaseModel {
+  static $columns = ['createdAt', 'dishId', 'id', 'menuId', 'updatedAt'] as const
+  $columns = DishMenuSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dishId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare menuId: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DishSchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'id', 'photoUrl', 'title', 'type', 'updatedAt'] as const
+  $columns = DishSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare photoUrl: string
+  @column()
+  declare title: string
+  @column()
+  declare type: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class MenuSchema extends BaseModel {
+  static $columns = ['conditions', 'createdAt', 'description', 'dietId', 'id', 'minPeople', 'pricePerPeople', 'stock', 'themeId', 'title', 'updatedAt'] as const
+  $columns = MenuSchema.$columns
+  @column()
+  declare conditions: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column()
+  declare dietId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare minPeople: number
+  @column()
+  declare pricePerPeople: string
+  @column()
+  declare stock: number
+  @column()
+  declare themeId: string | null
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class RoleSchema extends BaseModel {
   static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
   $columns = RoleSchema.$columns
@@ -60,7 +136,7 @@ export class ThemeSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
+  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'isActive', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column()
   declare adress: string | null
@@ -76,6 +152,8 @@ export class UserSchema extends BaseModel {
   declare firstname: string
   @column({ isPrimary: true })
   declare id: string
+  @column()
+  declare isActive: boolean
   @column()
   declare lastname: string
   @column({ serializeAs: null })
