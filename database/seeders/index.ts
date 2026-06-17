@@ -3,6 +3,7 @@ import DietSeeder from '#database/seeders/diet_seeder'
 import DishAllergenSeeder from '#database/seeders/dish_allergen_seeder'
 import DishMenuSeeder from '#database/seeders/dish_menu_seeder'
 import DishSeeder from '#database/seeders/dish_seeder'
+import MenuExtraSeeder from '#database/seeders/menu_extra_seeder'
 import MenuPictureSeeder from '#database/seeders/menu_picture_seeder'
 import MenuSeeder from '#database/seeders/menu_seeder'
 import RoleSeeder from '#database/seeders/role_seeder'
@@ -20,6 +21,7 @@ export default class IndexSeeder extends BaseSeeder {
     await new DishSeeder(this.client).run()
     await new MenuSeeder(this.client).run()
     await new MenuPictureSeeder(this.client).run()
+    await new MenuExtraSeeder(this.client).run()
     await new DishMenuSeeder(this.client).run()
     await new DishAllergenSeeder(this.client).run()
   }
