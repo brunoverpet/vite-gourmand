@@ -1,38 +1,14 @@
 import { Link } from '@adonisjs/inertia/react'
+import type { Data } from '@generated/data'
 import Hero from '~/components/home/hero'
 import ReviewCard from '~/components/home/review-card'
 import CardMenu from '~/components/menu/card-menu'
 import { Button } from '~/components/ui/button'
+import type { InertiaProps } from '~/types'
 
-const MENUS = [
-  {
-    name: 'Menu Noël',
-    description:
-      'Un menu festif généreux pour célébrer les fêtes en grande compagnie, avec des produits du terroir bordelais.',
-    price: 68,
-    minPersons: 8,
-    image: '/assets/christmas.webp',
-    tags: ['Classique', 'Noël'],
-  },
-  {
-    name: 'Menu Pâques',
-    description:
-      'Un menu de saison autour des saveurs printanières, idéal pour réunir famille et amis à Pâques.',
-    price: 54,
-    minPersons: 6,
-    image: '/assets/easters.webp',
-    tags: ['Classique', 'Pâques'],
-  },
-  {
-    name: 'Menu Classique',
-    description:
-      'Une sélection végétale fraîche et colorée pour un événement écoresponsable et savoureux.',
-    price: 48,
-    minPersons: 5,
-    image: '/assets/classique.webp',
-    tags: ['Classique'],
-  },
-]
+type HomeProps = InertiaProps<{
+  menus: Data.Menus.Menu[]
+}>
 
 const REVIEWS = [
   {
@@ -55,7 +31,7 @@ const REVIEWS = [
   },
 ]
 
-export default function HomePublic() {
+export default function HomePublic({ menus }: HomeProps) {
   return (
     <>
       <Hero />
@@ -66,8 +42,19 @@ export default function HomePublic() {
           Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
         </p>
         <div className="flex flex-col my-10 gap-5 md:flex-row">
-          {MENUS.map((menu) => (
-            <CardMenu key={menu.name} {...menu} />
+          {menus.map((menu) => (
+            <CardMenu
+              key={menu.id}
+              name={menu.title}
+              description={menu.description}
+              price={menu.pricePerPeople}
+              minPersons={menu.minPeople}
+              image={
+                menu.pictures?.[0]
+                  ? `/uploads/${menu.pictures[0].imagePath}`
+                  : 'https://placehold.co/600x400'
+              }
+            />
           ))}
         </div>
         <div className="flex justify-center">

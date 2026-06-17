@@ -11,7 +11,7 @@ import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').renderInertia('public/home-public', {}).as('home-public')
+router.get('/', [controllers.HomePublic, 'render']).as('home-public')
 router.get('/contact', [controllers.contact.Contact, 'render'])
 router.post('/contact', [controllers.contact.Contact, 'handle'])
 
