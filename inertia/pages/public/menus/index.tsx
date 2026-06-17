@@ -1,18 +1,10 @@
 import type { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
-import { Filter, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CardMenu from '~/components/menu/card-menu'
-import { Badge } from '~/components/ui/badge'
-import { Button } from '~/components/ui/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '~/components/ui/sheet'
+import CardMenuSkeleton from '~/components/menu/card-menu-skeleton'
+import FiltersDesktop from '~/components/menu/filters-desktop'
+import FiltersMobile from '~/components/menu/filters-mobile'
 import type { InertiaProps } from '~/types'
 
 type IndexProps = InertiaProps<{
@@ -31,19 +23,44 @@ type IndexProps = InertiaProps<{
   }
 }>
 
+const ONLY = ['menus', 'activeFilters']
+
 export default function Index({ menus, themes, diets, activeFilters }: IndexProps) {
   const [selectedDiets, setSelectedDiets] = useState<string[]>(activeFilters.diet)
   const [selectedThemes, setSelectedThemes] = useState<string[]>(activeFilters.theme)
   const [sheetOpen, setSheetOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  function applyFilter() {
-    router.get('/menus', { diet: selectedDiets, theme: selectedThemes }, { preserveState: true })
-  }
+  useEffect(() => {
+    const startHandler = router.on('start', () => setLoading(true))
+    const finishHandler = router.on('finish', () => setLoading(false))
+    return () => {
+      startHandler()
+      finishHandler()
+    }
+  }, [])
 
   const selectedFilters = [
     ...selectedDiets.map((d) => ({ label: d, type: 'diet' as const })),
     ...selectedThemes.map((t) => ({ label: t, type: 'theme' as const })),
   ]
+
+  function applyFilter() {
+    const sameDiets =
+      selectedDiets.length === activeFilters.diet.length &&
+      selectedDiets.every((d) => activeFilters.diet.includes(d))
+    const sameThemes =
+      selectedThemes.length === activeFilters.theme.length &&
+      selectedThemes.every((t) => activeFilters.theme.includes(t))
+
+    if (sameDiets && sameThemes) return
+
+    router.get(
+      '/menus',
+      { diet: selectedDiets, theme: selectedThemes },
+      { preserveState: true, preserveScroll: true, only: ONLY }
+    )
+  }
 
   function toggleDiet(label: string) {
     setSelectedDiets((prev) =>
@@ -62,14 +79,26 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     const newThemes = type === 'theme' ? selectedThemes.filter((t) => t !== label) : selectedThemes
     setSelectedDiets(newDiets)
     setSelectedThemes(newThemes)
-    router.get('/menus', { diet: newDiets, theme: newThemes }, { preserveState: true })
+    router.get('/menus', { diet: newDiets, theme: newThemes }, { preserveState: true, preserveScroll: true, only: ONLY })
   }
 
   function reset() {
     setSelectedDiets([])
     setSelectedThemes([])
     setSheetOpen(false)
-    router.get('/menus', {}, { preserveState: true })
+    router.get('/menus', {}, { preserveState: true, preserveScroll: true, only: ONLY })
+  }
+
+  const filterProps = {
+    diets,
+    themes,
+    selectedDiets,
+    selectedThemes,
+    selectedFilters,
+    onToggleDiet: toggleDiet,
+    onToggleTheme: toggleTheme,
+    onRemoveFilter: removeFilter,
+    onReset: reset,
   }
 
   return (
@@ -79,105 +108,52 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
         Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
       </p>
 
-      {/* Filtres mobile uniquement */}
-      <div className="md:hidden mt-6">
-        <div className="flex flex-col items-end gap-3">
-          <Sheet
-            open={sheetOpen}
-            onOpenChange={(open) => {
-              setSheetOpen(open)
-              if (!open) applyFilter()
-            }}
-          >
-            <SheetTrigger asChild>
-              <Button variant="outline">
-                <Filter />
-                Filtres {selectedFilters.length > 0 && `(${selectedFilters.length})`}
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-2xl">
-              <SheetHeader className="px-6 pt-6">
-                <SheetTitle>Filtres</SheetTitle>
-              </SheetHeader>
+      <FiltersMobile
+        {...filterProps}
+        open={sheetOpen}
+        onOpenChange={(open) => {
+          setSheetOpen(open)
+          if (!open) applyFilter()
+        }}
+      />
 
-              <div className="px-6 flex flex-col gap-6 mt-4">
-                <div>
-                  <p className="text-label-caps text-muted-foreground mb-3">Régime</p>
-                  <div className="flex flex-wrap gap-2">
-                    {diets.map((diet) => (
-                      <Badge
-                        key={diet.id}
-                        variant={selectedDiets.includes(diet.label) ? 'default' : 'outline'}
-                        className="px-4 py-4 cursor-pointer"
-                        onClick={() => toggleDiet(diet.label)}
-                      >
-                        {diet.label}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
+      <FiltersDesktop {...filterProps} />
 
-                <div>
-                  <p className="text-label-caps text-muted-foreground mb-3">Thème</p>
-                  <div className="flex flex-wrap gap-2">
-                    {themes.map((theme) => (
-                      <Badge
-                        key={theme.id}
-                        variant={selectedThemes.includes(theme.label) ? 'default' : 'outline'}
-                        className="px-4 py-4 cursor-pointer"
-                        onClick={() => toggleTheme(theme.label)}
-                      >
-                        {theme.label}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <SheetFooter className="px-6 pb-8 pt-6">
-                <Button variant="outline" onClick={reset} disabled={selectedFilters.length === 0}>
-                  Réinitialiser
-                </Button>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
-
-          {selectedFilters.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {selectedFilters.map((f) => (
-                <Badge
-                  key={`${f.type}-${f.label}`}
-                  className="px-3 py-4 gap-1 cursor-pointer"
-                  onClick={() => removeFilter(f.type, f.label)}
-                >
-                  {f.label}
-                  <X className="w-3 h-3" />
-                </Badge>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="mt-6">
+      <div className="mt-6 mb-20">
         <p className="text-body-sm text-muted-foreground">{menus.data.length} résultats</p>
-        <div className="flex flex-col mt-4 gap-5 md:flex-row">
-          {menus.data.map((menu) => (
-            <CardMenu
-              key={menu.id}
-              name={menu.title}
-              description={menu.description}
-              price={menu.pricePerPeople}
-              minPersons={menu.minPeople}
-              tags={[menu.theme.label, menu.diet.label]}
-              image={
-                menu.pictures?.[0]
-                  ? `/uploads/${menu.pictures[0].imagePath}`
-                  : 'https://placehold.co/600x400'
-              }
-            />
-          ))}
-        </div>
+
+        {loading ? (
+          <div className="flex flex-col mt-4 gap-5 md:flex-row">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <CardMenuSkeleton key={i} />
+            ))}
+          </div>
+        ) : menus.data.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 gap-3">
+            <p className="text-h3 text-foreground">Aucun menu trouvé</p>
+            <p className="text-body text-muted-foreground text-center">
+              Aucun menu ne correspond à vos filtres. Essayez d&apos;en retirer quelques-uns.
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col mt-4 gap-5 md:flex-row">
+            {menus.data.map((menu) => (
+              <CardMenu
+                key={menu.id}
+                name={menu.title}
+                description={menu.description}
+                price={menu.pricePerPeople}
+                minPersons={menu.minPeople}
+                tags={[menu.theme.label, menu.diet.label]}
+                image={
+                  menu.pictures?.[0]
+                    ? `/uploads/${menu.pictures[0].imagePath}`
+                    : 'https://placehold.co/600x400'
+                }
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

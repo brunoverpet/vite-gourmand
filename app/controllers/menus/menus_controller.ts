@@ -14,13 +14,17 @@ export default class MenusController {
     const qs = request.qs()
     const diet = qs.diet as string[] | undefined
     const theme = qs.theme as string[] | undefined
-    const { diets, themes } = await this.menuService.getFilters()
-
     const menus = await this.menuService.getAllValidMenu(page, 2, diet, theme)
 
     return inertia.render('public/menus/index', {
-      diets: DietTransformer.transform(diets),
-      themes: ThemeTransformer.transform(themes),
+      diets: async () => {
+        const { diets } = await this.menuService.getFilters()
+        return DietTransformer.transform(diets)
+      },
+      themes: async () => {
+        const { themes } = await this.menuService.getFilters()
+        return ThemeTransformer.transform(themes)
+      },
       menus: MenuTransformer.paginate(menus.all(), menus.getMeta()),
       activeFilters: {
         diet: diet ?? [],
