@@ -1,9 +1,10 @@
 import { MenuSchema } from '#database/schema'
 import Diet from '#models/diet'
 import Dish from '#models/dish'
+import Picture from '#models/picture'
 import Theme from '#models/theme'
-import { belongsTo, manyToMany } from '@adonisjs/lucid/orm'
-import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
+import { belongsTo, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 
 export default class Menu extends MenuSchema {
   @belongsTo(() => Diet)
@@ -11,6 +12,9 @@ export default class Menu extends MenuSchema {
 
   @belongsTo(() => Theme)
   declare theme: BelongsTo<typeof Theme>
+
+  @hasMany(() => Picture)
+  declare pictures: HasMany<typeof Picture>
 
   @manyToMany(() => Dish, { pivotTable: 'dish_menus' })
   declare dishes: ManyToMany<typeof Dish>
