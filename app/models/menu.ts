@@ -12,6 +12,6 @@ export default class Menu extends MenuSchema {
   @belongsTo(() => Theme)
   declare theme: BelongsTo<typeof Theme>
 
-  @manyToMany(() => Dish)
+  @manyToMany(() => Dish, { pivotTable: 'dish_menus' })
   declare dishes: ManyToMany<typeof Dish>
 }
