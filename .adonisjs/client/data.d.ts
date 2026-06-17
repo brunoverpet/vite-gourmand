@@ -7,8 +7,8 @@
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 import type AuthUserTransformer from '#transformers/auth/user_transformer'
-import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusDietTransformer from '#transformers/menus/diet_transformer'
+import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
 import type PictureTransformer from '#transformers/picture_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
@@ -21,13 +21,13 @@ export namespace Data {
     }
   }
   export namespace Menus {
-    export type Menu = InferData<MenusMenuTransformer>
-    export namespace Menu {
-      export type Variants = InferVariants<MenusMenuTransformer>
-    }
     export type Diet = InferData<MenusDietTransformer>
     export namespace Diet {
       export type Variants = InferVariants<MenusDietTransformer>
+    }
+    export type Menu = InferData<MenusMenuTransformer>
+    export namespace Menu {
+      export type Variants = InferVariants<MenusMenuTransformer>
     }
     export type Theme = InferData<MenusThemeTransformer>
     export namespace Theme {
