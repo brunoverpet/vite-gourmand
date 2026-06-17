@@ -2,6 +2,11 @@
 import type { routes } from './index.ts'
 
 export interface ApiDefinition {
+  drive: {
+    fs: {
+      serve: typeof routes['drive.fs.serve']
+    }
+  }
   homePublic: typeof routes['home-public']
   contact: typeof routes['contact'] & {
     render: typeof routes['contact.render']
