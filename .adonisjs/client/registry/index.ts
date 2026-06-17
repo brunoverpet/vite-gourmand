@@ -30,29 +30,29 @@ const routes = {
     tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
     types: placeholder as Registry['contact']['types'],
   },
-  'register.create': {
+  'register.render': {
     methods: ["GET","HEAD"],
     pattern: '/signup',
     tokens: [{"old":"/signup","type":0,"val":"signup","end":""}],
-    types: placeholder as Registry['register.create']['types'],
+    types: placeholder as Registry['register.render']['types'],
   },
-  'register.store': {
+  'register': {
     methods: ["POST"],
     pattern: '/signup',
     tokens: [{"old":"/signup","type":0,"val":"signup","end":""}],
-    types: placeholder as Registry['register.store']['types'],
+    types: placeholder as Registry['register']['types'],
   },
-  'session.create': {
+  'session.render': {
     methods: ["GET","HEAD"],
     pattern: '/login',
     tokens: [{"old":"/login","type":0,"val":"login","end":""}],
-    types: placeholder as Registry['session.create']['types'],
+    types: placeholder as Registry['session.render']['types'],
   },
-  'session.store': {
+  'session': {
     methods: ["POST"],
     pattern: '/login',
     tokens: [{"old":"/login","type":0,"val":"login","end":""}],
-    types: placeholder as Registry['session.store']['types'],
+    types: placeholder as Registry['session']['types'],
   },
   'request_password_reset.show': {
     methods: ["GET","HEAD"],
@@ -77,6 +77,18 @@ const routes = {
     pattern: '/reset-password/:id',
     tokens: [{"old":"/reset-password/:id","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['reset_password']['types'],
+  },
+  'menus.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/menus',
+    tokens: [{"old":"/menus","type":0,"val":"menus","end":""}],
+    types: placeholder as Registry['menus.render']['types'],
+  },
+  'pictures': {
+    methods: ["POST"],
+    pattern: '/menus/:menuId/pictures',
+    tokens: [{"old":"/menus/:menuId/pictures","type":0,"val":"menus","end":""},{"old":"/menus/:menuId/pictures","type":1,"val":"menuId","end":""},{"old":"/menus/:menuId/pictures","type":0,"val":"pictures","end":""}],
+    types: placeholder as Registry['pictures']['types'],
   },
   'home': {
     methods: ["GET","HEAD"],

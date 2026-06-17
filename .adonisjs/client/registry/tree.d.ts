@@ -11,13 +11,11 @@ export interface ApiDefinition {
   contact: typeof routes['contact'] & {
     render: typeof routes['contact.render']
   }
-  register: {
-    create: typeof routes['register.create']
-    store: typeof routes['register.store']
+  register: typeof routes['register'] & {
+    render: typeof routes['register.render']
   }
-  session: {
-    create: typeof routes['session.create']
-    store: typeof routes['session.store']
+  session: typeof routes['session'] & {
+    render: typeof routes['session.render']
     destroy: typeof routes['session.destroy']
   }
   requestPasswordReset: typeof routes['request_password_reset'] & {
@@ -26,5 +24,9 @@ export interface ApiDefinition {
   resetPassword: typeof routes['reset_password'] & {
     show: typeof routes['reset_password.show']
   }
+  menus: {
+    render: typeof routes['menus.render']
+  }
+  pictures: typeof routes['pictures']
   home: typeof routes['home']
 }
