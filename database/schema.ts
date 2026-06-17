@@ -64,7 +64,15 @@ export class DishMenuSchema extends BaseModel {
 }
 
 export class DishSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'id', 'photoUrl', 'title', 'type', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'description',
+    'id',
+    'photoUrl',
+    'title',
+    'type',
+    'updatedAt',
+  ] as const
   $columns = DishSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -83,7 +91,19 @@ export class DishSchema extends BaseModel {
 }
 
 export class MenuSchema extends BaseModel {
-  static $columns = ['conditions', 'createdAt', 'description', 'dietId', 'id', 'minPeople', 'pricePerPeople', 'stock', 'themeId', 'title', 'updatedAt'] as const
+  static $columns = [
+    'conditions',
+    'createdAt',
+    'description',
+    'dietId',
+    'id',
+    'minPeople',
+    'pricePerPeople',
+    'stock',
+    'themeId',
+    'title',
+    'updatedAt',
+  ] as const
   $columns = MenuSchema.$columns
   @column()
   declare conditions: string | null
@@ -136,7 +156,23 @@ export class ThemeSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['adress', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'isActive', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
+  static $columns = [
+    'adress',
+    'city',
+    'country',
+    'createdAt',
+    'email',
+    'firstname',
+    'id',
+    'isActive',
+    'lastname',
+    'password',
+    'passwordChange',
+    'passwordReset',
+    'phone',
+    'roleId',
+    'updatedAt',
+  ] as const
   $columns = UserSchema.$columns
   @column()
   declare adress: string | null
