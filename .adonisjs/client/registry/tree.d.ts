@@ -11,6 +11,10 @@ export interface ApiDefinition {
   contact: typeof routes['contact'] & {
     render: typeof routes['contact.render']
   }
+  menus: {
+    render: typeof routes['menus.render']
+    show: typeof routes['menus.show']
+  }
   register: typeof routes['register'] & {
     render: typeof routes['register.render']
   }
@@ -23,9 +27,6 @@ export interface ApiDefinition {
   }
   resetPassword: typeof routes['reset_password'] & {
     show: typeof routes['reset_password.show']
-  }
-  menus: {
-    render: typeof routes['menus.render']
   }
   pictures: typeof routes['pictures']
   home: typeof routes['home']

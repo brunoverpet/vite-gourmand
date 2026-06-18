@@ -212,6 +212,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
           {menus.data.map((menu) => (
             <CardMenu
               key={menu.id}
+              id={menu.id}
               name={menu.title}
               description={menu.description}
               price={menu.pricePerPeople}

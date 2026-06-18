@@ -15,6 +15,9 @@ router.get('/', [controllers.HomePublic, 'render']).as('home-public')
 router.get('/contact', [controllers.contact.Contact, 'render'])
 router.post('/contact', [controllers.contact.Contact, 'handle'])
 
+router.get('/menus', [controllers.menus.Menus, 'render'])
+router.get('/menus/:id', [controllers.menus.Menus, 'show'])
+
 router
   .group(() => {
     router.get('signup', [controllers.auth.Register, 'render'])
@@ -29,7 +32,6 @@ router
     router.get('reset-password/:id', [controllers.auth.ResetPassword, 'show'])
     router.post('reset-password/:id', [controllers.auth.ResetPassword, 'handle'])
 
-    router.get('/menus', [controllers.menus.Menus, 'render'])
     router.post('/menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
   })
   .use(middleware.guest())

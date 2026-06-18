@@ -8,6 +8,8 @@ export type ScannedRoutes = {
     'home-public': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
     'contact': { paramsTuple?: []; params?: {} }
+    'menus.render': { paramsTuple?: []; params?: {} }
+    'menus.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'register.render': { paramsTuple?: []; params?: {} }
     'register': { paramsTuple?: []; params?: {} }
     'session.render': { paramsTuple?: []; params?: {} }
@@ -16,7 +18,6 @@ export type ScannedRoutes = {
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'menus.render': { paramsTuple?: []; params?: {} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
@@ -25,22 +26,24 @@ export type ScannedRoutes = {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'home-public': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
+    'menus.render': { paramsTuple?: []; params?: {} }
+    'menus.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'register.render': { paramsTuple?: []; params?: {} }
     'session.render': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'menus.render': { paramsTuple?: []; params?: {} }
     'home': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'home-public': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
+    'menus.render': { paramsTuple?: []; params?: {} }
+    'menus.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'register.render': { paramsTuple?: []; params?: {} }
     'session.render': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'menus.render': { paramsTuple?: []; params?: {} }
     'home': { paramsTuple?: []; params?: {} }
   }
   POST: {

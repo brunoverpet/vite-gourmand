@@ -45,6 +45,7 @@ export default function HomePublic({ menus }: HomeProps) {
           {menus.map((menu) => (
             <CardMenu
               key={menu.id}
+              id={menu.id}
               name={menu.title}
               description={menu.description}
               price={menu.pricePerPeople}

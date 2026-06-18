@@ -1,6 +1,8 @@
+import { Link } from '@adonisjs/inertia/react'
 import { Badge } from '~/components/ui/badge'
 
 type CardMenuProps = {
+  id: string
   name: string
   description: string
   price: string
@@ -10,6 +12,7 @@ type CardMenuProps = {
 }
 
 export default function CardMenu({
+  id,
   name,
   description,
   price,
@@ -20,6 +23,7 @@ export default function CardMenu({
   const [tagLeft, tagRight] = tags
 
   return (
+    <Link route="menus.show" routeParams={{ id }} className="block">
     <article className="relative overflow-hidden rounded-2xl aspect-3/4 md:aspect-auto md:h-80 xl:h-72 2xl:h-96 w-full cursor-pointer transition-transform duration-300 hover:scale-[1.02]">
       <img src={image} alt={name} className="absolute inset-0 w-full h-full object-cover" />
 
@@ -52,5 +56,6 @@ export default function CardMenu({
         <p className="text-body text-primary-foreground/90 mt-4 line-clamp-1 2xl:line-clamp-2">{description}</p>
       </div>
     </article>
+    </Link>
   )
 }

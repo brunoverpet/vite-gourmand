@@ -55,6 +55,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/contact/contact_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'menus.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/menus'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['render']>>>
+    }
+  }
+  'menus.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/menus/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['show']>>>
+    }
+  }
   'register.render': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
@@ -149,18 +173,6 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/auth/forgot_password').resetPasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
-  'menus.render': {
-    methods: ["GET","HEAD"]
-    pattern: '/menus'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['render']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/menus_controller').default['render']>>>
     }
   }
   'pictures': {

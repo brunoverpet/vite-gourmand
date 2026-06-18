@@ -64,7 +64,7 @@ export class DishMenuSchema extends BaseModel {
 }
 
 export class DishSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'id', 'photoUrl', 'title', 'type', 'updatedAt'] as const
+  static $columns = ['createdAt', 'description', 'id', 'photoPath', 'title', 'type', 'updatedAt'] as const
   $columns = DishSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -73,7 +73,7 @@ export class DishSchema extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
   @column()
-  declare photoUrl: string
+  declare photoPath: string
   @column()
   declare title: string
   @column()

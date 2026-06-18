@@ -1,6 +1,7 @@
 import { MenuService } from '#services/menus/menu_service'
 import DietTransformer from '#transformers/menus/diet_transformer'
 import MenuTransformer from '#transformers/menus/menu_transformer'
+import MenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import ThemeTransformer from '#transformers/menus/theme_transformer'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -44,6 +45,13 @@ export default class MenusController {
         priceMax: priceMax ?? null,
         minPeople: minPeople ?? null,
       },
+    })
+  }
+
+  async show({ params, inertia }: HttpContext) {
+    const menu = await this.menuService.getMenuById(params.id)
+    return inertia.render('public/menus/show', {
+      menu: MenuDetailTransformer.transform(menu),
     })
   }
 }

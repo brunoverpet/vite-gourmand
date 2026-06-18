@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input'
 export function SignupForm({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Form route="register.handle">
+      <Form route="register">
         {({ errors }) => (
           <>
             <FieldGroup>

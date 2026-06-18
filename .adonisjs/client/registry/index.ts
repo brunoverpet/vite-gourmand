@@ -30,6 +30,18 @@ const routes = {
     tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
     types: placeholder as Registry['contact']['types'],
   },
+  'menus.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/menus',
+    tokens: [{"old":"/menus","type":0,"val":"menus","end":""}],
+    types: placeholder as Registry['menus.render']['types'],
+  },
+  'menus.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/menus/:id',
+    tokens: [{"old":"/menus/:id","type":0,"val":"menus","end":""},{"old":"/menus/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['menus.show']['types'],
+  },
   'register.render': {
     methods: ["GET","HEAD"],
     pattern: '/signup',
@@ -77,12 +89,6 @@ const routes = {
     pattern: '/reset-password/:id',
     tokens: [{"old":"/reset-password/:id","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['reset_password']['types'],
-  },
-  'menus.render': {
-    methods: ["GET","HEAD"],
-    pattern: '/menus',
-    tokens: [{"old":"/menus","type":0,"val":"menus","end":""}],
-    types: placeholder as Registry['menus.render']['types'],
   },
   'pictures': {
     methods: ["POST"],

@@ -29,6 +29,6 @@ COMPOSES, 0N MENU, 0N DISH
 :
 THEME: id_theme, label VARCHAR(50)
 SUITS, 11 MENU, 0N THEME
-DISH: id_dish, title VARCHAR(100), type VARCHAR(20), description VARCHAR(255), photo_url VARCHAR(255)
+DISH: id_dish, title VARCHAR(100), type VARCHAR(20), description VARCHAR(255), photo_path VARCHAR(255)
 HAS_ALLERGEN, 0N DISH, 0N ALLERGEN
 ALLERGEN: id_allergen, label VARCHAR(100)

@@ -35,6 +35,16 @@ export class MenuService {
       .limit(limit)
   }
 
+  async getMenuById(id: string) {
+    return await Menu.query()
+      .where('id', id)
+      .preload('pictures')
+      .preload('diet')
+      .preload('theme')
+      .preload('dishes', (q) => q.preload('allergens'))
+      .firstOrFail()
+  }
+
   async getFilters() {
     const [diets, themes] = await Promise.all([Diet.all(), Theme.all()])
     return { diets, themes }
