@@ -7,12 +7,12 @@
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 import type AuthUserTransformer from '#transformers/auth/user_transformer'
-import type MenusAllergenTransformer from '#transformers/menus/allergen_transformer'
 import type MenusDietTransformer from '#transformers/menus/diet_transformer'
-import type MenusDishTransformer from '#transformers/menus/dish_transformer'
-import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
+import type MenusAllergenTransformer from '#transformers/menus/allergen_transformer'
+import type MenusDishTransformer from '#transformers/menus/dish_transformer'
+import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import type PictureTransformer from '#transformers/picture_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
@@ -24,21 +24,9 @@ export namespace Data {
     }
   }
   export namespace Menus {
-    export type Allergen = InferData<MenusAllergenTransformer>
-    export namespace Allergen {
-      export type Variants = InferVariants<MenusAllergenTransformer>
-    }
     export type Diet = InferData<MenusDietTransformer>
     export namespace Diet {
       export type Variants = InferVariants<MenusDietTransformer>
-    }
-    export type Dish = InferData<MenusDishTransformer>
-    export namespace Dish {
-      export type Variants = InferVariants<MenusDishTransformer>
-    }
-    export type MenuDetail = InferData<MenusMenuDetailTransformer>
-    export namespace MenuDetail {
-      export type Variants = InferVariants<MenusMenuDetailTransformer>
     }
     export type Menu = InferData<MenusMenuTransformer>
     export namespace Menu {
@@ -47,6 +35,18 @@ export namespace Data {
     export type Theme = InferData<MenusThemeTransformer>
     export namespace Theme {
       export type Variants = InferVariants<MenusThemeTransformer>
+    }
+    export type Allergen = InferData<MenusAllergenTransformer>
+    export namespace Allergen {
+      export type Variants = InferVariants<MenusAllergenTransformer>
+    }
+    export type Dish = InferData<MenusDishTransformer>
+    export namespace Dish {
+      export type Variants = InferVariants<MenusDishTransformer>
+    }
+    export type MenuDetail = InferData<MenusMenuDetailTransformer>
+    export namespace MenuDetail {
+      export type Variants = InferVariants<MenusMenuDetailTransformer>
     }
   }
   export type Picture = InferData<PictureTransformer>
