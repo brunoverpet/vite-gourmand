@@ -16,6 +16,8 @@ export default class extends BaseSchema {
       table.string('delivery_city').notNullable()
       table.string('delivery_zipcode').notNullable()
       table.integer('number_of_people').notNullable()
+      table.decimal('menu_price').notNullable()
+      table.decimal('reduction_amount').notNullable().defaultTo(0)
       table.decimal('total_amount').notNullable()
       table.decimal('delivery_fees').notNullable()
       table.string('status').notNullable()

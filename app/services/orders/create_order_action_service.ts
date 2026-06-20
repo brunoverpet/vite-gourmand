@@ -31,6 +31,12 @@ export class CreateOrderActionService {
     )
     const fees = this.deliveryFeeService.calculateFees(distanceMeters, payload.delivery_zipcode)
 
+    const basePrice = pricePerPeople * payload.number_of_people
+    const reductionAmount =
+      payload.number_of_people >= min_people + 5
+        ? Math.round((basePrice - finalPrice) * 100) / 100
+        : 0
+
     await Order.create({
       userId,
       menuId: payload.menu_id,
@@ -41,6 +47,8 @@ export class CreateOrderActionService {
       deliveryTime: payload.delivery_time,
       eventDate: payload.event_date,
       numberOfPeople: payload.number_of_people,
+      menuPrice: (Math.round(finalPrice * 100) / 100).toString(),
+      reductionAmount: reductionAmount.toString(),
       totalAmount: (Math.round((finalPrice + fees) * 100) / 100).toString(),
       status: OrderStatus.PENDING,
       orderNumber: this.#createOrderNumber(),
