@@ -10,11 +10,12 @@ export default class SessionController {
     return inertia.render('auth/login', {})
   }
 
-  async handle({ request, auth, response }: HttpContext) {
+  async handle({ request, auth, response, session }: HttpContext) {
     const { email, password } = request.all()
     const user = await User.verifyCredentials(email, password)
 
     await auth.use('web').login(user)
+    session.flash('info', 'Bienvenue sur votre espace client.')
     return response.redirect().toIntendedRoute('home')
   }
 
