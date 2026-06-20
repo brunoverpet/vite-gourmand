@@ -110,7 +110,7 @@ export class MenuSchema extends BaseModel {
 }
 
 export class OrderSchema extends BaseModel {
-  static $columns = ['cancellationReason', 'contactMode', 'createdAt', 'deliveryAddress', 'deliveryCity', 'deliveryFees', 'deliveryTime', 'deliveryZipcode', 'eventDate', 'id', 'materialLoan', 'materialReturn', 'menuId', 'numberOfPeople', 'orderDate', 'orderNumber', 'status', 'totalAmount', 'updatedAt', 'userId'] as const
+  static $columns = ['cancellationReason', 'contactMode', 'createdAt', 'deliveryAddress', 'deliveryCity', 'deliveryFees', 'deliveryTime', 'deliveryZipcode', 'eventDate', 'id', 'materialLoan', 'materialReturn', 'menuId', 'menuPrice', 'numberOfPeople', 'orderDate', 'orderNumber', 'reductionAmount', 'status', 'totalAmount', 'updatedAt', 'userId'] as const
   $columns = OrderSchema.$columns
   @column()
   declare cancellationReason: string | null
@@ -139,11 +139,15 @@ export class OrderSchema extends BaseModel {
   @column()
   declare menuId: string | null
   @column()
+  declare menuPrice: string
+  @column()
   declare numberOfPeople: number
   @column.dateTime()
   declare orderDate: DateTime
   @column()
   declare orderNumber: string
+  @column()
+  declare reductionAmount: string
   @column()
   declare status: string
   @column()
