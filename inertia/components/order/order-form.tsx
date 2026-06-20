@@ -20,6 +20,7 @@ import {
 import { cn } from '@/lib/utils'
 import type { SharedProps } from '@adonisjs/inertia/types'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
+import { PhoneInput } from '~/components/ui/phone-input'
 
 type Estimate = {
   distanceKm: number
@@ -391,7 +392,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
               </Field>
               <Field>
                 <FieldLabel htmlFor="phone">Téléphone</FieldLabel>
-                <Input id="phone" name="phone" type="tel" placeholder="06 00 00 00 00" required />
+                <PhoneInput id="phone" name="phone" autoComplete="tel" placeholder="6 00 00 00 00" required />
               </Field>
             </FieldGroup>
           </section>
