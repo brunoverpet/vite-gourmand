@@ -30,4 +30,8 @@ export interface ApiDefinition {
   }
   pictures: typeof routes['pictures']
   home: typeof routes['home']
+  order: {
+    render: typeof routes['order.render']
+    store: typeof routes['order.store']
+  }
 }

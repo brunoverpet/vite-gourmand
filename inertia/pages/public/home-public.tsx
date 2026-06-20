@@ -41,7 +41,7 @@ export default function HomePublic({ menus }: HomeProps) {
         <p className="text-muted-foreground mt-2">
           Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
         </p>
-        <div className="flex flex-col my-10 gap-5 md:flex-row">
+        <div className="grid grid-cols-1 md:grid-cols-3 my-10 gap-5">
           {menus.map((menu) => (
             <CardMenu
               key={menu.id}

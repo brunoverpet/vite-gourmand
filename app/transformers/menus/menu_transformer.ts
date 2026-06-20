@@ -13,4 +13,10 @@ export default class MenuTransformer extends BaseTransformer<Menu> {
       pictures: PictureTransformer.transform(this.whenLoaded(this.resource.pictures)),
     }
   }
+
+  async forDetailedView() {
+    return {
+      ...this.toObject(),
+    }
+  }
 }

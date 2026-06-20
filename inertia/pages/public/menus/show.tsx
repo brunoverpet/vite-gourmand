@@ -141,20 +141,22 @@ export default function Show({ menu }: ShowProps) {
           )}
 
           {/* CTA desktop */}
-          {/* TODO: asChild + <Link route="commande.render" routeParams={{ menu: menu.id }}> quand la feature commande sera créée */}
           <div className="hidden md:block mt-10">
-            <Button size="lg" className="w-full">
-              Commander ce menu
+            <Button size="lg" className="w-full" asChild>
+              <Link route="order.render" routeParams={{ menuId: menu.id }}>
+                Commander ce menu
+              </Link>
             </Button>
           </div>
         </div>
       </div>
 
       {/* CTA sticky mobile */}
-      {/* TODO: asChild + <Link route="commande.render" routeParams={{ menu: menu.id }}> quand la feature commande sera créée */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t border-border">
-        <Button size="lg" className="w-full">
-          Commander ce menu
+        <Button size="lg" className="w-full" asChild>
+          <Link route="order.render" routeParams={{ menuId: menu.id }}>
+            Commander ce menu
+          </Link>
         </Button>
       </div>
     </div>

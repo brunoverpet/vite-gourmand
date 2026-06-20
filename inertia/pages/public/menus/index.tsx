@@ -42,10 +42,15 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
   const [minPeople, setMinPeople] = useState(activeFilters.minPeople ?? 1)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [loadingType, setLoadingType] = useState<'page' | 'filter'>('filter')
   const scrollToTop = useRef(false)
-  const loadingType = useRef<'page' | 'filter'>('filter')
   const priceDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
   const isFirstRender = useRef(true)
+  const latestFilters = useRef({ selectedDiets, selectedThemes, minPeople })
+
+  useEffect(() => {
+    latestFilters.current = { selectedDiets, selectedThemes, minPeople }
+  }, [selectedDiets, selectedThemes, minPeople])
 
   useEffect(() => {
     const startHandler = router.on('start', () => setLoading(true))
@@ -69,15 +74,20 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     }
     if (priceDebounce.current) clearTimeout(priceDebounce.current)
     priceDebounce.current = setTimeout(() => {
-      loadingType.current = 'filter'
+      const {
+        selectedDiets: diets,
+        selectedThemes: themes,
+        minPeople: people,
+      } = latestFilters.current
+      setLoadingType('filter')
       router.get(
         '/menus',
         {
-          diet: selectedDiets,
-          theme: selectedThemes,
+          diet: diets,
+          theme: themes,
           ...(priceMin !== '' && { priceMin }),
           ...(priceMax !== '' && { priceMax }),
-          ...(minPeople > 1 && { minPeople }),
+          ...(people > 1 && { minPeople: people }),
         },
         { preserveState: true, preserveScroll: true, only: ONLY }
       )
@@ -104,7 +114,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
   }
 
   function applyFilter(overrides: Record<string, unknown> = {}) {
-    loadingType.current = 'filter'
+    setLoadingType('filter')
     router.get('/menus', buildParams(overrides), {
       preserveState: true,
       preserveScroll: true,
@@ -129,7 +139,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     const newThemes = type === 'theme' ? selectedThemes.filter((t) => t !== label) : selectedThemes
     setSelectedDiets(newDiets)
     setSelectedThemes(newThemes)
-    loadingType.current = 'filter'
+    setLoadingType('filter')
     router.get('/menus', buildParams({ diet: newDiets, theme: newThemes }), {
       preserveState: true,
       preserveScroll: true,
@@ -159,7 +169,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
   }
 
   function goToPage(page: number) {
-    loadingType.current = 'page'
+    setLoadingType('page')
     scrollToTop.current = true
     router.get('/menus', buildParams({ page }), {
       preserveState: true,
@@ -175,13 +185,13 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     setPriceMax('')
     setMinPeople(1)
     setSheetOpen(false)
-    loadingType.current = 'filter'
+    setLoadingType('filter')
     router.get('/menus', {}, { preserveState: true, preserveScroll: true, only: ONLY })
   }
 
   function renderCards(gridClass: string, skeletonCount: number) {
-    const isPageLoad = loading && loadingType.current === 'page'
-    const isFilterLoad = loading && loadingType.current === 'filter'
+    const isPageLoad = loading && loadingType === 'page'
+    const isFilterLoad = loading && loadingType === 'filter'
 
     if (isPageLoad) {
       return (

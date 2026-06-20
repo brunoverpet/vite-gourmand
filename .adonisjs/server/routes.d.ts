@@ -20,6 +20,8 @@ export type ScannedRoutes = {
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
+    'order.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -33,6 +35,7 @@ export type ScannedRoutes = {
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
   }
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
@@ -45,6 +48,7 @@ export type ScannedRoutes = {
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
   }
   POST: {
     'contact': { paramsTuple?: []; params?: {} }
@@ -53,6 +57,7 @@ export type ScannedRoutes = {
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
+    'order.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
 }
