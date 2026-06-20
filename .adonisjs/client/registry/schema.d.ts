@@ -199,6 +199,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'order.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/orders/:menuId'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { menuId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['render']>>>
+    }
+  }
+  'order.store': {
+    methods: ["POST"]
+    pattern: '/orders'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/order/order').createOrderValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/order/order').createOrderValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'session.destroy': {
     methods: ["POST"]
     pattern: '/logout'

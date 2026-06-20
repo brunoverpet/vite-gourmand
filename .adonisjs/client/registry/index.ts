@@ -102,6 +102,18 @@ const routes = {
     tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
     types: placeholder as Registry['home']['types'],
   },
+  'order.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/orders/:menuId',
+    tokens: [{"old":"/orders/:menuId","type":0,"val":"orders","end":""},{"old":"/orders/:menuId","type":1,"val":"menuId","end":""}],
+    types: placeholder as Registry['order.render']['types'],
+  },
+  'order.store': {
+    methods: ["POST"],
+    pattern: '/orders',
+    tokens: [{"old":"/orders","type":0,"val":"orders","end":""}],
+    types: placeholder as Registry['order.store']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',

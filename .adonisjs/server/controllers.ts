@@ -18,4 +18,7 @@ export const controllers = {
     Menus: () => import('#controllers/menus/menus_controller'),
     Pictures: () => import('#controllers/menus/pictures_controller'),
   },
+  orders: {
+    Order: () => import('#controllers/orders/order_controller'),
+  },
 }
