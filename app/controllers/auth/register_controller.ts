@@ -11,12 +11,15 @@ export default class RegisterController {
     return inertia.render('auth/signup', {})
   }
 
-  async handle({ request, response, auth }: HttpContext) {
+  async handle({ request, response, session }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
-    const user = await this.registerAction.execute(payload)
+    await this.registerAction.execute(payload)
+    session.flash(
+      'success',
+      'Votre inscription à bien été prise enregistré, vous pouvez vous connecter.'
+    )
 
-    await auth.use('web').login(user)
-    return response.redirect().toRoute('home')
+    return response.redirect().toRoute('session.render')
   }
 }
