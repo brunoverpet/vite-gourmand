@@ -12,11 +12,11 @@ import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
 router.get('/', [controllers.HomePublic, 'render']).as('home-public')
-router.get('/contact', [controllers.contact.Contact, 'render'])
-router.post('/contact', [controllers.contact.Contact, 'handle'])
+router.get('contact', [controllers.contact.Contact, 'render'])
+router.post('contact', [controllers.contact.Contact, 'handle'])
 
-router.get('/menus', [controllers.menus.Menus, 'render'])
-router.get('/menus/:id', [controllers.menus.Menus, 'show'])
+router.get('menus', [controllers.menus.Menus, 'render'])
+router.get('menus/:id', [controllers.menus.Menus, 'show'])
 
 router
   .group(() => {
@@ -32,13 +32,15 @@ router
     router.get('reset-password/:id', [controllers.auth.ResetPassword, 'show'])
     router.post('reset-password/:id', [controllers.auth.ResetPassword, 'handle'])
 
-    router.post('/menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
+    router.post('menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
   })
   .use(middleware.guest())
 
 router
   .group(() => {
-    router.on('/dashboard').renderInertia('home', {}).as('home')
+    router.on('dashboard').renderInertia('home', {}).as('home')
+    router.get('orders/:menuId', [controllers.orders.Order, 'render'])
+    router.post('orders', [controllers.orders.Order, 'store'])
 
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
