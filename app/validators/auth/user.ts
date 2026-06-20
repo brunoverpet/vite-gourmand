@@ -44,7 +44,10 @@ export const registerValidator = vine.create({
   password: password().confirmed({
     confirmationField: 'passwordConfirmation',
   }),
-  phone: vine.string().trim().mobile({ locale: ['fr-FR'] }),
+  phone: vine
+    .string()
+    .trim()
+    .mobile({ locale: ['fr-FR'] }),
   address: vine.string().trim().minLength(5).maxLength(255),
   city: vine.string().trim().minLength(2).maxLength(100),
 })
