@@ -43,6 +43,9 @@ export const registerValidator = vine.create({
   password: password().confirmed({
     confirmationField: 'passwordConfirmation',
   }),
+  phone: vine.string().trim().minLength(10).maxLength(20),
+  address: vine.string().trim().minLength(5).maxLength(255),
+  city: vine.string().trim().minLength(2).maxLength(100),
 })
 registerValidator.messagesProvider = sharedMessages
 

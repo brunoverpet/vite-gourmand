@@ -19,6 +19,7 @@ import {
 } from '~/components/ui/select'
 import { cn } from '@/lib/utils'
 import type { SharedProps } from '@adonisjs/inertia/types'
+import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 
 type Estimate = {
   distanceKm: number
@@ -41,45 +42,22 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
   const [date, setDate] = useState<Date | undefined>(undefined)
   const [hour, setHour] = useState('12')
   const [minute, setMinute] = useState('00')
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [zipcode, setZipcode] = useState('')
-  const [suggestions, setSuggestions] = useState<
-    { fulltext: string; x: number; y: number; city: string; zipcode: string }[]
-  >([])
-  const [citySuggestions, setCitySuggestions] = useState<
-    { fulltext: string; city: string; zipcode: string }[]
-  >([])
-  const [longitude, setLongitude] = useState<number | null>(null)
-  const [latitude, setLatitude] = useState<number | null>(null)
-
-  async function autoComplete(value: string) {
-    if (value.length < 3) {
-      setSuggestions([])
-      return
-    }
-    const zipcodeParam = zipcode ? `&zipcode=${zipcode}` : ''
-    const response = await fetch(
-      `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(value)}&terr=METROPOLE&maximumResponses=10${zipcodeParam}`
-    )
-    const data = await response.json()
-    setSuggestions(data.results ?? [])
-  }
-
-  function selectSuggestion(suggestion: {
-    fulltext: string
-    x: number
-    y: number
-    city: string
-    zipcode: string
-  }) {
-    setAddress(suggestion.fulltext ?? '')
-    setCity(suggestion.city ?? '')
-    setZipcode(suggestion.zipcode ?? '')
-    setLongitude(suggestion.x)
-    setLatitude(suggestion.y)
-    setSuggestions([])
-  }
+  const {
+    address,
+    setAddress,
+    city,
+    setCity,
+    zipcode,
+    setZipcode,
+    longitude,
+    latitude,
+    suggestions,
+    citySuggestions,
+    fetchSuggestions,
+    fetchCitySuggestions,
+    selectAddress,
+    selectCity,
+  } = useAddressAutocomplete()
 
   useEffect(() => {
     const n = Number(numberOfPeople)
@@ -94,18 +72,6 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
       },
     })
   }, [numberOfPeople, longitude, latitude, zipcode])
-
-  async function cityAutoComplete(value: string) {
-    if (value.length < 3) {
-      setCitySuggestions([])
-      return
-    }
-    const response = await fetch(
-      `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(value)}&type=PositionOfInterest&terr=METROPOLE&maximumResponses=8`
-    )
-    const data = await response.json()
-    setCitySuggestions(data.results ?? [])
-  }
 
   const recap = (
     <div className="rounded-xl border border-border bg-muted/30 p-5 flex flex-col gap-4 mt-10">
@@ -336,7 +302,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                     autoComplete="off"
                     onChange={(e) => {
                       setAddress(e.target.value)
-                      autoComplete(e.target.value)
+                      fetchSuggestions(e.target.value)
                     }}
                   />
                   {suggestions.length > 0 && (
@@ -346,7 +312,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onClick={() => selectSuggestion(s)}
+                            onClick={() => selectAddress(s)}
                           >
                             {s.fulltext}
                           </button>
@@ -370,7 +336,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                     onChange={(e) => {
                       setCity(e.target.value)
                       setZipcode('')
-                      cityAutoComplete(e.target.value)
+                      fetchCitySuggestions(e.target.value)
                     }}
                     required
                   />
@@ -381,11 +347,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onClick={() => {
-                              setCity(s.city ?? '')
-                              setZipcode(s.zipcode ?? '')
-                              setCitySuggestions([])
-                            }}
+                            onClick={() => selectCity(s)}
                           >
                             {s.fulltext}
                           </button>
