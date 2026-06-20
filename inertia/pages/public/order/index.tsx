@@ -187,7 +187,7 @@ export default function Commande({ menu, user, estimate }: CommandeProps) {
         </div>
         <hr className="border-border my-1" />
         <div className="flex justify-between font-medium text-body">
-          <span>Total estimé</span>
+          <span>Total TTC</span>
           <span className="text-accent">{estimate ? `${estimate.total.toFixed(2)}€` : '—'}</span>
         </div>
       </div>
