@@ -41,7 +41,7 @@ export class CreateOrderActionService {
       deliveryTime: payload.delivery_time,
       eventDate: payload.event_date,
       numberOfPeople: payload.number_of_people,
-      totalAmount: (Math.round(finalPrice * 100) / 100).toString(),
+      totalAmount: (Math.round((finalPrice + fees) * 100) / 100).toString(),
       status: OrderStatus.PENDING,
       orderNumber: this.#createOrderNumber(),
       orderDate: DateTime.now(),
