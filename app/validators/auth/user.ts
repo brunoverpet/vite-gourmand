@@ -28,6 +28,7 @@ const sharedMessages = new SimpleMessagesProvider({
     'Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial.',
   'password.minLength': 'Le mot de passe doit faire au moins 10 caractères.',
   'database.unique': 'Cette adresse email est déjà utilisée.',
+  'mobile': 'Numéro de téléphone invalide.',
 })
 
 // =============================================================================
@@ -43,7 +44,7 @@ export const registerValidator = vine.create({
   password: password().confirmed({
     confirmationField: 'passwordConfirmation',
   }),
-  phone: vine.string().trim().minLength(10).maxLength(20),
+  phone: vine.string().trim().mobile({ locale: ['fr-FR'] }),
   address: vine.string().trim().minLength(5).maxLength(255),
   city: vine.string().trim().minLength(2).maxLength(100),
 })
