@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
           </div>
         </header>
 
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
+        <main className="flex flex-1 flex-col gap-4 p-6 md:p-8 pt-0">{children}</main>
       </SidebarInset>
 
       <FlashToaster />

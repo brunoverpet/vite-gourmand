@@ -397,7 +397,9 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
             <h2 className="text-h3 mb-4">Vos informations</h2>
             <p className="text-body-sm text-muted-foreground mb-4">
               Ces informations sont reprises depuis votre compte.{' '}
-              <span className="underline">Modifier mon profil</span>
+              <Link route="profile.show" className="underline">
+                Modifier mon profil
+              </Link>
             </p>
             <FieldGroup>
               <div className="grid grid-cols-2 gap-4">
