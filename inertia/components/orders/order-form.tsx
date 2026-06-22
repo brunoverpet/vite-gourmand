@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Calendar } from '~/components/ui/calendar'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
+import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
@@ -253,9 +254,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                       />
                     </PopoverContent>
                   </Popover>
-                  {formErrors.date && (
-                    <p className="text-xs text-destructive mt-1">{formErrors.date}</p>
-                  )}
+                  <FieldError message={formErrors.date} className="text-xs mt-1" />
                 </Field>
 
                 <Field>
@@ -288,9 +287,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                   />
                   <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
                 </div>
-                {formErrors.address && (
-                  <p className="text-xs text-destructive mt-1">{formErrors.address}</p>
-                )}
+                <FieldError message={formErrors.address} className="text-xs mt-1" />
               </Field>
 
               <Field>
