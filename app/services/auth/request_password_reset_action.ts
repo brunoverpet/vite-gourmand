@@ -1,5 +1,5 @@
 import ForgotPasswordNotification from '#mails/auth/forgot_password_notification'
-import { UserService } from '#services/auth/user_service'
+import { UserService } from '#services/shared/user_service'
 import env from '#start/env'
 import { inject } from '@adonisjs/core'
 import { signedUrlFor } from '@adonisjs/core/services/url_builder'

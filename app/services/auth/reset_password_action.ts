@@ -1,4 +1,4 @@
-import { UserService } from '#services/auth/user_service'
+import { UserService } from '#services/shared/user_service'
 import { inject } from '@adonisjs/core'
 
 @inject()

@@ -1,7 +1,7 @@
 import { Roles } from '#enums/roles'
 import WelcomeNotification from '#mails/auth/welcome_notification'
 import type User from '#models/user'
-import { UserService } from '#services/auth/user_service'
+import { UserService } from '#services/shared/user_service'
 import { RoleService } from '#services/shared/role_service'
 import { RegisterPayload } from '#validators/auth/user'
 import { inject } from '@adonisjs/core'

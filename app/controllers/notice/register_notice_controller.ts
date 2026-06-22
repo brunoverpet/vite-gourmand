@@ -1,4 +1,4 @@
-import { CreateNoticeAction } from '#services/notice/create_notice_action'
+import { CreateNoticeAction } from '#services/notices/create_notice_action'
 import { createNoticeValidator } from '#validators/notice/notice'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
