@@ -12,12 +12,8 @@ export default class OrderStatusController {
     const order = await Order.findOrFail(params.id)
     const { status } = await request.validateUsing(updateOrderStatusValidator)
 
-    try {
-      await this.updateOrderStatusAction.execute(order, status)
-      session.flash('success', 'Statut mis à jour.')
-    } catch (error) {
-      session.flash('error', error instanceof Error ? error.message : 'Erreur inattendue.')
-    }
+    await this.updateOrderStatusAction.execute(order, status)
+    session.flash('success', 'Statut mis à jour.')
 
     return response.redirect().back()
   }
