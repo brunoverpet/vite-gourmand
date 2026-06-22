@@ -58,25 +58,26 @@ export default function MyOrderShow({ order }: ShowProps) {
       </div>
 
       {/* Récapitulatif */}
-      <div className="border rounded-lg p-4 bg-card space-y-2 text-sm">
-        <p className="font-medium mb-3">Récapitulatif</p>
-        <div className="flex justify-between text-muted-foreground">
-          <span>Adresse</span>
-          <span>
-            {order.deliveryAddress}, {order.deliveryZipcode} {order.deliveryCity}
-          </span>
+      <div className="border rounded-lg p-4 bg-card space-y-3 text-sm">
+        <p className="font-medium">Récapitulatif</p>
+        <div className="text-muted-foreground">
+          <p className="text-xs uppercase tracking-wide mb-0.5">Adresse de livraison</p>
+          <p>{order.deliveryAddress}</p>
+          <p>{order.deliveryZipcode} {order.deliveryCity}</p>
         </div>
-        <div className="flex justify-between text-muted-foreground">
-          <span>Menu</span>
-          <span>{order.menuPrice} €</span>
-        </div>
-        <div className="flex justify-between text-muted-foreground">
-          <span>Livraison</span>
-          <span>{order.deliveryFees} €</span>
-        </div>
-        <div className="flex justify-between font-semibold pt-2 border-t">
-          <span>Total</span>
-          <span>{order.totalAmount} €</span>
+        <div className="space-y-1.5 pt-2 border-t">
+          <div className="flex justify-between text-muted-foreground">
+            <span>Menu</span>
+            <span>{order.menuPrice} €</span>
+          </div>
+          <div className="flex justify-between text-muted-foreground">
+            <span>Livraison</span>
+            <span>{order.deliveryFees} €</span>
+          </div>
+          <div className="flex justify-between font-semibold pt-1.5 border-t">
+            <span>Total</span>
+            <span>{order.totalAmount} €</span>
+          </div>
         </div>
       </div>
 
@@ -93,12 +94,16 @@ export default function MyOrderShow({ order }: ShowProps) {
               <li key={status} className="ml-6">
                 <span
                   className={`absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full ring-4 ring-background ${
-                    isDone
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground'
+                    isCurrent
+                      ? 'bg-primary text-primary-foreground ring-primary/20'
+                      : isDone
+                        ? 'bg-primary/20 text-primary'
+                        : 'bg-muted text-muted-foreground/40'
                   }`}
                 >
-                  {isDone ? (
+                  {isCurrent ? (
+                    <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground animate-pulse" />
+                  ) : isDone ? (
                     <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                       <path
                         fillRule="evenodd"
@@ -111,9 +116,15 @@ export default function MyOrderShow({ order }: ShowProps) {
                   )}
                 </span>
 
-                <div className={`${isCurrent ? 'font-semibold' : ''}`}>
+                <div>
                   <span
-                    className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${ORDER_STATUS_COLORS[status] ?? 'bg-gray-100 text-gray-800'}`}
+                    className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                      isCurrent
+                        ? 'bg-primary text-primary-foreground'
+                        : isDone
+                          ? ORDER_STATUS_COLORS[status] ?? 'bg-gray-100 text-gray-800'
+                          : 'bg-muted text-muted-foreground/40'
+                    }`}
                   >
                     {ORDER_STATUS_LABELS[status]}
                   </span>

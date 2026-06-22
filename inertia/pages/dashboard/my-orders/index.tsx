@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react'
+import { CalendarDays, MapPin, Users } from 'lucide-react'
 import {
   ACCEPTED_AND_BEYOND,
   ORDER_STATUS_COLORS,
@@ -53,35 +54,54 @@ export default function MyOrdersIndex({ orders }: IndexProps) {
         <p className="text-muted-foreground text-sm mt-1">{orders.length} commande(s)</p>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {orders.map((order) => {
           const canViewTracking = ACCEPTED_AND_BEYOND.includes(order.status)
 
           return (
-            <div key={order.id} className="border rounded-lg p-4 bg-card space-y-3">
+            <div key={order.id} className="border rounded-lg p-4 bg-card space-y-3 flex flex-col">
               <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-medium">{order.orderNumber}</p>
-                  <p className="text-muted-foreground text-sm">
-                    {order.numberOfPeople} personne(s) ·{' '}
-                    {formatDate(order.eventDate)}
-                  </p>
-                </div>
+                <p className="font-medium text-sm">{order.orderNumber}</p>
                 <StatusBadge status={order.status} />
               </div>
 
-              <div className="flex items-center justify-between">
-                <span className="font-semibold">{order.totalAmount} €</span>
+              <div className="space-y-1.5 text-sm grow">
+                <div className="flex items-center gap-2 text-foreground">
+                  <CalendarDays className="w-4 h-4 shrink-0 text-muted-foreground" />
+                  <span>
+                    Événement le{' '}
+                    <span className="font-medium">{formatDate(order.eventDate)}</span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Users className="w-4 h-4 shrink-0" />
+                  <span>{order.numberOfPeople} personne(s)</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4 shrink-0" />
+                  <span>
+                    {order.deliveryAddress}, {order.deliveryCity} {order.deliveryZipcode}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 border-t border-border">
+                <div>
+                  <span className="font-semibold">{order.totalAmount} €</span>
+                  <span className="text-xs text-muted-foreground ml-2">
+                    Commandé le {formatDate(order.orderDate, { day: '2-digit', month: 'short', year: 'numeric' })}
+                  </span>
+                </div>
                 {canViewTracking ? (
                   <Link
                     href={`/dashboard/my-orders/${order.id}`}
-                    className="text-sm text-primary underline underline-offset-2"
+                    className="text-sm text-primary underline underline-offset-2 shrink-0"
                   >
                     Suivre ma commande
                   </Link>
                 ) : (
-                  <span className="text-xs text-muted-foreground">
-                    Suivi disponible dès validation
+                  <span className="text-xs text-muted-foreground shrink-0">
+                    Suivi dès validation
                   </span>
                 )}
               </div>
