@@ -40,7 +40,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   | Variables for configuring the mail package
   |----------------------------------------------------------
   */
-  MAIL_MAILER: Env.schema.enum(['resend'] as const),
+  MAIL_MAILER: Env.schema.enum(['resend', 'smtp'] as const),
   MAIL_FROM_NAME: Env.schema.string(),
   MAIL_FROM_ADDRESS: Env.schema.string(),
   RESEND_API_KEY: Env.schema.string(),
@@ -50,5 +50,11 @@ export default await Env.create(new URL('../', import.meta.url), {
   | Variables for configuring the drive package
   |----------------------------------------------------------
   */
-  DRIVE_DISK: Env.schema.enum(['fs'] as const)
+  DRIVE_DISK: Env.schema.enum(['fs'] as const),
+
+  SMTP_PORT: Env.schema.number(),
+
+  SMTP_USER: Env.schema.string(),
+
+  SMTP_PASS: Env.schema.string(),
 })
