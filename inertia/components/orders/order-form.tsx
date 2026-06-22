@@ -337,7 +337,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onClick={() => selectAddress(s)}
+                            onMouseDown={(e) => { e.preventDefault(); selectAddress(s) }}
                           >
                             {s.fulltext}
                           </button>
@@ -375,7 +375,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onClick={() => selectCity(s)}
+                            onMouseDown={(e) => { e.preventDefault(); selectCity(s) }}
                           >
                             {s.fulltext}
                           </button>
