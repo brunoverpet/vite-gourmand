@@ -9,8 +9,17 @@ function normalizePhone(raw: string): string {
   return local ? `+33${local}` : ''
 }
 
-function PhoneInput({ className, name, ...props }: PhoneInputProps) {
-  const [display, setDisplay] = React.useState('')
+function denormalizePhone(phone: string | undefined): string {
+  if (!phone) return ''
+  const digits = phone.replace(/\D/g, '')
+  if (digits.startsWith('33') && digits.length > 2) return '0' + digits.slice(2)
+  return phone
+}
+
+function PhoneInput({ className, name, defaultValue, ...props }: PhoneInputProps) {
+  const [display, setDisplay] = React.useState(() =>
+    denormalizePhone(typeof defaultValue === 'string' ? defaultValue : undefined)
+  )
 
   return (
     <div

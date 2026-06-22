@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export type AddressSuggestion = {
   fulltext: string
@@ -14,14 +14,31 @@ export type CitySuggestion = {
   zipcode: string
 }
 
-export function useAddressAutocomplete() {
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
+export function useAddressAutocomplete(initialAddress = '', initialCity = '') {
+  const [address, setAddress] = useState(initialAddress)
+  const [city, setCity] = useState(initialCity)
   const [zipcode, setZipcode] = useState('')
   const [longitude, setLongitude] = useState<number | null>(null)
   const [latitude, setLatitude] = useState<number | null>(null)
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([])
   const [citySuggestions, setCitySuggestions] = useState<CitySuggestion[]>([])
+
+  useEffect(() => {
+    if (!initialAddress) return
+    fetch(
+      `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(initialAddress)}&terr=METROPOLE&maximumResponses=1`
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        const first: AddressSuggestion | undefined = data.results?.[0]
+        if (!first) return
+        setLongitude(first.x)
+        setLatitude(first.y)
+        setZipcode(first.zipcode)
+        if (!initialCity) setCity(first.city)
+      })
+      .catch(() => {})
+  }, [])
 
   async function fetchSuggestions(value: string) {
     if (value.length < 3) {

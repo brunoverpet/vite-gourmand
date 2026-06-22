@@ -43,6 +43,27 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
   const [date, setDate] = useState<Date | undefined>(undefined)
   const [hour, setHour] = useState('12')
   const [minute, setMinute] = useState('00')
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+
+  function handleSubmit() {
+    const errors: Record<string, string> = {}
+    if (!date) errors.date = 'Veuillez sélectionner une date.'
+    if (!zipcode || longitude === null || latitude === null)
+      errors.address =
+        'Veuillez sélectionner une adresse dans les suggestions pour calculer les frais de livraison.'
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors)
+      const firstKey = Object.keys(errors)[0]
+      document
+        .getElementById(firstKey === 'date' ? 'date-field' : 'delivery_address')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      return
+    }
+
+    setFormErrors({})
+    ;(document.getElementById('commande-form') as HTMLFormElement | null)?.requestSubmit()
+  }
   const {
     address,
     setAddress,
@@ -58,7 +79,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
     fetchCitySuggestions,
     selectAddress,
     selectCity,
-  } = useAddressAutocomplete()
+  } = useAddressAutocomplete(user?.address ?? '', user?.city ?? '')
 
   useEffect(() => {
     const n = Number(numberOfPeople)
@@ -159,7 +180,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
         </div>
       </div>
 
-      <Button type="submit" form="commande-form" size="lg" className="w-full mt-2">
+      <Button type="button" onClick={handleSubmit} size="lg" className="w-full mt-2">
         Valider la commande
       </Button>
     </div>
@@ -208,7 +229,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
             <h2 className="text-h3 mb-4">Date & lieu</h2>
             <FieldGroup>
               <div className="grid grid-cols-2 gap-4">
-                <Field>
+                <Field id="date-field">
                   <FieldLabel>Date</FieldLabel>
                   <input
                     type="hidden"
@@ -238,6 +259,9 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                       />
                     </PopoverContent>
                   </Popover>
+                  {formErrors.date && (
+                    <p className="text-xs text-destructive mt-1">{formErrors.date}</p>
+                  )}
                 </Field>
 
                 <Field>
@@ -322,6 +346,9 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                     </ul>
                   )}
                 </div>
+                {formErrors.address && (
+                  <p className="text-xs text-destructive mt-1">{formErrors.address}</p>
+                )}
               </Field>
 
               <Field>
@@ -392,7 +419,14 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
               </Field>
               <Field>
                 <FieldLabel htmlFor="phone">Téléphone</FieldLabel>
-                <PhoneInput id="phone" name="phone" autoComplete="tel" placeholder="6 00 00 00 00" required />
+                <PhoneInput
+                  id="phone"
+                  name="phone"
+                  autoComplete="tel"
+                  placeholder="6 00 00 00 00"
+                  defaultValue={user?.phone ?? undefined}
+                  required
+                />
               </Field>
             </FieldGroup>
           </section>
@@ -404,7 +438,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
       </div>
 
       <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t border-border">
-        <Button type="submit" form="commande-form" size="lg" className="w-full">
+        <Button type="button" onClick={handleSubmit} size="lg" className="w-full">
           Valider la commande
         </Button>
       </div>
