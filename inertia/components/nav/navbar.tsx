@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@adonisjs/inertia/react'
 import { usePage } from '@inertiajs/react'
-import { Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import NavLink from '~/components/nav/nav-link'
+import { MobileMenu } from '~/components/nav/mobile-menu'
 import { cn } from '~/lib/utils'
 import type { InertiaProps } from '~/types'
 
@@ -98,73 +99,12 @@ export default function Navbar() {
         </div>
       </header>
 
-      <div
-        className={cn(
-          'fixed inset-0 z-50 bg-primary flex flex-col px-5 py-10 transition-transform duration-300 ease-in-out',
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        )}
-        inert={!isOpen}
-      >
-        <div className="flex items-center justify-between">
-          <Link
-            route="home-public"
-            className="text-h4 text-primary-foreground"
-            onClick={() => setIsOpen(false)}
-          >
-            Vite & Gourmand
-          </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsOpen(false)}
-            className="text-primary-foreground hover:bg-primary/80"
-            aria-label="Fermer le menu"
-          >
-            <X className="size-5" />
-          </Button>
-        </div>
-
-        <nav className="flex flex-col gap-6 mt-12 flex-1">
-          {NAV_LINKS.map((link, index) => (
-            <div
-              key={link.href}
-              className={cn(
-                'transition-all duration-300',
-                isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              )}
-              style={{ transitionDelay: isOpen ? `${index * 100 + 150}ms` : '0ms' }}
-            >
-              <NavLink
-                href={link.href}
-                className="text-h2 text-primary-foreground"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </NavLink>
-            </div>
-          ))}
-        </nav>
-
-        {isStaff ? (
-          <Button asChild variant="outline" className="w-full text-primary-foreground">
-            <Link href="/dashboard" onClick={() => setIsOpen(false)}>
-              Tableau de bord
-            </Link>
-          </Button>
-        ) : isClient ? (
-          <Button asChild variant="outline" className="w-full text-primary-foreground">
-            <Link href="/dashboard/my-orders" onClick={() => setIsOpen(false)}>
-              Mes commandes
-            </Link>
-          </Button>
-        ) : (
-          <Button asChild variant="outline" className="w-full text-primary-foreground">
-            <Link route="session.render" onClick={() => setIsOpen(false)}>
-              Connexion
-            </Link>
-          </Button>
-        )}
-      </div>
+      <MobileMenu
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        isStaff={isStaff}
+        isClient={isClient}
+      />
     </>
   )
 }

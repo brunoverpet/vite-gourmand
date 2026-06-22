@@ -2,15 +2,10 @@ import type { Data } from '@generated/data'
 import { Link } from '@adonisjs/inertia/react'
 import { ArrowLeft, Users } from 'lucide-react'
 import { useState } from 'react'
-import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
+import { MenuGallery } from '~/components/menu/menu-gallery'
+import { MenuComposition } from '~/components/menu/menu-composition'
 import type { InertiaProps } from '~/types'
-
-const DISH_TYPE_LABELS: Record<string, string> = {
-  entrée: 'Entrées',
-  plat: 'Plats',
-  dessert: 'Desserts',
-}
 
 const DISH_TYPE_ORDER = ['entrée', 'plat', 'dessert']
 
@@ -20,8 +15,6 @@ type ShowProps = InertiaProps<{
 
 export default function Show({ menu }: ShowProps) {
   const [activeImage, setActiveImage] = useState(menu.pictures?.[0]?.imagePath ?? null)
-
-  const imageUrl = activeImage ? `/uploads/${activeImage}` : 'https://placehold.co/800x600'
 
   const dishesByType = DISH_TYPE_ORDER.reduce<Record<string, Data.Menus.Dish[]>>((acc, type) => {
     const dishes = (menu.dishes ?? []).filter((d) => d.type === type)
@@ -41,31 +34,12 @@ export default function Show({ menu }: ShowProps) {
 
       <div className="md:grid md:grid-cols-[1fr_420px] md:gap-x-16 lg:grid-cols-[1fr_480px] xl:gap-x-24">
         {/* Galerie */}
-        <div className="md:sticky md:top-24 md:self-start">
-          <div className="aspect-4/3 rounded-2xl overflow-hidden bg-muted">
-            <img src={imageUrl} alt={menu.title} className="w-full h-full object-cover" />
-          </div>
-
-          {menu.pictures && menu.pictures.length > 1 && (
-            <div className="flex gap-3 mt-3 overflow-x-auto pb-1">
-              {menu.pictures.map((pic) => (
-                <button
-                  key={pic.id}
-                  onClick={() => setActiveImage(pic.imagePath)}
-                  className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all duration-300 hover:scale-110 ${
-                    activeImage === pic.imagePath ? 'border-primary' : 'border-transparent'
-                  }`}
-                >
-                  <img
-                    src={`/uploads/${pic.imagePath}`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        <MenuGallery
+          pictures={menu.pictures}
+          activeImage={activeImage}
+          alt={menu.title}
+          onSelect={setActiveImage}
+        />
 
         {/* Infos */}
         <div className="mt-8 md:mt-0">
@@ -91,46 +65,7 @@ export default function Show({ menu }: ShowProps) {
           <p className="text-body text-muted-foreground mt-6">{menu.description}</p>
 
           {/* Plats */}
-          {Object.keys(dishesByType).length > 0 && (
-            <div className="mt-8">
-              <h2 className="text-h3 mb-4">Composition du menu</h2>
-              <div className="flex flex-col gap-6">
-                {DISH_TYPE_ORDER.filter((type) => dishesByType[type]).map((type) => (
-                  <div key={type}>
-                    <p className="text-label-caps text-muted-foreground mb-3">
-                      {DISH_TYPE_LABELS[type]}
-                    </p>
-                    <ul className="flex flex-col gap-4">
-                      {dishesByType[type].map((dish) => (
-                        <li key={dish.id} className="flex gap-4 items-start">
-                          <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 transition-transform duration-500 hover:scale-[1.3]">
-                            <img
-                              src={dish.photoPath}
-                              alt={dish.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="flex flex-col gap-1 min-w-0">
-                            <p className="text-body font-medium">{dish.title}</p>
-                            <p className="text-body-sm text-muted-foreground">{dish.description}</p>
-                            {dish.allergens && dish.allergens.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {dish.allergens.map((a) => (
-                                  <Badge key={a.id} variant="outline" className="text-xs py-0.5">
-                                    {a.label}
-                                  </Badge>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <MenuComposition dishesByType={dishesByType} />
 
           {/* Conditions */}
           {menu.conditions && (

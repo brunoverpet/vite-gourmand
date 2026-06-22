@@ -1,20 +1,10 @@
 import * as React from 'react'
 import { NavUser } from '@/components/dashboard/nav-user'
 import { NavGroup } from '@/components/dashboard/nav-group'
-import type { NavGroupDef } from '@/components/dashboard/nav-group'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
-import {
-  BarChart2Icon,
-  ClipboardListIcon,
-  ClockIcon,
-  ExternalLinkIcon,
-  ShoppingBagIcon,
-  StarIcon,
-  UserIcon,
-  UsersIcon,
-  UtensilsIcon,
-} from 'lucide-react'
+import { ExternalLinkIcon, UtensilsIcon } from 'lucide-react'
 import { Link } from '@adonisjs/inertia/react'
+import { ACCOUNT_NAV, ADMIN_EXTRA_NAV, CLIENT_NAV, EMPLOYEE_NAV } from '~/lib/dashboard-nav'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 import { usePage } from '@inertiajs/react'
@@ -28,50 +18,6 @@ const ROLE_LABELS: Record<string, string> = {
   employe: 'Employé',
   user: 'Client',
 }
-
-const ACCOUNT_NAV: NavGroupDef[] = [
-  {
-    label: 'Compte',
-    items: [{ href: '/dashboard/profile', icon: <UserIcon />, label: 'Mon profil' }],
-  },
-]
-
-const CLIENT_NAV: NavGroupDef[] = [
-  {
-    label: 'Mon espace',
-    items: [{ href: '/dashboard/my-orders', icon: <ShoppingBagIcon />, label: 'Mes commandes' }],
-  },
-]
-
-const EMPLOYEE_NAV: NavGroupDef[] = [
-  {
-    label: 'Commandes',
-    items: [
-      { href: '/dashboard/orders', icon: <ClipboardListIcon />, label: 'Gestion des commandes' },
-    ],
-  },
-  {
-    label: 'Catalogue',
-    items: [
-      { href: '/dashboard/menus', icon: <UtensilsIcon />, label: 'Menus & plats' },
-      { href: '/dashboard/schedules', icon: <ClockIcon />, label: 'Horaires' },
-    ],
-  },
-  {
-    label: 'Communauté',
-    items: [{ href: '/dashboard/notices', icon: <StarIcon />, label: 'Avis clients' }],
-  },
-]
-
-const ADMIN_EXTRA_NAV: NavGroupDef[] = [
-  {
-    label: 'Administration',
-    items: [
-      { href: '/dashboard/employees', icon: <UsersIcon />, label: 'Comptes employés' },
-      { href: '/dashboard/stats', icon: <BarChart2Icon />, label: 'Statistiques' },
-    ],
-  },
-]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const page = usePage()
