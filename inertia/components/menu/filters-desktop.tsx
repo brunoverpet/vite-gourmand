@@ -1,10 +1,8 @@
 import type { Data } from '@generated/data'
-import { X } from 'lucide-react'
-import { useState } from 'react'
-import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
-import { Input } from '~/components/ui/input'
-import { Slider } from '~/components/ui/slider'
+import { FilterBadgeList } from '~/components/menu/filter-badge-list'
+import { MinPeopleSlider } from '~/components/menu/min-people-slider'
+import { PriceRangeInputs } from '~/components/menu/price-range-inputs'
 
 export type FiltersDesktopProps = {
   diets: Data.Menus.Diet[]
@@ -37,9 +35,6 @@ export default function FiltersDesktop({
   onMinPeopleChange,
   onReset,
 }: FiltersDesktopProps) {
-  const [draggingValue, setDraggingValue] = useState<number | null>(null)
-  const displayValue = draggingValue ?? minPeople
-
   const hasActive =
     selectedDiets.length > 0 ||
     selectedThemes.length > 0 ||
@@ -59,85 +54,39 @@ export default function FiltersDesktop({
       <div className="divide-y divide-border">
         <div className="py-8">
           <p className="text-label-caps text-muted-foreground mb-4">Nombre de personnes minimum</p>
-          <Slider
-            min={1}
-            max={50}
-            step={1}
-            value={[displayValue]}
-            onValueChange={([val]) => setDraggingValue(val)}
-            onValueCommit={([val]) => {
-              setDraggingValue(null)
-              onMinPeopleChange(val)
-            }}
-            className="mb-2"
-          />
-          <p className="text-body-sm text-muted-foreground mt-3">
-            {displayValue > 1 ? `${displayValue} personnes minimum` : 'Tous'}
-          </p>
+          <MinPeopleSlider value={minPeople} onChange={onMinPeopleChange} />
         </div>
 
         <div className="py-8">
           <p className="text-label-caps text-muted-foreground mb-3">Prix / personne</p>
-          <div className="flex items-center gap-2">
-            <div className="flex-1">
-              <p className="text-body-sm text-muted-foreground mb-1">Min</p>
-              <Input
-                type="number"
-                placeholder="0€"
-                value={priceMin}
-                onChange={(e) => onPriceMinChange(e.target.value)}
-              />
-            </div>
-            <div className="flex-1">
-              <p className="text-body-sm text-muted-foreground mb-1">Max</p>
-              <Input
-                type="number"
-                placeholder="200€"
-                value={priceMax}
-                onChange={(e) => onPriceMaxChange(e.target.value)}
-              />
-            </div>
-          </div>
+          <PriceRangeInputs
+            priceMin={priceMin}
+            priceMax={priceMax}
+            onPriceMinChange={onPriceMinChange}
+            onPriceMaxChange={onPriceMaxChange}
+          />
         </div>
 
         <div className="py-8">
           <p className="text-label-caps text-muted-foreground mb-3">Thèmes</p>
-          <div className="flex flex-wrap gap-2">
-            {themes.map((theme) => {
-              const active = selectedThemes.includes(theme.label)
-              return (
-                <Badge
-                  key={theme.id}
-                  variant={active ? 'default' : 'outline'}
-                  className={`px-3 py-4 cursor-pointer gap-1 transition-all duration-200 ${active ? 'hover:bg-primary/80' : 'hover:bg-primary/10 hover:border-primary/30'}`}
-                  onClick={() => onToggleTheme(theme.label)}
-                >
-                  {theme.label}
-                  {active && <X className="w-3 h-3" />}
-                </Badge>
-              )
-            })}
-          </div>
+          <FilterBadgeList
+            items={themes}
+            selected={selectedThemes}
+            onToggle={onToggleTheme}
+            badgeClassName="px-3 py-4 cursor-pointer gap-1 transition-all duration-200"
+            withHoverEffect
+          />
         </div>
 
         <div className="py-8">
           <p className="text-label-caps text-muted-foreground mb-3">Régime</p>
-          <div className="flex flex-wrap gap-2">
-            {diets.map((diet) => {
-              const active = selectedDiets.includes(diet.label)
-              return (
-                <Badge
-                  key={diet.id}
-                  variant={active ? 'default' : 'outline'}
-                  className={`px-3 py-4 cursor-pointer gap-1 transition-all duration-200 ${active ? 'hover:bg-primary/80' : 'hover:bg-primary/10 hover:border-primary/30'}`}
-                  onClick={() => onToggleDiet(diet.label)}
-                >
-                  {diet.label}
-                  {active && <X className="w-3 h-3" />}
-                </Badge>
-              )
-            })}
-          </div>
+          <FilterBadgeList
+            items={diets}
+            selected={selectedDiets}
+            onToggle={onToggleDiet}
+            badgeClassName="px-3 py-4 cursor-pointer gap-1 transition-all duration-200"
+            withHoverEffect
+          />
         </div>
       </div>
     </aside>

@@ -1,20 +1,14 @@
 import type { Data } from '@generated/data'
 import { Link, Form } from '@adonisjs/inertia/react'
 import { router } from '@inertiajs/react'
-import { format } from 'date-fns'
-import { fr } from 'date-fns/locale'
-import { ArrowLeft, CalendarIcon } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { OrderFormRecap } from '~/components/orders/order-form-recap'
-import { Calendar } from '~/components/ui/calendar'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
-import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { AddressFields } from '~/components/ui/address-fields'
-import { TimePicker } from '~/components/ui/time-picker'
-import { cn } from '@/lib/utils'
+import { DateTimePickerField } from '~/components/ui/date-time-picker-field'
 import type { SharedProps } from '@adonisjs/inertia/types'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 
@@ -132,51 +126,17 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
           <section className="mt-10">
             <h2 className="text-h3 mb-4">Date & lieu</h2>
             <FieldGroup>
-              <div className="grid grid-cols-2 gap-4">
-                <Field id="date-field">
-                  <FieldLabel>Date</FieldLabel>
-                  <input
-                    type="hidden"
-                    name="event_date"
-                    value={date ? format(date, 'yyyy-MM-dd') : ''}
-                  />
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          'h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-left text-sm flex items-center gap-2 transition-colors',
-                          'focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none',
-                          !date && 'text-muted-foreground'
-                        )}
-                      >
-                        <CalendarIcon className="w-4 h-4 shrink-0" />
-                        {date ? format(date, 'd MMM yyyy', { locale: fr }) : 'Choisir'}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        disabled={(d) => d < new Date()}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                  <FieldError message={formErrors.date} className="text-xs mt-1" />
-                </Field>
-
-                <Field>
-                  <FieldLabel>Heure</FieldLabel>
-                  <input type="hidden" name="delivery_time" value={`${hour}:${minute}`} />
-                  <TimePicker
-                    hour={hour}
-                    minute={minute}
-                    onHourChange={setHour}
-                    onMinuteChange={setMinute}
-                  />
-                </Field>
-              </div>
+              <DateTimePickerField
+                date={date}
+                onDateChange={setDate}
+                hour={hour}
+                minute={minute}
+                onHourChange={setHour}
+                onMinuteChange={setMinute}
+                dateError={formErrors.date}
+                dateFieldId="date-field"
+                errorClassName="text-xs mt-1"
+              />
 
               <AddressFields
                 address={address}

@@ -1,5 +1,6 @@
 import CardMenu from '~/components/menu/card-menu'
 import CardMenuSkeleton from '~/components/menu/card-menu-skeleton'
+import { EmptyState } from '~/components/ui/empty-state'
 import type { Data } from '@generated/data'
 
 type Props = {
@@ -23,12 +24,10 @@ export function MenuCardsGrid({ menus, loading, loadingType, gridClass, skeleton
 
   if (menus.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <p className="text-h3 text-foreground">Aucun menu trouvé</p>
-        <p className="text-body text-muted-foreground text-center">
-          Aucun menu ne correspond à vos filtres. Essayez d&apos;en retirer quelques-uns.
-        </p>
-      </div>
+      <EmptyState
+        title="Aucun menu trouvé"
+        description="Aucun menu ne correspond à vos filtres. Essayez d'en retirer quelques-uns."
+      />
     )
   }
 

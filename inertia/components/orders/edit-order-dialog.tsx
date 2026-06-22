@@ -1,10 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
-import { format } from 'date-fns'
-import { fr } from 'date-fns/locale'
-import { CalendarIcon, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '~/components/ui/button'
-import { Calendar } from '~/components/ui/calendar'
 import {
   Dialog,
   DialogContent,
@@ -15,11 +12,9 @@ import {
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { AddressFields } from '~/components/ui/address-fields'
-import { TimePicker } from '~/components/ui/time-picker'
+import { DateTimePickerField } from '~/components/ui/date-time-picker-field'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
-import { cn } from '@/lib/utils'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.ClientOrder
@@ -69,8 +64,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
         >
           {({ errors }) => (
             <>
-              <input type="hidden" name="event_date" value={date ? format(date, 'yyyy-MM-dd') : ''} />
-              <input type="hidden" name="delivery_time" value={`${hour}:${minute}`} />
               <input type="hidden" name="delivery_address" value={address} />
               <input type="hidden" name="delivery_city" value={city} />
               {zipcode && <input type="hidden" name="delivery_zipcode" value={zipcode} />}
@@ -107,45 +100,15 @@ export function EditOrderDialog({ order }: { order: Order }) {
                   <FieldError message={errors.number_of_people} />
                 </Field>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <Field>
-                    <FieldLabel>Date</FieldLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          type="button"
-                          variant="outline"
-                          className={cn(
-                            'h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-left text-sm flex items-center gap-2',
-                            !date && 'text-muted-foreground'
-                          )}
-                        >
-                          <CalendarIcon className="w-4 h-4 shrink-0" />
-                          {date ? format(date, 'd MMM yyyy', { locale: fr }) : 'Choisir'}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={date}
-                          onSelect={setDate}
-                          disabled={(d) => d < new Date()}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FieldError message={errors.event_date} />
-                  </Field>
-
-                  <Field>
-                    <FieldLabel>Heure</FieldLabel>
-                    <TimePicker
-                      hour={hour}
-                      minute={minute}
-                      onHourChange={setHour}
-                      onMinuteChange={setMinute}
-                    />
-                  </Field>
-                </div>
+                <DateTimePickerField
+                  date={date}
+                  onDateChange={setDate}
+                  hour={hour}
+                  minute={minute}
+                  onHourChange={setHour}
+                  onMinuteChange={setMinute}
+                  dateError={errors.event_date}
+                />
 
                 <AddressFields
                   address={address}
