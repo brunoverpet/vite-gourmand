@@ -14,12 +14,14 @@ export default class ClientOrderTransformer extends BaseTransformer<Order> {
         'deliveryAddress',
         'deliveryCity',
         'deliveryZipcode',
+        'deliveryTime',
         'numberOfPeople',
         'menuPrice',
         'deliveryFees',
         'totalAmount',
         'materialLoan',
       ]),
+      menuMinPeople: this.resource.$preloaded['menu'] ? this.resource.menu.minPeople : null,
       statusHistory: this.resource.$preloaded['statusHistory']
         ? (this.resource.statusHistory as unknown as OrderStatusHistory[]).map((h) => ({
             status: h.status,
