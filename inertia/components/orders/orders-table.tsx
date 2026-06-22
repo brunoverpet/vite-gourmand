@@ -1,9 +1,16 @@
+import React from 'react'
 import { formatDate } from '~/lib/format-date'
 import { MaterialLoanCheckbox } from '~/components/orders/material-loan-checkbox'
 import { StatusUpdateForm } from '~/components/orders/status-update-form'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.OrderManagement
+
+const CONTACT_MODE_LABELS: Record<string, string> = {
+  appel_gsm: 'Appel GSM',
+  mail: 'Mail',
+  physique: 'Physique',
+}
 
 export function OrdersTable({ orders }: { orders: Order[] }) {
   return (
@@ -28,29 +35,41 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
             </tr>
           ) : (
             orders.map((order) => (
-              <tr key={order.id} className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3 font-mono text-xs">{order.orderNumber}</td>
-                <td className="px-4 py-3">
-                  {order.user ? (
-                    <div>
-                      <p className="font-medium">
-                        {order.user.firstname} {order.user.lastname}
-                      </p>
-                      <p className="text-muted-foreground text-xs">{order.user.email}</p>
-                    </div>
-                  ) : (
-                    <span className="text-muted-foreground">—</span>
-                  )}
-                </td>
-                <td className="px-4 py-3 text-muted-foreground">{formatDate(order.eventDate)}</td>
-                <td className="px-4 py-3 font-medium">{order.totalAmount} €</td>
-                <td className="px-4 py-3">
-                  <MaterialLoanCheckbox order={order} />
-                </td>
-                <td className="px-4 py-3">
-                  <StatusUpdateForm order={order} />
-                </td>
-              </tr>
+              <React.Fragment key={order.id}>
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="px-4 py-3 font-mono text-xs">{order.orderNumber}</td>
+                  <td className="px-4 py-3">
+                    {order.user ? (
+                      <div>
+                        <p className="font-medium">
+                          {order.user.firstname} {order.user.lastname}
+                        </p>
+                        <p className="text-muted-foreground text-xs">{order.user.email}</p>
+                      </div>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">{formatDate(order.eventDate)}</td>
+                  <td className="px-4 py-3 font-medium">{order.totalAmount} €</td>
+                  <td className="px-4 py-3">
+                    <MaterialLoanCheckbox order={order} />
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusUpdateForm order={order} />
+                  </td>
+                </tr>
+                {order.status === 'annulee' && order.cancellationReason && (
+                  <tr className="bg-destructive/5">
+                    <td colSpan={6} className="px-4 py-2 text-xs text-muted-foreground">
+                      <span className="font-medium text-destructive mr-2">
+                        {order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : '—'}
+                      </span>
+                      {order.cancellationReason}
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))
           )}
         </tbody>

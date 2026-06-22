@@ -132,6 +132,12 @@ const routes = {
     tokens: [{"old":"/orders/:id/material-loan","type":0,"val":"orders","end":""},{"old":"/orders/:id/material-loan","type":1,"val":"id","end":""},{"old":"/orders/:id/material-loan","type":0,"val":"material-loan","end":""}],
     types: placeholder as Registry['order_material_loan.update']['types'],
   },
+  'cancel_order': {
+    methods: ["PATCH"],
+    pattern: '/orders/:id/cancel',
+    tokens: [{"old":"/orders/:id/cancel","type":0,"val":"orders","end":""},{"old":"/orders/:id/cancel","type":1,"val":"id","end":""},{"old":"/orders/:id/cancel","type":0,"val":"cancel","end":""}],
+    types: placeholder as Registry['cancel_order']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

@@ -251,12 +251,24 @@ export interface Registry {
     methods: ["PATCH"]
     pattern: '/orders/:id/material-loan'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/orders/order_material_loan').updateMaterialLoanValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/orders/order_material_loan').updateMaterialLoanValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_material_loan_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_material_loan_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_material_loan_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'cancel_order': {
+    methods: ["PATCH"]
+    pattern: '/orders/:id/cancel'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/orders/cancel_order').cancelOrderValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/orders/cancel_order').cancelOrderValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/cancel_order_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/cancel_order_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'client_orders.index': {

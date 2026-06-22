@@ -43,6 +43,7 @@ export interface ApiDefinition {
   orderMaterialLoan: {
     update: typeof routes['order_material_loan.update']
   }
+  cancelOrder: typeof routes['cancel_order']
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']

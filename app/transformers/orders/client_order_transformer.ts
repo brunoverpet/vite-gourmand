@@ -20,6 +20,7 @@ export default class ClientOrderTransformer extends BaseTransformer<Order> {
         'deliveryFees',
         'totalAmount',
         'materialLoan',
+        'cancellationReason',
       ]),
       menuMinPeople: this.resource.$preloaded['menu'] ? this.resource.menu.minPeople : null,
       statusHistory: this.resource.$preloaded['statusHistory']

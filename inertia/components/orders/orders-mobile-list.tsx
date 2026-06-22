@@ -5,6 +5,12 @@ import type { Data } from '@generated/data'
 
 type Order = Data.Orders.OrderManagement
 
+const CONTACT_MODE_LABELS: Record<string, string> = {
+  appel_gsm: 'Appel GSM',
+  mail: 'Mail',
+  physique: 'Physique',
+}
+
 export function OrdersMobileList({ orders }: { orders: Order[] }) {
   return (
     <div className="md:hidden space-y-4">
@@ -29,6 +35,14 @@ export function OrdersMobileList({ orders }: { orders: Order[] }) {
               <span className="font-medium text-foreground">{order.totalAmount} €</span>
             </div>
             <MaterialLoanCheckbox order={order} />
+            {order.status === 'annulee' && order.cancellationReason && (
+              <div className="border-t border-destructive/20 pt-2 text-xs text-muted-foreground">
+                <span className="font-medium text-destructive mr-1">
+                  {order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : '—'}
+                </span>
+                {order.cancellationReason}
+              </div>
+            )}
           </div>
         ))
       )}

@@ -17,6 +17,7 @@ type ShowProps = InertiaProps<{
 export default function MyOrderShow({ order, hasNotice }: ShowProps) {
   const isPending = order.status === 'en_attente'
   const isDone = order.status === 'terminee'
+  const isCancelled = order.status === 'annulee'
 
   return (
     <div className="space-y-8 max-w-5xl">
@@ -37,6 +38,12 @@ export default function MyOrderShow({ order, hasNotice }: ShowProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 space-y-6">
           {isPending && <OrderActions order={order} />}
+          {isCancelled && order.cancellationReason && (
+            <div className="border border-destructive/30 rounded-lg p-4 bg-destructive/5 space-y-1">
+              <p className="text-sm font-medium text-destructive">Commande annulée</p>
+              <p className="text-sm text-muted-foreground">{order.cancellationReason}</p>
+            </div>
+          )}
           <OrderRecap order={order} />
           {isDone && (
             <div className="border rounded-lg p-4 bg-card space-y-4">
