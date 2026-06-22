@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react'
 import { useState } from 'react'
 import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS, getOrderStatusTransitions } from '~/lib/order-status'
 import { StatusBadge } from '~/components/ui/status-badge'
+import { CancelOrderDialog } from '~/components/orders/cancel-order-dialog'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -63,7 +64,16 @@ export function StatusUpdateForm({ order }: { order: Order }) {
         </SelectContent>
       </Select>
 
-      <AlertDialog open={!!pending} onOpenChange={(open) => !open && setPending(null)}>
+      <CancelOrderDialog
+        order={order}
+        open={pending === 'annulee'}
+        onClose={() => setPending(null)}
+      />
+
+      <AlertDialog
+        open={!!pending && pending !== 'annulee'}
+        onOpenChange={(open) => !open && setPending(null)}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Changer le statut</AlertDialogTitle>
