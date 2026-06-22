@@ -2,6 +2,7 @@ import { OrderStatus } from '#enums/order_status'
 import type Order from '#models/order'
 import OrderStatusHistory from '#models/order_status_history'
 import OrderCompletedNotification from '#mails/orders/order_completed_notification'
+import OrderMaterialReturnNotification from '#mails/orders/order_material_return_notification'
 import mail from '@adonisjs/mail/services/main'
 import { DateTime } from 'luxon'
 
@@ -35,7 +36,7 @@ export class UpdateOrderStatusAction {
       order.materialLoan
     ) {
       throw new Error(
-        "Une commande avec prêt de matériel doit passer par \"en attente retour matériel\" avant d'être terminée."
+        'Une commande avec prêt de matériel doit passer par "en attente retour matériel" avant d\'être terminée.'
       )
     }
 
@@ -47,6 +48,11 @@ export class UpdateOrderStatusAction {
       status: newStatus,
       changedAt: DateTime.now(),
     })
+
+    if (newStatus === OrderStatus.AWAITING_MATERIAL_RETURN) {
+      await order.load('user')
+      mail.sendLater(new OrderMaterialReturnNotification(order))
+    }
 
     if (newStatus === OrderStatus.COMPLETED) {
       await order.load('user')
