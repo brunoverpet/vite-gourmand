@@ -5,6 +5,8 @@ import { PriceCalculatorService } from '#services/shared/price_calculator_servic
 import type { CreateOrderPayload } from '#validators/orders/order'
 import { inject } from '@adonisjs/core'
 import { DateTime } from 'luxon'
+import mail from '@adonisjs/mail/services/main'
+import OrderConfirmationNotification from '#mails/orders/order_confirmation_notification'
 
 @inject()
 export class CreateOrderAction {
@@ -37,7 +39,7 @@ export class CreateOrderAction {
         ? Math.round((basePrice - finalPrice) * 100) / 100
         : 0
 
-    await Order.create({
+    const order = await Order.create({
       userId,
       menuId: payload.menu_id,
       deliveryAddress: payload.delivery_address,
@@ -54,6 +56,10 @@ export class CreateOrderAction {
       orderNumber: this.#createOrderNumber(),
       orderDate: DateTime.now(),
     })
+
+    await order.load('user')
+
+    mail.sendLater(new OrderConfirmationNotification(order))
   }
 
   #createOrderNumber() {

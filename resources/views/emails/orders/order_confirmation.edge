@@ -1,0 +1,48 @@
+@component('emails/layout', { title: 'Votre commande a bien été reçue — Vite & Gourmand' })
+
+  <h1 class="title">Votre commande a bien été reçue !</h1>
+
+  <p class="text">Bonjour {{ order.user.firstname }},</p>
+
+  <p class="text">
+    Nous avons bien reçu votre commande
+    <strong>{{ order.orderNumber }}</strong>
+    . Notre équipe va l'étudier et reviendra vers vous très prochainement.
+  </p>
+
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+    <tr>
+      <td style="padding-bottom: 12px;">
+        <p class="field-label">Date de l'événement</p>
+        <p class="text" style="margin: 0;">{{ formattedEventDate }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-bottom: 12px;">
+        <p class="field-label">Adresse de livraison</p>
+        <p class="text" style="margin: 0;">{{ order.deliveryAddress }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-bottom: 12px;">
+        <p class="field-label">Nombre de personnes</p>
+        <p class="text" style="margin: 0;">{{ order.numberOfPeople }} personnes</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p class="field-label">Montant total estimé</p>
+        <p class="text" style="margin: 0;">{{ order.totalAmount }} €</p>
+      </td>
+    </tr>
+  </table>
+
+  <div class="info-box">
+    Vous pouvez annuler ou modifier votre commande depuis votre espace client, tant qu'elle n'a pas encore été acceptée par notre équipe.
+  </div>
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">Voir ma commande</a>
+  </p>
+
+@end
