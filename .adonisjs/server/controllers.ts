@@ -18,19 +18,19 @@ export const controllers = {
     Menus: () => import('#controllers/menus/menus_controller'),
     Pictures: () => import('#controllers/menus/pictures_controller'),
   },
-  orders: {
-    ClientOrders: () => import('#controllers/orders/client_orders_controller'),
-    Order: () => import('#controllers/orders/order_controller'),
-    OrderStatus: () => import('#controllers/orders/order_status_controller'),
-    OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
-    OrderMaterialLoan: () => import('#controllers/orders/order_material_loan_controller'),
-    CancelOrder: () => import('#controllers/orders/cancel_order_controller'),
-  },
-  profile: {
-    Profile: () => import('#controllers/profile/profile_controller'),
-  },
   notice: {
     RegisterNotice: () => import('#controllers/notice/register_notice_controller'),
     ValidateNotice: () => import('#controllers/notice/validate_notice_controller'),
+  },
+  orders: {
+    CancelOrder: () => import('#controllers/orders/cancel_order_controller'),
+    ClientOrders: () => import('#controllers/orders/client_orders_controller'),
+    Order: () => import('#controllers/orders/order_controller'),
+    OrderMaterialLoan: () => import('#controllers/orders/order_material_loan_controller'),
+    OrderStatus: () => import('#controllers/orders/order_status_controller'),
+    OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
+  },
+  profile: {
+    Profile: () => import('#controllers/profile/profile_controller'),
   },
 }

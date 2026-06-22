@@ -17,9 +17,15 @@ export class MenuService {
       .where('stock', '>', 0)
       .if(diet?.length, (q) => q.whereHas('diet', (d) => d.whereIn('label', diet!)))
       .if(theme?.length, (q) => q.whereHas('theme', (t) => t.whereIn('label', theme!)))
-      .if(priceMin !== null, (q) => q.where('price_per_people', '>=', priceMin!))
-      .if(priceMax !== null, (q) => q.where('price_per_people', '<=', priceMax!))
-      .if(minPeople !== null, (q) => q.where('min_people', '>=', minPeople!))
+      .if(priceMin !== null && priceMin !== undefined, (q) =>
+        q.where('price_per_people', '>=', priceMin!)
+      )
+      .if(priceMax !== null && priceMax !== undefined, (q) =>
+        q.where('price_per_people', '<=', priceMax!)
+      )
+      .if(minPeople !== null && minPeople !== undefined, (q) =>
+        q.where('min_people', '>=', minPeople!)
+      )
       .preload('pictures')
       .preload('diet')
       .preload('theme')
