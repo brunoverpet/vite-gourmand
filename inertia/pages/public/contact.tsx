@@ -1,6 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
 import { Button } from '~/components/ui/button'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
+import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { Textarea } from '~/components/ui/textarea'
 
@@ -29,7 +30,7 @@ export default function Contact() {
                   aria-invalid={errors.title ? 'true' : undefined}
                   required
                 />
-                {errors.title && <div className="text-destructive text-sm">{errors.title}</div>}
+                <FieldError message={errors.title} />
               </Field>
 
               <Field data-invalid={errors.description ? 'true' : undefined}>
@@ -42,9 +43,7 @@ export default function Contact() {
                   aria-invalid={errors.description ? 'true' : undefined}
                   required
                 />
-                {errors.description && (
-                  <div className="text-destructive text-sm">{errors.description}</div>
-                )}
+                <FieldError message={errors.description} />
               </Field>
 
               <Field data-invalid={errors.email ? 'true' : undefined}>
@@ -58,7 +57,7 @@ export default function Contact() {
                   aria-invalid={errors.email ? 'true' : undefined}
                   required
                 />
-                {errors.email && <div className="text-destructive text-sm">{errors.email}</div>}
+                <FieldError message={errors.email} />
               </Field>
 
               <Field>

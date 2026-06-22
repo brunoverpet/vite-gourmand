@@ -2,8 +2,10 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Form } from '@adonisjs/inertia/react'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { FieldError } from '@/components/ui/field-error'
 import { Input } from '@/components/ui/input'
 import { PhoneInput } from '@/components/ui/phone-input'
+import { SuggestionDropdown } from '@/components/ui/suggestion-dropdown'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 
 export function SignupForm({ className, ...props }: React.ComponentProps<'div'>) {
@@ -38,7 +40,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   placeholder="Doe"
                   required
                 />
-                {errors.lastname && <div className="text-destructive text-sm">{errors.lastname}</div>}
+                <FieldError message={errors.lastname} />
               </Field>
               <Field>
                 <FieldLabel htmlFor="firstname">Prénom</FieldLabel>
@@ -50,7 +52,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   placeholder="John"
                   required
                 />
-                {errors.firstname && <div className="text-destructive text-sm">{errors.firstname}</div>}
+                <FieldError message={errors.firstname} />
               </Field>
             </div>
 
@@ -64,7 +66,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                 placeholder="adresse@exemple.com"
                 required
               />
-              {errors.email && <div className="text-destructive text-sm">{errors.email}</div>}
+              <FieldError message={errors.email} />
             </Field>
 
             <Field>
@@ -76,7 +78,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                 placeholder="6 00 00 00 00"
                 required
               />
-              {errors.phone && <div className="text-destructive text-sm">{errors.phone}</div>}
+              <FieldError message={errors.phone} />
             </Field>
 
             <Field>
@@ -95,23 +97,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                     fetchSuggestions(e.target.value)
                   }}
                 />
-                {suggestions.length > 0 && (
-                  <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                    {suggestions.map((s, i) => (
-                      <li key={`${s.fulltext}-${i}`}>
-                        <button
-                          type="button"
-                          className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                          onClick={() => selectAddress(s)}
-                        >
-                          {s.fulltext}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
               </div>
-              {errors.address && <div className="text-destructive text-sm">{errors.address}</div>}
+              <FieldError message={errors.address} />
             </Field>
 
             <Field>
@@ -131,23 +119,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                     fetchCitySuggestions(e.target.value)
                   }}
                 />
-                {citySuggestions.length > 0 && (
-                  <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                    {citySuggestions.map((s, i) => (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                          onClick={() => selectCity(s)}
-                        >
-                          {s.fulltext}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
               </div>
-              {errors.city && <div className="text-destructive text-sm">{errors.city}</div>}
+              <FieldError message={errors.city} />
             </Field>
 
             <div className="grid grid-cols-2 gap-4">
@@ -160,7 +134,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   placeholder="••••••••••"
                   required
                 />
-                {errors.password && <div className="text-destructive text-sm">{errors.password}</div>}
+                <FieldError message={errors.password} />
               </Field>
               <Field>
                 <FieldLabel htmlFor="passwordConfirmation">Confirmation</FieldLabel>
@@ -171,9 +145,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   placeholder="••••••••••"
                   required
                 />
-                {errors.passwordConfirmation && (
-                  <div className="text-destructive text-sm">{errors.passwordConfirmation}</div>
-                )}
+                <FieldError message={errors.passwordConfirmation} />
               </Field>
             </div>
 

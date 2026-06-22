@@ -1,4 +1,5 @@
 import { Link } from '@adonisjs/inertia/react'
+import { CancellationReasonBlock } from '~/components/orders/cancellation-reason-block'
 import { OrderActions } from '~/components/orders/order-actions'
 import { OrderRecap } from '~/components/orders/order-recap'
 import { OrderTimeline } from '~/components/orders/order-timeline'
@@ -39,10 +40,7 @@ export default function MyOrderShow({ order, hasNotice }: ShowProps) {
         <div className="lg:col-span-2 space-y-6">
           {isPending && <OrderActions order={order} />}
           {isCancelled && order.cancellationReason && (
-            <div className="border border-destructive/30 rounded-lg p-4 bg-destructive/5 space-y-1">
-              <p className="text-sm font-medium text-destructive">Commande annulée</p>
-              <p className="text-sm text-muted-foreground">{order.cancellationReason}</p>
-            </div>
+            <CancellationReasonBlock reason={order.cancellationReason} />
           )}
           <OrderRecap order={order} />
           {isDone && (

@@ -1,15 +1,11 @@
 import { formatDate } from '~/lib/format-date'
+import { CONTACT_MODE_LABELS } from '~/lib/order-status'
+import { CancellationReasonBlock } from '~/components/orders/cancellation-reason-block'
 import { MaterialLoanCheckbox } from '~/components/orders/material-loan-checkbox'
 import { StatusUpdateForm } from '~/components/orders/status-update-form'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.OrderManagement
-
-const CONTACT_MODE_LABELS: Record<string, string> = {
-  appel_gsm: 'Appel GSM',
-  mail: 'Mail',
-  physique: 'Physique',
-}
 
 export function OrdersMobileList({ orders }: { orders: Order[] }) {
   return (
@@ -36,12 +32,11 @@ export function OrdersMobileList({ orders }: { orders: Order[] }) {
             </div>
             <MaterialLoanCheckbox order={order} />
             {order.status === 'annulee' && order.cancellationReason && (
-              <div className="border-t border-destructive/20 pt-2 text-xs text-muted-foreground">
-                <span className="font-medium text-destructive mr-1">
-                  {order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : '—'}
-                </span>
-                {order.cancellationReason}
-              </div>
+              <CancellationReasonBlock
+                reason={order.cancellationReason}
+                contactModeLabel={order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : undefined}
+                variant="inline"
+              />
             )}
           </div>
         ))

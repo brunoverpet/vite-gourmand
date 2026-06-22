@@ -1,3 +1,9 @@
+export const CONTACT_MODE_LABELS: Record<string, string> = {
+  appel_gsm: 'Appel GSM',
+  mail: 'Mail',
+  physique: 'Physique',
+}
+
 export const ORDER_STATUS_LABELS: Record<string, string> = {
   en_attente: 'En attente',
   acceptee: 'Acceptée',

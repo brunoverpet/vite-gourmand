@@ -3,20 +3,15 @@ import { Link, Form } from '@adonisjs/inertia/react'
 import { router } from '@inertiajs/react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { ArrowLeft, CalendarIcon, Clock, Users } from 'lucide-react'
+import { ArrowLeft, CalendarIcon, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Calendar } from '~/components/ui/calendar'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { Input } from '~/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
+import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
+import { TimePicker } from '~/components/ui/time-picker'
 import { cn } from '@/lib/utils'
 import type { SharedProps } from '@adonisjs/inertia/types'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
@@ -266,50 +261,12 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                 <Field>
                   <FieldLabel>Heure</FieldLabel>
                   <input type="hidden" name="delivery_time" value={`${hour}:${minute}`} />
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          'h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-left text-sm flex items-center gap-2 transition-colors',
-                          'focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 outline-none'
-                        )}
-                      >
-                        <Clock className="w-4 h-4 shrink-0" />
-                        {hour}h{minute}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-4" align="start">
-                      <div className="flex gap-3">
-                        <Select value={hour} onValueChange={setHour}>
-                          <SelectTrigger className="w-24">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Array.from({ length: 15 }, (_, i) =>
-                              String(i + 8).padStart(2, '0')
-                            ).map((h) => (
-                              <SelectItem key={h} value={h}>
-                                {h}h
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Select value={minute} onValueChange={setMinute}>
-                          <SelectTrigger className="w-24">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {['00', '15', '30', '45'].map((m) => (
-                              <SelectItem key={m} value={m}>
-                                {m} min
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
+                  <TimePicker
+                    hour={hour}
+                    minute={minute}
+                    onHourChange={setHour}
+                    onMinuteChange={setMinute}
+                  />
                 </Field>
               </div>
 
@@ -329,24 +286,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                       fetchSuggestions(e.target.value)
                     }}
                   />
-                  {suggestions.length > 0 && (
-                    <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                      {suggestions.map((s, i) => (
-                        <li key={`${s.fulltext}-${i}`}>
-                          <button
-                            type="button"
-                            className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onMouseDown={(e) => {
-                              e.preventDefault()
-                              selectAddress(s)
-                            }}
-                          >
-                            {s.fulltext}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
                 </div>
                 {formErrors.address && (
                   <p className="text-xs text-destructive mt-1">{formErrors.address}</p>
@@ -370,24 +310,7 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                     }}
                     required
                   />
-                  {citySuggestions.length > 0 && (
-                    <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                      {citySuggestions.map((s, i) => (
-                        <li key={i}>
-                          <button
-                            type="button"
-                            className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onMouseDown={(e) => {
-                              e.preventDefault()
-                              selectCity(s)
-                            }}
-                          >
-                            {s.fulltext}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
                 </div>
               </Field>
             </FieldGroup>

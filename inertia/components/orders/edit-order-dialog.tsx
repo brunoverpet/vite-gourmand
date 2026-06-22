@@ -1,7 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { CalendarIcon, Clock, Users } from 'lucide-react'
+import { CalendarIcon, Users } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Calendar } from '~/components/ui/calendar'
@@ -13,15 +13,11 @@ import {
   DialogTrigger,
 } from '~/components/ui/dialog'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
+import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
+import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
+import { TimePicker } from '~/components/ui/time-picker'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 import { cn } from '@/lib/utils'
 import type { Data } from '@generated/data'
@@ -108,9 +104,7 @@ export function EditOrderDialog({ order }: { order: Order }) {
                       Minimum {order.menuMinPeople} personnes — valeur corrigée.
                     </p>
                   )}
-                  {errors.number_of_people && (
-                    <p className="text-xs text-destructive mt-1">{errors.number_of_people}</p>
-                  )}
+                  <FieldError message={errors.number_of_people} />
                 </Field>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -139,55 +133,17 @@ export function EditOrderDialog({ order }: { order: Order }) {
                         />
                       </PopoverContent>
                     </Popover>
-                    {errors.event_date && (
-                      <p className="text-xs text-destructive mt-1">{errors.event_date}</p>
-                    )}
+                    <FieldError message={errors.event_date} />
                   </Field>
 
                   <Field>
                     <FieldLabel>Heure</FieldLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          type="button"
-                          variant="outline"
-                          className="h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-left text-sm flex items-center gap-2"
-                        >
-                          <Clock className="w-4 h-4 shrink-0" />
-                          {hour}h{minute}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-4" align="start">
-                        <div className="flex gap-3">
-                          <Select value={hour} onValueChange={setHour}>
-                            <SelectTrigger className="w-24">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {Array.from({ length: 15 }, (_, i) =>
-                                String(i + 8).padStart(2, '0')
-                              ).map((h) => (
-                                <SelectItem key={h} value={h}>
-                                  {h}h
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <Select value={minute} onValueChange={setMinute}>
-                            <SelectTrigger className="w-24">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {['00', '15', '30', '45'].map((m) => (
-                                <SelectItem key={m} value={m}>
-                                  {m} min
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </PopoverContent>
-                    </Popover>
+                    <TimePicker
+                      hour={hour}
+                      minute={minute}
+                      onHourChange={setHour}
+                      onMinuteChange={setMinute}
+                    />
                   </Field>
                 </div>
 
@@ -203,25 +159,9 @@ export function EditOrderDialog({ order }: { order: Order }) {
                         fetchSuggestions(e.target.value)
                       }}
                     />
-                    {suggestions.length > 0 && (
-                      <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                        {suggestions.map((s, i) => (
-                          <li key={`${s.fulltext}-${i}`}>
-                            <button
-                              type="button"
-                              className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                              onMouseDown={(e) => { e.preventDefault(); selectAddress(s) }}
-                            >
-                              {s.fulltext}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
                   </div>
-                  {errors.delivery_address && (
-                    <p className="text-xs text-destructive mt-1">{errors.delivery_address}</p>
-                  )}
+                  <FieldError message={errors.delivery_address} />
                 </Field>
 
                 <Field>
@@ -236,25 +176,9 @@ export function EditOrderDialog({ order }: { order: Order }) {
                         fetchCitySuggestions(e.target.value)
                       }}
                     />
-                    {citySuggestions.length > 0 && (
-                      <ul className="absolute z-10 top-full mt-1 w-full rounded-lg border border-border bg-background shadow-md overflow-hidden">
-                        {citySuggestions.map((s, i) => (
-                          <li key={i}>
-                            <button
-                              type="button"
-                              className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                              onMouseDown={(e) => { e.preventDefault(); selectCity(s) }}
-                            >
-                              {s.fulltext}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
                   </div>
-                  {errors.delivery_city && (
-                    <p className="text-xs text-destructive mt-1">{errors.delivery_city}</p>
-                  )}
+                  <FieldError message={errors.delivery_city} />
                 </Field>
               </FieldGroup>
 

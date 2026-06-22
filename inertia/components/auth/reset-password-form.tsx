@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Field, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field'
+import { FieldError } from '@/components/ui/field-error'
 import { Input } from '@/components/ui/input'
 import { Form, Link } from '@adonisjs/inertia/react'
 
@@ -25,7 +26,7 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
                 data-invalid={errors.password ? 'true' : undefined}
                 required
               />
-              {errors.password && <div className="text-destructive text-sm">{errors.password}</div>}
+              <FieldError message={errors.password} />
             </Field>
 
             <Field>
@@ -38,9 +39,7 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
                 required
                 autoComplete="current-passwordConfirmation"
               />
-              {errors.passwordConfirmation && (
-                <div className="text-destructive text-sm">{errors.passwordConfirmation}</div>
-              )}
+              <FieldError message={errors.passwordConfirmation} />
             </Field>
 
             <Field>

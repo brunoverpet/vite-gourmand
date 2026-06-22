@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Field, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field'
+import { FieldError } from '@/components/ui/field-error'
 import { Input } from '@/components/ui/input'
 import { Form, Link } from '@adonisjs/inertia/react'
 
@@ -21,7 +22,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                 data-invalid={errors.email ? 'true' : undefined}
                 required
               />
-              {errors.email && <div className="text-destructive text-sm">{errors.email}</div>}
+              <FieldError message={errors.email} />
             </Field>
 
             <Field>
@@ -34,7 +35,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                 required
                 autoComplete="current-password"
               />
-              {errors.password && <div className="text-destructive text-sm">{errors.password}</div>}
+              <FieldError message={errors.password} />
             </Field>
 
             <Field>

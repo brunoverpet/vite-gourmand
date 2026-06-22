@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Field, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field'
+import { FieldError } from '@/components/ui/field-error'
 import { Input } from '@/components/ui/input'
 import { Form, Link } from '@adonisjs/inertia/react'
 
@@ -22,7 +23,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                 autoComplete="email"
                 required
               />
-              {errors.email && <div className="text-destructive text-sm">{errors.email}</div>}
+              <FieldError message={errors.email} />
             </Field>
             <Field>
               <Button type="submit">Réinitialiser mon mot de passe</Button>

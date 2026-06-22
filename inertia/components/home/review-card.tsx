@@ -1,5 +1,4 @@
-import { Star } from 'lucide-react'
-import { cn } from '~/lib/utils'
+import { StarRating } from '~/components/ui/star-rating'
 
 type ReviewCardProps = {
   rating: number
@@ -10,13 +9,13 @@ type ReviewCardProps = {
 export default function ReviewCard({ rating, comment, author }: ReviewCardProps) {
   return (
     <article className="rounded-2xl bg-card p-6 border border-border md:flex-1">
-      <div className="flex gap-1 mb-4">
-        {Array.from({ length: 5 }, (_, i) => (
-          <Star
-            key={i}
-            className={cn('size-5', i < rating ? 'fill-accent text-accent' : 'text-accent')}
-          />
-        ))}
+      <div className="mb-4">
+        <StarRating
+          note={rating}
+          size="md"
+          activeClass="fill-accent text-accent"
+          inactiveClass="text-accent"
+        />
       </div>
       <p className="italic text-foreground mb-4">{`"${comment}"`}</p>
       <p className="text-body-sm text-muted-foreground">{author}</p>

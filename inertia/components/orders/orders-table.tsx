@@ -1,16 +1,11 @@
 import React from 'react'
 import { formatDate } from '~/lib/format-date'
+import { CONTACT_MODE_LABELS } from '~/lib/order-status'
 import { MaterialLoanCheckbox } from '~/components/orders/material-loan-checkbox'
 import { StatusUpdateForm } from '~/components/orders/status-update-form'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.OrderManagement
-
-const CONTACT_MODE_LABELS: Record<string, string> = {
-  appel_gsm: 'Appel GSM',
-  mail: 'Mail',
-  physique: 'Physique',
-}
 
 export function OrdersTable({ orders }: { orders: Order[] }) {
   return (

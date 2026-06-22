@@ -1,6 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
 import { Button } from '~/components/ui/button'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
+import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { PhoneInput } from '~/components/ui/phone-input'
 import type { Data } from '@generated/data'
@@ -25,7 +26,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 autoComplete="family-name"
                 required
               />
-              {errors.lastname && <p className="text-destructive text-sm">{errors.lastname}</p>}
+              <FieldError message={errors.lastname} />
             </Field>
             <Field>
               <FieldLabel htmlFor="firstname">Prénom</FieldLabel>
@@ -37,7 +38,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 autoComplete="given-name"
                 required
               />
-              {errors.firstname && <p className="text-destructive text-sm">{errors.firstname}</p>}
+              <FieldError message={errors.firstname} />
             </Field>
           </div>
 
@@ -51,7 +52,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
               autoComplete="email"
               required
             />
-            {errors.email && <p className="text-destructive text-sm">{errors.email}</p>}
+            <FieldError message={errors.email} />
           </Field>
 
           <Field>
@@ -63,7 +64,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
               defaultValue={user?.phone ?? undefined}
               required
             />
-            {errors.phone && <p className="text-destructive text-sm">{errors.phone}</p>}
+            <FieldError message={errors.phone} />
           </Field>
 
           <Button type="submit" className="sm:w-auto">
