@@ -68,7 +68,7 @@ export default class OrderController {
 
     session.flash({ success: 'Votre commande a bien été enregistrée.' })
 
-    return response.redirect().toRoute('home')
+    return response.redirect().toRoute('client_orders.index')
   }
 
   #buildEstimate(
