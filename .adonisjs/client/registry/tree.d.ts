@@ -33,8 +33,15 @@ export interface ApiDefinition {
   order: {
     render: typeof routes['order.render']
     store: typeof routes['order.store']
-    status: {
-      update: typeof routes['order.status.update']
-    }
+  }
+  orderStatus: {
+    update: typeof routes['order_status.update']
+  }
+  ordersManagement: {
+    index: typeof routes['orders_management.index']
+  }
+  clientOrders: {
+    index: typeof routes['client_orders.index']
+    show: typeof routes['client_orders.show']
   }
 }

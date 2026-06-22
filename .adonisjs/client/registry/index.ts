@@ -114,11 +114,29 @@ const routes = {
     tokens: [{"old":"/orders","type":0,"val":"orders","end":""}],
     types: placeholder as Registry['order.store']['types'],
   },
-  'order.status.update': {
+  'order_status.update': {
     methods: ["PATCH"],
     pattern: '/orders/:id/status',
     tokens: [{"old":"/orders/:id/status","type":0,"val":"orders","end":""},{"old":"/orders/:id/status","type":1,"val":"id","end":""},{"old":"/orders/:id/status","type":0,"val":"status","end":""}],
-    types: placeholder as Registry['order.status.update']['types'],
+    types: placeholder as Registry['order_status.update']['types'],
+  },
+  'orders_management.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/orders',
+    tokens: [{"old":"/dashboard/orders","type":0,"val":"dashboard","end":""},{"old":"/dashboard/orders","type":0,"val":"orders","end":""}],
+    types: placeholder as Registry['orders_management.index']['types'],
+  },
+  'client_orders.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/my-orders',
+    tokens: [{"old":"/dashboard/my-orders","type":0,"val":"dashboard","end":""},{"old":"/dashboard/my-orders","type":0,"val":"my-orders","end":""}],
+    types: placeholder as Registry['client_orders.index']['types'],
+  },
+  'client_orders.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/my-orders/:id',
+    tokens: [{"old":"/dashboard/my-orders/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/my-orders/:id","type":0,"val":"my-orders","end":""},{"old":"/dashboard/my-orders/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['client_orders.show']['types'],
   },
   'session.destroy': {
     methods: ["POST"],

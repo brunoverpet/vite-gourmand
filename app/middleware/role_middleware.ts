@@ -5,7 +5,6 @@ import type { Roles } from '#enums/roles'
 export default class RoleMiddleware {
   async handle(ctx: HttpContext, next: NextFn, roles: Roles[]) {
     const user = ctx.auth.getUserOrFail()
-    await user.load('role')
 
     if (!roles.includes(user.role.label as Roles)) {
       ctx.session.flash('error', 'Accès non autorisé.')

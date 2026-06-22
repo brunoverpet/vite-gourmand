@@ -215,24 +215,60 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/orders'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/order/order').createOrderValidator)>>
+      body: ExtractBody<InferInput<(typeof import('#validators/orders/order').createOrderValidator)>>
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#validators/order/order').createOrderValidator)>>
+      query: ExtractQuery<InferInput<(typeof import('#validators/orders/order').createOrderValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'order.status.update': {
+  'order_status.update': {
     methods: ["PATCH"]
     pattern: '/orders/:id/status'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/orders/order_status').updateOrderStatusValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/orders/order_status').updateOrderStatusValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_status_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_status_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'orders_management.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/orders'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/orders_management_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/orders_management_controller').default['index']>>>
+    }
+  }
+  'client_orders.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/my-orders'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['index']>>>
+    }
+  }
+  'client_orders.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/my-orders/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_status_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_status_controller').default['update']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['show']>>>
     }
   }
   'session.destroy': {

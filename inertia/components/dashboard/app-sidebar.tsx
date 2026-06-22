@@ -1,8 +1,5 @@
 import * as React from 'react'
 
-import { NavMain } from '@/components/dashboard/nav-main'
-import { NavProjects } from '@/components/dashboard/nav-projects'
-import { NavSecondary } from '@/components/dashboard/nav-secondary'
 import { NavUser } from '@/components/dashboard/nav-user'
 import {
   Sidebar,
@@ -13,19 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import {
-  TerminalSquareIcon,
-  BotIcon,
-  BookOpenIcon,
-  Settings2Icon,
-  LifeBuoyIcon,
-  SendIcon,
-  FrameIcon,
-  PieChartIcon,
-  MapIcon,
-  TerminalIcon,
-} from 'lucide-react'
-import { usePage } from '@inertiajs/react'
+import { ClipboardListIcon, ShoppingBagIcon, UtensilsIcon } from 'lucide-react'
+import { usePage, Link } from '@inertiajs/react'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 
@@ -33,161 +19,77 @@ type PageProps = InertiaProps<{
   user: Data.Auth.User
 }>
 
-const getSidebarData = (user: Data.Auth.User | undefined | null) => ({
-  user: {
-    name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
-    email: user?.email || '',
-    avatar: '/avatars/shadcn.jpg',
-  },
-  navMain: [
-    {
-      title: 'Playground',
-      url: '#',
-      icon: <TerminalSquareIcon />,
-      isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: <BotIcon />,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: <BookOpenIcon />,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: <Settings2Icon />,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: 'Support',
-      url: '#',
-      icon: <LifeBuoyIcon />,
-    },
-    {
-      title: 'Feedback',
-      url: '#',
-      icon: <SendIcon />,
-    },
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: <FrameIcon />,
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: <PieChartIcon />,
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: <MapIcon />,
-    },
-  ],
-})
+function NavItem({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton asChild>
+        <Link href={href}>
+          {icon}
+          <span>{label}</span>
+        </Link>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  )
+}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const page = usePage()
   const { user } = page.props as unknown as PageProps
 
-  const sidebarData = getSidebarData(user)
+  const isEmployeeOrAdmin = user?.role === 'employe' || user?.role === 'admin'
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <TerminalIcon className="size-4" />
+                  <UtensilsIcon className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Vite & Gourmand</span>
-                  <span className="truncate text-xs">Entreprise</span>
+                  <span className="truncate font-medium">Vite &amp; Gourmand</span>
+                  <span className="truncate text-xs capitalize">{user?.role ?? 'Espace'}</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={sidebarData.navMain} />
-        <NavProjects projects={sidebarData.projects} />
-        <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
+        <SidebarMenu className="px-2 py-2">
+          {isEmployeeOrAdmin ? (
+            <>
+              <NavItem
+                href="/dashboard/orders"
+                icon={<ClipboardListIcon />}
+                label="Gestion des commandes"
+              />
+              <NavItem href="/menus" icon={<UtensilsIcon />} label="Menus" />
+            </>
+          ) : (
+            <>
+              <NavItem
+                href="/dashboard/my-orders"
+                icon={<ShoppingBagIcon />}
+                label="Mes commandes"
+              />
+              <NavItem href="/menus" icon={<UtensilsIcon />} label="Nos menus" />
+            </>
+          )}
+        </SidebarMenu>
       </SidebarContent>
+
       <SidebarFooter>
-        <NavUser user={sidebarData.user} />
+        <NavUser
+          user={{
+            name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
+            email: user?.email ?? '',
+            avatar: '/avatars/shadcn.jpg',
+          }}
+        />
       </SidebarFooter>
     </Sidebar>
   )
