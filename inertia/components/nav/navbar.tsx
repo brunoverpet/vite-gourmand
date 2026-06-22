@@ -5,6 +5,9 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import NavLink from '~/components/nav/nav-link'
 import { cn } from '~/lib/utils'
+import type { InertiaProps } from '~/types'
+
+type PageProps = InertiaProps
 
 const NAV_LINKS = [
   { label: 'Accueil', href: '/' },
@@ -15,8 +18,13 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const isHome = usePage().url === '/'
+  const page = usePage()
+  const { user } = page.props as unknown as PageProps
+  const isHome = page.url === '/'
   const isTransparent = isHome && !isScrolled
+
+  const isStaff = user?.role === 'admin' || user?.role === 'employe'
+  const isClient = user?.role === 'user'
 
   useEffect(() => {
     if (isOpen) {
@@ -60,9 +68,19 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-            <Button asChild>
-              <Link route="session.render">Connexion</Link>
-            </Button>
+            {isStaff ? (
+              <Button asChild variant="outline">
+                <Link href="/dashboard">Tableau de bord</Link>
+              </Button>
+            ) : isClient ? (
+              <Button asChild variant="outline">
+                <Link href="/dashboard/my-orders">Mes commandes</Link>
+              </Button>
+            ) : (
+              <Button asChild>
+                <Link route="session.render">Connexion</Link>
+              </Button>
+            )}
           </nav>
 
           <Button
@@ -127,11 +145,25 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Button asChild variant="outline" className="w-full text-primary-foreground">
-          <Link route="session.render" onClick={() => setIsOpen(false)}>
-            Connexion
-          </Link>
-        </Button>
+        {isStaff ? (
+          <Button asChild variant="outline" className="w-full text-primary-foreground">
+            <Link href="/dashboard" onClick={() => setIsOpen(false)}>
+              Tableau de bord
+            </Link>
+          </Button>
+        ) : isClient ? (
+          <Button asChild variant="outline" className="w-full text-primary-foreground">
+            <Link href="/dashboard/my-orders" onClick={() => setIsOpen(false)}>
+              Mes commandes
+            </Link>
+          </Button>
+        ) : (
+          <Button asChild variant="outline" className="w-full text-primary-foreground">
+            <Link route="session.render" onClick={() => setIsOpen(false)}>
+              Connexion
+            </Link>
+          </Button>
+        )}
       </div>
     </>
   )
