@@ -29,6 +29,16 @@ export class UpdateOrderStatusAction {
       throw new Error('Ce statut requiert un prêt de matériel (material_loan = true)')
     }
 
+    if (
+      newStatus === OrderStatus.COMPLETED &&
+      currentStatus === OrderStatus.DELIVERED &&
+      order.materialLoan
+    ) {
+      throw new Error(
+        "Une commande avec prêt de matériel doit passer par \"en attente retour matériel\" avant d'être terminée."
+      )
+    }
+
     order.status = newStatus
     await order.save()
 

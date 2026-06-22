@@ -23,6 +23,7 @@ export const controllers = {
     Order: () => import('#controllers/orders/order_controller'),
     OrderStatus: () => import('#controllers/orders/order_status_controller'),
     OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
+    OrderMaterialLoan: () => import('#controllers/orders/order_material_loan_controller'),
   },
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),

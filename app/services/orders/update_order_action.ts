@@ -35,10 +35,7 @@ export class UpdateOrderAction {
       await order.load('menu')
       const menu = order.menu
 
-      if (
-        payload.number_of_people !== undefined &&
-        payload.number_of_people < menu.minPeople
-      ) {
+      if (payload.number_of_people !== undefined && payload.number_of_people < menu.minPeople) {
         throw new Error(`Le nombre minimum de personnes pour ce menu est ${menu.minPeople}.`)
       }
 

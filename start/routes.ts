@@ -51,6 +51,10 @@ router
       .get('dashboard/orders', [controllers.orders.OrdersManagement, 'index'])
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 
+    router
+      .patch('orders/:id/material-loan', [controllers.orders.OrderMaterialLoan, 'update'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+
     router.get('dashboard/my-orders', [controllers.orders.ClientOrders, 'index'])
     router.get('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'show'])
     router.patch('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'update'])
