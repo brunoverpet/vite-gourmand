@@ -271,6 +271,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['show']>>>
     }
   }
+  'client_orders.update': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/my-orders/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/orders/order').updateOrderValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/orders/order').updateOrderValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'session.destroy': {
     methods: ["POST"]
     pattern: '/logout'

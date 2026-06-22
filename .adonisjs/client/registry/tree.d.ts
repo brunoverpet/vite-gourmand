@@ -43,5 +43,6 @@ export interface ApiDefinition {
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']
+    update: typeof routes['client_orders.update']
   }
 }

@@ -13,6 +13,26 @@ export const createOrderValidator = vine.create({
   latitude: vine.number(),
 })
 
+export const updateOrderValidator = vine.create({
+  event_date: vine
+    .date({ formats: ['YYYY-MM-DD'] })
+    .after('today')
+    .optional(),
+  delivery_time: vine
+    .string()
+    .regex(/^\d{2}:\d{2}$/)
+    .optional(),
+  delivery_address: vine.string().minLength(5).maxLength(255).optional(),
+  delivery_city: vine.string().minLength(2).maxLength(100).optional(),
+  delivery_zipcode: vine
+    .string()
+    .regex(/^\d{5}$/)
+    .optional(),
+  number_of_people: vine.number().positive().min(1).optional(),
+  longitude: vine.number().optional(),
+  latitude: vine.number().optional(),
+})
+
 const sharedMessages = new SimpleMessagesProvider({
   'required': 'Le champ {{ field }} est obligatoire.',
   'exists': 'Le menu sélectionné est invalide.',
@@ -21,5 +41,7 @@ const sharedMessages = new SimpleMessagesProvider({
 })
 
 createOrderValidator.messagesProvider = sharedMessages
+updateOrderValidator.messagesProvider = sharedMessages
 
 export type CreateOrderPayload = Infer<typeof createOrderValidator>
+export type UpdateOrderPayload = Infer<typeof updateOrderValidator>

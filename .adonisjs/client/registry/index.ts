@@ -138,6 +138,12 @@ const routes = {
     tokens: [{"old":"/dashboard/my-orders/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/my-orders/:id","type":0,"val":"my-orders","end":""},{"old":"/dashboard/my-orders/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['client_orders.show']['types'],
   },
+  'client_orders.update': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/my-orders/:id',
+    tokens: [{"old":"/dashboard/my-orders/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/my-orders/:id","type":0,"val":"my-orders","end":""},{"old":"/dashboard/my-orders/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['client_orders.update']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',
