@@ -5,13 +5,26 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { ClipboardListIcon, ShoppingBagIcon, UtensilsIcon } from 'lucide-react'
+import {
+  BarChart2Icon,
+  ClipboardListIcon,
+  ClockIcon,
+  ShoppingBagIcon,
+  StarIcon,
+  UserIcon,
+  UsersIcon,
+  UtensilsIcon,
+} from 'lucide-react'
 import { usePage, Link } from '@inertiajs/react'
+import { useSidebar } from '@/components/ui/sidebar'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 
@@ -19,24 +32,113 @@ type PageProps = InertiaProps<{
   user: Data.Auth.User
 }>
 
-function NavItem({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+const ROLE_LABELS: Record<string, string> = {
+  admin: 'Administrateur',
+  employe: 'Employé',
+  user: 'Client',
+}
+
+type NavItemDef = {
+  href: string
+  icon: React.ReactNode
+  label: string
+}
+
+type NavGroupDef = {
+  label?: string
+  items: NavItemDef[]
+}
+
+function NavGroup({ group }: { group: NavGroupDef }) {
+  const { isMobile, setOpenMobile } = useSidebar()
+
+  function handleClick() {
+    if (isMobile) setOpenMobile(false)
+  }
+
   return (
-    <SidebarMenuItem>
-      <SidebarMenuButton asChild>
-        <Link href={href}>
-          {icon}
-          <span>{label}</span>
-        </Link>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
+    <SidebarGroup>
+      {group.label && (
+        <SidebarGroupLabel className="text-primary font-medium">{group.label}</SidebarGroupLabel>
+      )}
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {group.items.map((item) => (
+            <SidebarMenuItem key={item.href}>
+              <SidebarMenuButton asChild>
+                <Link href={item.href} onClick={handleClick}>
+                  {item.icon}
+                  <span>{item.label}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
   )
 }
+
+const ACCOUNT_NAV: NavGroupDef[] = [
+  {
+    label: 'Compte',
+    items: [
+      { href: '/dashboard/profile', icon: <UserIcon />, label: 'Mon profil' },
+    ],
+  },
+]
+
+const CLIENT_NAV: NavGroupDef[] = [
+  {
+    label: 'Mon espace',
+    items: [
+      { href: '/dashboard/my-orders', icon: <ShoppingBagIcon />, label: 'Mes commandes' },
+    ],
+  },
+]
+
+const EMPLOYEE_NAV: NavGroupDef[] = [
+  {
+    label: 'Commandes',
+    items: [
+      { href: '/dashboard/orders', icon: <ClipboardListIcon />, label: 'Gestion des commandes' },
+    ],
+  },
+  {
+    label: 'Catalogue',
+    items: [
+      { href: '/dashboard/menus', icon: <UtensilsIcon />, label: 'Menus & plats' },
+      { href: '/dashboard/schedules', icon: <ClockIcon />, label: 'Horaires' },
+    ],
+  },
+  {
+    label: 'Communauté',
+    items: [{ href: '/dashboard/reviews', icon: <StarIcon />, label: 'Avis clients' }],
+  },
+]
+
+const ADMIN_EXTRA_NAV: NavGroupDef[] = [
+  {
+    label: 'Administration',
+    items: [
+      { href: '/dashboard/employees', icon: <UsersIcon />, label: 'Comptes employés' },
+      { href: '/dashboard/stats', icon: <BarChart2Icon />, label: 'Statistiques' },
+    ],
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const page = usePage()
   const { user } = page.props as unknown as PageProps
 
   const isEmployeeOrAdmin = user?.role === 'employe' || user?.role === 'admin'
+  const isAdmin = user?.role === 'admin'
+
+  const navGroups = isEmployeeOrAdmin
+    ? isAdmin
+      ? [...EMPLOYEE_NAV, ...ADMIN_EXTRA_NAV, ...ACCOUNT_NAV]
+      : [...EMPLOYEE_NAV, ...ACCOUNT_NAV]
+    : [...CLIENT_NAV, ...ACCOUNT_NAV]
 
   return (
     <Sidebar variant="inset" {...props}>
@@ -45,12 +147,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <UtensilsIcon className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg border border-border bg-background">
+                  <UtensilsIcon className="size-4 text-foreground" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Vite &amp; Gourmand</span>
-                  <span className="truncate text-xs capitalize">{user?.role ?? 'Espace'}</span>
+                  <span className="truncate font-semibold">Vite &amp; Gourmand</span>
+                  <span className="truncate text-xs text-muted-foreground">Traiteur Bordeaux</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -59,27 +161,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarMenu className="px-2 py-2">
-          {isEmployeeOrAdmin ? (
-            <>
-              <NavItem
-                href="/dashboard/orders"
-                icon={<ClipboardListIcon />}
-                label="Gestion des commandes"
-              />
-              <NavItem href="/menus" icon={<UtensilsIcon />} label="Menus" />
-            </>
-          ) : (
-            <>
-              <NavItem
-                href="/dashboard/my-orders"
-                icon={<ShoppingBagIcon />}
-                label="Mes commandes"
-              />
-              <NavItem href="/menus" icon={<UtensilsIcon />} label="Nos menus" />
-            </>
-          )}
-        </SidebarMenu>
+        {navGroups.map((group, i) => (
+          <NavGroup key={group.label ?? i} group={group} />
+        ))}
       </SidebarContent>
 
       <SidebarFooter>
@@ -88,6 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
             email: user?.email ?? '',
             avatar: '/avatars/shadcn.jpg',
+            role: ROLE_LABELS[user?.role ?? ''],
           }}
         />
       </SidebarFooter>
