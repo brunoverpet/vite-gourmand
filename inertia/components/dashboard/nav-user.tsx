@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar } from '@/components/ui/sidebar'
+import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar'
 import { Form } from '@adonisjs/inertia/react'
 import { LogOutIcon } from 'lucide-react'
 
@@ -42,9 +42,7 @@ export function NavUser({ user }: UserInfo) {
           <div className="grid flex-1 text-left text-sm leading-tight min-w-0">
             <span className="truncate font-medium">{user.name}</span>
             <span className="truncate text-xs text-muted-foreground">{user.email}</span>
-            {user.role && (
-              <span className="truncate text-xs text-primary/70">{user.role}</span>
-            )}
+            {user.role && <span className="truncate text-xs text-primary/70">{user.role}</span>}
           </div>
         </div>
       </SidebarMenuItem>

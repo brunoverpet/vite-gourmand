@@ -1,6 +1,10 @@
 import { useForm } from '@inertiajs/react'
 import { useState } from 'react'
-import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS, getOrderStatusTransitions } from '~/lib/order-status'
+import {
+  ORDER_STATUS_COLORS,
+  ORDER_STATUS_LABELS,
+  getOrderStatusTransitions,
+} from '~/lib/order-status'
 import { StatusBadge } from '~/components/ui/status-badge'
 import { CancelOrderDialog } from '~/components/orders/cancel-order-dialog'
 import {
@@ -20,7 +24,6 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue,
 } from '~/components/ui/select'
 import type { Data } from '@generated/data'
 
@@ -32,7 +35,13 @@ export function StatusUpdateForm({ order }: { order: Order }) {
   const { setData, patch, processing } = useForm({ status: '' })
 
   if (allowed.length === 0)
-    return <StatusBadge status={order.status} labels={ORDER_STATUS_LABELS} colors={ORDER_STATUS_COLORS} />
+    return (
+      <StatusBadge
+        status={order.status}
+        labels={ORDER_STATUS_LABELS}
+        colors={ORDER_STATUS_COLORS}
+      />
+    )
 
   function handleSelect(next: string) {
     setData('status', next)
@@ -50,7 +59,11 @@ export function StatusUpdateForm({ order }: { order: Order }) {
     <>
       <Select onValueChange={handleSelect} disabled={processing}>
         <SelectTrigger className="h-auto w-fit border-0 bg-transparent p-0 shadow-none focus:ring-0 gap-1.5 [&>svg]:text-muted-foreground">
-          <StatusBadge status={order.status} labels={ORDER_STATUS_LABELS} colors={ORDER_STATUS_COLORS} />
+          <StatusBadge
+            status={order.status}
+            labels={ORDER_STATUS_LABELS}
+            colors={ORDER_STATUS_COLORS}
+          />
         </SelectTrigger>
         <SelectContent align="end" position="popper">
           <SelectGroup>
