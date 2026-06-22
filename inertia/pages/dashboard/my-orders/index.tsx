@@ -59,7 +59,11 @@ export default function MyOrdersIndex({ orders }: IndexProps) {
           const canViewTracking = ACCEPTED_AND_BEYOND.includes(order.status)
 
           return (
-            <div key={order.id} className="border rounded-lg p-4 bg-card space-y-3 flex flex-col">
+            <Link
+              key={order.id}
+              href={`/dashboard/my-orders/${order.id}`}
+              className="border rounded-lg p-4 bg-card space-y-3 flex flex-col hover:border-foreground/30 transition-colors"
+            >
               <div className="flex items-start justify-between gap-2">
                 <p className="font-medium text-sm">{order.orderNumber}</p>
                 <StatusBadge status={order.status} />
@@ -79,9 +83,7 @@ export default function MyOrdersIndex({ orders }: IndexProps) {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 shrink-0" />
-                  <span>
-                    {order.deliveryAddress}, {order.deliveryCity} {order.deliveryZipcode}
-                  </span>
+                  <span>{order.deliveryAddress}</span>
                 </div>
               </div>
 
@@ -92,20 +94,11 @@ export default function MyOrdersIndex({ orders }: IndexProps) {
                     Commandé le {formatDate(order.orderDate, { day: '2-digit', month: 'short', year: 'numeric' })}
                   </span>
                 </div>
-                {canViewTracking ? (
-                  <Link
-                    href={`/dashboard/my-orders/${order.id}`}
-                    className="text-sm text-primary underline underline-offset-2 shrink-0"
-                  >
-                    Suivre ma commande
-                  </Link>
-                ) : (
-                  <span className="text-xs text-muted-foreground shrink-0">
-                    Suivi dès validation
-                  </span>
-                )}
+                <span className="text-xs text-primary shrink-0">
+                  {canViewTracking ? 'Suivre ma commande →' : 'Voir la commande →'}
+                </span>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>
