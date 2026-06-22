@@ -1,18 +1,8 @@
 import * as React from 'react'
-
 import { NavUser } from '@/components/dashboard/nav-user'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar'
+import { NavGroup } from '@/components/dashboard/nav-group'
+import type { NavGroupDef } from '@/components/dashboard/nav-group'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 import {
   BarChart2Icon,
   ClipboardListIcon,
@@ -25,7 +15,6 @@ import {
   UtensilsIcon,
 } from 'lucide-react'
 import { Link } from '@adonisjs/inertia/react'
-import { useSidebar } from '@/components/ui/sidebar'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 import { usePage } from '@inertiajs/react'
@@ -38,48 +27,6 @@ const ROLE_LABELS: Record<string, string> = {
   admin: 'Administrateur',
   employe: 'Employé',
   user: 'Client',
-}
-
-type NavItemDef = {
-  href: string
-  icon: React.ReactNode
-  label: string
-}
-
-type NavGroupDef = {
-  label?: string
-  items: NavItemDef[]
-}
-
-function NavGroup({ group }: { group: NavGroupDef }) {
-  const { isMobile, setOpenMobile } = useSidebar()
-  const { url } = usePage()
-
-  function handleClick() {
-    if (isMobile) setOpenMobile(false)
-  }
-
-  return (
-    <SidebarGroup>
-      {group.label && (
-        <SidebarGroupLabel className="text-primary font-medium">{group.label}</SidebarGroupLabel>
-      )}
-      <SidebarGroupContent>
-        <SidebarMenu>
-          {group.items.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton asChild isActive={url.startsWith(item.href)}>
-                <Link href={item.href} onClick={handleClick}>
-                  {item.icon}
-                  <span>{item.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarGroupContent>
-    </SidebarGroup>
-  )
 }
 
 const ACCOUNT_NAV: NavGroupDef[] = [

@@ -1,24 +1,9 @@
-import { useState } from 'react'
-import { router } from '@inertiajs/react'
-import { Star } from 'lucide-react'
-import { Button } from '~/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '~/components/ui/dialog'
+import { StarRating } from '~/components/ui/star-rating'
 import { StatusBadge } from '~/components/ui/status-badge'
+import { NoticeActions } from '~/components/dashboard/notice-actions'
 import { NOTICE_STATUS_COLORS, NOTICE_STATUS_LABELS } from '~/lib/notice-status'
 import type { NoticeItem } from '~/components/dashboard/notices-table'
-
-function StarRating({ note }: { note: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`w-4 h-4 ${star <= note ? 'text-amber-400 fill-amber-400' : 'text-amber-200 fill-none'}`}
-        />
-      ))}
-    </div>
-  )
-}
 
 type NoticeDialogProps = {
   notice: NoticeItem | null
@@ -27,27 +12,9 @@ type NoticeDialogProps = {
 }
 
 export function NoticeDialog({ notice, open, onOpenChange }: NoticeDialogProps) {
-  const [processing, setProcessing] = useState(false)
-
   if (!notice) return null
 
   const client = notice.order?.user
-  const isPending = notice.status === 'en_attente'
-
-  function submit(status: string) {
-    setProcessing(true)
-    router.patch(
-      `/dashboard/notices/${notice!.id}`,
-      { notice_id: notice!.id, status },
-      {
-        preserveScroll: true,
-        onFinish: () => {
-          setProcessing(false)
-          onOpenChange(false)
-        },
-      }
-    )
-  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -90,22 +57,7 @@ export function NoticeDialog({ notice, open, onOpenChange }: NoticeDialogProps) 
             )}
           </div>
 
-          {isPending && (
-            <div className="flex gap-3">
-              <Button
-                size="sm"
-                variant="destructive"
-                className="flex-1"
-                disabled={processing}
-                onClick={() => submit('refuse')}
-              >
-                Refuser
-              </Button>
-              <Button size="sm" className="flex-1" disabled={processing} onClick={() => submit('valide')}>
-                Valider
-              </Button>
-            </div>
-          )}
+          <NoticeActions notice={notice} onSuccess={() => onOpenChange(false)} fullWidth />
         </div>
       </DialogContent>
     </Dialog>

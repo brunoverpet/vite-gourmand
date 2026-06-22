@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { router } from '@inertiajs/react'
-import { Star } from 'lucide-react'
-import { Button } from '~/components/ui/button'
 import { FilterSelect } from '~/components/ui/filter-select'
+import { StarRating } from '~/components/ui/star-rating'
 import { StatusBadge } from '~/components/ui/status-badge'
+import { NoticeActions } from '~/components/dashboard/notice-actions'
 import { NoticeDialog } from '~/components/dashboard/notice-dialog'
 import { NOTICE_STATUS_COLORS, NOTICE_STATUS_LABELS } from '~/lib/notice-status'
 
@@ -27,49 +26,6 @@ type NoticesTableProps = {
   notices: NoticeItem[]
 }
 
-function NoticeActions({ notice }: { notice: NoticeItem }) {
-  const [processing, setProcessing] = useState(false)
-
-  if (notice.status !== 'en_attente') return null
-
-  function submit(status: string) {
-    setProcessing(true)
-    router.patch(
-      `/dashboard/notices/${notice.id}`,
-      { notice_id: notice.id, status },
-      { preserveScroll: true, onFinish: () => setProcessing(false) }
-    )
-  }
-
-  return (
-    <div className="flex gap-2">
-      <Button
-        size="sm"
-        variant="destructive"
-        disabled={processing}
-        onClick={() => submit('refuse')}
-      >
-        Refuser
-      </Button>
-      <Button size="sm" disabled={processing} onClick={() => submit('valide')}>
-        Valider
-      </Button>
-    </div>
-  )
-}
-
-function StarRating({ note }: { note: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`w-4 h-4 ${star <= note ? 'text-amber-400 fill-amber-400' : 'text-amber-200 fill-none'}`}
-        />
-      ))}
-    </div>
-  )
-}
 
 export function NoticesTable({ notices }: NoticesTableProps) {
   const [statusFilter, setStatusFilter] = useState('all')

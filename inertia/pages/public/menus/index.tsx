@@ -1,8 +1,7 @@
 import type { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
 import { useEffect, useRef, useState } from 'react'
-import CardMenu from '~/components/menu/card-menu'
-import CardMenuSkeleton from '~/components/menu/card-menu-skeleton'
+import { MenuCardsGrid } from '~/components/menu/menu-cards-grid'
 import FiltersDesktop from '~/components/menu/filters-desktop'
 import FiltersMobile from '~/components/menu/filters-mobile'
 import PaginationNav from '~/components/pagination-nav'
@@ -189,57 +188,6 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
     router.get('/menus', {}, { preserveState: true, preserveScroll: true, only: ONLY })
   }
 
-  function renderCards(gridClass: string, skeletonCount: number) {
-    const isPageLoad = loading && loadingType === 'page'
-    const isFilterLoad = loading && loadingType === 'filter'
-
-    if (isPageLoad) {
-      return (
-        <div className={`animate-in fade-in duration-200 ${gridClass}`}>
-          {Array.from({ length: skeletonCount }).map((_, i) => (
-            <CardMenuSkeleton key={i} />
-          ))}
-        </div>
-      )
-    }
-
-    if (menus.data.length === 0) {
-      return (
-        <div className="flex flex-col items-center justify-center py-20 gap-3">
-          <p className="text-h3 text-foreground">Aucun menu trouvé</p>
-          <p className="text-body text-muted-foreground text-center">
-            Aucun menu ne correspond à vos filtres. Essayez d&apos;en retirer quelques-uns.
-          </p>
-        </div>
-      )
-    }
-
-    return (
-      <div
-        className={`transition-opacity duration-200 ${isFilterLoad ? 'opacity-40 pointer-events-none' : ''}`}
-      >
-        <div className={`animate-in fade-in duration-300 ${gridClass}`}>
-          {menus.data.map((menu) => (
-            <CardMenu
-              key={menu.id}
-              id={menu.id}
-              name={menu.title}
-              description={menu.description}
-              price={menu.pricePerPeople}
-              minPersons={menu.minPeople}
-              tags={[menu.theme.label, menu.diet.label]}
-              image={
-                menu.pictures?.[0]
-                  ? `/uploads/${menu.pictures[0].imagePath}`
-                  : 'https://placehold.co/600x400'
-              }
-            />
-          ))}
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div>
       <h2 className="text-h2">Nos menus</h2>
@@ -273,7 +221,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
 
       <div className="md:hidden mt-10 mb-20">
         <p className="text-body-sm text-muted-foreground mb-4">{menus.metadata.total} résultats</p>
-        {renderCards('flex flex-col gap-5', 3)}
+        <MenuCardsGrid menus={menus.data} loading={loading} loadingType={loadingType} gridClass="flex flex-col gap-5" skeletonCount={3} />
         <PaginationNav
           currentPage={menus.metadata.currentPage}
           lastPage={menus.metadata.lastPage}
@@ -303,7 +251,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
           <p className="text-body-sm text-muted-foreground text-right mb-4">
             {menus.metadata.total} résultats
           </p>
-          {renderCards('grid grid-cols-1 lg:grid-cols-2 gap-8', 4)}
+          <MenuCardsGrid menus={menus.data} loading={loading} loadingType={loadingType} gridClass="grid grid-cols-1 lg:grid-cols-2 gap-8" skeletonCount={4} />
           <PaginationNav
             currentPage={menus.metadata.currentPage}
             lastPage={menus.metadata.lastPage}
