@@ -1,5 +1,5 @@
 import { router, useForm } from '@inertiajs/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ORDER_STATUS_COLORS,
   ORDER_STATUS_LABELS,
@@ -7,6 +7,26 @@ import {
 } from '~/lib/order-status'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '~/components/ui/alert-dialog'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select'
+import { Input } from '~/components/ui/input'
 
 type Order = Data.Orders.OrderManagement
 
@@ -44,36 +64,59 @@ function formatDate(date: string | null) {
 
 function StatusUpdateForm({ order }: { order: Order }) {
   const allowed = ORDER_STATUS_TRANSITIONS[order.status] ?? []
+  const [pending, setPending] = useState<string | null>(null)
   const { setData, patch, processing } = useForm({ status: '' })
 
   if (allowed.length === 0) return <StatusBadge status={order.status} />
 
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const next = e.target.value
-    if (!next) return
+  function handleSelect(next: string) {
     setData('status', next)
-    if (window.confirm(`Passer la commande en "${ORDER_STATUS_LABELS[next]}" ?`)) {
-      patch(`/orders/${order.id}/status`, { preserveScroll: true })
-    }
+    setPending(next)
+  }
+
+  function handleConfirm() {
+    patch(`/orders/${order.id}/status`, {
+      preserveScroll: true,
+      onFinish: () => setPending(null),
+    })
   }
 
   return (
-    <div className="flex flex-col gap-1">
-      <StatusBadge status={order.status} />
-      <select
-        className="mt-1 text-xs border rounded px-1.5 py-1 bg-background"
-        value=""
-        onChange={handleChange}
-        disabled={processing}
-      >
-        <option value="">Changer...</option>
-        {allowed.map((s) => (
-          <option key={s} value={s}>
-            {ORDER_STATUS_LABELS[s]}
-          </option>
-        ))}
-      </select>
-    </div>
+    <>
+      <Select onValueChange={handleSelect} disabled={processing}>
+        <SelectTrigger className="h-auto w-fit border-0 bg-transparent p-0 shadow-none focus:ring-0 gap-1.5 [&>svg]:text-muted-foreground">
+          <StatusBadge status={order.status} />
+        </SelectTrigger>
+        <SelectContent align="end" position="popper">
+          <SelectGroup>
+            <SelectLabel>Passer à…</SelectLabel>
+            {allowed.map((s) => (
+              <SelectItem key={s} value={s} className="focus:bg-muted focus:text-foreground">
+                {ORDER_STATUS_LABELS[s]}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+      <AlertDialog open={!!pending} onOpenChange={(open) => !open && setPending(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Changer le statut</AlertDialogTitle>
+            <AlertDialogDescription>
+              Passer la commande <span className="font-medium text-foreground">{order.orderNumber}</span> en{' '}
+              <span className="font-medium text-foreground">
+                {pending ? ORDER_STATUS_LABELS[pending] : ''}
+              </span> ?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirm}>Confirmer</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   )
 }
 
@@ -109,25 +152,33 @@ export default function OrdersManagementIndex({ orders, filters }: IndexProps) {
 
       {/* Filtres */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <input
+        <Input
           type="text"
-          placeholder="Rechercher un client..."
+          placeholder="Rechercher un client…"
           defaultValue={filters.search}
           onChange={handleSearchChange}
-          className="border rounded px-3 py-2 text-sm flex-1 bg-background"
+          className="flex-1"
         />
-        <select
-          value={filters.status}
-          onChange={(e) => applyFilters({ status: e.target.value, page: 1 })}
-          className="border rounded px-3 py-2 text-sm bg-background"
+        <Select
+          value={filters.status || 'all'}
+          onValueChange={(v) => applyFilters({ status: v === 'all' ? '' : v, page: 1 })}
         >
-          <option value="">Tous les statuts</option>
-          {Object.entries(ORDER_STATUS_LABELS).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger className="sm:w-52">
+            <SelectValue placeholder="Tous les statuts" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="all" className="focus:bg-muted focus:text-foreground">
+                Tous les statuts
+              </SelectItem>
+              {Object.entries(ORDER_STATUS_LABELS).map(([value, label]) => (
+                <SelectItem key={value} value={value} className="focus:bg-muted focus:text-foreground">
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Liste mobile */}
@@ -149,9 +200,7 @@ export default function OrdersManagementIndex({ orders, filters }: IndexProps) {
                 <StatusUpdateForm order={order} />
               </div>
               <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>
-                  Événement : {formatDate(order.eventDate)}
-                </span>
+                <span>Événement : {formatDate(order.eventDate)}</span>
                 <span className="font-medium text-foreground">{order.totalAmount} €</span>
               </div>
             </div>
