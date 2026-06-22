@@ -1,0 +1,23 @@
+@component('emails/layout', { title: isApproved ? 'Votre avis a été publié' : 'Votre avis n\'a pas pu être publié' })
+
+  @if(isApproved)
+    <h1 class="title">Votre avis a été publié !</h1>
+    <p class="text">Bonjour {{ user.firstname }},</p>
+    <p class="text">
+      Bonne nouvelle : votre avis a été validé par notre équipe et est désormais visible sur notre site.
+    </p>
+    <p class="text">Merci de nous avoir fait confiance et de partager votre expérience avec nos futurs clients.</p>
+  @else
+    <h1 class="title">Votre avis n'a pas pu être publié</h1>
+    <p class="text">Bonjour {{ user.firstname }},</p>
+    <p class="text">
+      Nous avons bien examiné votre avis, mais celui-ci ne répond pas à nos critères de publication et n'a pas pu être mis en ligne.
+    </p>
+    <p class="text">Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+  @end
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/dashboard/my-orders" class="button" target="_blank">Voir mes commandes</a>
+  </p>
+
+@end

@@ -162,11 +162,23 @@ const routes = {
     tokens: [{"old":"/dashboard/profile","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.update']['types'],
   },
-  'notices': {
+  'register_notice': {
     methods: ["POST"],
     pattern: '/reviews',
     tokens: [{"old":"/reviews","type":0,"val":"reviews","end":""}],
-    types: placeholder as Registry['notices']['types'],
+    types: placeholder as Registry['register_notice']['types'],
+  },
+  'validate_notice.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/notices',
+    tokens: [{"old":"/dashboard/notices","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices","type":0,"val":"notices","end":""}],
+    types: placeholder as Registry['validate_notice.render']['types'],
+  },
+  'validate_notice': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/notices/:id',
+    tokens: [{"old":"/dashboard/notices/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices/:id","type":0,"val":"notices","end":""},{"old":"/dashboard/notices/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['validate_notice']['types'],
   },
   'session.destroy': {
     methods: ["POST"],

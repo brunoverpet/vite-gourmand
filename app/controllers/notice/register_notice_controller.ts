@@ -4,7 +4,7 @@ import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class NoticesController {
+export default class RegisterNoticeController {
   constructor(private createNoticeAction: CreateNoticeAction) {}
 
   async handle({ auth, request, response, session }: HttpContext) {

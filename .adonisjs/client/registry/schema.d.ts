@@ -319,7 +319,7 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'notices': {
+  'register_notice': {
     methods: ["POST"]
     pattern: '/reviews'
     types: {
@@ -327,8 +327,32 @@ export interface Registry {
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').createNoticeValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/notices_controller').default['handle']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/notices_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/register_notice_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/register_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'validate_notice.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/notices'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
+    }
+  }
+  'validate_notice': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/notices/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'session.destroy': {

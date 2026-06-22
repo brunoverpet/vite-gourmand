@@ -1,3 +1,4 @@
+import { NoticeStatus } from '#enums/notice_status'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import type { Infer } from '@vinejs/vine/types'
 
@@ -5,6 +6,11 @@ export const createNoticeValidator = vine.create({
   order_id: vine.string().uuid(),
   note: vine.number().min(1).max(5),
   description: vine.string().trim().minLength(10).maxLength(255),
+})
+
+export const validateNoticeValidator = vine.create({
+  notice_id: vine.string().uuid(),
+  status: vine.enum(Object.values(NoticeStatus)),
 })
 
 const sharedMessages = new SimpleMessagesProvider({
@@ -18,3 +24,4 @@ const sharedMessages = new SimpleMessagesProvider({
 createNoticeValidator.messagesProvider = sharedMessages
 
 export type CreateNoticePayload = Infer<typeof createNoticeValidator>
+export type ValidateNoticePayload = Infer<typeof validateNoticeValidator>
