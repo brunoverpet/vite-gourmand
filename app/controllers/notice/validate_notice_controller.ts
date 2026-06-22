@@ -1,4 +1,4 @@
-import { ValidateNoticeAction } from '#services/notice/validate_notice_action'
+import { ValidateNoticeAction } from '#services/notices/validate_notice_action'
 import { NoticeService } from '#services/shared/notice_service'
 import NoticeTransformer from '#transformers/notices/notice_transformer'
 import { validateNoticeValidator } from '#validators/notice/notice'

@@ -1,6 +1,8 @@
 import { OrderStatus } from '#enums/order_status'
 import type Order from '#models/order'
 import OrderStatusHistory from '#models/order_status_history'
+import OrderCompletedNotification from '#mails/orders/order_completed_notification'
+import mail from '@adonisjs/mail/services/main'
 import { DateTime } from 'luxon'
 
 const TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
@@ -35,5 +37,10 @@ export class UpdateOrderStatusAction {
       status: newStatus,
       changedAt: DateTime.now(),
     })
+
+    if (newStatus === OrderStatus.COMPLETED) {
+      await order.load('user')
+      mail.sendLater(new OrderCompletedNotification(order))
+    }
   }
 }

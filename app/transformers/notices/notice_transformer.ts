@@ -25,4 +25,16 @@ export default class NoticeTransformer extends BaseTransformer<Notice> {
         : null,
     }
   }
+
+  forPublic() {
+    const order = this.resource.$preloaded['order'] ? this.resource.order : null
+    const user = order?.$preloaded['user'] ? order.user : null
+
+    return {
+      note: this.resource.note,
+      description: this.resource.description,
+      createdAt: this.resource.createdAt?.toISO() ?? null,
+      author: user ? `${user.firstname} ${user.lastname}` : null,
+    }
+  }
 }

@@ -8,30 +8,10 @@ import type { InertiaProps } from '~/types'
 
 type HomeProps = InertiaProps<{
   menus: Data.Menus.Menu[]
+  notices: Data.Notices.Notice.Variants['forPublic'][]
 }>
 
-const REVIEWS = [
-  {
-    rating: 4,
-    comment:
-      "Un repas de Noël absolument inoubliable. Les plats étaient raffinés, la livraison parfaite à l'heure. Julie et José ont su sublimer notre soirée en famille.",
-    author: 'Sophie M.',
-  },
-  {
-    rating: 5,
-    comment:
-      "Julie et José ont su s'adapter à nos contraintes alimentaires. Un service impeccable du début à la fin.",
-    author: 'Pierre L.',
-  },
-  {
-    rating: 5,
-    comment:
-      'Des saveurs exceptionnelles et une présentation digne des plus grands restaurants. Je recommande vivement.',
-    author: 'Marie T.',
-  },
-]
-
-export default function HomePublic({ menus }: HomeProps) {
+export default function HomePublic({ menus, notices }: HomeProps) {
   return (
     <>
       <Hero />
@@ -95,8 +75,13 @@ export default function HomePublic({ menus }: HomeProps) {
         <p className="text-label-caps text-accent">Avis client</p>
         <h2 className="text-h2">Ce qu&apos;ils en disent</h2>
         <div className="flex flex-col my-10 gap-5 md:flex-row">
-          {REVIEWS.map((review) => (
-            <ReviewCard key={review.author} {...review} />
+          {notices.map((notice, i) => (
+            <ReviewCard
+              key={i}
+              rating={notice.note}
+              comment={notice.description}
+              author={notice.author ?? ''}
+            />
           ))}
         </div>
       </section>
