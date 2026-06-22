@@ -9,6 +9,7 @@ export default class ClientOrderTransformer extends BaseTransformer<Order> {
         'id',
         'orderNumber',
         'status',
+        'orderDate',
         'eventDate',
         'deliveryAddress',
         'deliveryCity',
@@ -19,13 +20,12 @@ export default class ClientOrderTransformer extends BaseTransformer<Order> {
         'totalAmount',
         'materialLoan',
       ]),
-      statusHistory:
-        (
-          this.whenLoaded(this.resource.statusHistory) as unknown as OrderStatusHistory[] | undefined
-        )?.map((h) => ({
-          status: h.status,
-          changedAt: h.changedAt,
-        })) ?? [],
+      statusHistory: this.resource.$preloaded['statusHistory']
+        ? (this.resource.statusHistory as unknown as OrderStatusHistory[]).map((h) => ({
+            status: h.status,
+            changedAt: h.changedAt,
+          }))
+        : [],
     }
   }
 }

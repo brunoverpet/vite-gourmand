@@ -14,7 +14,7 @@ export default class OrderManagementTransformer extends BaseTransformer<Order> {
         'contactMode',
         'cancellationReason',
       ]),
-      user: this.whenLoaded(this.resource.user)
+      user: this.resource.$preloaded['user']
         ? {
             id: this.resource.user.id,
             firstname: this.resource.user.firstname,

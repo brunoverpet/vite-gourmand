@@ -10,11 +10,15 @@ export default class UserTransformer extends BaseTransformer<User> {
         'lastname',
         'firstname',
         'phone',
+        'address',
+        'city',
         'email',
         'createdAt',
         'updatedAt',
       ]),
-      role: (this.whenLoaded(this.resource.role) as unknown as Role | undefined)?.label ?? null,
+      role: this.resource.$preloaded['role']
+        ? (this.resource.role as unknown as Role).label
+        : null,
     }
   }
 }

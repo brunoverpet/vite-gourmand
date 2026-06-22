@@ -13,9 +13,9 @@ import type MenusDishTransformer from '#transformers/menus/dish_transformer'
 import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
-import type PictureTransformer from '#transformers/picture_transformer'
-import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
 import type OrdersClientOrderTransformer from '#transformers/orders/client_order_transformer'
+import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
+import type PictureTransformer from '#transformers/picture_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
 export namespace Data {
@@ -51,19 +51,19 @@ export namespace Data {
       export type Variants = InferVariants<MenusThemeTransformer>
     }
   }
-  export type Picture = InferData<PictureTransformer>
-  export namespace Picture {
-    export type Variants = InferVariants<PictureTransformer>
-  }
   export namespace Orders {
-    export type OrderManagement = InferData<OrdersOrderManagementTransformer>
-    export namespace OrderManagement {
-      export type Variants = InferVariants<OrdersOrderManagementTransformer>
-    }
     export type ClientOrder = InferData<OrdersClientOrderTransformer>
     export namespace ClientOrder {
       export type Variants = InferVariants<OrdersClientOrderTransformer>
     }
+    export type OrderManagement = InferData<OrdersOrderManagementTransformer>
+    export namespace OrderManagement {
+      export type Variants = InferVariants<OrdersOrderManagementTransformer>
+    }
+  }
+  export type Picture = InferData<PictureTransformer>
+  export namespace Picture {
+    export type Variants = InferVariants<PictureTransformer>
   }
   export type SharedProps = InferSharedProps<InertiaMiddleware>
 }

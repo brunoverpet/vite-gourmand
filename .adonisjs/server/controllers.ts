@@ -19,9 +19,9 @@ export const controllers = {
     Pictures: () => import('#controllers/menus/pictures_controller'),
   },
   orders: {
+    ClientOrders: () => import('#controllers/orders/client_orders_controller'),
     Order: () => import('#controllers/orders/order_controller'),
     OrderStatus: () => import('#controllers/orders/order_status_controller'),
     OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
-    ClientOrders: () => import('#controllers/orders/client_orders_controller'),
   },
 }
