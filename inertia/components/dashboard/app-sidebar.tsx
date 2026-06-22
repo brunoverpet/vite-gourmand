@@ -52,6 +52,7 @@ type NavGroupDef = {
 
 function NavGroup({ group }: { group: NavGroupDef }) {
   const { isMobile, setOpenMobile } = useSidebar()
+  const { url } = usePage()
 
   function handleClick() {
     if (isMobile) setOpenMobile(false)
@@ -66,7 +67,7 @@ function NavGroup({ group }: { group: NavGroupDef }) {
         <SidebarMenu>
           {group.items.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton asChild isActive={url.startsWith(item.href)}>
                 <Link href={item.href} onClick={handleClick}>
                   {item.icon}
                   <span>{item.label}</span>
