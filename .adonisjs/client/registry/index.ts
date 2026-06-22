@@ -150,6 +150,18 @@ const routes = {
     tokens: [{"old":"/dashboard/my-orders/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/my-orders/:id","type":0,"val":"my-orders","end":""},{"old":"/dashboard/my-orders/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['client_orders.cancel']['types'],
   },
+  'profile.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/profile',
+    tokens: [{"old":"/dashboard/profile","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile","type":0,"val":"profile","end":""}],
+    types: placeholder as Registry['profile.show']['types'],
+  },
+  'profile.update': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/profile',
+    tokens: [{"old":"/dashboard/profile","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile","type":0,"val":"profile","end":""}],
+    types: placeholder as Registry['profile.update']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',

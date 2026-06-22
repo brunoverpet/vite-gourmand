@@ -66,8 +66,28 @@ export const adminCreateUserValidator = vine.create({
 })
 adminCreateUserValidator.messagesProvider = sharedMessages
 
+/**
+ * Validator for client profile update (nom, prénom, email, téléphone)
+ */
+export const updateProfileValidator = vine.withMetaData<{ userId: string }>().create({
+  ...sharedUserSchema,
+  email: email().unique({
+    table: 'users',
+    column: 'email',
+    filter: (db, _value, field) => {
+      db.whereNot('id', field.meta.userId)
+    },
+  }),
+  phone: vine
+    .string()
+    .trim()
+    .mobile({ locale: ['fr-FR'] }),
+})
+updateProfileValidator.messagesProvider = sharedMessages
+
 // =============================================================================
 // 4. EXPORTED TYPES
 // =============================================================================
 export type RegisterPayload = Infer<typeof registerValidator>
 export type AdminCreateUserPayload = Infer<typeof adminCreateUserValidator>
+export type UpdateProfilePayload = Infer<typeof updateProfileValidator>

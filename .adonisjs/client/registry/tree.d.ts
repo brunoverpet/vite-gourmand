@@ -46,4 +46,8 @@ export interface ApiDefinition {
     update: typeof routes['client_orders.update']
     cancel: typeof routes['client_orders.cancel']
   }
+  profile: {
+    show: typeof routes['profile.show']
+    update: typeof routes['profile.update']
+  }
 }

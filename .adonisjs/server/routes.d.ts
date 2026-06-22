@@ -28,6 +28,8 @@ export type ScannedRoutes = {
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.update': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -45,6 +47,7 @@ export type ScannedRoutes = {
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
@@ -61,6 +64,7 @@ export type ScannedRoutes = {
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.show': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'contact': { paramsTuple?: []; params?: {} }
@@ -75,6 +79,7 @@ export type ScannedRoutes = {
   PATCH: {
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'profile.update': { paramsTuple?: []; params?: {} }
   }
   DELETE: {
     'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

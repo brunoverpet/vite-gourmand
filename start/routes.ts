@@ -56,6 +56,9 @@ router
     router.patch('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'update'])
     router.delete('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'cancel'])
 
+    router.get('dashboard/profile', [controllers.profile.Profile, 'show'])
+    router.patch('dashboard/profile', [controllers.profile.Profile, 'update'])
+
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())
