@@ -111,8 +111,8 @@ function StatusUpdateForm({ order }: { order: Order }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirm}>Confirmer</AlertDialogAction>
+            <AlertDialogCancel size="sm">Annuler</AlertDialogCancel>
+            <AlertDialogAction size="sm" onClick={handleConfirm}>Confirmer</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

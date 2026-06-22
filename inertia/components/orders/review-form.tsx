@@ -14,7 +14,7 @@ export function ReviewForm({ orderId }: ReviewFormProps) {
   const [selected, setSelected] = useState(0)
 
   return (
-    <Form route="notices">
+    <Form route="register_notice">
       {({ errors }) => (
         <FieldGroup>
           <input type="hidden" name="order_id" value={orderId} />

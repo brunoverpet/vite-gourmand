@@ -24,10 +24,11 @@ import {
   UsersIcon,
   UtensilsIcon,
 } from 'lucide-react'
-import { usePage, Link } from '@inertiajs/react'
+import { Link } from '@adonisjs/inertia/react'
 import { useSidebar } from '@/components/ui/sidebar'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
+import { usePage } from '@inertiajs/react'
 
 type PageProps = InertiaProps<{
   user: Data.Auth.User
@@ -84,18 +85,14 @@ function NavGroup({ group }: { group: NavGroupDef }) {
 const ACCOUNT_NAV: NavGroupDef[] = [
   {
     label: 'Compte',
-    items: [
-      { href: '/dashboard/profile', icon: <UserIcon />, label: 'Mon profil' },
-    ],
+    items: [{ href: '/dashboard/profile', icon: <UserIcon />, label: 'Mon profil' }],
   },
 ]
 
 const CLIENT_NAV: NavGroupDef[] = [
   {
     label: 'Mon espace',
-    items: [
-      { href: '/dashboard/my-orders', icon: <ShoppingBagIcon />, label: 'Mes commandes' },
-    ],
+    items: [{ href: '/dashboard/my-orders', icon: <ShoppingBagIcon />, label: 'Mes commandes' }],
   },
 ]
 
@@ -115,7 +112,7 @@ const EMPLOYEE_NAV: NavGroupDef[] = [
   },
   {
     label: 'Communauté',
-    items: [{ href: '/dashboard/reviews', icon: <StarIcon />, label: 'Avis clients' }],
+    items: [{ href: '/dashboard/notices', icon: <StarIcon />, label: 'Avis clients' }],
   },
 ]
 
@@ -148,7 +145,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/dashboard">
+              <Link route="home">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg border border-border bg-background">
                   <UtensilsIcon className="size-4 text-foreground" />
                 </div>
@@ -172,7 +169,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/">
+              <Link route="home-public">
                 <ExternalLinkIcon />
                 <span>Retour au site</span>
               </Link>
@@ -183,8 +180,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           user={{
             name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
             email: user?.email ?? '',
-            avatar: undefined,
-            role: ROLE_LABELS[user?.role ?? ''],
+            avatar: '',
+            role: ROLE_LABELS[user?.role ?? ''] ?? '',
           }}
         />
       </SidebarFooter>
