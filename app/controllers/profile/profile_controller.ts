@@ -17,6 +17,8 @@ export default class ProfileController {
     user.lastname = payload.lastname
     user.email = payload.email
     user.phone = payload.phone
+    user.address = payload.address
+    user.city = payload.city
 
     await user.save()
 

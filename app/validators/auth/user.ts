@@ -82,6 +82,8 @@ export const updateProfileValidator = vine.withMetaData<{ userId: string }>().cr
     .string()
     .trim()
     .mobile({ locale: ['fr-FR'] }),
+  address: vine.string().trim().minLength(5).maxLength(255),
+  city: vine.string().trim().minLength(2).maxLength(100),
 })
 updateProfileValidator.messagesProvider = sharedMessages
 
