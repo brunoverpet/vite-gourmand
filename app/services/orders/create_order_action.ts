@@ -2,7 +2,7 @@ import { OrderStatus } from '#enums/order_status'
 import Order from '#models/order'
 import { DeliveryFeeService } from '#services/shared/delivery_fee_service'
 import { PriceCalculatorService } from '#services/shared/price_calculator_service'
-import type { CreateOrderPayload } from '#validators/order/order'
+import type { CreateOrderPayload } from '#validators/orders/order'
 import { inject } from '@adonisjs/core'
 import { DateTime } from 'luxon'
 

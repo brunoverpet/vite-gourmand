@@ -33,5 +33,8 @@ export interface ApiDefinition {
   order: {
     render: typeof routes['order.render']
     store: typeof routes['order.store']
+    status: {
+      update: typeof routes['order.status.update']
+    }
   }
 }

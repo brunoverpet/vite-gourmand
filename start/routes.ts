@@ -42,6 +42,8 @@ router
     router.get('orders/:menuId', [controllers.orders.Order, 'render'])
     router.post('orders', [controllers.orders.Order, 'store'])
 
+    router.patch('orders/:id/status', [controllers.orders.OrderStatus, 'update']).as('order.status.update')
+
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())

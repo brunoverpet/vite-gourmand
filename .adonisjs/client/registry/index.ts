@@ -114,6 +114,12 @@ const routes = {
     tokens: [{"old":"/orders","type":0,"val":"orders","end":""}],
     types: placeholder as Registry['order.store']['types'],
   },
+  'order.status.update': {
+    methods: ["PATCH"],
+    pattern: '/orders/:id/status',
+    tokens: [{"old":"/orders/:id/status","type":0,"val":"orders","end":""},{"old":"/orders/:id/status","type":1,"val":"id","end":""},{"old":"/orders/:id/status","type":0,"val":"status","end":""}],
+    types: placeholder as Registry['order.status.update']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',

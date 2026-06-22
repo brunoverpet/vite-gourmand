@@ -3,7 +3,7 @@ import { PriceCalculatorService } from '#services/shared/price_calculator_servic
 import { MenuService } from '#services/menus/menu_service'
 import { CreateOrderAction } from '#services/orders/create_order_action'
 import MenuTransformer from '#transformers/menus/menu_transformer'
-import { createOrderValidator } from '#validators/order/order'
+import { createOrderValidator } from '#validators/orders/order'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -25,7 +25,7 @@ export default class OrderController {
 
     const menu = await this.menuService.getMenuById(menuId)
 
-    return inertia.render('public/order/index', {
+    return inertia.render('public/orders/index', {
       menu: MenuTransformer.transform(menu),
       estimate: inertia.optional(
         this.#buildEstimate(

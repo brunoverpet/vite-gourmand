@@ -20,5 +20,6 @@ export const controllers = {
   },
   orders: {
     Order: () => import('#controllers/orders/order_controller'),
+    OrderStatus: () => import('#controllers/orders/order_status_controller'),
   },
 }

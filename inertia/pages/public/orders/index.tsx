@@ -1,6 +1,6 @@
 import type { Data } from '@generated/data'
 import type { InertiaProps } from '~/types'
-import { OrderForm } from '~/components/order/order-form'
+import { OrderForm } from '~/components/orders/order-form'
 
 type Estimate = {
   distanceKm: number
