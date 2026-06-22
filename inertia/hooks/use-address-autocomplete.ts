@@ -75,7 +75,8 @@ export function useAddressAutocomplete(initialAddress = '', initialCity = '') {
   }
 
   function selectCity(suggestion: CitySuggestion) {
-    setCity(suggestion.city ?? '')
+    const cityName = suggestion.city?.trim() || suggestion.fulltext.split(',')[0].trim()
+    setCity(cityName)
     setZipcode(suggestion.zipcode ?? '')
     setCitySuggestions([])
   }
