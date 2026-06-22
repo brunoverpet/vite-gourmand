@@ -1,27 +1,11 @@
 import { Link } from '@adonisjs/inertia/react'
 import { CalendarDays, MapPin, Users } from 'lucide-react'
 import { ACCEPTED_AND_BEYOND, ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from '~/lib/order-status'
+import { StatusBadge } from '~/components/ui/status-badge'
+import { formatDate } from '~/lib/format-date'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.ClientOrder
-
-function StatusBadge({ status }: { status: string }) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${ORDER_STATUS_COLORS[status] ?? 'bg-gray-100 text-gray-800'}`}
-    >
-      {ORDER_STATUS_LABELS[status] ?? status}
-    </span>
-  )
-}
-
-function formatDate(date: string | null, opts?: Intl.DateTimeFormatOptions) {
-  if (!date) return '—'
-  return new Date(date).toLocaleDateString(
-    'fr-FR',
-    opts ?? { day: '2-digit', month: 'long', year: 'numeric' }
-  )
-}
 
 export function OrderCard({ order }: { order: Order }) {
   const canViewTracking = ACCEPTED_AND_BEYOND.includes(order.status)
@@ -34,7 +18,7 @@ export function OrderCard({ order }: { order: Order }) {
     >
       <div className="flex items-start justify-between gap-2">
         <p className="font-medium text-sm">{order.orderNumber}</p>
-        <StatusBadge status={order.status} />
+        <StatusBadge status={order.status} labels={ORDER_STATUS_LABELS} colors={ORDER_STATUS_COLORS} />
       </div>
 
       <div className="space-y-1.5 text-sm grow">

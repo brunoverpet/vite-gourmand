@@ -3,6 +3,7 @@ import { OrderActions } from '~/components/orders/order-actions'
 import { OrderRecap } from '~/components/orders/order-recap'
 import { OrderTimeline } from '~/components/orders/order-timeline'
 import { ReviewForm } from '~/components/orders/review-form'
+import { formatDate } from '~/lib/format-date'
 import type { InertiaProps } from '~/types'
 import type { Data } from '@generated/data'
 
@@ -12,15 +13,6 @@ type ShowProps = InertiaProps<{
   order: Order
   hasNotice: boolean
 }>
-
-function formatDate(date: string | null) {
-  if (!date) return '—'
-  return new Date(date).toLocaleDateString('fr-FR', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  })
-}
 
 export default function MyOrderShow({ order, hasNotice }: ShowProps) {
   const isPending = order.status === 'en_attente'

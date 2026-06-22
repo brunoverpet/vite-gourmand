@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react'
 import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from '~/lib/order-status'
+import { formatDateTime } from '~/lib/format-date'
 import type { Data } from '@generated/data'
 
 type Order = Data.Orders.ClientOrder
@@ -13,17 +14,6 @@ const ALL_STATUSES = [
   'en_attente_retour_materiel',
   'terminee',
 ]
-
-function formatDateTime(date: string | null) {
-  if (!date) return '—'
-  return new Date(date).toLocaleString('fr-FR', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-}
 
 export function OrderTimeline({ order }: { order: Order }) {
   const completedStatuses = new Set(order.statusHistory.map((h) => h.status))

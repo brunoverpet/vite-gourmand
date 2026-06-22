@@ -2,14 +2,7 @@ import { useState } from 'react'
 import { router } from '@inertiajs/react'
 import { Star } from 'lucide-react'
 import { Button } from '~/components/ui/button'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
+import { FilterSelect } from '~/components/ui/filter-select'
 import { StatusBadge } from '~/components/ui/status-badge'
 import { NoticeDialog } from '~/components/dashboard/notice-dialog'
 import { NOTICE_STATUS_COLORS, NOTICE_STATUS_LABELS } from '~/lib/notice-status'
@@ -98,38 +91,23 @@ export function NoticesTable({ notices }: NoticesTableProps) {
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row gap-3">
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="sm:w-48">
-            <SelectValue placeholder="Tous les statuts" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="all">Tous les statuts</SelectItem>
-              {Object.entries(NOTICE_STATUS_LABELS).map(([value, label]) => (
-                <SelectItem key={value} value={value}>
-                  {label}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        <Select value={noteFilter} onValueChange={setNoteFilter}>
-          <SelectTrigger className="sm:w-40">
-            <SelectValue placeholder="Toutes les notes" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="all">Toutes les notes</SelectItem>
-              {[1, 2, 3, 4, 5].map((n) => (
-                <SelectItem key={n} value={String(n)}>
-                  {'★'.repeat(n)}
-                  {'☆'.repeat(5 - n)} ({n}/5)
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <FilterSelect
+          value={statusFilter}
+          onValueChange={setStatusFilter}
+          options={Object.entries(NOTICE_STATUS_LABELS).map(([value, label]) => ({ value, label }))}
+          allLabel="Tous les statuts"
+          className="sm:w-48"
+        />
+        <FilterSelect
+          value={noteFilter}
+          onValueChange={setNoteFilter}
+          options={[1, 2, 3, 4, 5].map((n) => ({
+            value: String(n),
+            label: `${'★'.repeat(n)}${'☆'.repeat(5 - n)} (${n}/5)`,
+          }))}
+          allLabel="Toutes les notes"
+          className="sm:w-40"
+        />
       </div>
 
       {/* Mobile */}
