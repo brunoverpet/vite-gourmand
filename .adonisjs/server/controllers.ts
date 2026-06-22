@@ -24,6 +24,7 @@ export const controllers = {
     OrderStatus: () => import('#controllers/orders/order_status_controller'),
     OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
     OrderMaterialLoan: () => import('#controllers/orders/order_material_loan_controller'),
+    CancelOrder: () => import('#controllers/orders/cancel_order_controller'),
   },
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),

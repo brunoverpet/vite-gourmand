@@ -25,6 +25,7 @@ export type ScannedRoutes = {
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'order_material_loan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'cancel_order': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -86,6 +87,7 @@ export type ScannedRoutes = {
   PATCH: {
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'order_material_loan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'cancel_order': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.update': { paramsTuple?: []; params?: {} }
     'validate_notice': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
