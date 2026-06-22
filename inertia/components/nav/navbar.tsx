@@ -90,7 +90,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link
             route="home-public"
-            className="text-h4 text-sidebar-foreground"
+            className="text-h4 text-primary-foreground"
             onClick={() => setIsOpen(false)}
           >
             Vite & Gourmand
@@ -99,7 +99,7 @@ export default function Navbar() {
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(false)}
-            className="text-sidebar-foreground hover:bg-sidebar-accent"
+            className="text-primary-foreground hover:bg-primary/80"
             aria-label="Fermer le menu"
           >
             <X className="size-5" />
@@ -118,7 +118,7 @@ export default function Navbar() {
             >
               <NavLink
                 href={link.href}
-                className="text-h2 text-sidebar-foreground"
+                className="text-h2 text-primary-foreground"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
