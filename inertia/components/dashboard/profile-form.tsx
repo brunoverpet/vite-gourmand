@@ -4,7 +4,7 @@ import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { PhoneInput } from '~/components/ui/phone-input'
-import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
+import { AddressFields } from '~/components/ui/address-fields'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 import type { Data } from '@generated/data'
 
@@ -82,47 +82,21 @@ export function ProfileForm({ user }: ProfileFormProps) {
             <FieldError message={errors.phone} />
           </Field>
 
-          <Field>
-            <FieldLabel htmlFor="address">Adresse</FieldLabel>
-            <div className="relative">
-              <Input
-                id="address"
-                name="address"
-                type="text"
-                value={address}
-                placeholder="12 rue des Quinconces"
-                autoComplete="off"
-                required
-                onChange={(e) => {
-                  setAddress(e.target.value)
-                  fetchSuggestions(e.target.value)
-                }}
-              />
-              <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
-            </div>
-            <FieldError message={errors.address} />
-          </Field>
-
-          <Field>
-            <FieldLabel htmlFor="city">Ville</FieldLabel>
-            <div className="relative">
-              <Input
-                id="city"
-                name="city"
-                type="text"
-                value={city}
-                placeholder="Bordeaux"
-                autoComplete="off"
-                required
-                onChange={(e) => {
-                  setCity(e.target.value)
-                  fetchCitySuggestions(e.target.value)
-                }}
-              />
-              <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
-            </div>
-            <FieldError message={errors.city} />
-          </Field>
+          <AddressFields
+            address={address}
+            onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+            suggestions={suggestions}
+            onSelectAddress={selectAddress}
+            addressName="address"
+            addressError={errors.address}
+            city={city}
+            onCityChange={(v) => { setCity(v); fetchCitySuggestions(v) }}
+            citySuggestions={citySuggestions}
+            onSelectCity={selectCity}
+            cityName="city"
+            cityError={errors.city}
+            required
+          />
 
           <Button type="submit" className="sm:w-auto">
             Enregistrer

@@ -12,7 +12,7 @@ import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
+import { AddressFields } from '~/components/ui/address-fields'
 import { TimePicker } from '~/components/ui/time-picker'
 import { cn } from '@/lib/utils'
 import type { SharedProps } from '@adonisjs/inertia/types'
@@ -178,47 +178,21 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                 </Field>
               </div>
 
-              <Field>
-                <FieldLabel htmlFor="delivery_address">Adresse</FieldLabel>
-                <div className="relative">
-                  <Input
-                    id="delivery_address"
-                    name="delivery_address"
-                    type="text"
-                    value={address}
-                    placeholder="12 rue des Quinconces"
-                    required
-                    autoComplete="off"
-                    onChange={(e) => {
-                      setAddress(e.target.value)
-                      fetchSuggestions(e.target.value)
-                    }}
-                  />
-                  <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
-                </div>
-                <FieldError message={formErrors.address} className="text-xs mt-1" />
-              </Field>
-
-              <Field>
-                <FieldLabel htmlFor="delivery_city">Ville</FieldLabel>
-                <div className="relative">
-                  <Input
-                    id="delivery_city"
-                    name="delivery_city"
-                    type="text"
-                    placeholder="Bordeaux"
-                    value={city}
-                    autoComplete="off"
-                    onChange={(e) => {
-                      setCity(e.target.value)
-                      setZipcode('')
-                      fetchCitySuggestions(e.target.value)
-                    }}
-                    required
-                  />
-                  <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
-                </div>
-              </Field>
+              <AddressFields
+                address={address}
+                onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+                suggestions={suggestions}
+                onSelectAddress={selectAddress}
+                addressName="delivery_address"
+                addressError={formErrors.address}
+                city={city}
+                onCityChange={(v) => { setCity(v); setZipcode(''); fetchCitySuggestions(v) }}
+                citySuggestions={citySuggestions}
+                onSelectCity={selectCity}
+                cityName="delivery_city"
+                required
+                errorClassName="text-xs mt-1"
+              />
             </FieldGroup>
           </section>
 

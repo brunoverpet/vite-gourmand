@@ -16,7 +16,7 @@ import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import { SuggestionDropdown } from '~/components/ui/suggestion-dropdown'
+import { AddressFields } from '~/components/ui/address-fields'
 import { TimePicker } from '~/components/ui/time-picker'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 import { cn } from '@/lib/utils'
@@ -147,39 +147,18 @@ export function EditOrderDialog({ order }: { order: Order }) {
                   </Field>
                 </div>
 
-                <Field>
-                  <FieldLabel>Adresse</FieldLabel>
-                  <div className="relative">
-                    <Input
-                      value={address}
-                      placeholder="12 rue des Quinconces"
-                      autoComplete="off"
-                      onChange={(e) => {
-                        setAddress(e.target.value)
-                        fetchSuggestions(e.target.value)
-                      }}
-                    />
-                    <SuggestionDropdown suggestions={suggestions} onSelect={selectAddress} />
-                  </div>
-                  <FieldError message={errors.delivery_address} />
-                </Field>
-
-                <Field>
-                  <FieldLabel>Ville</FieldLabel>
-                  <div className="relative">
-                    <Input
-                      value={city}
-                      placeholder="Bordeaux"
-                      autoComplete="off"
-                      onChange={(e) => {
-                        setCity(e.target.value)
-                        fetchCitySuggestions(e.target.value)
-                      }}
-                    />
-                    <SuggestionDropdown suggestions={citySuggestions} onSelect={selectCity} />
-                  </div>
-                  <FieldError message={errors.delivery_city} />
-                </Field>
+                <AddressFields
+                  address={address}
+                  onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+                  suggestions={suggestions}
+                  onSelectAddress={selectAddress}
+                  addressError={errors.delivery_address}
+                  city={city}
+                  onCityChange={(v) => { setCity(v); fetchCitySuggestions(v) }}
+                  citySuggestions={citySuggestions}
+                  onSelectCity={selectCity}
+                  cityError={errors.delivery_city}
+                />
               </FieldGroup>
 
               <Button type="submit" className="w-full">
