@@ -112,12 +112,18 @@ export function EditOrderDialog({ order }: { order: Order }) {
 
                 <AddressFields
                   address={address}
-                  onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+                  onAddressChange={(v) => {
+                    setAddress(v)
+                    fetchSuggestions(v)
+                  }}
                   suggestions={suggestions}
                   onSelectAddress={selectAddress}
                   addressError={errors.delivery_address}
                   city={city}
-                  onCityChange={(v) => { setCity(v); fetchCitySuggestions(v) }}
+                  onCityChange={(v) => {
+                    setCity(v)
+                    fetchCitySuggestions(v)
+                  }}
                   citySuggestions={citySuggestions}
                   onSelectCity={selectCity}
                   cityError={errors.delivery_city}

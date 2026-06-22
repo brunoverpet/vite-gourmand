@@ -7,7 +7,12 @@ type Props = {
   onPriceMaxChange: (value: string) => void
 }
 
-export function PriceRangeInputs({ priceMin, priceMax, onPriceMinChange, onPriceMaxChange }: Props) {
+export function PriceRangeInputs({
+  priceMin,
+  priceMax,
+  onPriceMinChange,
+  onPriceMaxChange,
+}: Props) {
   return (
     <div className="flex items-center gap-2">
       <div className="flex-1">

@@ -26,7 +26,11 @@ export function MenuGallery({ pictures, activeImage, alt, onSelect }: Props) {
                 activeImage === pic.imagePath ? 'border-primary' : 'border-transparent'
               }`}
             >
-              <img src={`/uploads/${pic.imagePath}`} alt="" className="w-full h-full object-cover" />
+              <img
+                src={`/uploads/${pic.imagePath}`}
+                alt=""
+                className="w-full h-full object-cover"
+              />
             </button>
           ))}
         </div>

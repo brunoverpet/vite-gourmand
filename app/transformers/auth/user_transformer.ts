@@ -16,9 +16,7 @@ export default class UserTransformer extends BaseTransformer<User> {
         'createdAt',
         'updatedAt',
       ]),
-      role: this.resource.$preloaded['role']
-        ? (this.resource.role as unknown as Role).label
-        : null,
+      role: this.resource.$preloaded['role'] ? (this.resource.role as unknown as Role).label : null,
     }
   }
 }

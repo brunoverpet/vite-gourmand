@@ -19,9 +19,7 @@ export function OrdersMobileList({ orders }: { orders: Order[] }) {
               <div>
                 <p className="font-medium text-sm">{order.orderNumber}</p>
                 <p className="text-muted-foreground text-xs">
-                  {order.user
-                    ? `${order.user.firstname} ${order.user.lastname}`
-                    : 'Client inconnu'}
+                  {order.user ? `${order.user.firstname} ${order.user.lastname}` : 'Client inconnu'}
                 </p>
               </div>
               <StatusUpdateForm order={order} />
@@ -34,7 +32,9 @@ export function OrdersMobileList({ orders }: { orders: Order[] }) {
             {order.status === 'annulee' && order.cancellationReason && (
               <CancellationReasonBlock
                 reason={order.cancellationReason}
-                contactModeLabel={order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : undefined}
+                contactModeLabel={
+                  order.contactMode ? CONTACT_MODE_LABELS[order.contactMode] : undefined
+                }
                 variant="inline"
               />
             )}

@@ -1,5 +1,4 @@
 @component('emails/layout', { title: 'Votre commande est terminée — Vite & Gourmand' })
-
   <h1 class="title">Votre commande est terminée !</h1>
 
   <p class="text">Bonjour {{ order.user.firstname }},</p>
@@ -15,7 +14,8 @@
   </p>
 
   <p style="margin: 28px 0;">
-    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">Laisser mon avis</a>
+    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">
+      Laisser mon avis
+    </a>
   </p>
-
 @end

@@ -40,11 +40,26 @@ export default class extends BaseSeeder {
         themeId: noel.id,
         stock: 5,
         images: [
-          { url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', filename: 'menu-reveillon-prestige-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80', filename: 'menu-reveillon-prestige-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-reveillon-prestige-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80', filename: 'menu-reveillon-prestige-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80', filename: 'menu-reveillon-prestige-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+            filename: 'menu-reveillon-prestige-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80',
+            filename: 'menu-reveillon-prestige-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-reveillon-prestige-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80',
+            filename: 'menu-reveillon-prestige-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80',
+            filename: 'menu-reveillon-prestige-5.jpg',
+          },
         ],
       },
       {
@@ -57,15 +72,30 @@ export default class extends BaseSeeder {
         themeId: noel.id,
         stock: 8,
         images: [
-          { url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', filename: 'menu-noel-vegetarien-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80', filename: 'menu-noel-vegetarien-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-noel-vegetarien-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80', filename: 'menu-noel-vegetarien-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-noel-vegetarien-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
+            filename: 'menu-noel-vegetarien-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
+            filename: 'menu-noel-vegetarien-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-noel-vegetarien-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+            filename: 'menu-noel-vegetarien-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-noel-vegetarien-5.jpg',
+          },
         ],
       },
       {
-        title: "Menu Agneau de Pâques",
+        title: 'Menu Agneau de Pâques',
         description:
           "Gigot d'agneau rôti aux herbes de Provence, gratin dauphinois et tarte amandine aux fruits printaniers. La tradition revisitée.",
         minPeople: 10,
@@ -74,11 +104,26 @@ export default class extends BaseSeeder {
         themeId: paques.id,
         stock: 6,
         images: [
-          { url: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800&q=80', filename: 'menu-agneau-paques-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80', filename: 'menu-agneau-paques-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=800&q=80', filename: 'menu-agneau-paques-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', filename: 'menu-agneau-paques-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80', filename: 'menu-agneau-paques-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800&q=80',
+            filename: 'menu-agneau-paques-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80',
+            filename: 'menu-agneau-paques-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?w=800&q=80',
+            filename: 'menu-agneau-paques-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+            filename: 'menu-agneau-paques-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80',
+            filename: 'menu-agneau-paques-5.jpg',
+          },
         ],
       },
       {
@@ -91,11 +136,26 @@ export default class extends BaseSeeder {
         themeId: paques.id,
         stock: 10,
         images: [
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-paques-fleuri-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80', filename: 'menu-paques-fleuri-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80', filename: 'menu-paques-fleuri-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', filename: 'menu-paques-fleuri-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-paques-fleuri-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-paques-fleuri-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
+            filename: 'menu-paques-fleuri-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+            filename: 'menu-paques-fleuri-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
+            filename: 'menu-paques-fleuri-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-paques-fleuri-5.jpg',
+          },
         ],
       },
       {
@@ -108,11 +168,26 @@ export default class extends BaseSeeder {
         themeId: classiqueTheme.id,
         stock: 15,
         images: [
-          { url: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80', filename: 'menu-cocktail-elegant-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80', filename: 'menu-cocktail-elegant-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-cocktail-elegant-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80', filename: 'menu-cocktail-elegant-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', filename: 'menu-cocktail-elegant-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80',
+            filename: 'menu-cocktail-elegant-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80',
+            filename: 'menu-cocktail-elegant-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-cocktail-elegant-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80',
+            filename: 'menu-cocktail-elegant-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+            filename: 'menu-cocktail-elegant-5.jpg',
+          },
         ],
       },
       {
@@ -125,11 +200,26 @@ export default class extends BaseSeeder {
         themeId: classiqueTheme.id,
         stock: 4,
         images: [
-          { url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80', filename: 'menu-gastronomique-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', filename: 'menu-gastronomique-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80', filename: 'menu-gastronomique-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80', filename: 'menu-gastronomique-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-gastronomique-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80',
+            filename: 'menu-gastronomique-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+            filename: 'menu-gastronomique-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80',
+            filename: 'menu-gastronomique-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80',
+            filename: 'menu-gastronomique-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-gastronomique-5.jpg',
+          },
         ],
       },
       {
@@ -142,28 +232,58 @@ export default class extends BaseSeeder {
         themeId: classiqueTheme.id,
         stock: 10,
         images: [
-          { url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80', filename: 'menu-champetre-vegetarien-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', filename: 'menu-champetre-vegetarien-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-champetre-vegetarien-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-champetre-vegetarien-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80', filename: 'menu-champetre-vegetarien-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
+            filename: 'menu-champetre-vegetarien-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
+            filename: 'menu-champetre-vegetarien-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-champetre-vegetarien-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-champetre-vegetarien-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+            filename: 'menu-champetre-vegetarien-5.jpg',
+          },
         ],
       },
       {
         title: 'Menu Vegan Gourmet',
         description:
-          "Bouchées végétales aux saveurs du monde, houmous aux herbes fraîches et dessert coco-mangue. Savoureux et éthique.",
+          'Bouchées végétales aux saveurs du monde, houmous aux herbes fraîches et dessert coco-mangue. Savoureux et éthique.',
         minPeople: 8,
         pricePerPeople: '40',
         dietId: vegan.id,
         themeId: classiqueTheme.id,
         stock: 12,
         images: [
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-vegan-gourmet-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-vegan-gourmet-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80', filename: 'menu-vegan-gourmet-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80', filename: 'menu-vegan-gourmet-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', filename: 'menu-vegan-gourmet-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-vegan-gourmet-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-vegan-gourmet-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
+            filename: 'menu-vegan-gourmet-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+            filename: 'menu-vegan-gourmet-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
+            filename: 'menu-vegan-gourmet-5.jpg',
+          },
         ],
       },
       {
@@ -176,11 +296,26 @@ export default class extends BaseSeeder {
         themeId: evenement.id,
         stock: 3,
         images: [
-          { url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80', filename: 'menu-mariage-prestige-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', filename: 'menu-mariage-prestige-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80', filename: 'menu-mariage-prestige-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-mariage-prestige-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80', filename: 'menu-mariage-prestige-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80',
+            filename: 'menu-mariage-prestige-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+            filename: 'menu-mariage-prestige-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80',
+            filename: 'menu-mariage-prestige-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-mariage-prestige-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80',
+            filename: 'menu-mariage-prestige-5.jpg',
+          },
         ],
       },
       {
@@ -193,11 +328,26 @@ export default class extends BaseSeeder {
         themeId: evenement.id,
         stock: 20,
         images: [
-          { url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80', filename: 'menu-seminaire-business-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80', filename: 'menu-seminaire-business-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80', filename: 'menu-seminaire-business-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-seminaire-business-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80', filename: 'menu-seminaire-business-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80',
+            filename: 'menu-seminaire-business-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80',
+            filename: 'menu-seminaire-business-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80',
+            filename: 'menu-seminaire-business-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-seminaire-business-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80',
+            filename: 'menu-seminaire-business-5.jpg',
+          },
         ],
       },
       {
@@ -210,11 +360,26 @@ export default class extends BaseSeeder {
         themeId: evenement.id,
         stock: 12,
         images: [
-          { url: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80', filename: 'menu-baby-shower-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80', filename: 'menu-baby-shower-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80', filename: 'menu-baby-shower-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-baby-shower-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-baby-shower-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80',
+            filename: 'menu-baby-shower-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
+            filename: 'menu-baby-shower-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80',
+            filename: 'menu-baby-shower-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-baby-shower-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-baby-shower-5.jpg',
+          },
         ],
       },
       {
@@ -227,11 +392,26 @@ export default class extends BaseSeeder {
         themeId: evenement.id,
         stock: 8,
         images: [
-          { url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80', filename: 'menu-cocktail-vegan-1.jpg' },
-          { url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80', filename: 'menu-cocktail-vegan-2.jpg' },
-          { url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80', filename: 'menu-cocktail-vegan-3.jpg' },
-          { url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80', filename: 'menu-cocktail-vegan-4.jpg' },
-          { url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', filename: 'menu-cocktail-vegan-5.jpg' },
+          {
+            url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+            filename: 'menu-cocktail-vegan-1.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',
+            filename: 'menu-cocktail-vegan-2.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+            filename: 'menu-cocktail-vegan-3.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+            filename: 'menu-cocktail-vegan-4.jpg',
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
+            filename: 'menu-cocktail-vegan-5.jpg',
+          },
         ],
       },
     ]

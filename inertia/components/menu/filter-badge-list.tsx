@@ -29,7 +29,8 @@ export function FilterBadgeList({
             variant={active ? 'default' : 'outline'}
             className={cn(
               badgeClassName,
-              withHoverEffect && (active ? 'hover:bg-primary/80' : 'hover:bg-primary/10 hover:border-primary/30')
+              withHoverEffect &&
+                (active ? 'hover:bg-primary/80' : 'hover:bg-primary/10 hover:border-primary/30')
             )}
             onClick={() => onToggle(item.label)}
           >

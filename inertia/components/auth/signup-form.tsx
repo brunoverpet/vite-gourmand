@@ -83,13 +83,20 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
 
             <AddressFields
               address={address}
-              onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+              onAddressChange={(v) => {
+                setAddress(v)
+                fetchSuggestions(v)
+              }}
               suggestions={suggestions}
               onSelectAddress={selectAddress}
               addressName="address"
               addressError={errors.address}
               city={city}
-              onCityChange={(v) => { setCity(v); setZipcode(''); fetchCitySuggestions(v) }}
+              onCityChange={(v) => {
+                setCity(v)
+                setZipcode('')
+                fetchCitySuggestions(v)
+              }}
               citySuggestions={citySuggestions}
               onSelectCity={selectCity}
               cityName="city"

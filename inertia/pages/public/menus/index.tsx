@@ -221,7 +221,13 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
 
       <div className="md:hidden mt-10 mb-20">
         <p className="text-body-sm text-muted-foreground mb-4">{menus.metadata.total} résultats</p>
-        <MenuCardsGrid menus={menus.data} loading={loading} loadingType={loadingType} gridClass="flex flex-col gap-5" skeletonCount={3} />
+        <MenuCardsGrid
+          menus={menus.data}
+          loading={loading}
+          loadingType={loadingType}
+          gridClass="flex flex-col gap-5"
+          skeletonCount={3}
+        />
         <PaginationNav
           currentPage={menus.metadata.currentPage}
           lastPage={menus.metadata.lastPage}
@@ -251,7 +257,13 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
           <p className="text-body-sm text-muted-foreground text-right mb-4">
             {menus.metadata.total} résultats
           </p>
-          <MenuCardsGrid menus={menus.data} loading={loading} loadingType={loadingType} gridClass="grid grid-cols-1 lg:grid-cols-2 gap-8" skeletonCount={4} />
+          <MenuCardsGrid
+            menus={menus.data}
+            loading={loading}
+            loadingType={loadingType}
+            gridClass="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            skeletonCount={4}
+          />
           <PaginationNav
             currentPage={menus.metadata.currentPage}
             lastPage={menus.metadata.lastPage}

@@ -27,7 +27,11 @@ export function MenuComposition({ dishesByType }: Props) {
               {dishesByType[type].map((dish) => (
                 <li key={dish.id} className="flex gap-4 items-start">
                   <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 transition-transform duration-500 hover:scale-[1.3]">
-                    <img src={dish.photoPath} alt={dish.title} className="w-full h-full object-cover" />
+                    <img
+                      src={dish.photoPath}
+                      alt={dish.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="flex flex-col gap-1 min-w-0">
                     <p className="text-body font-medium">{dish.title}</p>

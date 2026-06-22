@@ -27,11 +27,7 @@ export function MobileMenu({ isOpen, onClose, isStaff, isClient }: Props) {
       inert={!isOpen}
     >
       <div className="flex items-center justify-between">
-        <Link
-          route="home-public"
-          className="text-h4 text-primary-foreground"
-          onClick={onClose}
-        >
+        <Link route="home-public" className="text-h4 text-primary-foreground" onClick={onClose}>
           Vite & Gourmand
         </Link>
         <Button
@@ -55,11 +51,7 @@ export function MobileMenu({ isOpen, onClose, isStaff, isClient }: Props) {
             )}
             style={{ transitionDelay: isOpen ? `${index * 100 + 150}ms` : '0ms' }}
           >
-            <NavLink
-              href={link.href}
-              className="text-h2 text-primary-foreground"
-              onClick={onClose}
-            >
+            <NavLink href={link.href} className="text-h2 text-primary-foreground" onClick={onClose}>
               {link.label}
             </NavLink>
           </div>

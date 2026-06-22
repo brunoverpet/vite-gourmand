@@ -18,7 +18,11 @@ export function OrderCard({ order }: { order: Order }) {
     >
       <div className="flex items-start justify-between gap-2">
         <p className="font-medium text-sm">{order.orderNumber}</p>
-        <StatusBadge status={order.status} labels={ORDER_STATUS_LABELS} colors={ORDER_STATUS_COLORS} />
+        <StatusBadge
+          status={order.status}
+          labels={ORDER_STATUS_LABELS}
+          colors={ORDER_STATUS_COLORS}
+        />
       </div>
 
       <div className="space-y-1.5 text-sm grow">

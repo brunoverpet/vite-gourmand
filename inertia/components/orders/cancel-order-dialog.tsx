@@ -66,7 +66,7 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
           </div>
 
           <div className="space-y-2">
-            <Label>Motif d'annulation</Label>
+            <Label>Motif d&apos;annulation</Label>
             <Textarea
               placeholder="Décrivez le motif de l'annulation (10 caractères minimum)…"
               value={data.cancellationReason}
@@ -86,7 +86,7 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
             onClick={handleSubmit}
             disabled={!canSubmit || processing}
           >
-            Confirmer l'annulation
+            Confirmer l&apos;annulation
           </Button>
         </DialogFooter>
       </DialogContent>

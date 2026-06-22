@@ -140,13 +140,20 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
 
               <AddressFields
                 address={address}
-                onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+                onAddressChange={(v) => {
+                  setAddress(v)
+                  fetchSuggestions(v)
+                }}
                 suggestions={suggestions}
                 onSelectAddress={selectAddress}
                 addressName="delivery_address"
                 addressError={formErrors.address}
                 city={city}
-                onCityChange={(v) => { setCity(v); setZipcode(''); fetchCitySuggestions(v) }}
+                onCityChange={(v) => {
+                  setCity(v)
+                  setZipcode('')
+                  fetchCitySuggestions(v)
+                }}
                 citySuggestions={citySuggestions}
                 onSelectCity={selectCity}
                 cityName="delivery_city"

@@ -8,7 +8,14 @@ import DishTransformer from '#transformers/menus/dish_transformer'
 export default class MenuDetailTransformer extends BaseTransformer<Menu> {
   toObject() {
     return {
-      ...this.pick(this.resource, ['id', 'title', 'description', 'conditions', 'minPeople', 'pricePerPeople']),
+      ...this.pick(this.resource, [
+        'id',
+        'title',
+        'description',
+        'conditions',
+        'minPeople',
+        'pricePerPeople',
+      ]),
       diet: DietTransformer.transform(this.resource.diet),
       theme: ThemeTransformer.transform(this.resource.theme),
       pictures: PictureTransformer.transform(this.whenLoaded(this.resource.pictures)),

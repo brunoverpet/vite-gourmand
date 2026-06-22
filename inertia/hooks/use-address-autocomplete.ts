@@ -38,6 +38,7 @@ export function useAddressAutocomplete(initialAddress = '', initialCity = '') {
         if (!initialCity) setCity(first.city)
       })
       .catch(() => {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function fetchSuggestions(value: string) {

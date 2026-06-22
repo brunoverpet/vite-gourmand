@@ -84,13 +84,19 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
           <AddressFields
             address={address}
-            onAddressChange={(v) => { setAddress(v); fetchSuggestions(v) }}
+            onAddressChange={(v) => {
+              setAddress(v)
+              fetchSuggestions(v)
+            }}
             suggestions={suggestions}
             onSelectAddress={selectAddress}
             addressName="address"
             addressError={errors.address}
             city={city}
-            onCityChange={(v) => { setCity(v); fetchCitySuggestions(v) }}
+            onCityChange={(v) => {
+              setCity(v)
+              fetchCitySuggestions(v)
+            }}
             citySuggestions={citySuggestions}
             onSelectCity={selectCity}
             cityName="city"

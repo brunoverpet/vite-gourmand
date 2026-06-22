@@ -21,7 +21,13 @@ type Props = {
   onSubmit: () => void
 }
 
-export function OrderFormRecap({ menu, numberOfPeople, estimate, onNumberOfPeopleChange, onSubmit }: Props) {
+export function OrderFormRecap({
+  menu,
+  numberOfPeople,
+  estimate,
+  onNumberOfPeopleChange,
+  onSubmit,
+}: Props) {
   const [minWarning, setMinWarning] = useState(false)
 
   return (

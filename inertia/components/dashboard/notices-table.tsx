@@ -26,7 +26,6 @@ type NoticesTableProps = {
   notices: NoticeItem[]
 }
 
-
 export function NoticesTable({ notices }: NoticesTableProps) {
   const [statusFilter, setStatusFilter] = useState('all')
   const [noteFilter, setNoteFilter] = useState('all')

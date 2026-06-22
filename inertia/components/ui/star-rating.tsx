@@ -19,7 +19,10 @@ export function StarRating({
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
-          className={cn(size === 'md' ? 'size-5' : 'w-4 h-4', star <= note ? activeClass : inactiveClass)}
+          className={cn(
+            size === 'md' ? 'size-5' : 'w-4 h-4',
+            star <= note ? activeClass : inactiveClass
+          )}
         />
       ))}
     </div>

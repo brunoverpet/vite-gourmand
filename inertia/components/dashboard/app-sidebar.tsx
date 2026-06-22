@@ -1,7 +1,15 @@
 import * as React from 'react'
 import { NavUser } from '@/components/dashboard/nav-user'
 import { NavGroup } from '@/components/dashboard/nav-group'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar'
 import { ExternalLinkIcon, UtensilsIcon } from 'lucide-react'
 import { Link } from '@adonisjs/inertia/react'
 import { ACCOUNT_NAV, ADMIN_EXTRA_NAV, CLIENT_NAV, EMPLOYEE_NAV } from '~/lib/dashboard-nav'

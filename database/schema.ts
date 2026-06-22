@@ -64,7 +64,15 @@ export class DishMenuSchema extends BaseModel {
 }
 
 export class DishSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'id', 'photoPath', 'title', 'type', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'description',
+    'id',
+    'photoPath',
+    'title',
+    'type',
+    'updatedAt',
+  ] as const
   $columns = DishSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -83,7 +91,19 @@ export class DishSchema extends BaseModel {
 }
 
 export class MenuSchema extends BaseModel {
-  static $columns = ['conditions', 'createdAt', 'description', 'dietId', 'id', 'minPeople', 'pricePerPeople', 'stock', 'themeId', 'title', 'updatedAt'] as const
+  static $columns = [
+    'conditions',
+    'createdAt',
+    'description',
+    'dietId',
+    'id',
+    'minPeople',
+    'pricePerPeople',
+    'stock',
+    'themeId',
+    'title',
+    'updatedAt',
+  ] as const
   $columns = MenuSchema.$columns
   @column()
   declare conditions: string | null
@@ -110,7 +130,15 @@ export class MenuSchema extends BaseModel {
 }
 
 export class NoticeSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'id', 'note', 'orderId', 'status', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'description',
+    'id',
+    'note',
+    'orderId',
+    'status',
+    'updatedAt',
+  ] as const
   $columns = NoticeSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -146,7 +174,30 @@ export class OrderStatusHistorySchema extends BaseModel {
 }
 
 export class OrderSchema extends BaseModel {
-  static $columns = ['cancellationReason', 'contactMode', 'createdAt', 'deliveryAddress', 'deliveryCity', 'deliveryFees', 'deliveryTime', 'deliveryZipcode', 'eventDate', 'id', 'materialLoan', 'materialReturn', 'menuId', 'menuPrice', 'numberOfPeople', 'orderDate', 'orderNumber', 'reductionAmount', 'status', 'totalAmount', 'updatedAt', 'userId'] as const
+  static $columns = [
+    'cancellationReason',
+    'contactMode',
+    'createdAt',
+    'deliveryAddress',
+    'deliveryCity',
+    'deliveryFees',
+    'deliveryTime',
+    'deliveryZipcode',
+    'eventDate',
+    'id',
+    'materialLoan',
+    'materialReturn',
+    'menuId',
+    'menuPrice',
+    'numberOfPeople',
+    'orderDate',
+    'orderNumber',
+    'reductionAmount',
+    'status',
+    'totalAmount',
+    'updatedAt',
+    'userId',
+  ] as const
   $columns = OrderSchema.$columns
   @column()
   declare cancellationReason: string | null
@@ -236,7 +287,23 @@ export class ThemeSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['address', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'isActive', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
+  static $columns = [
+    'address',
+    'city',
+    'country',
+    'createdAt',
+    'email',
+    'firstname',
+    'id',
+    'isActive',
+    'lastname',
+    'password',
+    'passwordChange',
+    'passwordReset',
+    'phone',
+    'roleId',
+    'updatedAt',
+  ] as const
   $columns = UserSchema.$columns
   @column()
   declare address: string | null

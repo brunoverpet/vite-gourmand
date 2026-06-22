@@ -20,7 +20,9 @@ export default function AuthLayout({ children, title, description }: AuthLayoutP
         <div className="absolute inset-0 bg-primary/75" />
         <div className="relative z-10 flex flex-col justify-end p-12 text-primary-foreground">
           <p className="font-serif text-4xl italic leading-tight mb-4">
-            L'art de recevoir,<br />livré chez vous.
+            L&apos;art de recevoir,
+            <br />
+            livré chez vous.
           </p>
           <p className="text-primary-foreground/70 text-sm">Vite &amp; Gourmand · Bordeaux</p>
         </div>
@@ -38,7 +40,7 @@ export default function AuthLayout({ children, title, description }: AuthLayoutP
           <FieldDescription className="text-center">
             En créant un compte, vous acceptez nos{' '}
             <a href="#" className="underline underline-offset-4 hover:text-foreground">
-              conditions d'utilisation
+              conditions d&apos;utilisation
             </a>{' '}
             et notre{' '}
             <a href="#" className="underline underline-offset-4 hover:text-foreground">

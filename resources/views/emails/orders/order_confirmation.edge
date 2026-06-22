@@ -1,5 +1,6 @@
-@component('emails/layout', { title: 'Votre commande a bien été reçue — Vite & Gourmand' })
-
+@component('emails/layout', {
+  title: 'Votre commande a bien été reçue — Vite & Gourmand',
+})
   <h1 class="title">Votre commande a bien été reçue !</h1>
 
   <p class="text">Bonjour {{ order.user.firstname }},</p>
@@ -10,7 +11,14 @@
     . Notre équipe va l'étudier et reviendra vers vous très prochainement.
   </p>
 
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+  <table
+    role="presentation"
+    border="0"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    style="margin-bottom: 24px;"
+  >
     <tr>
       <td style="padding-bottom: 12px;">
         <p class="field-label">Date de l'événement</p>
@@ -42,7 +50,8 @@
   </div>
 
   <p style="margin: 28px 0;">
-    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">Voir ma commande</a>
+    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">
+      Voir ma commande
+    </a>
   </p>
-
 @end
