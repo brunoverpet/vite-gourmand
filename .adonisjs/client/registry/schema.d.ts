@@ -247,6 +247,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/orders_management_controller').default['index']>>>
     }
   }
+  'order_material_loan.update': {
+    methods: ["PATCH"]
+    pattern: '/orders/:id/material-loan'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_material_loan_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_material_loan_controller').default['update']>>>
+    }
+  }
   'client_orders.index': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/my-orders'

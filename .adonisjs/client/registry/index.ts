@@ -126,6 +126,12 @@ const routes = {
     tokens: [{"old":"/dashboard/orders","type":0,"val":"dashboard","end":""},{"old":"/dashboard/orders","type":0,"val":"orders","end":""}],
     types: placeholder as Registry['orders_management.index']['types'],
   },
+  'order_material_loan.update': {
+    methods: ["PATCH"],
+    pattern: '/orders/:id/material-loan',
+    tokens: [{"old":"/orders/:id/material-loan","type":0,"val":"orders","end":""},{"old":"/orders/:id/material-loan","type":1,"val":"id","end":""},{"old":"/orders/:id/material-loan","type":0,"val":"material-loan","end":""}],
+    types: placeholder as Registry['order_material_loan.update']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

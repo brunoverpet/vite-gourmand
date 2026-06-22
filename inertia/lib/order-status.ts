@@ -20,15 +20,22 @@ export const ORDER_STATUS_COLORS: Record<string, string> = {
   annulee: 'bg-red-100 text-red-800',
 }
 
-export const ORDER_STATUS_TRANSITIONS: Record<string, string[]> = {
+const BASE_TRANSITIONS: Record<string, string[]> = {
   en_attente: ['acceptee', 'annulee'],
   acceptee: ['en_preparation'],
   en_preparation: ['en_cours_de_livraison'],
   en_cours_de_livraison: ['livree'],
-  livree: ['en_attente_retour_materiel', 'terminee'],
+  livree: [],
   en_attente_retour_materiel: ['terminee'],
   terminee: [],
   annulee: [],
+}
+
+export function getOrderStatusTransitions(status: string, materialLoan: boolean): string[] {
+  if (status === 'livree') {
+    return materialLoan ? ['en_attente_retour_materiel'] : ['terminee']
+  }
+  return BASE_TRANSITIONS[status] ?? []
 }
 
 export const ACCEPTED_AND_BEYOND = [

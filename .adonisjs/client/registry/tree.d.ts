@@ -40,6 +40,9 @@ export interface ApiDefinition {
   ordersManagement: {
     index: typeof routes['orders_management.index']
   }
+  orderMaterialLoan: {
+    update: typeof routes['order_material_loan.update']
+  }
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']
