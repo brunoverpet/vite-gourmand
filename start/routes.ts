@@ -9,6 +9,7 @@
 
 import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
+import { Roles } from '#enums/roles'
 import router from '@adonisjs/core/services/router'
 
 router.get('/', [controllers.HomePublic, 'render']).as('home-public')
@@ -42,7 +43,9 @@ router
     router.get('orders/:menuId', [controllers.orders.Order, 'render'])
     router.post('orders', [controllers.orders.Order, 'store'])
 
-    router.patch('orders/:id/status', [controllers.orders.OrderStatus, 'update']).as('order.status.update')
+    router
+      .patch('orders/:id/status', [controllers.orders.OrderStatus, 'update'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })

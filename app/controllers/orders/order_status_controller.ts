@@ -1,4 +1,3 @@
-import { Roles } from '#enums/roles'
 import Order from '#models/order'
 import { UpdateOrderStatusAction } from '#services/orders/update_order_status_action'
 import { updateOrderStatusValidator } from '#validators/orders/order_status'
@@ -9,15 +8,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class OrderStatusController {
   constructor(private updateOrderStatusAction: UpdateOrderStatusAction) {}
 
-  async update({ params, request, response, session, auth }: HttpContext) {
-    const user = auth.getUserOrFail()
-    await user.load('role')
-
-    if (user.role.label !== Roles.EMPLOYE && user.role.label !== Roles.ADMIN) {
-      session.flash('error', 'Accès non autorisé.')
-      return response.redirect().back()
-    }
-
+  async update({ params, request, response, session }: HttpContext) {
     const order = await Order.findOrFail(params.id)
     const { status } = await request.validateUsing(updateOrderStatusValidator)
 
