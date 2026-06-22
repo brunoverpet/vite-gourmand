@@ -1,6 +1,7 @@
 import type { Data } from '@generated/data'
 import { Link } from '@adonisjs/inertia/react'
 import { ArrowLeft, Users } from 'lucide-react'
+import { Badge } from '~/components/ui/badge'
 import { useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { MenuGallery } from '~/components/menu/menu-gallery'
