@@ -17,6 +17,7 @@ import {
   BarChart2Icon,
   ClipboardListIcon,
   ClockIcon,
+  ExternalLinkIcon,
   ShoppingBagIcon,
   StarIcon,
   UserIcon,
@@ -167,11 +168,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
 
       <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link href="/">
+                <ExternalLinkIcon />
+                <span>Retour au site</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
         <NavUser
           user={{
             name: user ? `${user.firstname} ${user.lastname}` : 'Invité',
             email: user?.email ?? '',
-            avatar: '/avatars/shadcn.jpg',
+            avatar: undefined,
             role: ROLE_LABELS[user?.role ?? ''],
           }}
         />
