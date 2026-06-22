@@ -1,4 +1,5 @@
 import Order from '#models/order'
+import { CancelOrderAction } from '#services/orders/cancel_order_action'
 import { UpdateOrderAction } from '#services/orders/update_order_action'
 import ClientOrderTransformer from '#transformers/orders/client_order_transformer'
 import { updateOrderValidator } from '#validators/orders/order'
@@ -7,7 +8,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class ClientOrdersController {
-  constructor(private updateOrderAction: UpdateOrderAction) {}
+  constructor(
+    private updateOrderAction: UpdateOrderAction,
+    private cancelOrderAction: CancelOrderAction
+  ) {}
 
   async index({ auth, inertia }: HttpContext) {
     const userId = auth.getUserOrFail().id
@@ -55,5 +59,21 @@ export default class ClientOrdersController {
     session.flash('success', 'Commande mise à jour.')
 
     return response.redirect().back()
+  }
+
+  async cancel({ auth, params, response, session }: HttpContext) {
+    const userId = auth.getUserOrFail().id
+
+    const order = await Order.query().where('id', params.id).where('user_id', userId).first()
+
+    if (!order) {
+      session.flash('error', 'Commande introuvable.')
+      return response.redirect().toRoute('home')
+    }
+
+    await this.cancelOrderAction.execute(order)
+    session.flash('success', 'Commande annulée.')
+
+    return response.redirect().toPath('/dashboard/my-orders')
   }
 }

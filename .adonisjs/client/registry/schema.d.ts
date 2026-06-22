@@ -283,6 +283,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'client_orders.cancel': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/my-orders/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['cancel']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/client_orders_controller').default['cancel']>>>
+    }
+  }
   'session.destroy': {
     methods: ["POST"]
     pattern: '/logout'

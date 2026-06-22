@@ -44,5 +44,6 @@ export interface ApiDefinition {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']
     update: typeof routes['client_orders.update']
+    cancel: typeof routes['client_orders.cancel']
   }
 }

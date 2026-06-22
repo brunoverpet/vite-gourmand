@@ -54,6 +54,7 @@ router
     router.get('dashboard/my-orders', [controllers.orders.ClientOrders, 'index'])
     router.get('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'show'])
     router.patch('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'update'])
+    router.delete('dashboard/my-orders/:id', [controllers.orders.ClientOrders, 'cancel'])
 
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })

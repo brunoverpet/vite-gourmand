@@ -27,6 +27,7 @@ export type ScannedRoutes = {
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -74,6 +75,9 @@ export type ScannedRoutes = {
   PATCH: {
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
+  DELETE: {
+    'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {
