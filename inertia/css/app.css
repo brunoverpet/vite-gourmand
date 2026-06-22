@@ -130,13 +130,13 @@
   --chart-3: #6b6460;
   --chart-4: #b08a40;
   --chart-5: #e5cb8a;
-  --sidebar: #471828;
-  --sidebar-foreground: #faf7f2;
+  --sidebar: #f0ede8;
+  --sidebar-foreground: #1a1a1a;
   --sidebar-primary: #c9a55a;
   --sidebar-primary-foreground: #1a1a1a;
-  --sidebar-accent: #6b2432;
-  --sidebar-accent-foreground: #faf7f2;
-  --sidebar-border: #5c1f2e;
+  --sidebar-accent: #e5e0da;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #d8d3cc;
   --sidebar-ring: #c9a55a;
   --font-sans: 'DM Sans', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
