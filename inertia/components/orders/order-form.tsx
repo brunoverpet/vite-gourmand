@@ -20,7 +20,6 @@ import {
 import { cn } from '@/lib/utils'
 import type { SharedProps } from '@adonisjs/inertia/types'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
-import { PhoneInput } from '~/components/ui/phone-input'
 
 type Estimate = {
   distanceKm: number
@@ -337,7 +336,10 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onMouseDown={(e) => { e.preventDefault(); selectAddress(s) }}
+                            onMouseDown={(e) => {
+                              e.preventDefault()
+                              selectAddress(s)
+                            }}
                           >
                             {s.fulltext}
                           </button>
@@ -375,7 +377,10 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
                           <button
                             type="button"
                             className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                            onMouseDown={(e) => { e.preventDefault(); selectCity(s) }}
+                            onMouseDown={(e) => {
+                              e.preventDefault()
+                              selectCity(s)
+                            }}
                           >
                             {s.fulltext}
                           </button>
@@ -390,43 +395,27 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
 
           <section>
             <h2 className="text-h3 mb-4">Vos informations</h2>
+            <p className="text-body-sm text-muted-foreground mb-4">
+              Ces informations sont reprises depuis votre compte.
+            </p>
             <FieldGroup>
               <div className="grid grid-cols-2 gap-4">
                 <Field>
-                  <FieldLabel htmlFor="firstname">Prénom</FieldLabel>
-                  <Input
-                    id="firstname"
-                    defaultValue={user?.firstname}
-                    name="firstname"
-                    type="text"
-                    required
-                  />
+                  <FieldLabel>Prénom</FieldLabel>
+                  <Input value={user?.firstname ?? ''} readOnly disabled />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="lastname">Nom</FieldLabel>
-                  <Input
-                    id="lastname"
-                    defaultValue={user?.lastname}
-                    name="lastname"
-                    type="text"
-                    required
-                  />
+                  <FieldLabel>Nom</FieldLabel>
+                  <Input value={user?.lastname ?? ''} readOnly disabled />
                 </Field>
               </div>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" defaultValue={user?.email} name="email" type="email" required />
+                <FieldLabel>Email</FieldLabel>
+                <Input value={user?.email ?? ''} type="email" readOnly disabled />
               </Field>
               <Field>
-                <FieldLabel htmlFor="phone">Téléphone</FieldLabel>
-                <PhoneInput
-                  id="phone"
-                  name="phone"
-                  autoComplete="tel"
-                  placeholder="6 00 00 00 00"
-                  defaultValue={user?.phone ?? undefined}
-                  required
-                />
+                <FieldLabel>Téléphone</FieldLabel>
+                <Input value={user?.phone ?? ''} readOnly disabled />
               </Field>
             </FieldGroup>
           </section>
