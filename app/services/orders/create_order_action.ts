@@ -7,7 +7,7 @@ import { inject } from '@adonisjs/core'
 import { DateTime } from 'luxon'
 
 @inject()
-export class CreateOrderActionService {
+export class CreateOrderAction {
   constructor(
     private deliveryFeeService: DeliveryFeeService,
     private priceCalculatorService: PriceCalculatorService

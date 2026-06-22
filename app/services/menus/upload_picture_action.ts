@@ -4,7 +4,7 @@ import type { UploadPicturePayload } from '#validators/menus/picture'
 import { inject } from '@adonisjs/core'
 
 @inject()
-export class UploadPictureActionService {
+export class UploadPictureAction {
   constructor(private fileService: FileService) {}
 
   async execute(payload: UploadPicturePayload, menuId: string) {

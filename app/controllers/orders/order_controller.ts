@@ -1,7 +1,7 @@
 import { DeliveryFeeService } from '#services/shared/delivery_fee_service'
 import { PriceCalculatorService } from '#services/shared/price_calculator_service'
 import { MenuService } from '#services/menus/menu_service'
-import { CreateOrderActionService } from '#services/orders/create_order_action_service'
+import { CreateOrderAction } from '#services/orders/create_order_action'
 import MenuTransformer from '#transformers/menus/menu_transformer'
 import { createOrderValidator } from '#validators/order/order'
 import { inject } from '@adonisjs/core'
@@ -11,7 +11,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class OrderController {
   constructor(
     private menuService: MenuService,
-    private createOrderAction: CreateOrderActionService,
+    private createOrderAction: CreateOrderAction,
     private deliveryFeeService: DeliveryFeeService,
     private priceCalculatorService: PriceCalculatorService
   ) {}
