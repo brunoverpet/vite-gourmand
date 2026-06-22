@@ -162,6 +162,12 @@ const routes = {
     tokens: [{"old":"/dashboard/profile","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.update']['types'],
   },
+  'notices': {
+    methods: ["POST"],
+    pattern: '/reviews',
+    tokens: [{"old":"/reviews","type":0,"val":"reviews","end":""}],
+    types: placeholder as Registry['notices']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',

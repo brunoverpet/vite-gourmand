@@ -19,7 +19,6 @@ declare module '@adonisjs/inertia/types' {
     'dashboard/my-orders/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/my-orders/index.tsx'))['default']>
     'dashboard/my-orders/show': ExtractProps<(typeof import('../../inertia/pages/dashboard/my-orders/show.tsx'))['default']>
     'dashboard/orders/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/orders/index.tsx'))['default']>
-    'dashboard/profile/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/profile/index.tsx'))['default']>
     'errors/not-found': ExtractProps<(typeof import('../../inertia/pages/errors/not-found.tsx'))['default']>
     'errors/server-error': ExtractProps<(typeof import('../../inertia/pages/errors/server-error.tsx'))['default']>
     'home': ExtractProps<(typeof import('../../inertia/pages/home.tsx'))['default']>
@@ -28,5 +27,6 @@ declare module '@adonisjs/inertia/types' {
     'public/menus/index': ExtractProps<(typeof import('../../inertia/pages/public/menus/index.tsx'))['default']>
     'public/menus/show': ExtractProps<(typeof import('../../inertia/pages/public/menus/show.tsx'))['default']>
     'public/orders/index': ExtractProps<(typeof import('../../inertia/pages/public/orders/index.tsx'))['default']>
+    'dashboard/profile/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/profile/index.tsx'))['default']>
   }
 }

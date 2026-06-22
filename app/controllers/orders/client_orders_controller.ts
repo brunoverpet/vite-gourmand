@@ -1,4 +1,5 @@
 import Order from '#models/order'
+import Notice from '#models/notice'
 import { CancelOrderAction } from '#services/orders/cancel_order_action'
 import { UpdateOrderAction } from '#services/orders/update_order_action'
 import ClientOrderTransformer from '#transformers/orders/client_order_transformer'
@@ -38,8 +39,11 @@ export default class ClientOrdersController {
       return response.redirect().toRoute('home')
     }
 
+    const notice = await Notice.findBy('order_id', order.id)
+
     return inertia.render('dashboard/my-orders/show', {
       order: async () => ClientOrderTransformer.transform(order),
+      hasNotice: !!notice,
     })
   }
 

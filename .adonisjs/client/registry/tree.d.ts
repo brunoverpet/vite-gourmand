@@ -50,4 +50,5 @@ export interface ApiDefinition {
     show: typeof routes['profile.show']
     update: typeof routes['profile.update']
   }
+  notices: typeof routes['notices']
 }

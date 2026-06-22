@@ -109,6 +109,25 @@ export class MenuSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class NoticeSchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'id', 'note', 'orderId', 'status', 'updatedAt'] as const
+  $columns = NoticeSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare note: number
+  @column()
+  declare orderId: string | null
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class OrderStatusHistorySchema extends BaseModel {
   static $columns = ['changedAt', 'createdAt', 'id', 'orderId', 'status', 'updatedAt'] as const
   $columns = OrderStatusHistorySchema.$columns

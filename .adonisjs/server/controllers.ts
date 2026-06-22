@@ -27,4 +27,7 @@ export const controllers = {
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),
   },
+  notice: {
+    Notices: () => import('#controllers/notice/notices_controller'),
+  },
 }

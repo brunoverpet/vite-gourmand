@@ -319,6 +319,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'notices': {
+    methods: ["POST"]
+    pattern: '/reviews'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/notice/notice').createNoticeValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').createNoticeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/notices_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/notices_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'session.destroy': {
     methods: ["POST"]
     pattern: '/logout'

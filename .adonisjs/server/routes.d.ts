@@ -30,6 +30,7 @@ export type ScannedRoutes = {
     'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
     'profile.update': { paramsTuple?: []; params?: {} }
+    'notices': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -74,6 +75,7 @@ export type ScannedRoutes = {
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'order.store': { paramsTuple?: []; params?: {} }
+    'notices': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   PATCH: {

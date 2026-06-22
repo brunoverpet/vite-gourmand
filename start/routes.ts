@@ -59,6 +59,8 @@ router
     router.get('dashboard/profile', [controllers.profile.Profile, 'show'])
     router.patch('dashboard/profile', [controllers.profile.Profile, 'update'])
 
+    router.post('reviews', [controllers.notice.Notices, 'handle'])
+
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())
