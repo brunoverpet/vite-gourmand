@@ -17,5 +17,9 @@ export class CancelOrderAction {
       status: OrderStatus.CANCELLED,
       changedAt: DateTime.now(),
     })
+
+    await order.load('menu')
+    order.menu.stock += 1
+    await order.menu.save()
   }
 }
