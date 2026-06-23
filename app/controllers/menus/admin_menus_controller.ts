@@ -1,6 +1,6 @@
+import type Dish from '#models/dish'
+import { DishService } from '#services/dishes/dish_service'
 import { MenuService } from '#services/menus/menu_service'
-import Allergen from '#models/allergen'
-import AllergenTransformer from '#transformers/menus/allergen_transformer'
 import DietTransformer from '#transformers/menus/diet_transformer'
 import MenuAdminTransformer from '#transformers/menus/menu_admin_transformer'
 import ThemeTransformer from '#transformers/menus/theme_transformer'
@@ -10,7 +10,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class AdminMenusController {
-  constructor(private menuService: MenuService) {}
+  constructor(
+    private menuService: MenuService,
+    private dishService: DishService
+  ) {}
 
   async index({ inertia }: HttpContext) {
     const menus = await this.menuService.getAllMenusAdmin()
@@ -40,17 +43,30 @@ export default class AdminMenusController {
   }
 
   async edit({ params, inertia }: HttpContext) {
-    const [menu, { diets, themes }, allergens] = await Promise.all([
+    const [menu, { diets, themes }, allDishes] = await Promise.all([
       this.menuService.getMenuForEdit(params.id),
       this.menuService.getFilters(),
-      Allergen.all(),
+      this.dishService.listAllDishes(),
     ])
+
+    const selectedDishIds = (menu.dishes as unknown as Dish[]).map((d) => d.id)
+
+    const toDishPickerItem = (d: (typeof allDishes)[number]) => ({
+      id: d.id,
+      title: d.title,
+      photoPath: d.photoPath || null,
+    })
 
     return inertia.render('dashboard/menus/edit', {
       menu: MenuAdminTransformer.transform(menu),
+      selectedDishIds,
       diets: DietTransformer.transform(diets),
       themes: ThemeTransformer.transform(themes),
-      allergens: AllergenTransformer.transform(allergens),
+      dishes: {
+        entrées: allDishes.filter((d) => d.type === 'entrée').map(toDishPickerItem),
+        plats: allDishes.filter((d) => d.type === 'plat').map(toDishPickerItem),
+        desserts: allDishes.filter((d) => d.type === 'dessert').map(toDishPickerItem),
+      },
     })
   }
 

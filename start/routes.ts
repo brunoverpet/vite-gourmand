@@ -42,45 +42,36 @@ router
     router.post('orders', [controllers.orders.Order, 'store'])
 
     router
-      .get('dashboard/menus', [controllers.menus.AdminMenus, 'index'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .get('dashboard/menus/create', [controllers.menus.AdminMenus, 'create'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .post('dashboard/menus', [controllers.menus.AdminMenus, 'store'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .get('dashboard/menus/:id/edit', [controllers.menus.AdminMenus, 'edit'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .patch('dashboard/menus/:id', [controllers.menus.AdminMenus, 'update'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .delete('dashboard/menus/:id', [controllers.menus.AdminMenus, 'destroy'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+      .group(() => {
+        router.get('dashboard/menus', [controllers.menus.AdminMenus, 'index'])
+        router.get('dashboard/menus/create', [controllers.menus.AdminMenus, 'create'])
+        router.post('dashboard/menus', [controllers.menus.AdminMenus, 'store'])
+        router.get('dashboard/menus/:id/edit', [controllers.menus.AdminMenus, 'edit'])
+        router.patch('dashboard/menus/:id', [controllers.menus.AdminMenus, 'update'])
+        router.delete('dashboard/menus/:id', [controllers.menus.AdminMenus, 'destroy'])
 
-    router
-      .post('dashboard/menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .delete('dashboard/menus/:menuId/pictures/:id', [controllers.menus.Pictures, 'destroy'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+        router.post('dashboard/menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
+        router.delete('dashboard/menus/:menuId/pictures/:id', [
+          controllers.menus.Pictures,
+          'destroy',
+        ])
+        router.put('dashboard/menus/:id/dishes', [controllers.menus.MenuDishes, 'sync'])
 
-    router
-      .patch('orders/:id/status', [controllers.orders.OrderStatus, 'update'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+        router.get('dashboard/dishes', [controllers.dishes.AdminDishes, 'index'])
+        router.get('dashboard/dishes/create', [controllers.dishes.AdminDishes, 'create'])
+        router.post('dashboard/dishes', [controllers.dishes.AdminDishes, 'store'])
+        router.get('dashboard/dishes/:id/edit', [controllers.dishes.AdminDishes, 'edit'])
+        router.patch('dashboard/dishes/:id', [controllers.dishes.AdminDishes, 'update'])
+        router.delete('dashboard/dishes/:id', [controllers.dishes.AdminDishes, 'destroy'])
 
-    router
-      .get('dashboard/orders', [controllers.orders.OrdersManagement, 'index'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+        router.patch('orders/:id/status', [controllers.orders.OrderStatus, 'update'])
+        router.get('dashboard/orders', [controllers.orders.OrdersManagement, 'index'])
+        router.patch('orders/:id/material-loan', [controllers.orders.OrderMaterialLoan, 'update'])
+        router.patch('orders/:id/cancel', [controllers.orders.CancelOrder, 'handle'])
 
-    router
-      .patch('orders/:id/material-loan', [controllers.orders.OrderMaterialLoan, 'update'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-
-    router
-      .patch('orders/:id/cancel', [controllers.orders.CancelOrder, 'handle'])
+        router.get('dashboard/notices', [controllers.notice.ValidateNotice, 'render'])
+        router.patch('dashboard/notices/:id', [controllers.notice.ValidateNotice, 'handle'])
+      })
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 
     router.get('dashboard/my-orders', [controllers.orders.ClientOrders, 'index'])
@@ -92,13 +83,6 @@ router
     router.patch('dashboard/profile', [controllers.profile.Profile, 'update'])
 
     router.post('reviews', [controllers.notice.RegisterNotice, 'handle'])
-
-    router
-      .get('dashboard/notices', [controllers.notice.ValidateNotice, 'render'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
-    router
-      .patch('dashboard/notices/:id', [controllers.notice.ValidateNotice, 'handle'])
-      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })

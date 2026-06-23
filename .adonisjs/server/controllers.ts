@@ -18,6 +18,7 @@ export const controllers = {
     Menus: () => import('#controllers/menus/menus_controller'),
     Pictures: () => import('#controllers/menus/pictures_controller'),
     AdminMenus: () => import('#controllers/menus/admin_menus_controller'),
+    MenuDishes: () => import('#controllers/menus/menu_dishes_controller'),
   },
   notice: {
     RegisterNotice: () => import('#controllers/notice/register_notice_controller'),
@@ -33,5 +34,8 @@ export const controllers = {
   },
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),
+  },
+  dishes: {
+    AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
   },
 }

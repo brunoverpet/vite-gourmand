@@ -307,6 +307,90 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['destroy']>>>
     }
   }
+  'menu_dishes.sync': {
+    methods: ["PUT"]
+    pattern: '/dashboard/menus/:id/dishes'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/menu_dishes_controller').default['sync']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/menu_dishes_controller').default['sync']>>>
+    }
+  }
+  'admin_dishes.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/dishes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['index']>>>
+    }
+  }
+  'admin_dishes.create': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/dishes/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['create']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['create']>>>
+    }
+  }
+  'admin_dishes.store': {
+    methods: ["POST"]
+    pattern: '/dashboard/dishes'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/dishes/dish').createDishValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/dishes/dish').createDishValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'admin_dishes.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/dishes/:id/edit'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['edit']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['edit']>>>
+    }
+  }
+  'admin_dishes.update': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/dishes/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/dishes/dish').updateDishValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/dishes/dish').updateDishValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'admin_dishes.destroy': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/dishes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/dishes/admin_dishes_controller').default['destroy']>>>
+    }
+  }
   'order_status.update': {
     methods: ["PATCH"]
     pattern: '/orders/:id/status'
@@ -353,6 +437,30 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/orders/cancel_order').cancelOrderValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/cancel_order_controller').default['handle']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/cancel_order_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'validate_notice.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/notices'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
+    }
+  }
+  'validate_notice': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/notices/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'client_orders.index': {
@@ -437,30 +545,6 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').createNoticeValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/register_notice_controller').default['handle']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/register_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
-  'validate_notice.render': {
-    methods: ["GET","HEAD"]
-    pattern: '/dashboard/notices'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['render']>>>
-    }
-  }
-  'validate_notice': {
-    methods: ["PATCH"]
-    pattern: '/dashboard/notices/:id'
-    types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: ExtractQuery<InferInput<(typeof import('#validators/notice/notice').validateNoticeValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'session.destroy': {

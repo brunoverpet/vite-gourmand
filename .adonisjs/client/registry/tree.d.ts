@@ -44,6 +44,17 @@ export interface ApiDefinition {
   pictures: typeof routes['pictures'] & {
     destroy: typeof routes['pictures.destroy']
   }
+  menuDishes: {
+    sync: typeof routes['menu_dishes.sync']
+  }
+  adminDishes: {
+    index: typeof routes['admin_dishes.index']
+    create: typeof routes['admin_dishes.create']
+    store: typeof routes['admin_dishes.store']
+    edit: typeof routes['admin_dishes.edit']
+    update: typeof routes['admin_dishes.update']
+    destroy: typeof routes['admin_dishes.destroy']
+  }
   orderStatus: {
     update: typeof routes['order_status.update']
   }
@@ -54,6 +65,9 @@ export interface ApiDefinition {
     update: typeof routes['order_material_loan.update']
   }
   cancelOrder: typeof routes['cancel_order']
+  validateNotice: typeof routes['validate_notice'] & {
+    render: typeof routes['validate_notice.render']
+  }
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']
@@ -65,7 +79,4 @@ export interface ApiDefinition {
     update: typeof routes['profile.update']
   }
   registerNotice: typeof routes['register_notice']
-  validateNotice: typeof routes['validate_notice'] & {
-    render: typeof routes['validate_notice.render']
-  }
 }

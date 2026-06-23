@@ -18,6 +18,7 @@ import type NoticesNoticeTransformer from '#transformers/notices/notice_transfor
 import type OrdersClientOrderTransformer from '#transformers/orders/client_order_transformer'
 import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
 import type PictureTransformer from '#transformers/picture_transformer'
+import type DishesDishAdminTransformer from '#transformers/dishes/dish_admin_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
 export namespace Data {
@@ -76,6 +77,12 @@ export namespace Data {
   export type Picture = InferData<PictureTransformer>
   export namespace Picture {
     export type Variants = InferVariants<PictureTransformer>
+  }
+  export namespace Dishes {
+    export type DishAdmin = InferData<DishesDishAdminTransformer>
+    export namespace DishAdmin {
+      export type Variants = InferVariants<DishesDishAdminTransformer>
+    }
   }
   export type SharedProps = InferSharedProps<InertiaMiddleware>
 }

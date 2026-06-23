@@ -156,6 +156,48 @@ const routes = {
     tokens: [{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":1,"val":"menuId","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"pictures","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['pictures.destroy']['types'],
   },
+  'menu_dishes.sync': {
+    methods: ["PUT"],
+    pattern: '/dashboard/menus/:id/dishes',
+    tokens: [{"old":"/dashboard/menus/:id/dishes","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:id/dishes","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:id/dishes","type":1,"val":"id","end":""},{"old":"/dashboard/menus/:id/dishes","type":0,"val":"dishes","end":""}],
+    types: placeholder as Registry['menu_dishes.sync']['types'],
+  },
+  'admin_dishes.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/dishes',
+    tokens: [{"old":"/dashboard/dishes","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes","type":0,"val":"dishes","end":""}],
+    types: placeholder as Registry['admin_dishes.index']['types'],
+  },
+  'admin_dishes.create': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/dishes/create',
+    tokens: [{"old":"/dashboard/dishes/create","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes/create","type":0,"val":"dishes","end":""},{"old":"/dashboard/dishes/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['admin_dishes.create']['types'],
+  },
+  'admin_dishes.store': {
+    methods: ["POST"],
+    pattern: '/dashboard/dishes',
+    tokens: [{"old":"/dashboard/dishes","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes","type":0,"val":"dishes","end":""}],
+    types: placeholder as Registry['admin_dishes.store']['types'],
+  },
+  'admin_dishes.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/dishes/:id/edit',
+    tokens: [{"old":"/dashboard/dishes/:id/edit","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes/:id/edit","type":0,"val":"dishes","end":""},{"old":"/dashboard/dishes/:id/edit","type":1,"val":"id","end":""},{"old":"/dashboard/dishes/:id/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['admin_dishes.edit']['types'],
+  },
+  'admin_dishes.update': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/dishes/:id',
+    tokens: [{"old":"/dashboard/dishes/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes/:id","type":0,"val":"dishes","end":""},{"old":"/dashboard/dishes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin_dishes.update']['types'],
+  },
+  'admin_dishes.destroy': {
+    methods: ["DELETE"],
+    pattern: '/dashboard/dishes/:id',
+    tokens: [{"old":"/dashboard/dishes/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/dishes/:id","type":0,"val":"dishes","end":""},{"old":"/dashboard/dishes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin_dishes.destroy']['types'],
+  },
   'order_status.update': {
     methods: ["PATCH"],
     pattern: '/orders/:id/status',
@@ -179,6 +221,18 @@ const routes = {
     pattern: '/orders/:id/cancel',
     tokens: [{"old":"/orders/:id/cancel","type":0,"val":"orders","end":""},{"old":"/orders/:id/cancel","type":1,"val":"id","end":""},{"old":"/orders/:id/cancel","type":0,"val":"cancel","end":""}],
     types: placeholder as Registry['cancel_order']['types'],
+  },
+  'validate_notice.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/notices',
+    tokens: [{"old":"/dashboard/notices","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices","type":0,"val":"notices","end":""}],
+    types: placeholder as Registry['validate_notice.render']['types'],
+  },
+  'validate_notice': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/notices/:id',
+    tokens: [{"old":"/dashboard/notices/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices/:id","type":0,"val":"notices","end":""},{"old":"/dashboard/notices/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['validate_notice']['types'],
   },
   'client_orders.index': {
     methods: ["GET","HEAD"],
@@ -221,18 +275,6 @@ const routes = {
     pattern: '/reviews',
     tokens: [{"old":"/reviews","type":0,"val":"reviews","end":""}],
     types: placeholder as Registry['register_notice']['types'],
-  },
-  'validate_notice.render': {
-    methods: ["GET","HEAD"],
-    pattern: '/dashboard/notices',
-    tokens: [{"old":"/dashboard/notices","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices","type":0,"val":"notices","end":""}],
-    types: placeholder as Registry['validate_notice.render']['types'],
-  },
-  'validate_notice': {
-    methods: ["PATCH"],
-    pattern: '/dashboard/notices/:id',
-    tokens: [{"old":"/dashboard/notices/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices/:id","type":0,"val":"notices","end":""},{"old":"/dashboard/notices/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['validate_notice']['types'],
   },
   'session.destroy': {
     methods: ["POST"],

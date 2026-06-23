@@ -21,7 +21,9 @@ export class UploadPictureAction {
       .where('menu_id', menuId)
       .firstOrFail()
 
-    await this.fileService.deleteFile(picture.imagePath)
+    if (!picture.imagePath.startsWith('http')) {
+      await this.fileService.deleteFile(picture.imagePath)
+    }
     await picture.delete()
   }
 }
