@@ -92,8 +92,15 @@ export class MenuService {
     await menu.delete()
   }
 
-  async getAllMenusAdmin() {
-    return await Menu.query().preload('diet').preload('theme').preload('pictures')
+  async getAllMenusAdmin(params: { search?: string; theme?: string; page?: number } = {}) {
+    return await Menu.query()
+      .preload('diet')
+      .preload('theme')
+      .preload('pictures')
+      .if(params.search, (q) => q.whereILike('title', `%${params.search}%`))
+      .if(params.theme, (q) => q.whereHas('theme', (t) => t.where('label', params.theme!)))
+      .orderBy('created_at', 'desc')
+      .paginate(params.page ?? 1, 8)
   }
 
   async getMenuForEdit(id: string) {

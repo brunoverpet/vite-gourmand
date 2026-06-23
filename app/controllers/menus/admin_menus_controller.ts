@@ -15,10 +15,25 @@ export default class AdminMenusController {
     private dishService: DishService
   ) {}
 
-  async index({ inertia }: HttpContext) {
-    const menus = await this.menuService.getAllMenusAdmin()
+  async index({ inertia, request }: HttpContext) {
+    const { search, theme, page } = request.qs()
+    const [paginator, { themes }] = await Promise.all([
+      this.menuService.getAllMenusAdmin({
+        search: search || undefined,
+        theme: theme || undefined,
+        page: page ? Number(page) : undefined,
+      }),
+      this.menuService.getFilters(),
+    ])
     return inertia.render('dashboard/menus/index', {
-      menus: MenuAdminTransformer.transform(menus),
+      menus: MenuAdminTransformer.transform(paginator.all()),
+      themes: ThemeTransformer.transform(themes),
+      meta: {
+        currentPage: paginator.currentPage,
+        lastPage: paginator.lastPage,
+        total: paginator.total,
+      },
+      filters: { search: search ?? '', theme: theme ?? '' },
     })
   }
 
