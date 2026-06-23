@@ -32,8 +32,6 @@ router
 
     router.get('reset-password/:id', [controllers.auth.ResetPassword, 'show'])
     router.post('reset-password/:id', [controllers.auth.ResetPassword, 'handle'])
-
-    router.post('menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
   })
   .use(middleware.guest())
 
@@ -42,6 +40,32 @@ router
     router.on('dashboard').renderInertia('home', {}).as('home')
     router.get('orders/:menuId', [controllers.orders.Order, 'render'])
     router.post('orders', [controllers.orders.Order, 'store'])
+
+    router
+      .get('dashboard/menus', [controllers.menus.AdminMenus, 'index'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .get('dashboard/menus/create', [controllers.menus.AdminMenus, 'create'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .post('dashboard/menus', [controllers.menus.AdminMenus, 'store'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .get('dashboard/menus/:id/edit', [controllers.menus.AdminMenus, 'edit'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .patch('dashboard/menus/:id', [controllers.menus.AdminMenus, 'update'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .delete('dashboard/menus/:id', [controllers.menus.AdminMenus, 'destroy'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+
+    router
+      .post('dashboard/menus/:menuId/pictures', [controllers.menus.Pictures, 'handle'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
+    router
+      .delete('dashboard/menus/:menuId/pictures/:id', [controllers.menus.Pictures, 'destroy'])
+      .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 
     router
       .patch('orders/:id/status', [controllers.orders.OrderStatus, 'update'])

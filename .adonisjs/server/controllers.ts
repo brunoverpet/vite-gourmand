@@ -17,6 +17,7 @@ export const controllers = {
   menus: {
     Menus: () => import('#controllers/menus/menus_controller'),
     Pictures: () => import('#controllers/menus/pictures_controller'),
+    AdminMenus: () => import('#controllers/menus/admin_menus_controller'),
   },
   notice: {
     RegisterNotice: () => import('#controllers/notice/register_notice_controller'),

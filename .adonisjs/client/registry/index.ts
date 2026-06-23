@@ -90,12 +90,6 @@ const routes = {
     tokens: [{"old":"/reset-password/:id","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['reset_password']['types'],
   },
-  'pictures': {
-    methods: ["POST"],
-    pattern: '/menus/:menuId/pictures',
-    tokens: [{"old":"/menus/:menuId/pictures","type":0,"val":"menus","end":""},{"old":"/menus/:menuId/pictures","type":1,"val":"menuId","end":""},{"old":"/menus/:menuId/pictures","type":0,"val":"pictures","end":""}],
-    types: placeholder as Registry['pictures']['types'],
-  },
   'home': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard',
@@ -113,6 +107,54 @@ const routes = {
     pattern: '/orders',
     tokens: [{"old":"/orders","type":0,"val":"orders","end":""}],
     types: placeholder as Registry['order.store']['types'],
+  },
+  'admin_menus.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/menus',
+    tokens: [{"old":"/dashboard/menus","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus","type":0,"val":"menus","end":""}],
+    types: placeholder as Registry['admin_menus.index']['types'],
+  },
+  'admin_menus.create': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/menus/create',
+    tokens: [{"old":"/dashboard/menus/create","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/create","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['admin_menus.create']['types'],
+  },
+  'admin_menus.store': {
+    methods: ["POST"],
+    pattern: '/dashboard/menus',
+    tokens: [{"old":"/dashboard/menus","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus","type":0,"val":"menus","end":""}],
+    types: placeholder as Registry['admin_menus.store']['types'],
+  },
+  'admin_menus.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/menus/:id/edit',
+    tokens: [{"old":"/dashboard/menus/:id/edit","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:id/edit","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:id/edit","type":1,"val":"id","end":""},{"old":"/dashboard/menus/:id/edit","type":0,"val":"edit","end":""}],
+    types: placeholder as Registry['admin_menus.edit']['types'],
+  },
+  'admin_menus.update': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/menus/:id',
+    tokens: [{"old":"/dashboard/menus/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:id","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin_menus.update']['types'],
+  },
+  'admin_menus.destroy': {
+    methods: ["DELETE"],
+    pattern: '/dashboard/menus/:id',
+    tokens: [{"old":"/dashboard/menus/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:id","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['admin_menus.destroy']['types'],
+  },
+  'pictures': {
+    methods: ["POST"],
+    pattern: '/dashboard/menus/:menuId/pictures',
+    tokens: [{"old":"/dashboard/menus/:menuId/pictures","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:menuId/pictures","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:menuId/pictures","type":1,"val":"menuId","end":""},{"old":"/dashboard/menus/:menuId/pictures","type":0,"val":"pictures","end":""}],
+    types: placeholder as Registry['pictures']['types'],
+  },
+  'pictures.destroy': {
+    methods: ["DELETE"],
+    pattern: '/dashboard/menus/:menuId/pictures/:id',
+    tokens: [{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"menus","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":1,"val":"menuId","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":0,"val":"pictures","end":""},{"old":"/dashboard/menus/:menuId/pictures/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['pictures.destroy']['types'],
   },
   'order_status.update': {
     methods: ["PATCH"],

@@ -15,4 +15,9 @@ export default class PicturesController {
     session.flash('success', 'Photo ajoutée avec succès')
     return response.redirect().back()
   }
+
+  async destroy({ params, response }: HttpContext) {
+    await this.uploadPictureAction.delete(params.id, params.menuId)
+    return response.redirect().back()
+  }
 }

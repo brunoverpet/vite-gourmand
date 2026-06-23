@@ -18,10 +18,17 @@ export type ScannedRoutes = {
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'order.store': { paramsTuple?: []; params?: {} }
+    'admin_menus.index': { paramsTuple?: []; params?: {} }
+    'admin_menus.create': { paramsTuple?: []; params?: {} }
+    'admin_menus.store': { paramsTuple?: []; params?: {} }
+    'admin_menus.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin_menus.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin_menus.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
+    'pictures.destroy': { paramsTuple: [ParamValue,ParamValue]; params: {'menuId': ParamValue,'id': ParamValue} }
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'order_material_loan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -49,6 +56,9 @@ export type ScannedRoutes = {
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
+    'admin_menus.index': { paramsTuple?: []; params?: {} }
+    'admin_menus.create': { paramsTuple?: []; params?: {} }
+    'admin_menus.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -67,6 +77,9 @@ export type ScannedRoutes = {
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
+    'admin_menus.index': { paramsTuple?: []; params?: {} }
+    'admin_menus.create': { paramsTuple?: []; params?: {} }
+    'admin_menus.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -79,12 +92,14 @@ export type ScannedRoutes = {
     'session': { paramsTuple?: []; params?: {} }
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'order.store': { paramsTuple?: []; params?: {} }
+    'admin_menus.store': { paramsTuple?: []; params?: {} }
+    'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'register_notice': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
   PATCH: {
+    'admin_menus.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'order_status.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'order_material_loan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'cancel_order': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -93,6 +108,8 @@ export type ScannedRoutes = {
     'validate_notice': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
+    'admin_menus.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pictures.destroy': { paramsTuple: [ParamValue,ParamValue]; params: {'menuId': ParamValue,'id': ParamValue} }
     'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }

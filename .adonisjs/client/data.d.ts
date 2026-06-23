@@ -13,6 +13,7 @@ import type MenusDishTransformer from '#transformers/menus/dish_transformer'
 import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
+import type MenusMenuAdminTransformer from '#transformers/menus/menu_admin_transformer'
 import type NoticesNoticeTransformer from '#transformers/notices/notice_transformer'
 import type OrdersClientOrderTransformer from '#transformers/orders/client_order_transformer'
 import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
@@ -50,6 +51,10 @@ export namespace Data {
     export type Theme = InferData<MenusThemeTransformer>
     export namespace Theme {
       export type Variants = InferVariants<MenusThemeTransformer>
+    }
+    export type MenuAdmin = InferData<MenusMenuAdminTransformer>
+    export namespace MenuAdmin {
+      export type Variants = InferVariants<MenusMenuAdminTransformer>
     }
   }
   export namespace Notices {

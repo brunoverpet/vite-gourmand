@@ -28,11 +28,21 @@ export interface ApiDefinition {
   resetPassword: typeof routes['reset_password'] & {
     show: typeof routes['reset_password.show']
   }
-  pictures: typeof routes['pictures']
   home: typeof routes['home']
   order: {
     render: typeof routes['order.render']
     store: typeof routes['order.store']
+  }
+  adminMenus: {
+    index: typeof routes['admin_menus.index']
+    create: typeof routes['admin_menus.create']
+    store: typeof routes['admin_menus.store']
+    edit: typeof routes['admin_menus.edit']
+    update: typeof routes['admin_menus.update']
+    destroy: typeof routes['admin_menus.destroy']
+  }
+  pictures: typeof routes['pictures'] & {
+    destroy: typeof routes['pictures.destroy']
   }
   orderStatus: {
     update: typeof routes['order_status.update']

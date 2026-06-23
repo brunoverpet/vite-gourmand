@@ -175,18 +175,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'pictures': {
-    methods: ["POST"]
-    pattern: '/menus/:menuId/pictures'
-    types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/menus/picture').uploadPictureValidator)>>
-      paramsTuple: [ParamValue]
-      params: { menuId: ParamValue }
-      query: ExtractQuery<InferInput<(typeof import('#validators/menus/picture').uploadPictureValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['handle']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
   'home': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard'
@@ -221,6 +209,102 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/orders/order').createOrderValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/orders/order_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'admin_menus.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/menus'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['index']>>>
+    }
+  }
+  'admin_menus.create': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/menus/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['create']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['create']>>>
+    }
+  }
+  'admin_menus.store': {
+    methods: ["POST"]
+    pattern: '/dashboard/menus'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/menus/menu').createMenuValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/menus/menu').createMenuValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'admin_menus.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/menus/:id/edit'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['edit']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['edit']>>>
+    }
+  }
+  'admin_menus.update': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/menus/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/menus/menu').updateMenuValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/menus/menu').updateMenuValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'admin_menus.destroy': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/menus/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/admin_menus_controller').default['destroy']>>>
+    }
+  }
+  'pictures': {
+    methods: ["POST"]
+    pattern: '/dashboard/menus/:menuId/pictures'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/menus/picture').uploadPictureValidator)>>
+      paramsTuple: [ParamValue]
+      params: { menuId: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/menus/picture').uploadPictureValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'pictures.destroy': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/menus/:menuId/pictures/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue, ParamValue]
+      params: { menuId: ParamValue; id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/menus/pictures_controller').default['destroy']>>>
     }
   }
   'order_status.update': {
