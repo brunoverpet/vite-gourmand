@@ -1,4 +1,5 @@
 import { Badge } from '~/components/ui/badge'
+import { imageUrl } from '~/lib/utils'
 import type { Data } from '@generated/data'
 
 const DISH_TYPE_LABELS: Record<string, string> = {
@@ -28,7 +29,7 @@ export function MenuComposition({ dishesByType }: Props) {
                 <li key={dish.id} className="flex gap-4 items-start">
                   <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 transition-transform duration-500 hover:scale-[1.3]">
                     <img
-                      src={dish.photoPath}
+                      src={imageUrl(dish.photoPath) ?? ''}
                       alt={dish.title}
                       className="w-full h-full object-cover"
                     />

@@ -1,6 +1,7 @@
 import CardMenu from '~/components/menu/card-menu'
 import CardMenuSkeleton from '~/components/menu/card-menu-skeleton'
 import { EmptyState } from '~/components/ui/empty-state'
+import { imageUrl } from '~/lib/utils'
 import type { Data } from '@generated/data'
 
 type Props = {
@@ -47,7 +48,7 @@ export function MenuCardsGrid({ menus, loading, loadingType, gridClass, skeleton
             tags={[menu.theme.label, menu.diet.label]}
             image={
               menu.pictures?.[0]
-                ? `/uploads/${menu.pictures[0].imagePath}`
+                ? (imageUrl(menu.pictures[0].imagePath) ?? 'https://placehold.co/600x400')
                 : 'https://placehold.co/600x400'
             }
           />

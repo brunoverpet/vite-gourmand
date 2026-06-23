@@ -1,3 +1,4 @@
+import { imageUrl as buildImageUrl } from '~/lib/utils'
 import type { Data } from '@generated/data'
 
 type Props = {
@@ -8,12 +9,12 @@ type Props = {
 }
 
 export function MenuGallery({ pictures, activeImage, alt, onSelect }: Props) {
-  const imageUrl = activeImage ? `/uploads/${activeImage}` : 'https://placehold.co/800x600'
+  const imageSrc = activeImage ? (buildImageUrl(activeImage) ?? '') : 'https://placehold.co/800x600'
 
   return (
     <div className="md:sticky md:top-24 md:self-start">
       <div className="aspect-4/3 rounded-2xl overflow-hidden bg-muted">
-        <img src={imageUrl} alt={alt} className="w-full h-full object-cover" />
+        <img src={imageSrc} alt={alt} className="w-full h-full object-cover" />
       </div>
 
       {pictures && pictures.length > 1 && (
@@ -27,7 +28,7 @@ export function MenuGallery({ pictures, activeImage, alt, onSelect }: Props) {
               }`}
             >
               <img
-                src={`/uploads/${pic.imagePath}`}
+                src={buildImageUrl(pic.imagePath) ?? ''}
                 alt=""
                 className="w-full h-full object-cover"
               />
