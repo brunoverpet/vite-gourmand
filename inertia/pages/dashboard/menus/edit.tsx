@@ -1,16 +1,18 @@
+import { useState } from 'react'
 import { Link } from '@adonisjs/inertia/react'
-import { ChevronLeftIcon } from 'lucide-react'
+import { ChevronLeftIcon, TrashIcon } from 'lucide-react'
 import { MenuForm } from '~/components/dashboard/menus/menu-form'
 import { PictureUpload } from '~/components/dashboard/menus/picture-upload'
-import { DishList } from '~/components/dashboard/menus/dish-list'
+import { DishPicker } from '~/components/dashboard/menus/dish-picker'
+import { MenuDeleteDialog } from '~/components/dashboard/menus/menu-delete-dialog'
 import { Separator } from '~/components/ui/separator'
+import { Button } from '~/components/ui/button'
 import type { InertiaProps } from '~/types'
-import type { DishFormItem } from '~/components/dashboard/menus/dish-form-dialog'
 
 type Diet = { id: string; label: string }
 type Theme = { id: string; label: string }
-type Allergen = { id: string; label: string }
 type Picture = { id: string; imagePath: string }
+type Dish = { id: string; title: string; photoPath: string | null }
 
 type MenuEdit = {
   id: string
@@ -23,17 +25,23 @@ type MenuEdit = {
   diet: Diet
   theme: Theme
   pictures?: Picture[]
-  dishes?: DishFormItem[]
 }
 
 type EditProps = InertiaProps<{
   menu: MenuEdit
+  selectedDishIds: string[]
   diets: Diet[]
   themes: Theme[]
-  allergens: Allergen[]
+  dishes: {
+    entrées: Dish[]
+    plats: Dish[]
+    desserts: Dish[]
+  }
 }>
 
-export default function MenusEdit({ menu, diets, themes, allergens }: EditProps) {
+export default function MenusEdit({ menu, selectedDishIds, diets, themes, dishes }: EditProps) {
+  const [deleteOpen, setDeleteOpen] = useState(false)
+
   return (
     <div className="space-y-8">
       <div>
@@ -44,7 +52,13 @@ export default function MenusEdit({ menu, diets, themes, allergens }: EditProps)
           <ChevronLeftIcon className="size-4" />
           Retour aux menus
         </Link>
-        <h1 className="text-2xl font-semibold">{menu.title}</h1>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="text-2xl font-semibold">{menu.title}</h1>
+          <Button variant="destructive" size="sm" onClick={() => setDeleteOpen(true)}>
+            <TrashIcon className="size-4" />
+            <span className="hidden sm:inline">Supprimer</span>
+          </Button>
+        </div>
       </div>
 
       <div className="lg:flex lg:gap-10 lg:items-start">
@@ -58,9 +72,18 @@ export default function MenusEdit({ menu, diets, themes, allergens }: EditProps)
 
       <Separator />
 
-      <div className="max-w-2xl">
-        <DishList menuId={menu.id} dishes={menu.dishes ?? []} allergens={allergens} />
-      </div>
+      <DishPicker
+        menuId={menu.id}
+        dishes={dishes}
+        selectedIds={selectedDishIds}
+      />
+
+      <MenuDeleteDialog
+        menuId={menu.id}
+        menuTitle={menu.title}
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+      />
     </div>
   )
 }

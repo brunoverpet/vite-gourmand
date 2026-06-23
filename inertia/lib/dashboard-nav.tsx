@@ -1,5 +1,6 @@
 import {
   BarChart2Icon,
+  ChefHatIcon,
   ClipboardListIcon,
   ClockIcon,
   ShoppingBagIcon,
@@ -34,7 +35,8 @@ export const EMPLOYEE_NAV: NavGroupDef[] = [
   {
     label: 'Catalogue',
     items: [
-      { href: '/dashboard/menus', icon: <UtensilsIcon />, label: 'Menus & plats' },
+      { href: '/dashboard/menus', icon: <UtensilsIcon />, label: 'Menus' },
+      { href: '/dashboard/dishes', icon: <ChefHatIcon />, label: 'Plats' },
       { href: '/dashboard/schedules', icon: <ClockIcon />, label: 'Horaires' },
     ],
   },
