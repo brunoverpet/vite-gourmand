@@ -1,4 +1,5 @@
 import { MenuSchema } from '#database/schema'
+import Allergen from '#models/allergen'
 import Diet from '#models/diet'
 import Dish from '#models/dish'
 import Picture from '#models/picture'
@@ -9,6 +10,9 @@ import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relat
 export default class Menu extends MenuSchema {
   @belongsTo(() => Diet)
   declare diet: BelongsTo<typeof Diet>
+
+  @hasMany(() => Allergen)
+  declare allergens: HasMany<typeof Allergen>
 
   @belongsTo(() => Theme)
   declare theme: BelongsTo<typeof Theme>

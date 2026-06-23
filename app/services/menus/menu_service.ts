@@ -1,6 +1,7 @@
 import Diet from '#models/diet'
 import Menu from '#models/menu'
 import Theme from '#models/theme'
+import type { CreateMenuPayload, UpdateMenuPayload } from '#validators/menus/menu'
 
 type MenuFilters = {
   diet?: string[]
@@ -54,5 +55,54 @@ export class MenuService {
   async getFilters() {
     const [diets, themes] = await Promise.all([Diet.all(), Theme.all()])
     return { diets, themes }
+  }
+
+  async createMenu(payload: CreateMenuPayload) {
+    return await Menu.create({
+      title: payload.title,
+      description: payload.description,
+      conditions: payload.conditions ?? null,
+      minPeople: payload.min_people,
+      pricePerPeople: payload.price_per_people.toString(),
+      stock: payload.stock,
+      dietId: payload.diet_id,
+      themeId: payload.theme_id,
+    })
+  }
+
+  async updateMenu(id: string, payload: UpdateMenuPayload) {
+    const menu = await Menu.findOrFail(id)
+    return await menu
+      .merge({
+        title: payload.title,
+        description: payload.description,
+        conditions: payload.conditions ?? null,
+        minPeople: payload.min_people,
+        pricePerPeople: payload.price_per_people?.toString(),
+        stock: payload.stock,
+        dietId: payload.diet_id,
+        themeId: payload.theme_id,
+      })
+      .save()
+  }
+
+  async deleteMenu(id: string) {
+    const menu = await this.getMenuById(id)
+
+    await menu.delete()
+  }
+
+  async getAllMenusAdmin() {
+    return await Menu.query().preload('diet').preload('theme').preload('pictures')
+  }
+
+  async getMenuForEdit(id: string) {
+    return await Menu.query()
+      .where('id', id)
+      .preload('diet')
+      .preload('theme')
+      .preload('pictures')
+      .preload('dishes', (q) => q.preload('allergens'))
+      .firstOrFail()
   }
 }
