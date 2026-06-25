@@ -1,4 +1,5 @@
 import NavLink from '~/components/nav/nav-link'
+import { FooterOpeningHours } from '~/components/footer/footer-opening-hours'
 
 type FooterProps = {}
 
@@ -23,12 +24,8 @@ export default function Footer({}: FooterProps) {
         Traiteur événementiel à Bordeaux depuis 2001.
       </p>
       <hr className="mx-auto border-border w-1/2 my-4 md:w-1/12" />
-      <div className="md:flex gap-6 justify-center">
-        <div>
-          <h5 className="text-label-caps text-primary-foreground/60 my-1">Horaires</h5>
-          <p>Lun – Ven : 9h – 18h</p>
-          <p>Sam – Dim : 10h – 16h</p>
-        </div>
+      <div className="md:flex gap-20 justify-center">
+        <FooterOpeningHours />
         <hr className="mx-auto border-border w-1/2 my-4 md:hidden" />
         <div>
           <h5 className="text-label-caps text-primary-foreground/60 my-1">Navigation</h5>
