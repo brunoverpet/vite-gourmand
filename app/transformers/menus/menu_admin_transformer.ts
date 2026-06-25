@@ -19,7 +19,9 @@ export default class MenuAdminTransformer extends BaseTransformer<Menu> {
       ]),
       diet: DietTransformer.transform(this.resource.diet),
       theme: ThemeTransformer.transform(this.resource.theme),
-      pictures: PictureTransformer.transform((this.resource.pictures as unknown as Picture[]) ?? []),
+      pictures: PictureTransformer.transform(
+        (this.resource.pictures as unknown as Picture[]) ?? []
+      ),
     }
   }
 }
