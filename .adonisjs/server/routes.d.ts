@@ -44,6 +44,9 @@ export type ScannedRoutes = {
     'validate_notice': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'opening_hours.render': { paramsTuple?: []; params?: {} }
     'opening_hours.update': { paramsTuple?: []; params?: {} }
+    'admin_employees.index': { paramsTuple?: []; params?: {} }
+    'admin_employees.create': { paramsTuple?: []; params?: {} }
+    'admin_employees.store': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -74,6 +77,8 @@ export type ScannedRoutes = {
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'validate_notice.render': { paramsTuple?: []; params?: {} }
     'opening_hours.render': { paramsTuple?: []; params?: {} }
+    'admin_employees.index': { paramsTuple?: []; params?: {} }
+    'admin_employees.create': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -99,6 +104,8 @@ export type ScannedRoutes = {
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'validate_notice.render': { paramsTuple?: []; params?: {} }
     'opening_hours.render': { paramsTuple?: []; params?: {} }
+    'admin_employees.index': { paramsTuple?: []; params?: {} }
+    'admin_employees.create': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -113,6 +120,7 @@ export type ScannedRoutes = {
     'admin_menus.store': { paramsTuple?: []; params?: {} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'admin_dishes.store': { paramsTuple?: []; params?: {} }
+    'admin_employees.store': { paramsTuple?: []; params?: {} }
     'register_notice': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }

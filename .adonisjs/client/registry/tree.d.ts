@@ -72,6 +72,11 @@ export interface ApiDefinition {
     render: typeof routes['opening_hours.render']
     update: typeof routes['opening_hours.update']
   }
+  adminEmployees: {
+    index: typeof routes['admin_employees.index']
+    create: typeof routes['admin_employees.create']
+    store: typeof routes['admin_employees.store']
+  }
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']

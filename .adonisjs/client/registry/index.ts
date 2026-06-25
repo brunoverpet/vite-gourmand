@@ -246,6 +246,24 @@ const routes = {
     tokens: [{"old":"/dashboard/opening-hours","type":0,"val":"dashboard","end":""},{"old":"/dashboard/opening-hours","type":0,"val":"opening-hours","end":""}],
     types: placeholder as Registry['opening_hours.update']['types'],
   },
+  'admin_employees.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/employees',
+    tokens: [{"old":"/dashboard/employees","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees","type":0,"val":"employees","end":""}],
+    types: placeholder as Registry['admin_employees.index']['types'],
+  },
+  'admin_employees.create': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/employees/create',
+    tokens: [{"old":"/dashboard/employees/create","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees/create","type":0,"val":"employees","end":""},{"old":"/dashboard/employees/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['admin_employees.create']['types'],
+  },
+  'admin_employees.store': {
+    methods: ["POST"],
+    pattern: '/dashboard/employees',
+    tokens: [{"old":"/dashboard/employees","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees","type":0,"val":"employees","end":""}],
+    types: placeholder as Registry['admin_employees.store']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

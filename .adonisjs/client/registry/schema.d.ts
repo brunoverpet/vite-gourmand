@@ -487,6 +487,42 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/opening_hours/opening_hours_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'admin_employees.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/employees'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['index']>>>
+    }
+  }
+  'admin_employees.create': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/employees/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['create']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['create']>>>
+    }
+  }
+  'admin_employees.store': {
+    methods: ["POST"]
+    pattern: '/dashboard/employees'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/user').adminCreateEmployeValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/user').adminCreateEmployeValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'client_orders.index': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/my-orders'

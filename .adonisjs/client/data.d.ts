@@ -7,19 +7,19 @@
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 import type AuthUserTransformer from '#transformers/auth/user_transformer'
+import type DishesDishAdminTransformer from '#transformers/dishes/dish_admin_transformer'
 import type MenusAllergenTransformer from '#transformers/menus/allergen_transformer'
 import type MenusDietTransformer from '#transformers/menus/diet_transformer'
 import type MenusDishTransformer from '#transformers/menus/dish_transformer'
+import type MenusMenuAdminTransformer from '#transformers/menus/menu_admin_transformer'
 import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
 import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
 import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
-import type MenusMenuAdminTransformer from '#transformers/menus/menu_admin_transformer'
 import type NoticesNoticeTransformer from '#transformers/notices/notice_transformer'
+import type OpeningHoursOpeningHoursTransformer from '#transformers/opening_hours/opening_hours_transformer'
 import type OrdersClientOrderTransformer from '#transformers/orders/client_order_transformer'
 import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
 import type PictureTransformer from '#transformers/picture_transformer'
-import type DishesDishAdminTransformer from '#transformers/dishes/dish_admin_transformer'
-import type OpeningHoursOpeningHoursTransformer from '#transformers/opening_hours/opening_hours_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
 export namespace Data {
@@ -27,6 +27,12 @@ export namespace Data {
     export type User = InferData<AuthUserTransformer>
     export namespace User {
       export type Variants = InferVariants<AuthUserTransformer>
+    }
+  }
+  export namespace Dishes {
+    export type DishAdmin = InferData<DishesDishAdminTransformer>
+    export namespace DishAdmin {
+      export type Variants = InferVariants<DishesDishAdminTransformer>
     }
   }
   export namespace Menus {
@@ -42,6 +48,10 @@ export namespace Data {
     export namespace Dish {
       export type Variants = InferVariants<MenusDishTransformer>
     }
+    export type MenuAdmin = InferData<MenusMenuAdminTransformer>
+    export namespace MenuAdmin {
+      export type Variants = InferVariants<MenusMenuAdminTransformer>
+    }
     export type MenuDetail = InferData<MenusMenuDetailTransformer>
     export namespace MenuDetail {
       export type Variants = InferVariants<MenusMenuDetailTransformer>
@@ -54,15 +64,17 @@ export namespace Data {
     export namespace Theme {
       export type Variants = InferVariants<MenusThemeTransformer>
     }
-    export type MenuAdmin = InferData<MenusMenuAdminTransformer>
-    export namespace MenuAdmin {
-      export type Variants = InferVariants<MenusMenuAdminTransformer>
-    }
   }
   export namespace Notices {
     export type Notice = InferData<NoticesNoticeTransformer>
     export namespace Notice {
       export type Variants = InferVariants<NoticesNoticeTransformer>
+    }
+  }
+  export namespace OpeningHours {
+    export type OpeningHours = InferData<OpeningHoursOpeningHoursTransformer>
+    export namespace OpeningHours {
+      export type Variants = InferVariants<OpeningHoursOpeningHoursTransformer>
     }
   }
   export namespace Orders {
@@ -78,18 +90,6 @@ export namespace Data {
   export type Picture = InferData<PictureTransformer>
   export namespace Picture {
     export type Variants = InferVariants<PictureTransformer>
-  }
-  export namespace Dishes {
-    export type DishAdmin = InferData<DishesDishAdminTransformer>
-    export namespace DishAdmin {
-      export type Variants = InferVariants<DishesDishAdminTransformer>
-    }
-  }
-  export namespace OpeningHours {
-    export type OpeningHours = InferData<OpeningHoursOpeningHoursTransformer>
-    export namespace OpeningHours {
-      export type Variants = InferVariants<OpeningHoursOpeningHoursTransformer>
-    }
   }
   export type SharedProps = InferSharedProps<InertiaMiddleware>
 }

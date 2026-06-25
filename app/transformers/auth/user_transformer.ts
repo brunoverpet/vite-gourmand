@@ -19,4 +19,9 @@ export default class UserTransformer extends BaseTransformer<User> {
       role: this.resource.$preloaded['role'] ? (this.resource.role as unknown as Role).label : null,
     }
   }
+  async forEmploye() {
+    return {
+      ...this.omit(this.toObject(), ['address', 'city', 'phone']),
+    }
+  }
 }

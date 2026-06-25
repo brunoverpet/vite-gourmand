@@ -1,4 +1,3 @@
-import { Roles } from '#enums/roles'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import type { Infer } from '@vinejs/vine/types'
 
@@ -56,15 +55,11 @@ registerValidator.messagesProvider = sharedMessages
 /**
  * Validator for backoffice user creation (Admin/Manager)
  */
-export const adminCreateUserValidator = vine.create({
+export const adminCreateEmployeValidator = vine.create({
   ...sharedUserSchema,
   email: email().unique({ table: 'users', column: 'email' }),
-  password: password().confirmed({
-    confirmationField: 'passwordConfirmation',
-  }),
-  roleLabel: vine.enum(Object.values(Roles)),
 })
-adminCreateUserValidator.messagesProvider = sharedMessages
+adminCreateEmployeValidator.messagesProvider = sharedMessages
 
 /**
  * Validator for client profile update (nom, prénom, email, téléphone)
@@ -91,5 +86,5 @@ updateProfileValidator.messagesProvider = sharedMessages
 // 4. EXPORTED TYPES
 // =============================================================================
 export type RegisterPayload = Infer<typeof registerValidator>
-export type AdminCreateUserPayload = Infer<typeof adminCreateUserValidator>
+export type AdminCreateEmployePayload = Infer<typeof adminCreateEmployeValidator>
 export type UpdateProfilePayload = Infer<typeof updateProfileValidator>

@@ -13,16 +13,22 @@ export const controllers = {
   contact: {
     Contact: () => import('#controllers/contact/contact_controller'),
   },
+  dishes: {
+    AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
+  },
   HomePublic: () => import('#controllers/home_public_controller'),
   menus: {
-    Menus: () => import('#controllers/menus/menus_controller'),
-    Pictures: () => import('#controllers/menus/pictures_controller'),
     AdminMenus: () => import('#controllers/menus/admin_menus_controller'),
     MenuDishes: () => import('#controllers/menus/menu_dishes_controller'),
+    Menus: () => import('#controllers/menus/menus_controller'),
+    Pictures: () => import('#controllers/menus/pictures_controller'),
   },
   notice: {
     RegisterNotice: () => import('#controllers/notice/register_notice_controller'),
     ValidateNotice: () => import('#controllers/notice/validate_notice_controller'),
+  },
+  openingHours: {
+    OpeningHours: () => import('#controllers/opening_hours/opening_hours_controller'),
   },
   orders: {
     CancelOrder: () => import('#controllers/orders/cancel_order_controller'),
@@ -35,10 +41,7 @@ export const controllers = {
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),
   },
-  dishes: {
-    AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
-  },
-  openingHours: {
-    OpeningHours: () => import('#controllers/opening_hours/opening_hours_controller'),
+  employees: {
+    AdminEmployees: () => import('#controllers/employees/admin_employees_controller'),
   },
 }
