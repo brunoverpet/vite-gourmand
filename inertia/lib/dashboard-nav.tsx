@@ -37,7 +37,7 @@ export const EMPLOYEE_NAV: NavGroupDef[] = [
     items: [
       { href: '/dashboard/menus', icon: <UtensilsIcon />, label: 'Menus' },
       { href: '/dashboard/dishes', icon: <ChefHatIcon />, label: 'Plats' },
-      { href: '/dashboard/schedules', icon: <ClockIcon />, label: 'Horaires' },
+      { href: '/dashboard/opening-hours', icon: <ClockIcon />, label: 'Horaires' },
     ],
   },
   {

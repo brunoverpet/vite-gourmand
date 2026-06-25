@@ -156,6 +156,33 @@ export class NoticeSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class OpeningHourSchema extends BaseModel {
+  static $columns = [
+    'closeTime',
+    'createdAt',
+    'dayOfWeek',
+    'id',
+    'isClosed',
+    'openTime',
+    'updatedAt',
+  ] as const
+  $columns = OpeningHourSchema.$columns
+  @column()
+  declare closeTime: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dayOfWeek: number
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare isClosed: boolean | null
+  @column()
+  declare openTime: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class OrderStatusHistorySchema extends BaseModel {
   static $columns = ['changedAt', 'createdAt', 'id', 'orderId', 'status', 'updatedAt'] as const
   $columns = OrderStatusHistorySchema.$columns

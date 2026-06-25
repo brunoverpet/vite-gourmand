@@ -42,6 +42,8 @@ export type ScannedRoutes = {
     'cancel_order': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'validate_notice.render': { paramsTuple?: []; params?: {} }
     'validate_notice': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'opening_hours.render': { paramsTuple?: []; params?: {} }
+    'opening_hours.update': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -71,6 +73,7 @@ export type ScannedRoutes = {
     'admin_dishes.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'validate_notice.render': { paramsTuple?: []; params?: {} }
+    'opening_hours.render': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -95,6 +98,7 @@ export type ScannedRoutes = {
     'admin_dishes.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders_management.index': { paramsTuple?: []; params?: {} }
     'validate_notice.render': { paramsTuple?: []; params?: {} }
+    'opening_hours.render': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -130,6 +134,7 @@ export type ScannedRoutes = {
   }
   PUT: {
     'menu_dishes.sync': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'opening_hours.update': { paramsTuple?: []; params?: {} }
   }
 }
 declare module '@adonisjs/core/types/http' {

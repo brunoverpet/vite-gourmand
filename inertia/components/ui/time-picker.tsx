@@ -1,13 +1,14 @@
 import { Clock } from 'lucide-react'
 import { Button } from '~/components/ui/button'
+import { FormSelect } from '~/components/ui/form-select'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
+
+const HOUR_OPTIONS = Array.from({ length: 15 }, (_, i) => {
+  const h = String(i + 8).padStart(2, '0')
+  return { value: h, label: `${h}h` }
+})
+
+const MINUTE_OPTIONS = ['00', '15', '30', '45'].map((m) => ({ value: m, label: `${m} min` }))
 
 type Props = {
   hour: string
@@ -31,30 +32,18 @@ export function TimePicker({ hour, minute, onHourChange, onMinuteChange }: Props
       </PopoverTrigger>
       <PopoverContent className="w-auto p-4" align="start">
         <div className="flex gap-3">
-          <Select value={hour} onValueChange={onHourChange}>
-            <SelectTrigger className="w-24">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Array.from({ length: 15 }, (_, i) => String(i + 8).padStart(2, '0')).map((h) => (
-                <SelectItem key={h} value={h}>
-                  {h}h
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={minute} onValueChange={onMinuteChange}>
-            <SelectTrigger className="w-24">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {['00', '15', '30', '45'].map((m) => (
-                <SelectItem key={m} value={m}>
-                  {m} min
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <FormSelect
+            value={hour}
+            onValueChange={onHourChange}
+            options={HOUR_OPTIONS}
+            className="w-24"
+          />
+          <FormSelect
+            value={minute}
+            onValueChange={onMinuteChange}
+            options={MINUTE_OPTIONS}
+            className="w-24"
+          />
         </div>
       </PopoverContent>
     </Popover>

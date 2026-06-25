@@ -32,8 +32,9 @@ declare module '@adonisjs/inertia/types' {
     'dashboard/menus/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/menus/index.tsx'))['default']>
     'dashboard/menus/create': ExtractProps<(typeof import('../../inertia/pages/dashboard/menus/create.tsx'))['default']>
     'dashboard/menus/edit': ExtractProps<(typeof import('../../inertia/pages/dashboard/menus/edit.tsx'))['default']>
-    'dashboard/dishes/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/dishes/index.tsx'))['default']>
     'dashboard/dishes/create': ExtractProps<(typeof import('../../inertia/pages/dashboard/dishes/create.tsx'))['default']>
     'dashboard/dishes/edit': ExtractProps<(typeof import('../../inertia/pages/dashboard/dishes/edit.tsx'))['default']>
+    'dashboard/dishes/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/dishes/index.tsx'))['default']>
+    'dashboard/opening_hours/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/opening_hours/index.tsx'))['default']>
   }
 }

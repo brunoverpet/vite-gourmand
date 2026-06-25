@@ -68,6 +68,10 @@ export interface ApiDefinition {
   validateNotice: typeof routes['validate_notice'] & {
     render: typeof routes['validate_notice.render']
   }
+  openingHours: {
+    render: typeof routes['opening_hours.render']
+    update: typeof routes['opening_hours.update']
+  }
   clientOrders: {
     index: typeof routes['client_orders.index']
     show: typeof routes['client_orders.show']

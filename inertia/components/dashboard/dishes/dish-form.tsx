@@ -148,10 +148,7 @@ export function DishForm({ allergens, dish }: Props) {
             <p className="text-sm font-medium">Allergènes</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {allergens.map((allergen) => (
-                <label
-                  key={allergen.id}
-                  className="flex items-center gap-2 text-sm cursor-pointer"
-                >
+                <label key={allergen.id} className="flex items-center gap-2 text-sm cursor-pointer">
                   <Checkbox
                     checked={form.data.allergen_ids.includes(allergen.id)}
                     onCheckedChange={() => toggleAllergen(allergen.id)}

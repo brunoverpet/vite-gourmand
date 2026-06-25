@@ -463,6 +463,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/notice/validate_notice_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'opening_hours.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/opening-hours'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/opening_hours/opening_hours_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/opening_hours/opening_hours_controller').default['render']>>>
+    }
+  }
+  'opening_hours.update': {
+    methods: ["PUT"]
+    pattern: '/dashboard/opening-hours'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/opening_hours/opening_hours').updateOpeningHoursValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/opening_hours/opening_hours').updateOpeningHoursValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/opening_hours/opening_hours_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/opening_hours/opening_hours_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'client_orders.index': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/my-orders'

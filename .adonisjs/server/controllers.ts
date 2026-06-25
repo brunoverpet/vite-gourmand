@@ -38,4 +38,7 @@ export const controllers = {
   dishes: {
     AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
   },
+  openingHours: {
+    OpeningHours: () => import('#controllers/opening_hours/opening_hours_controller'),
+  },
 }

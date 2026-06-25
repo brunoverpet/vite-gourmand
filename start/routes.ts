@@ -71,6 +71,9 @@ router
 
         router.get('dashboard/notices', [controllers.notice.ValidateNotice, 'render'])
         router.patch('dashboard/notices/:id', [controllers.notice.ValidateNotice, 'handle'])
+
+        router.get('dashboard/opening-hours', [controllers.openingHours.OpeningHours, 'render'])
+        router.put('dashboard/opening-hours', [controllers.openingHours.OpeningHours, 'update'])
       })
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 

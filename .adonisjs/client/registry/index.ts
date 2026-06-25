@@ -234,6 +234,18 @@ const routes = {
     tokens: [{"old":"/dashboard/notices/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/notices/:id","type":0,"val":"notices","end":""},{"old":"/dashboard/notices/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['validate_notice']['types'],
   },
+  'opening_hours.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/opening-hours',
+    tokens: [{"old":"/dashboard/opening-hours","type":0,"val":"dashboard","end":""},{"old":"/dashboard/opening-hours","type":0,"val":"opening-hours","end":""}],
+    types: placeholder as Registry['opening_hours.render']['types'],
+  },
+  'opening_hours.update': {
+    methods: ["PUT"],
+    pattern: '/dashboard/opening-hours',
+    tokens: [{"old":"/dashboard/opening-hours","type":0,"val":"dashboard","end":""},{"old":"/dashboard/opening-hours","type":0,"val":"opening-hours","end":""}],
+    types: placeholder as Registry['opening_hours.update']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

@@ -16,3 +16,8 @@ export function formatDateTime(date: string | null) {
     minute: '2-digit',
   })
 }
+
+export function formatTime(time: string | null) {
+  if (!time) return '—'
+  return time.slice(0, 5)
+}

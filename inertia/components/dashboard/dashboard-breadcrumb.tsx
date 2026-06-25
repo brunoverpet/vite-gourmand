@@ -9,18 +9,18 @@ import {
 } from '~/components/ui/breadcrumb'
 
 const SEGMENT_LABELS: Record<string, string> = {
-  dashboard: 'Dashboard',
-  menus: 'Menus',
-  dishes: 'Plats',
-  orders: 'Commandes',
+  'dashboard': 'Dashboard',
+  'menus': 'Menus',
+  'dishes': 'Plats',
+  'orders': 'Commandes',
   'my-orders': 'Mes commandes',
-  notices: 'Avis clients',
-  profile: 'Mon profil',
-  employees: 'Comptes employés',
-  stats: 'Statistiques',
-  schedules: 'Horaires',
-  create: 'Créer',
-  edit: 'Modifier',
+  'notices': 'Avis clients',
+  'profile': 'Mon profil',
+  'employees': 'Comptes employés',
+  'stats': 'Statistiques',
+  'opening-hours': 'Horaires',
+  'create': 'Créer',
+  'edit': 'Modifier',
 }
 
 export function DashboardBreadcrumb() {
