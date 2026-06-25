@@ -252,12 +252,6 @@ const routes = {
     tokens: [{"old":"/dashboard/employees","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees","type":0,"val":"employees","end":""}],
     types: placeholder as Registry['admin_employees.index']['types'],
   },
-  'admin_employees.create': {
-    methods: ["GET","HEAD"],
-    pattern: '/dashboard/employees/create',
-    tokens: [{"old":"/dashboard/employees/create","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees/create","type":0,"val":"employees","end":""},{"old":"/dashboard/employees/create","type":0,"val":"create","end":""}],
-    types: placeholder as Registry['admin_employees.create']['types'],
-  },
   'admin_employees.store': {
     methods: ["POST"],
     pattern: '/dashboard/employees',

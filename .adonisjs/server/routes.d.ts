@@ -45,7 +45,6 @@ export type ScannedRoutes = {
     'opening_hours.render': { paramsTuple?: []; params?: {} }
     'opening_hours.update': { paramsTuple?: []; params?: {} }
     'admin_employees.index': { paramsTuple?: []; params?: {} }
-    'admin_employees.create': { paramsTuple?: []; params?: {} }
     'admin_employees.store': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -78,7 +77,6 @@ export type ScannedRoutes = {
     'validate_notice.render': { paramsTuple?: []; params?: {} }
     'opening_hours.render': { paramsTuple?: []; params?: {} }
     'admin_employees.index': { paramsTuple?: []; params?: {} }
-    'admin_employees.create': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -105,7 +103,6 @@ export type ScannedRoutes = {
     'validate_notice.render': { paramsTuple?: []; params?: {} }
     'opening_hours.render': { paramsTuple?: []; params?: {} }
     'admin_employees.index': { paramsTuple?: []; params?: {} }
-    'admin_employees.create': { paramsTuple?: []; params?: {} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }

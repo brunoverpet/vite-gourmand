@@ -74,7 +74,6 @@ export interface ApiDefinition {
   }
   adminEmployees: {
     index: typeof routes['admin_employees.index']
-    create: typeof routes['admin_employees.create']
     store: typeof routes['admin_employees.store']
   }
   clientOrders: {

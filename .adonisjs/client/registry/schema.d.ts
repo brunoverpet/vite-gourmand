@@ -499,18 +499,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['index']>>>
     }
   }
-  'admin_employees.create': {
-    methods: ["GET","HEAD"]
-    pattern: '/dashboard/employees/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['create']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['create']>>>
-    }
-  }
   'admin_employees.store': {
     methods: ["POST"]
     pattern: '/dashboard/employees'

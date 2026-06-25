@@ -76,7 +76,6 @@ router
         router.put('dashboard/opening-hours', [controllers.openingHours.OpeningHours, 'update'])
 
         router.get('dashboard/employees', [controllers.employees.AdminEmployees, 'index'])
-        router.get('dashboard/employees/create', [controllers.employees.AdminEmployees, 'create'])
         router.post('dashboard/employees', [controllers.employees.AdminEmployees, 'store'])
       })
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))

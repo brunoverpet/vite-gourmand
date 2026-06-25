@@ -20,16 +20,13 @@ export default class AdminEmployeesController {
     })
   }
 
-  async create({ inertia }: HttpContext) {
-    return inertia.render('dashboard/employees/create', {})
-  }
-
   async store({ request, inertia }: HttpContext) {
     const payload = await request.validateUsing(adminCreateEmployeValidator)
     const { employe, password } = await this.createEmployeAction.execute(payload)
+    const employes = await this.userService.getEmployees()
 
-    return inertia.render('dashboard/employees/create', {
-      employe: UserTransformer.transform(employe).useVariant('forEmploye'),
+    return inertia.render('dashboard/employees/index', {
+      employes: UserTransformer.transform(employes).useVariant('forEmploye'),
       generatedPassword: password,
     })
   }
