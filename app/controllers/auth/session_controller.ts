@@ -14,6 +14,11 @@ export default class SessionController {
     const { email, password } = request.all()
     const user = await User.verifyCredentials(email, password)
 
+    if (!user.isActive) {
+      session.flash('error', 'Votre compte a été désactivé. Contactez un administrateur.')
+      return response.redirect().back()
+    }
+
     await auth.use('web').login(user)
     session.flash('info', 'Bienvenue sur votre espace client.')
     return response.redirect().toIntendedRoute('home')

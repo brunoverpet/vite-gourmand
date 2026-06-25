@@ -75,6 +75,7 @@ export interface ApiDefinition {
   adminEmployees: {
     index: typeof routes['admin_employees.index']
     store: typeof routes['admin_employees.store']
+    toggleActive: typeof routes['admin_employees.toggle_active']
   }
   clientOrders: {
     index: typeof routes['client_orders.index']

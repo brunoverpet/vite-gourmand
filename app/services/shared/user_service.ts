@@ -44,6 +44,13 @@ export class UserService {
     return await User.query().where('roleId', employeRoleId)
   }
 
+  async toggleActive(id: string, isActive: boolean) {
+    const user = await this.findById(id)
+    user.isActive = isActive
+    await user.save()
+    return user
+  }
+
   createPassword(): string {
     const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     const lower = 'abcdefghijklmnopqrstuvwxyz'

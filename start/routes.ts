@@ -77,6 +77,10 @@ router
 
         router.get('dashboard/employees', [controllers.employees.AdminEmployees, 'index'])
         router.post('dashboard/employees', [controllers.employees.AdminEmployees, 'store'])
+        router.patch('dashboard/employees/:id/active', [
+          controllers.employees.AdminEmployees,
+          'toggleActive',
+        ])
       })
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 

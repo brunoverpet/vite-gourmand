@@ -22,6 +22,7 @@ export default class UserTransformer extends BaseTransformer<User> {
   async forEmploye() {
     return {
       ...this.omit(this.toObject(), ['address', 'city', 'phone']),
+      isActive: this.resource.isActive,
     }
   }
 }

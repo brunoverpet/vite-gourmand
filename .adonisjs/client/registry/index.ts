@@ -258,6 +258,12 @@ const routes = {
     tokens: [{"old":"/dashboard/employees","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees","type":0,"val":"employees","end":""}],
     types: placeholder as Registry['admin_employees.store']['types'],
   },
+  'admin_employees.toggle_active': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/employees/:id/active',
+    tokens: [{"old":"/dashboard/employees/:id/active","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees/:id/active","type":0,"val":"employees","end":""},{"old":"/dashboard/employees/:id/active","type":1,"val":"id","end":""},{"old":"/dashboard/employees/:id/active","type":0,"val":"active","end":""}],
+    types: placeholder as Registry['admin_employees.toggle_active']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

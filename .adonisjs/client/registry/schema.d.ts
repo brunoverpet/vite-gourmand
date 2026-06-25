@@ -511,6 +511,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'admin_employees.toggle_active': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/employees/:id/active'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['toggleActive']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['toggleActive']>>>
+    }
+  }
   'client_orders.index': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/my-orders'

@@ -46,6 +46,7 @@ export type ScannedRoutes = {
     'opening_hours.update': { paramsTuple?: []; params?: {} }
     'admin_employees.index': { paramsTuple?: []; params?: {} }
     'admin_employees.store': { paramsTuple?: []; params?: {} }
+    'admin_employees.toggle_active': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.index': { paramsTuple?: []; params?: {} }
     'client_orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -128,6 +129,7 @@ export type ScannedRoutes = {
     'order_material_loan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'cancel_order': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'validate_notice': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'admin_employees.toggle_active': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.update': { paramsTuple?: []; params?: {} }
   }

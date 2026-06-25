@@ -20,9 +20,15 @@ export default class AdminEmployeesController {
     })
   }
 
+  async toggleActive({ params, request, response }: HttpContext) {
+    const { isActive } = request.only(['isActive'])
+    await this.userService.toggleActive(params.id, isActive)
+    return response.redirect().back()
+  }
+
   async store({ request, inertia }: HttpContext) {
     const payload = await request.validateUsing(adminCreateEmployeValidator)
-    const { employe, password } = await this.createEmployeAction.execute(payload)
+    const { password } = await this.createEmployeAction.execute(payload)
     const employes = await this.userService.getEmployees()
 
     return inertia.render('dashboard/employees/index', {
