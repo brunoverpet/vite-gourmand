@@ -12,8 +12,18 @@ export class UserService {
     return User.create({ roleId, ...payload })
   }
 
-  async createEmploye(payload: AdminCreateEmployePayload & { password: string }, roleId: string) {
+  async createEmploye(
+    payload: AdminCreateEmployePayload & { password: string; passwordChange?: boolean },
+    roleId: string
+  ) {
     return User.create({ roleId, ...payload })
+  }
+
+  async changePassword(id: string, password: string) {
+    const user = await this.findById(id)
+    user.password = password
+    user.passwordChange = false
+    await user.save()
   }
 
   async findByEmail(email: string) {

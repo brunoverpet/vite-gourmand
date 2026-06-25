@@ -38,6 +38,16 @@ router
 router
   .group(() => {
     router.on('dashboard').renderInertia('home', {}).as('home')
+
+    router
+      .group(() => {
+        router
+          .get('dashboard/change-password', [controllers.auth.ChangePassword, 'show'])
+          .as('dashboard.change-password')
+        router.post('dashboard/change-password', [controllers.auth.ChangePassword, 'handle'])
+      })
+      .use(middleware.forcePasswordChange())
+
     router.get('orders/:menuId', [controllers.orders.Order, 'render'])
     router.post('orders', [controllers.orders.Order, 'store'])
 
@@ -97,3 +107,4 @@ router
     router.post('logout', [controllers.auth.Session, 'destroy'])
   })
   .use(middleware.auth())
+  .use(middleware.forcePasswordChange())

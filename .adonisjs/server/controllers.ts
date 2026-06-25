@@ -9,6 +9,7 @@ export const controllers = {
     RequestPasswordReset: () => import('#controllers/auth/request_password_reset_controller'),
     ResetPassword: () => import('#controllers/auth/reset_password_controller'),
     Session: () => import('#controllers/auth/session_controller'),
+    ChangePassword: () => import('#controllers/auth/change_password_controller'),
   },
   contact: {
     Contact: () => import('#controllers/contact/contact_controller'),

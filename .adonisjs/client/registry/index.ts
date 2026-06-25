@@ -96,6 +96,18 @@ const routes = {
     tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
     types: placeholder as Registry['home']['types'],
   },
+  'dashboard.change-password': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/change-password',
+    tokens: [{"old":"/dashboard/change-password","type":0,"val":"dashboard","end":""},{"old":"/dashboard/change-password","type":0,"val":"change-password","end":""}],
+    types: placeholder as Registry['dashboard.change-password']['types'],
+  },
+  'change_password': {
+    methods: ["POST"],
+    pattern: '/dashboard/change-password',
+    tokens: [{"old":"/dashboard/change-password","type":0,"val":"dashboard","end":""},{"old":"/dashboard/change-password","type":0,"val":"change-password","end":""}],
+    types: placeholder as Registry['change_password']['types'],
+  },
   'order.render': {
     methods: ["GET","HEAD"],
     pattern: '/orders/:menuId',

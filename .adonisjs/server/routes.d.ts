@@ -19,6 +19,8 @@ export type ScannedRoutes = {
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'dashboard.change-password': { paramsTuple?: []; params?: {} }
+    'change_password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'order.store': { paramsTuple?: []; params?: {} }
     'admin_menus.index': { paramsTuple?: []; params?: {} }
@@ -67,6 +69,7 @@ export type ScannedRoutes = {
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'dashboard.change-password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'admin_menus.index': { paramsTuple?: []; params?: {} }
     'admin_menus.create': { paramsTuple?: []; params?: {} }
@@ -93,6 +96,7 @@ export type ScannedRoutes = {
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'home': { paramsTuple?: []; params?: {} }
+    'dashboard.change-password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'admin_menus.index': { paramsTuple?: []; params?: {} }
     'admin_menus.create': { paramsTuple?: []; params?: {} }
@@ -114,6 +118,7 @@ export type ScannedRoutes = {
     'session': { paramsTuple?: []; params?: {} }
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'change_password': { paramsTuple?: []; params?: {} }
     'order.store': { paramsTuple?: []; params?: {} }
     'admin_menus.store': { paramsTuple?: []; params?: {} }
     'pictures': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }

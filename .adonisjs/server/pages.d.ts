@@ -38,5 +38,6 @@ declare module '@adonisjs/inertia/types' {
     'public/orders/index': ExtractProps<(typeof import('../../inertia/pages/public/orders/index.tsx'))['default']>
     'dashboard/employees/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/employees/index.tsx'))['default']>
     'dashboard/employees/create': ExtractProps<(typeof import('../../inertia/pages/dashboard/employees/create.tsx'))['default']>
+    'dashboard/change-password': ExtractProps<(typeof import('../../inertia/pages/dashboard/change-password.tsx'))['default']>
   }
 }

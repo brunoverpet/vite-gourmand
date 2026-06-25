@@ -16,7 +16,7 @@ export class CreateEmployeeAction {
   async execute(payload: AdminCreateEmployePayload) {
     const roleId = await this.roleService.getRoleId(Roles.EMPLOYE)
     const password = this.userService.createPassword()
-    const employe = await this.userService.createEmploye({ ...payload, password }, roleId)
+    const employe = await this.userService.createEmploye({ ...payload, password, passwordChange: true }, roleId)
 
     mail.sendLater(new EmployeeWelcomeNotification(employe))
 

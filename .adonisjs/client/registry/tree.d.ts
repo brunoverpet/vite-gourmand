@@ -29,6 +29,10 @@ export interface ApiDefinition {
     show: typeof routes['reset_password.show']
   }
   home: typeof routes['home']
+  dashboard: {
+    changePassword: typeof routes['dashboard.change-password']
+  }
+  changePassword: typeof routes['change_password']
   order: {
     render: typeof routes['order.render']
     store: typeof routes['order.store']

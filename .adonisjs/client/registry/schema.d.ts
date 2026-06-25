@@ -187,6 +187,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'dashboard.change-password': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/change-password'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/change_password_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/change_password_controller').default['show']>>>
+    }
+  }
+  'change_password': {
+    methods: ["POST"]
+    pattern: '/dashboard/change-password'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/forgot_password').resetPasswordValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/forgot_password').resetPasswordValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/change_password_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/change_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'order.render': {
     methods: ["GET","HEAD"]
     pattern: '/orders/:menuId'
