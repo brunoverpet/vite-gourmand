@@ -36,7 +36,7 @@ export default function MenusIndex({ menus, themes, meta, filters }: IndexProps)
           <p className="text-muted-foreground text-sm mt-1">{meta.total} menu(s)</p>
         </div>
         <Link route="admin_menus.create">
-          <Button size="sm">Créer un menu</Button>
+          <Button>Créer un menu</Button>
         </Link>
       </div>
 

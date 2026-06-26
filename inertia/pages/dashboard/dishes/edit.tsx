@@ -34,7 +34,7 @@ export default function DishesEdit({ dish, allergens }: EditProps) {
         </Link>
         <div className="flex items-center justify-between gap-4">
           <h1 className="text-2xl font-semibold">{dish.title}</h1>
-          <Button variant="destructive" size="sm" onClick={() => setDeleteOpen(true)}>
+          <Button variant="destructive" onClick={() => setDeleteOpen(true)}>
             <TrashIcon className="size-4" />
             <span className="hidden sm:inline">Supprimer</span>
           </Button>

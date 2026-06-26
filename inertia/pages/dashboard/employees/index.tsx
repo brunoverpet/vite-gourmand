@@ -25,7 +25,7 @@ export default function EmployeesIndex({ employes, generatedPassword }: IndexPro
           <h1 className="text-2xl font-semibold">Employés</h1>
           <p className="text-muted-foreground text-sm mt-1">{employes.length} employé(s)</p>
         </div>
-        <Button size="sm" onClick={() => setCreateOpen(true)}>
+        <Button onClick={() => setCreateOpen(true)}>
           Créer un employé
         </Button>
       </div>

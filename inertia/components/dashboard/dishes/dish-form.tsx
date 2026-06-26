@@ -162,7 +162,7 @@ export function DishForm({ allergens, dish }: Props) {
         )}
 
         {(form.isDirty || !dish) && (
-          <Button type="submit" size="sm" disabled={form.processing} className="w-fit">
+          <Button type="submit" disabled={form.processing} className="w-fit">
             {dish ? 'Enregistrer les modifications' : 'Créer le plat'}
           </Button>
         )}

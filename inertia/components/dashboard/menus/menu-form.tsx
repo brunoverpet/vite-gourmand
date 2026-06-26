@@ -155,7 +155,7 @@ export function MenuForm({ diets, themes, menu }: Props) {
         </div>
 
         {(form.isDirty || !menu) && (
-          <Button type="submit" size="sm" disabled={form.processing} className="w-fit">
+          <Button type="submit" disabled={form.processing} className="w-fit">
             {menu ? 'Enregistrer les modifications' : 'Créer le menu'}
           </Button>
         )}
