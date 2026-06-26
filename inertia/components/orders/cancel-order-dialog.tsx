@@ -77,7 +77,7 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
         </div>
 
         <DialogFooter>
-          <Button variant="outline" size="sm" onClick={onClose} disabled={processing}>
+          <Button variant="outline" onClick={onClose} disabled={processing}>
             Retour
           </Button>
           <Button
