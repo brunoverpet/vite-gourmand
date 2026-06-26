@@ -73,7 +73,7 @@ function Button({
           <TooltipTrigger asChild>
             <span className="inline-flex">{button}</span>
           </TooltipTrigger>
-          <TooltipContent>{tooltip}</TooltipContent>
+          <TooltipContent side="bottom" sideOffset={6}>{tooltip}</TooltipContent>
         </Tooltip>
       </TooltipProvider>
     )
