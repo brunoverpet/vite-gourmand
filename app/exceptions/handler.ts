@@ -16,7 +16,7 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * codes. You might want to enable them in production only, but feel
    * free to enable them in development as well.
    */
-  protected renderStatusPages = app.inProduction
+  protected renderStatusPages = true
 
   /**
    * Status pages is a collection of error code range and a callback
@@ -55,12 +55,16 @@ export default class HttpExceptionHandler extends ExceptionHandler {
     return super.handle(error, ctx)
   }
 
-  /**
-   * The method is used to report error to the logging service or
-   * the a third party error monitoring service.
-   *
-   * @note You should not attempt to send a response from this method.
-   */
+  protected ignoreStatuses = [400, 401, 403, 422]
+
+  protected context(ctx: HttpContext) {
+    return {
+      requestId: ctx.request.id(),
+      userId: ctx.auth.user?.id,
+      url: ctx.request.url(),
+    }
+  }
+
   async report(error: unknown, ctx: HttpContext) {
     return super.report(error, ctx)
   }

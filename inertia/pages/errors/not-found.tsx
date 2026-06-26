@@ -1,7 +1,17 @@
+import { Link } from '@adonisjs/inertia/react'
+import { Button } from '~/components/ui/button'
+
 export default function NotFound() {
   return (
-    <>
-      <h1>Page not found</h1>
-    </>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
+      <p className="text-8xl font-bold text-primary/20 select-none">404</p>
+      <h1 className="mt-4 text-2xl font-semibold">Page introuvable</h1>
+      <p className="mt-2 text-muted-foreground max-w-sm">
+        La page que vous cherchez n&apos;existe pas ou a été déplacée.
+      </p>
+      <Link href="/" className="mt-8">
+        <Button>Retour à l&apos;accueil</Button>
+      </Link>
+    </div>
   )
 }

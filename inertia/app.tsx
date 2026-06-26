@@ -22,7 +22,7 @@ createInertiaApp({
           return page
         }
 
-        if (name.startsWith('public/')) {
+        if (name.startsWith('public/') || name.startsWith('errors/')) {
           return <PublicLayout>{page}</PublicLayout>
         }
 
