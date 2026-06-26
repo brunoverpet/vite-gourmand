@@ -46,14 +46,14 @@ export default function Show({ menu }: ShowProps) {
         <div className="mt-8 md:mt-0">
           <div className="flex flex-wrap gap-2 mb-4">
             <Badge className="bg-accent text-primary-foreground">{menu.theme.label}</Badge>
-            <Badge variant="secondary">{menu.diet.label}</Badge>
+            <Badge variant="outline">{menu.diet.label}</Badge>
           </div>
 
           <h1 className="text-h1">{menu.title}</h1>
 
           <div className="flex items-end gap-6 mt-4">
             <div>
-              <p className="text-h2 text-accent">
+              <p className="text-h2 text-accent-text">
                 {menu.pricePerPeople}€<span className="text-body text-muted-foreground">/pers</span>
               </p>
             </div>

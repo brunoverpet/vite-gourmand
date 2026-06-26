@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 md:flex md:items-start md:gap-16 md:py-28">
       <div className="md:flex-1">
-        <p className="text-label-caps text-accent">Contact</p>
+        <p className="text-label-caps text-primary">Contact</p>
         <h1 className="text-h2">Une question, un événement à organiser ?</h1>
         <p className="text-muted-foreground mt-4 leading-relaxed md:max-w-prose">
           Décrivez-nous votre projet ou votre demande, nous vous répondons par mail dans les plus

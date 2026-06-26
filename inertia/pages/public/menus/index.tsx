@@ -190,7 +190,7 @@ export default function Index({ menus, themes, diets, activeFilters }: IndexProp
 
   return (
     <div>
-      <h2 className="text-h2">Nos menus</h2>
+      <h1 className="text-h2">Nos menus</h1>
       <p className="text-muted-foreground mt-2">
         Découvrez notre sélection de menus pour tous vos événements.
       </p>

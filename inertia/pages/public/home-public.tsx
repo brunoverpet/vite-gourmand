@@ -16,7 +16,7 @@ export default function HomePublic({ menus, notices }: HomeProps) {
     <>
       <Hero />
       <section className="mt-20 mx-auto px-6 max-w-7xl">
-        <p className="text-label-caps text-accent">Le catalogue</p>
+        <p className="text-label-caps text-primary">Le catalogue</p>
         <h2 className="text-h2">Nos menus du moment</h2>
         <p className="text-muted-foreground mt-2">
           Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
@@ -72,7 +72,7 @@ export default function HomePublic({ menus, notices }: HomeProps) {
       </section>
 
       <section className="mt-20 px-6 max-w-7xl mx-auto">
-        <p className="text-label-caps text-accent">Avis client</p>
+        <p className="text-label-caps text-primary">Avis client</p>
         <h2 className="text-h2">Ce qu&apos;ils en disent</h2>
         <div className="flex flex-col my-10 gap-5 md:flex-row">
           {notices.map((notice, i) => (

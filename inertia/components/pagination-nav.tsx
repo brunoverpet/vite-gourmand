@@ -60,7 +60,7 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
               className={cn(
                 'size-8 text-body-sm transition-colors rounded-sm',
                 page === currentPage
-                  ? 'text-accent font-semibold'
+                  ? 'text-primary font-semibold'
                   : 'text-muted-foreground hover:text-foreground'
               )}
             >

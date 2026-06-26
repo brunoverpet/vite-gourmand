@@ -3,7 +3,7 @@ import { Button } from '~/components/ui/button'
 
 export default function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="relative w-full">
+    <section className="relative w-full">
       {/* Mobile : image en background full-bleed */}
       <div
         className="md:hidden relative h-dvh w-full bg-cover bg-center"
@@ -15,7 +15,7 @@ export default function Hero() {
         />
         <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-12">
           <div className="max-w-3xl">
-            <h1 id="hero-title" className="text-h1 text-primary-foreground">
+            <h1 className="text-h1 text-primary-foreground">
               Cuisinés avec soin. Livrés avec amour.
             </h1>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -38,7 +38,7 @@ export default function Hero() {
           <p className="text-label-caps text-muted-foreground mb-4">
             Traiteur événementiel à Bordeaux depuis 2001
           </p>
-          <h1 id="hero-title" className="text-h1 text-primary">
+          <h1 className="text-h1 text-primary">
             Cuisinés avec soin. Livrés avec amour.
           </h1>
           <p className="text-body-lg text-muted-foreground mt-4">

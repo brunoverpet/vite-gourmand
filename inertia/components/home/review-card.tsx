@@ -13,8 +13,8 @@ export default function ReviewCard({ rating, comment, author }: ReviewCardProps)
         <StarRating
           note={rating}
           size="md"
-          activeClass="fill-accent text-accent"
-          inactiveClass="text-accent"
+          activeClass="fill-accent-text text-accent-text"
+          inactiveClass="text-accent-text/40"
         />
       </div>
       <p className="italic text-foreground mb-4">{`"${comment}"`}</p>
