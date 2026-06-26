@@ -45,39 +45,42 @@ export function DishGrid({ dishes }: Props) {
         {dishes.map((dish) => {
           const src = imageUrl(dish.photoPath)
           return (
-            <div key={dish.id} className="group relative rounded-lg border bg-card overflow-hidden">
+            <div key={dish.id} className="group relative rounded-lg overflow-hidden aspect-[3/2] bg-muted">
               <Link
                 route="admin_dishes.edit"
                 routeParams={{ id: dish.id }}
-                className="block"
+                className="block w-full h-full"
               >
-                <div className="aspect-[3/2] bg-muted overflow-hidden">
-                  {src ? (
-                    <img src={src} alt="" className="w-full h-full object-cover transition-transform group-hover:scale-105" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <ImageOffIcon className="size-6 text-muted-foreground/30" />
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-2 flex flex-col gap-1.5">
-                  <div className="flex items-start justify-between gap-1 pr-6">
-                    <p className="text-xs font-medium leading-tight line-clamp-2">{dish.title}</p>
-                    <Badge variant="secondary" className="text-xs shrink-0">
-                      {DISH_TYPE_LABELS[dish.type] ?? dish.type}
-                    </Badge>
+                {src ? (
+                  <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <ImageOffIcon className="size-6 text-muted-foreground/30" />
                   </div>
+                )}
 
+                <div
+                  className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
+                  aria-hidden="true"
+                />
+
+                <Badge className="absolute top-2 left-2 text-xs bg-black/40 backdrop-blur-sm text-white border-0 hover:bg-black/40">
+                  {DISH_TYPE_LABELS[dish.type] ?? dish.type}
+                </Badge>
+
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <p className="text-xs font-semibold text-white leading-tight line-clamp-2 pr-2">
+                    {dish.title}
+                  </p>
                   {dish.allergens.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1 mt-1.5">
                       {dish.allergens.slice(0, 3).map((a) => (
-                        <Badge key={a.id} variant="outline" className="text-xs max-w-[7rem] truncate block">
+                        <Badge key={a.id} className="text-xs bg-black/40 backdrop-blur-sm text-white border-0 max-w-[7rem] truncate hover:bg-black/40">
                           {a.label}
                         </Badge>
                       ))}
                       {dish.allergens.length > 3 && (
-                        <Badge variant="secondary" className="text-xs shrink-0">
+                        <Badge className="text-xs bg-black/40 backdrop-blur-sm text-white border-0 hover:bg-black/40">
                           +{dish.allergens.length - 3}
                         </Badge>
                       )}
@@ -89,7 +92,7 @@ export function DishGrid({ dishes }: Props) {
               <button
                 type="button"
                 onClick={() => setDeletingDish(dish)}
-                className="absolute top-2 right-2 size-7 rounded-md bg-background/80 backdrop-blur-sm flex items-center justify-center text-destructive opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity shadow-sm"
+                className="absolute top-2 right-2 size-7 rounded-md bg-black/40 backdrop-blur-sm flex items-center justify-center text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
               >
                 <TrashIcon className="size-3.5" />
               </button>

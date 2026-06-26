@@ -33,12 +33,12 @@ export default function CardMenu({
         />
 
         {tagLeft && (
-          <Badge className="absolute top-4 left-4 bg-accent text-primary-foreground">
+          <Badge className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white border-0 hover:bg-black/40">
             {tagLeft}
           </Badge>
         )}
         {tagRight && (
-          <Badge variant="secondary" className="absolute top-4 right-4 text-foreground">
+          <Badge className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm text-white border-0 hover:bg-black/40">
             {tagRight}
           </Badge>
         )}
