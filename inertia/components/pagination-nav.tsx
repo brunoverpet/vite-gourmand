@@ -35,10 +35,11 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        aria-label="Page précédente"
         className="flex items-center gap-1 px-2 py-1 text-body-sm text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
       >
-        <ChevronLeftIcon className="size-4" />
-        <span className="hidden sm:inline">Précédent</span>
+        <ChevronLeftIcon className="size-4" aria-hidden="true" />
+        <span className="hidden sm:inline" aria-hidden="true">Précédent</span>
       </button>
 
       {/* Mobile: page X / Y */}
@@ -50,13 +51,15 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
       <div className="hidden sm:flex items-center gap-1">
         {pages.map((page, i) =>
           page === null ? (
-            <span key={`ellipsis-${i}`} className="flex size-8 items-center justify-center">
+            <span key={`ellipsis-${i}`} className="flex size-8 items-center justify-center" aria-hidden="true">
               <MoreHorizontalIcon className="size-4 text-muted-foreground" />
             </span>
           ) : (
             <button
               key={page}
               onClick={() => onPageChange(page)}
+              aria-label={`Page ${page}`}
+              aria-current={page === currentPage ? 'page' : undefined}
               className={cn(
                 'size-8 text-body-sm transition-colors rounded-sm',
                 page === currentPage
@@ -73,10 +76,11 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === lastPage}
+        aria-label="Page suivante"
         className="flex items-center gap-1 px-2 py-1 text-body-sm text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
       >
-        <span className="hidden sm:inline">Suivant</span>
-        <ChevronRightIcon className="size-4" />
+        <span className="hidden sm:inline" aria-hidden="true">Suivant</span>
+        <ChevronRightIcon className="size-4" aria-hidden="true" />
       </button>
     </nav>
   )

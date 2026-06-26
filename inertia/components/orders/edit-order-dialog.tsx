@@ -65,10 +65,11 @@ export function EditOrderDialog({ order }: { order: Order }) {
               {latitude !== null && <input type="hidden" name="latitude" value={latitude} />}
               <FieldGroup>
                 <Field>
-                  <FieldLabel>Nombre de personnes</FieldLabel>
+                  <FieldLabel htmlFor="edit-number-of-people">Nombre de personnes</FieldLabel>
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-muted-foreground shrink-0" />
                     <Input
+                      id="edit-number-of-people"
                       type="number"
                       name="number_of_people"
                       value={numberOfPeople}

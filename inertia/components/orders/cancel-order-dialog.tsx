@@ -55,8 +55,9 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
 
         <div className="space-y-4 py-2">
           <div className="space-y-2">
-            <Label>Mode de contact</Label>
+            <Label htmlFor="cancel-contact-mode">Mode de contact</Label>
             <FilterSelect
+              id="cancel-contact-mode"
               value={data.contactMode || 'all'}
               onValueChange={(v) => setData('contactMode', v === 'all' ? '' : v)}
               options={CONTACT_MODE_OPTIONS}
@@ -66,8 +67,9 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
           </div>
 
           <div className="space-y-2">
-            <Label>Motif d&apos;annulation</Label>
+            <Label htmlFor="cancel-reason">Motif d&apos;annulation</Label>
             <Textarea
+              id="cancel-reason"
               placeholder="Décrivez le motif de l'annulation (10 caractères minimum)…"
               value={data.cancellationReason}
               onChange={(e) => setData('cancellationReason', e.target.value)}

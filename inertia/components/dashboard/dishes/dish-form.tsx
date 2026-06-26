@@ -112,6 +112,7 @@ export function DishForm({ allergens, dish }: Props) {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
+              aria-label="Choisir une photo"
               className="group relative size-20 rounded-lg overflow-hidden border shrink-0"
             >
               {previewUrl || imageUrl(dish?.photoPath) ? (

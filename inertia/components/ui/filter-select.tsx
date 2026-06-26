@@ -15,6 +15,7 @@ type Option = {
 }
 
 type FilterSelectProps = {
+  id?: string
   value: string
   onValueChange: (value: string) => void
   options: Option[]
@@ -23,6 +24,7 @@ type FilterSelectProps = {
 }
 
 export function FilterSelect({
+  id,
   value,
   onValueChange,
   options,
@@ -31,7 +33,7 @@ export function FilterSelect({
 }: FilterSelectProps) {
   return (
     <Select value={value} onValueChange={onValueChange}>
-      <SelectTrigger className={cn('h-10!', className)}>
+      <SelectTrigger id={id} className={cn('h-10!', className)}>
         <SelectValue placeholder={allLabel} />
       </SelectTrigger>
       <SelectContent>

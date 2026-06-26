@@ -16,8 +16,9 @@ export function PriceRangeInputs({
   return (
     <div className="flex items-center gap-2">
       <div className="flex-1">
-        <p className="text-body-sm text-muted-foreground mb-1">Min</p>
+        <label htmlFor="price-min" className="text-body-sm text-muted-foreground mb-1 block">Min</label>
         <Input
+          id="price-min"
           type="number"
           placeholder="0€"
           value={priceMin}
@@ -25,8 +26,9 @@ export function PriceRangeInputs({
         />
       </div>
       <div className="flex-1">
-        <p className="text-body-sm text-muted-foreground mb-1">Max</p>
+        <label htmlFor="price-max" className="text-body-sm text-muted-foreground mb-1 block">Max</label>
         <Input
+          id="price-max"
           type="number"
           placeholder="200€"
           value={priceMax}

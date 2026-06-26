@@ -1,7 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
 import { useState } from 'react'
 import { Button } from '~/components/ui/button'
-import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
+import { Field, FieldGroup } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { StarPicker } from '~/components/ui/star-picker'
 import { Textarea } from '~/components/ui/textarea'
@@ -20,7 +20,6 @@ export function ReviewForm({ orderId }: ReviewFormProps) {
           <input type="hidden" name="order_id" value={orderId} />
 
           <Field>
-            <FieldLabel>Note</FieldLabel>
             <input type="hidden" name="note" value={selected} />
             <StarPicker selected={selected} onSelect={setSelected} />
             <FieldError message={errors.note} />

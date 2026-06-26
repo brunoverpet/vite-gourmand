@@ -22,7 +22,7 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
                 name="password"
                 type="password"
                 placeholder="Votre nouveau mot de passe"
-                autoComplete="password"
+                autoComplete="new-password"
                 data-invalid={errors.password ? 'true' : undefined}
                 required
               />
@@ -37,7 +37,7 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
                 type="password"
                 placeholder="Confirmation du nouveau mot de passe"
                 required
-                autoComplete="current-passwordConfirmation"
+                autoComplete="new-password"
               />
               <FieldError message={errors.passwordConfirmation} />
             </Field>
