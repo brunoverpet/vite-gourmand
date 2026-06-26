@@ -89,7 +89,6 @@ export function EmployeeCreateDialog({ open, onOpenChange }: Props) {
         <DialogFooter>
           <Button
             variant="outline"
-            size="sm"
             onClick={() => onOpenChange(false)}
             disabled={form.processing}
           >
@@ -98,7 +97,6 @@ export function EmployeeCreateDialog({ open, onOpenChange }: Props) {
           <Button
             type="submit"
             form="employee-create-form"
-            size="sm"
             disabled={form.processing}
           >
             {form.processing ? 'Création…' : 'Créer le compte'}
