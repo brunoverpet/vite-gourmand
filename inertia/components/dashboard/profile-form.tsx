@@ -132,7 +132,12 @@ export function ProfileForm({ user }: ProfileFormProps) {
             required
           />
 
-          <Button type="submit" disabled={!isDirty} className="sm:w-fit sm:self-start">
+          <Button
+            type="submit"
+            disabled={!isDirty}
+            tooltip="Modifiez au moins un champ pour enregistrer"
+            className="sm:w-fit sm:self-start"
+          >
             Enregistrer
           </Button>
         </FieldGroup>

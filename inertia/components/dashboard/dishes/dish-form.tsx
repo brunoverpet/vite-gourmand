@@ -168,6 +168,7 @@ export function DishForm({ allergens, dish }: Props) {
         <Button
           type="submit"
           disabled={form.processing || (dish ? !form.isDirty : !canCreate)}
+          tooltip={dish ? 'Aucune modification détectée' : 'Remplissez tous les champs requis'}
           className="w-fit"
         >
           {dish ? 'Enregistrer les modifications' : 'Créer le plat'}

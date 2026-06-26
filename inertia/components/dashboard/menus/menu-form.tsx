@@ -169,6 +169,7 @@ export function MenuForm({ diets, themes, menu }: Props) {
         <Button
           type="submit"
           disabled={form.processing || (menu ? !form.isDirty : !canCreate)}
+          tooltip={menu ? 'Aucune modification détectée' : 'Remplissez tous les champs requis'}
           className="w-fit"
         >
           {menu ? 'Enregistrer les modifications' : 'Créer le menu'}

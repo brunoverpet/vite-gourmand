@@ -71,6 +71,7 @@ export function ProfilePasswordForm() {
         <Button
           type="submit"
           disabled={isEmpty || form.processing}
+          tooltip="Remplissez les trois champs pour mettre à jour"
           className="sm:w-fit sm:self-start"
         >
           Mettre à jour
