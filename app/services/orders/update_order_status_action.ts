@@ -5,6 +5,7 @@ import OrderCompletedNotification from '#mails/orders/order_completed_notificati
 import OrderMaterialReturnNotification from '#mails/orders/order_material_return_notification'
 import mail from '@adonisjs/mail/services/main'
 import { DateTime } from 'luxon'
+import { events } from '#generated/events'
 
 const TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
   [OrderStatus.PENDING]: [OrderStatus.ACCEPTED, OrderStatus.CANCELLED],
@@ -42,6 +43,11 @@ export class UpdateOrderStatusAction {
 
     order.status = newStatus
     await order.save()
+
+    if (order.status === OrderStatus.ACCEPTED) {
+      await order.load('menu')
+      events.OrderAccepted.dispatch(order)
+    }
 
     await OrderStatusHistory.create({
       orderId: order.id,

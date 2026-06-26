@@ -3,4 +3,6 @@
  * DO NOT EDIT manually
  */
 
-export const listeners = {}
+export const listeners = {
+  SyncOrderToMongo: () => import('#listeners/sync_order_to_mongo'),
+}
