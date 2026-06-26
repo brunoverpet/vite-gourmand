@@ -47,30 +47,32 @@ export function DishPicker({ menuId, dishes, selectedIds }: Props) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Composition du menu</h2>
-        {isDirty && (
-          <Button size="sm" disabled={form.processing} onClick={handleSave}>
-            Enregistrer
-          </Button>
-        )}
+        <Button
+          disabled={!isDirty || form.processing}
+          tooltip="Sélectionnez ou désélectionnez des plats pour enregistrer"
+          onClick={handleSave}
+        >
+          Enregistrer
+        </Button>
       </div>
 
       <Tabs defaultValue="entrées">
-        <TabsList className="w-full">
-          <TabsTrigger value="entrées" className="flex-1">
+        <TabsList>
+          <TabsTrigger value="entrées">
             Entrées{selected.size > 0 && dishes.entrées.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.entrées.filter((d) => selected.has(d.id)).length})
               </span>
             )}
           </TabsTrigger>
-          <TabsTrigger value="plats" className="flex-1">
+          <TabsTrigger value="plats">
             Plats{dishes.plats.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.plats.filter((d) => selected.has(d.id)).length})
               </span>
             )}
           </TabsTrigger>
-          <TabsTrigger value="desserts" className="flex-1">
+          <TabsTrigger value="desserts">
             Desserts{dishes.desserts.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.desserts.filter((d) => selected.has(d.id)).length})
@@ -86,7 +88,7 @@ export function DishPicker({ menuId, dishes, selectedIds }: Props) {
                 Aucun plat dans cette catégorie.
               </p>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
                 {dishes[tab].map((dish) => {
                   const isSelected = selected.has(dish.id)
                   return (
@@ -94,28 +96,33 @@ export function DishPicker({ menuId, dishes, selectedIds }: Props) {
                       key={dish.id}
                       type="button"
                       onClick={() => toggle(dish.id)}
-                      className={`relative rounded-lg overflow-hidden border-2 text-left transition-all ${
+                      className={`relative rounded-lg overflow-hidden border-2 text-left transition-all aspect-[4/3] bg-muted ${
                         isSelected
                           ? 'border-primary'
                           : 'border-transparent hover:border-muted-foreground/30'
                       }`}
                     >
-                      <div className="aspect-square bg-muted">
-                        {imageUrl(dish.photoPath) ? (
-                          <img
-                            src={imageUrl(dish.photoPath)!}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <ImageOffIcon className="size-6 text-muted-foreground/40" />
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-2">
-                        <p className="text-xs font-medium line-clamp-2">{dish.title}</p>
-                      </div>
+                      {imageUrl(dish.photoPath) ? (
+                        <img
+                          src={imageUrl(dish.photoPath)!}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <ImageOffIcon className="size-6 text-muted-foreground/40" />
+                        </div>
+                      )}
+                      <div
+                        className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"
+                        aria-hidden="true"
+                      />
+                      {isSelected && (
+                        <div className="absolute inset-0 bg-primary/15" aria-hidden="true" />
+                      )}
+                      <p className="absolute bottom-0 left-0 right-0 px-2.5 py-2 text-xs font-medium text-white line-clamp-2">
+                        {dish.title}
+                      </p>
                       {isSelected && (
                         <div className="absolute top-1.5 right-1.5 size-5 rounded-full bg-primary flex items-center justify-center">
                           <CheckIcon className="size-3 text-primary-foreground" />
