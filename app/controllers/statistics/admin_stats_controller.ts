@@ -21,6 +21,7 @@ export default class AdminStatsController {
     return inertia.render('dashboard/statistics/index', {
       stats,
       menus: MenuTransformer.transform(menus),
+      filters: { menuId, from, to },
     })
   }
 }

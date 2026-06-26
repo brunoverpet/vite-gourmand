@@ -276,6 +276,12 @@ const routes = {
     tokens: [{"old":"/dashboard/employees/:id/active","type":0,"val":"dashboard","end":""},{"old":"/dashboard/employees/:id/active","type":0,"val":"employees","end":""},{"old":"/dashboard/employees/:id/active","type":1,"val":"id","end":""},{"old":"/dashboard/employees/:id/active","type":0,"val":"active","end":""}],
     types: placeholder as Registry['admin_employees.toggle_active']['types'],
   },
+  'admin_stats.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/statistics',
+    tokens: [{"old":"/dashboard/statistics","type":0,"val":"dashboard","end":""},{"old":"/dashboard/statistics","type":0,"val":"statistics","end":""}],
+    types: placeholder as Registry['admin_stats.render']['types'],
+  },
   'client_orders.index': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/my-orders',

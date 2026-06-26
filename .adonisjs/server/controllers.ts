@@ -5,17 +5,20 @@
 
 export const controllers = {
   auth: {
+    ChangePassword: () => import('#controllers/auth/change_password_controller'),
     Register: () => import('#controllers/auth/register_controller'),
     RequestPasswordReset: () => import('#controllers/auth/request_password_reset_controller'),
     ResetPassword: () => import('#controllers/auth/reset_password_controller'),
     Session: () => import('#controllers/auth/session_controller'),
-    ChangePassword: () => import('#controllers/auth/change_password_controller'),
   },
   contact: {
     Contact: () => import('#controllers/contact/contact_controller'),
   },
   dishes: {
     AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
+  },
+  employees: {
+    AdminEmployees: () => import('#controllers/employees/admin_employees_controller'),
   },
   HomePublic: () => import('#controllers/home_public_controller'),
   menus: {
@@ -42,7 +45,7 @@ export const controllers = {
   profile: {
     Profile: () => import('#controllers/profile/profile_controller'),
   },
-  employees: {
-    AdminEmployees: () => import('#controllers/employees/admin_employees_controller'),
+  statistics: {
+    AdminStats: () => import('#controllers/statistics/admin_stats_controller'),
   },
 }

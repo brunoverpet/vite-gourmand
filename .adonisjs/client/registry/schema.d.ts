@@ -547,6 +547,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/employees/admin_employees_controller').default['toggleActive']>>>
     }
   }
+  'admin_stats.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/statistics'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/statistics/admin_stats_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/statistics/admin_stats_controller').default['render']>>>
+    }
+  }
   'client_orders.index': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/my-orders'
