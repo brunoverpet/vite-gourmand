@@ -37,7 +37,6 @@ router
 
 router
   .group(() => {
-    router.on('dashboard').renderInertia('home', {}).as('home')
 
     router
       .group(() => {
@@ -103,6 +102,7 @@ router
 
     router.get('dashboard/profile', [controllers.profile.Profile, 'show'])
     router.patch('dashboard/profile', [controllers.profile.Profile, 'update'])
+    router.patch('dashboard/profile/password', [controllers.profile.Profile, 'updatePassword'])
 
     router.post('reviews', [controllers.notice.RegisterNotice, 'handle'])
 

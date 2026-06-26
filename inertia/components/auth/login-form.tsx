@@ -38,17 +38,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
               <FieldError message={errors.password} />
             </Field>
 
-            <Field>
-              <Button type="submit">Se connecter</Button>
-            </Field>
+            <Button type="submit" className="sm:w-fit sm:mx-auto sm:h-10">
+              Se connecter
+            </Button>
 
             <FieldSeparator />
 
-            <Field className="flex items-center">
-              <Button variant="outline" type="button" asChild>
-                <Link route="request_password_reset.show">Mot de passe oublié</Link>
-              </Button>
-            </Field>
+            <Button variant="outline" type="button" className="sm:w-fit sm:mx-auto sm:h-10" asChild>
+              <Link route="request_password_reset.show">Mot de passe oublié</Link>
+            </Button>
           </FieldGroup>
         )}
       </Form>

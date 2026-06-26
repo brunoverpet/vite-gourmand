@@ -60,13 +60,13 @@ export function MobileMenu({ isOpen, onClose, isStaff, isClient }: Props) {
 
       {isStaff ? (
         <Button asChild variant="outline" className="w-full text-primary-foreground">
-          <Link href="/dashboard" onClick={onClose}>
+          <Link route="orders_management.index" onClick={onClose}>
             Tableau de bord
           </Link>
         </Button>
       ) : isClient ? (
         <Button asChild variant="outline" className="w-full text-primary-foreground">
-          <Link href="/dashboard/my-orders" onClick={onClose}>
+          <Link route="orders_management.index" onClick={onClose}>
             Mes commandes
           </Link>
         </Button>

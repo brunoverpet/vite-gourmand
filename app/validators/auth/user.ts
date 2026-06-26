@@ -82,9 +82,18 @@ export const updateProfileValidator = vine.withMetaData<{ userId: string }>().cr
 })
 updateProfileValidator.messagesProvider = sharedMessages
 
+/**
+ * Validator for password change from the profile page
+ */
+export const updatePasswordProfileValidator = vine.create({
+  password: password().confirmed({ confirmationField: 'passwordConfirmation' }),
+})
+updatePasswordProfileValidator.messagesProvider = sharedMessages
+
 // =============================================================================
 // 4. EXPORTED TYPES
 // =============================================================================
 export type RegisterPayload = Infer<typeof registerValidator>
 export type AdminCreateEmployePayload = Infer<typeof adminCreateEmployeValidator>
 export type UpdateProfilePayload = Infer<typeof updateProfileValidator>
+export type UpdatePasswordProfilePayload = Infer<typeof updatePasswordProfileValidator>

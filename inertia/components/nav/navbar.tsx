@@ -71,7 +71,7 @@ export default function Navbar() {
             ))}
             {isStaff ? (
               <Button asChild variant="outline">
-                <Link href="/dashboard">Tableau de bord</Link>
+                <Link href="/dashboard/orders">Tableau de bord</Link>
               </Button>
             ) : isClient ? (
               <Button asChild variant="outline">

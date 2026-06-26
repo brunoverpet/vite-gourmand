@@ -8,7 +8,7 @@ export default class RoleMiddleware {
 
     if (!roles.includes(user.role.label as Roles)) {
       ctx.session.flash('error', 'Accès non autorisé.')
-      return ctx.response.redirect().toRoute('home')
+      return ctx.response.redirect().toRoute('orders_management.index')
     }
 
     return next()

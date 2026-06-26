@@ -42,17 +42,13 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
               <FieldError message={errors.passwordConfirmation} />
             </Field>
 
-            <Field>
-              <Button type="submit">Changer le mot de passe</Button>
-            </Field>
+            <Button type="submit" className="sm:h-10">Changer le mot de passe</Button>
 
             <FieldSeparator />
 
-            <Field className="flex items-center">
-              <Button variant="outline" type="button" asChild>
-                <Link route="session.render">Se connecter</Link>
-              </Button>
-            </Field>
+            <Button variant="outline" type="button" className="sm:h-10" asChild>
+              <Link route="session.render">Se connecter</Link>
+            </Button>
           </FieldGroup>
         )}
       </Form>

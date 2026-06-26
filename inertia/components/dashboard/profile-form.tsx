@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Form } from '@adonisjs/inertia/react'
 import { Button } from '~/components/ui/button'
 import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
@@ -13,6 +14,21 @@ type ProfileFormProps = {
 }
 
 export function ProfileForm({ user }: ProfileFormProps) {
+  const initial = {
+    lastname: user?.lastname ?? '',
+    firstname: user?.firstname ?? '',
+    email: user?.email ?? '',
+    phone: user?.phone ?? '',
+    address: user?.address ?? '',
+    city: user?.city ?? '',
+  }
+
+  const [values, setValues] = useState(initial)
+
+  const isDirty = Object.keys(initial).some(
+    (key) => values[key as keyof typeof initial] !== initial[key as keyof typeof initial]
+  )
+
   const {
     address,
     setAddress,
@@ -37,9 +53,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 id="lastname"
                 name="lastname"
                 type="text"
-                defaultValue={user?.lastname ?? ''}
+                defaultValue={initial.lastname}
                 autoComplete="family-name"
                 required
+                onChange={(e) => setValues((v) => ({ ...v, lastname: e.target.value }))}
               />
               <FieldError message={errors.lastname} />
             </Field>
@@ -49,9 +66,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 id="firstname"
                 name="firstname"
                 type="text"
-                defaultValue={user?.firstname ?? ''}
+                defaultValue={initial.firstname}
                 autoComplete="given-name"
                 required
+                onChange={(e) => setValues((v) => ({ ...v, firstname: e.target.value }))}
               />
               <FieldError message={errors.firstname} />
             </Field>
@@ -63,9 +81,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
               id="email"
               name="email"
               type="email"
-              defaultValue={user?.email ?? ''}
+              defaultValue={initial.email}
               autoComplete="email"
               required
+              onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
             />
             <FieldError message={errors.email} />
           </Field>
@@ -76,35 +95,44 @@ export function ProfileForm({ user }: ProfileFormProps) {
               id="phone"
               name="phone"
               autoComplete="tel"
-              defaultValue={user?.phone ?? undefined}
+              defaultValue={initial.phone || undefined}
               required
+              onValueChange={(val) => setValues((v) => ({ ...v, phone: val }))}
             />
             <FieldError message={errors.phone} />
           </Field>
 
           <AddressFields
             address={address}
-            onAddressChange={(v) => {
-              setAddress(v)
-              fetchSuggestions(v)
+            onAddressChange={(val) => {
+              setAddress(val)
+              fetchSuggestions(val)
+              setValues((v) => ({ ...v, address: val }))
             }}
             suggestions={suggestions}
-            onSelectAddress={selectAddress}
+            onSelectAddress={(s) => {
+              selectAddress(s)
+              setValues((v) => ({ ...v, address: s.fulltext }))
+            }}
             addressName="address"
             addressError={errors.address}
             city={city}
-            onCityChange={(v) => {
-              setCity(v)
-              fetchCitySuggestions(v)
+            onCityChange={(val) => {
+              setCity(val)
+              fetchCitySuggestions(val)
+              setValues((v) => ({ ...v, city: val }))
             }}
             citySuggestions={citySuggestions}
-            onSelectCity={selectCity}
+            onSelectCity={(s) => {
+              selectCity(s)
+              setValues((v) => ({ ...v, city: s.fulltext }))
+            }}
             cityName="city"
             cityError={errors.city}
             required
           />
 
-          <Button type="submit" className="sm:w-auto">
+          <Button type="submit" disabled={!isDirty} className="sm:w-fit sm:self-start sm:h-10">
             Enregistrer
           </Button>
         </FieldGroup>

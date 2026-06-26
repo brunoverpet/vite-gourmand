@@ -16,6 +16,6 @@ export default class ChangePasswordController {
     await this.userService.changePassword(auth.user!.id, password)
 
     session.flash('success', 'Votre mot de passe a été mis à jour.')
-    return response.redirect().toRoute('home')
+    return response.redirect().toRoute('orders_management.index')
   }
 }

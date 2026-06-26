@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-type PhoneInputProps = Omit<React.ComponentProps<'input'>, 'type' | 'value' | 'onChange'>
+type PhoneInputProps = Omit<React.ComponentProps<'input'>, 'type' | 'value' | 'onChange'> & {
+  onValueChange?: (normalized: string) => void
+}
 
 function normalizePhone(raw: string): string {
   const digits = raw.replace(/\D/g, '')
@@ -16,10 +18,16 @@ function denormalizePhone(phone: string | undefined): string {
   return phone
 }
 
-function PhoneInput({ className, name, defaultValue, ...props }: PhoneInputProps) {
+function PhoneInput({ className, name, defaultValue, onValueChange, ...props }: PhoneInputProps) {
   const [display, setDisplay] = React.useState(() =>
     denormalizePhone(typeof defaultValue === 'string' ? defaultValue : undefined)
   )
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const raw = e.target.value
+    setDisplay(raw)
+    onValueChange?.(normalizePhone(raw))
+  }
 
   return (
     <div
@@ -36,7 +44,7 @@ function PhoneInput({ className, name, defaultValue, ...props }: PhoneInputProps
         type="tel"
         data-slot="input"
         value={display}
-        onChange={(e) => setDisplay(e.target.value)}
+        onChange={handleChange}
         className="flex-1 min-w-0 bg-transparent px-2.5 py-1 text-base outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
         {...props}
       />

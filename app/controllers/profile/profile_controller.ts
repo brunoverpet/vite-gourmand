@@ -1,4 +1,4 @@
-import { updateProfileValidator } from '#validators/auth/user'
+import { updateProfileValidator, updatePasswordProfileValidator } from '#validators/auth/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ProfileController {
@@ -23,6 +23,18 @@ export default class ProfileController {
     await user.save()
 
     session.flash('success', 'Profil mis à jour.')
+    return response.redirect().back()
+  }
+
+  async updatePassword({ auth, request, response, session }: HttpContext) {
+    const user = auth.getUserOrFail()
+
+    const { password } = await request.validateUsing(updatePasswordProfileValidator)
+
+    user.password = password
+    await user.save()
+
+    session.flash('success', 'Mot de passe mis à jour.')
     return response.redirect().back()
   }
 }

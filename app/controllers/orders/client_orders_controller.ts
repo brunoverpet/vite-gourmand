@@ -36,7 +36,7 @@ export default class ClientOrdersController {
 
     if (!order) {
       session.flash('error', 'Commande introuvable.')
-      return response.redirect().toRoute('home')
+      return response.redirect().toRoute('client_orders.index')
     }
 
     const notice = await Notice.findBy('order_id', order.id)
@@ -54,7 +54,7 @@ export default class ClientOrdersController {
 
     if (!order) {
       session.flash('error', 'Commande introuvable.')
-      return response.redirect().toRoute('home')
+      return response.redirect().toRoute('client_orders.index')
     }
 
     const payload = await request.validateUsing(updateOrderValidator)
@@ -72,7 +72,7 @@ export default class ClientOrdersController {
 
     if (!order) {
       session.flash('error', 'Commande introuvable.')
-      return response.redirect().toRoute('home')
+      return response.redirect().toRoute('client_orders.index')
     }
 
     await this.cancelOrderAction.execute(order)
