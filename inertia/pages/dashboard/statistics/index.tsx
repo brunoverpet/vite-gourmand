@@ -3,7 +3,7 @@ import { StatsBarChart } from '~/components/dashboard/stats-bar-chart'
 import { DatePickerFilter } from '~/components/ui/date-picker-filter'
 import { FilterSelect } from '~/components/ui/filter-select'
 import type { InertiaProps } from '~/types'
-import { Data } from '@generated/data'
+import type { Data } from '@generated/data'
 
 type Stat = {
   _id: string
@@ -41,9 +41,7 @@ export default function StatisticsIndex({ stats, menus, filters }: IndexProps) {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-semibold">Statistiques</h1>
-        <p className="text-muted-foreground text-sm mt-1">
-          Données issues des commandes acceptées
-        </p>
+        <p className="text-muted-foreground text-sm mt-1">Données issues des commandes acceptées</p>
       </div>
 
       <div className="flex flex-col gap-2">
