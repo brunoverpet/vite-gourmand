@@ -16,19 +16,15 @@ import { AddressFields } from '~/components/ui/address-fields'
 import { DateTimePickerField } from '~/components/ui/date-time-picker-field'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 import type { Data } from '@generated/data'
-
 type Order = Data.Orders.ClientOrder
-
 export function EditOrderDialog({ order }: { order: Order }) {
   const [open, setOpen] = useState(false)
   const [numberOfPeople, setNumberOfPeople] = useState(String(order.numberOfPeople))
   const [minWarning, setMinWarning] = useState(false)
-
   const initialDate = order.eventDate ? new Date(order.eventDate) : undefined
   const [date, setDate] = useState<Date | undefined>(initialDate)
   const [hour, setHour] = useState(order.deliveryTime?.slice(0, 2) ?? '12')
   const [minute, setMinute] = useState(order.deliveryTime?.slice(3, 5) ?? '00')
-
   const {
     address,
     setAddress,
@@ -44,11 +40,10 @@ export function EditOrderDialog({ order }: { order: Order }) {
     selectAddress,
     selectCity,
   } = useAddressAutocomplete(order.deliveryAddress ?? '', order.deliveryCity ?? '')
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline">
           Modifier
         </Button>
       </DialogTrigger>
@@ -56,7 +51,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
         <DialogHeader>
           <DialogTitle>Modifier la commande</DialogTitle>
         </DialogHeader>
-
         <Form
           route="client_orders.update"
           routeParams={{ id: order.id }}
@@ -69,7 +63,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
               {zipcode && <input type="hidden" name="delivery_zipcode" value={zipcode} />}
               {longitude !== null && <input type="hidden" name="longitude" value={longitude} />}
               {latitude !== null && <input type="hidden" name="latitude" value={latitude} />}
-
               <FieldGroup>
                 <Field>
                   <FieldLabel>Nombre de personnes</FieldLabel>
@@ -99,7 +92,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
                   )}
                   <FieldError message={errors.number_of_people} />
                 </Field>
-
                 <DateTimePickerField
                   date={date}
                   onDateChange={setDate}
@@ -109,7 +101,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
                   onMinuteChange={setMinute}
                   dateError={errors.event_date}
                 />
-
                 <AddressFields
                   address={address}
                   onAddressChange={(v) => {
@@ -129,7 +120,6 @@ export function EditOrderDialog({ order }: { order: Order }) {
                   cityError={errors.delivery_city}
                 />
               </FieldGroup>
-
               <Button type="submit" className="w-full">
                 Enregistrer les modifications
               </Button>

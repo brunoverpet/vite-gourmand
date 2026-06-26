@@ -13,16 +13,14 @@ import {
 import { Button } from '~/components/ui/button'
 import { EditOrderDialog } from '~/components/orders/edit-order-dialog'
 import type { Data } from '@generated/data'
-
 type Order = Data.Orders.ClientOrder
-
 export function OrderActions({ order }: { order: Order }) {
   return (
     <div className="flex gap-2">
       <EditOrderDialog order={order} />
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" size="sm">
+          <Button variant="destructive">
             Annuler
           </Button>
         </AlertDialogTrigger>
@@ -35,9 +33,8 @@ export function OrderActions({ order }: { order: Order }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel size="sm">Retour</AlertDialogCancel>
+            <AlertDialogCancel>Retour</AlertDialogCancel>
             <AlertDialogAction
-              size="sm"
               onClick={() => router.delete(`/dashboard/my-orders/${order.id}`)}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

@@ -8,24 +8,20 @@ import {
   AlertDialogTitle,
 } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
-
 type Props = {
   menuId: string
   menuTitle: string
   open: boolean
   onOpenChange: (v: boolean) => void
 }
-
 export function MenuDeleteDialog({ menuId, menuTitle, open, onOpenChange }: Props) {
   const form = useForm({})
-
   function handleDelete() {
     form.delete(`/dashboard/menus/${menuId}`, {
       preserveScroll: true,
       onSuccess: () => onOpenChange(false),
     })
   }
-
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
@@ -40,7 +36,6 @@ export function MenuDeleteDialog({ menuId, menuTitle, open, onOpenChange }: Prop
         <AlertDialogFooter>
           <Button
             variant="outline"
-            size="sm"
             onClick={() => onOpenChange(false)}
             disabled={form.processing}
           >
@@ -48,7 +43,6 @@ export function MenuDeleteDialog({ menuId, menuTitle, open, onOpenChange }: Prop
           </Button>
           <Button
             variant="destructive"
-            size="sm"
             onClick={handleDelete}
             disabled={form.processing}
           >

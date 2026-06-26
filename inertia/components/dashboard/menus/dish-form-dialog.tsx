@@ -13,15 +13,12 @@ import { FieldError } from '~/components/ui/field-error'
 import { Input } from '~/components/ui/input'
 import { FormSelect } from '~/components/ui/form-select'
 import { Textarea } from '~/components/ui/textarea'
-
 const DISH_TYPE_OPTIONS = [
   { value: 'entrée', label: 'Entrée' },
   { value: 'plat', label: 'Plat' },
   { value: 'dessert', label: 'Dessert' },
 ]
-
 type Allergen = { id: string; label: string }
-
 export type DishFormItem = {
   id: string
   title: string
@@ -30,7 +27,6 @@ export type DishFormItem = {
   photoPath: string
   allergens?: Allergen[]
 }
-
 type Props = {
   menuId: string
   allergens: Allergen[]
@@ -38,7 +34,6 @@ type Props = {
   open: boolean
   onOpenChange: (v: boolean) => void
 }
-
 export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: Props) {
   const form = useForm({
     title: dish?.title ?? '',
@@ -47,7 +42,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
     photo_path: dish?.photoPath ?? '',
     allergen_ids: dish?.allergens?.map((a) => a.id) ?? ([] as string[]),
   })
-
   function toggleAllergen(id: string) {
     const current = form.data.allergen_ids
     form.setData(
@@ -55,7 +49,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
       current.includes(id) ? current.filter((a) => a !== id) : [...current, id]
     )
   }
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (dish) {
@@ -73,14 +66,12 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
       })
     }
   }
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>{dish ? 'Modifier le plat' : 'Ajouter un plat'}</DialogTitle>
         </DialogHeader>
-
         <form onSubmit={handleSubmit}>
           <FieldGroup className="py-2">
             <Field>
@@ -93,7 +84,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
               />
               <FieldError message={form.errors.title} />
             </Field>
-
             <Field>
               <FieldLabel htmlFor="dish-type">Type</FieldLabel>
               <FormSelect
@@ -105,7 +95,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
               />
               <FieldError message={form.errors.type} />
             </Field>
-
             <Field>
               <FieldLabel htmlFor="dish-description">Description</FieldLabel>
               <Textarea
@@ -117,7 +106,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
               />
               <FieldError message={form.errors.description} />
             </Field>
-
             <Field>
               <FieldLabel htmlFor="dish-photo">URL de la photo</FieldLabel>
               <Input
@@ -130,7 +118,6 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
               />
               <FieldError message={form.errors.photo_path} />
             </Field>
-
             {allergens.length > 0 && (
               <div className="space-y-2">
                 <p className="text-sm font-medium">Allergènes</p>
@@ -152,18 +139,16 @@ export function DishFormDialog({ menuId, allergens, dish, open, onOpenChange }: 
               </div>
             )}
           </FieldGroup>
-
           <DialogFooter className="pt-4">
             <Button
               type="button"
               variant="outline"
-              size="sm"
               onClick={() => onOpenChange(false)}
               disabled={form.processing}
             >
               Annuler
             </Button>
-            <Button type="submit" size="sm" disabled={form.processing}>
+            <Button type="submit" disabled={form.processing}>
               {dish ? 'Enregistrer' : 'Ajouter'}
             </Button>
           </DialogFooter>

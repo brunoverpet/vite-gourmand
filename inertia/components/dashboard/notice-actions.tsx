@@ -1,18 +1,14 @@
 import { useState } from 'react'
 import { router } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
-
 type Props = {
   notice: { id: string; status: string }
   onSuccess?: () => void
   fullWidth?: boolean
 }
-
 export function NoticeActions({ notice, onSuccess, fullWidth }: Props) {
   const [processing, setProcessing] = useState(false)
-
   if (notice.status !== 'en_attente') return null
-
   function submit(status: string) {
     setProcessing(true)
     router.patch(
@@ -27,11 +23,9 @@ export function NoticeActions({ notice, onSuccess, fullWidth }: Props) {
       }
     )
   }
-
   return (
     <div className="flex gap-2">
       <Button
-        size="sm"
         variant="destructive"
         className={fullWidth ? 'flex-1' : undefined}
         disabled={processing}
@@ -40,7 +34,6 @@ export function NoticeActions({ notice, onSuccess, fullWidth }: Props) {
         Refuser
       </Button>
       <Button
-        size="sm"
         className={fullWidth ? 'flex-1' : undefined}
         disabled={processing}
         onClick={() => submit('valide')}

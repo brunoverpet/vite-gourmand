@@ -5,35 +5,29 @@ import { Button } from '~/components/ui/button'
 import { EmptyState } from '~/components/ui/empty-state'
 import { DishFormDialog, type DishFormItem } from '~/components/dashboard/menus/dish-form-dialog'
 import { DishDeleteDialog } from '~/components/dashboard/menus/dish-delete-dialog'
-
 const DISH_TYPE_LABELS: Record<string, string> = {
   entrée: 'Entrée',
   plat: 'Plat',
   dessert: 'Dessert',
 }
-
 type Allergen = { id: string; label: string }
-
 type Props = {
   menuId: string
   dishes: DishFormItem[]
   allergens: Allergen[]
 }
-
 export function DishList({ menuId, dishes, allergens }: Props) {
   const [editingDish, setEditingDish] = useState<DishFormItem | null>(null)
   const [deletingDish, setDeletingDish] = useState<DishFormItem | null>(null)
   const [addOpen, setAddOpen] = useState(false)
-
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Plats</h2>
-        <Button size="sm" onClick={() => setAddOpen(true)}>
+        <Button onClick={() => setAddOpen(true)}>
           Ajouter un plat
         </Button>
       </div>
-
       {dishes.length === 0 ? (
         <EmptyState
           title="Aucun plat"
@@ -71,7 +65,6 @@ export function DishList({ menuId, dishes, allergens }: Props) {
           ))}
         </div>
       )}
-
       <DishFormDialog
         key={editingDish?.id ?? 'add'}
         menuId={menuId}
@@ -85,7 +78,6 @@ export function DishList({ menuId, dishes, allergens }: Props) {
           }
         }}
       />
-
       {deletingDish && (
         <DishDeleteDialog
           menuId={menuId}

@@ -26,14 +26,11 @@ import {
   SelectTrigger,
 } from '~/components/ui/select'
 import type { Data } from '@generated/data'
-
 type Order = Data.Orders.OrderManagement
-
 export function StatusUpdateForm({ order }: { order: Order }) {
   const allowed = getOrderStatusTransitions(order.status, order.materialLoan ?? false)
   const [pending, setPending] = useState<string | null>(null)
   const { setData, patch, processing } = useForm({ status: '' })
-
   if (allowed.length === 0)
     return (
       <StatusBadge
@@ -42,19 +39,16 @@ export function StatusUpdateForm({ order }: { order: Order }) {
         colors={ORDER_STATUS_COLORS}
       />
     )
-
   function handleSelect(next: string) {
     setData('status', next)
     setPending(next)
   }
-
   function handleConfirm() {
     patch(`/orders/${order.id}/status`, {
       preserveScroll: true,
       onFinish: () => setPending(null),
     })
   }
-
   return (
     <>
       <Select onValueChange={handleSelect} disabled={processing}>
@@ -76,13 +70,11 @@ export function StatusUpdateForm({ order }: { order: Order }) {
           </SelectGroup>
         </SelectContent>
       </Select>
-
       <CancelOrderDialog
         order={order}
         open={pending === 'annulee'}
         onClose={() => setPending(null)}
       />
-
       <AlertDialog
         open={!!pending && pending !== 'annulee'}
         onOpenChange={(open) => !open && setPending(null)}
@@ -100,8 +92,8 @@ export function StatusUpdateForm({ order }: { order: Order }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel size="sm">Annuler</AlertDialogCancel>
-            <AlertDialogAction size="sm" onClick={handleConfirm}>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirm}>
               Confirmer
             </AlertDialogAction>
           </AlertDialogFooter>
