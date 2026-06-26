@@ -71,11 +71,16 @@ export function DishGrid({ dishes }: Props) {
 
                   {dish.allergens.length > 0 && (
                     <div className="flex flex-wrap gap-1">
-                      {dish.allergens.map((a) => (
-                        <Badge key={a.id} variant="outline" className="text-xs">
+                      {dish.allergens.slice(0, 3).map((a) => (
+                        <Badge key={a.id} variant="outline" className="text-xs max-w-[7rem] truncate block">
                           {a.label}
                         </Badge>
                       ))}
+                      {dish.allergens.length > 3 && (
+                        <Badge variant="secondary" className="text-xs shrink-0">
+                          +{dish.allergens.length - 3}
+                        </Badge>
+                      )}
                     </div>
                   )}
                 </div>
