@@ -29,7 +29,7 @@ export function OrderTimeline({ order }: { order: Order }) {
 
   return (
     <div>
-      <p className="font-medium mb-4">Suivi de commande</p>
+      <h3 className="font-medium mb-4">Suivi de commande</h3>
       <ol className="relative border-l border-border ml-3 space-y-6">
         {relevantStatuses.map((status) => {
           const isDone = completedStatuses.has(status)
