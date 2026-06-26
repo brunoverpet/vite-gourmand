@@ -51,7 +51,7 @@ export const ADMIN_EXTRA_NAV: NavGroupDef[] = [
     label: 'Administration',
     items: [
       { href: '/dashboard/employees', icon: <UsersIcon />, label: 'Comptes employés' },
-      { href: '/dashboard/stats', icon: <BarChart2Icon />, label: 'Statistiques' },
+      { href: '/dashboard/statistics', icon: <BarChart2Icon />, label: 'Statistiques' },
     ],
   },
 ]

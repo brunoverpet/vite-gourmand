@@ -91,6 +91,8 @@ router
           controllers.employees.AdminEmployees,
           'toggleActive',
         ])
+
+        router.get('dashboard/statistics', [controllers.statistics.AdminStats, 'render'])
       })
       .use(middleware.role([Roles.EMPLOYE, Roles.ADMIN]))
 

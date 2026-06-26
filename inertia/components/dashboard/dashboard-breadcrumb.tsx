@@ -17,7 +17,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   'notices': 'Avis clients',
   'profile': 'Mon profil',
   'employees': 'Comptes employés',
-  'stats': 'Statistiques',
+  'statistics': 'Statistiques',
   'opening-hours': 'Horaires',
   'create': 'Créer',
   'edit': 'Modifier',
