@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Form } from '@adonisjs/inertia/react'
@@ -9,6 +10,13 @@ import { AddressFields } from '~/components/ui/address-fields'
 import { useAddressAutocomplete } from '~/hooks/use-address-autocomplete'
 
 export function SignupForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const [lastname, setLastname] = useState('')
+  const [firstname, setFirstname] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
   const {
     address,
     setAddress,
@@ -22,6 +30,16 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
     selectAddress,
     selectCity,
   } = useAddressAutocomplete()
+
+  const canSubmit =
+    !!lastname &&
+    !!firstname &&
+    !!email &&
+    !!phone &&
+    !!address &&
+    !!city &&
+    !!password &&
+    !!passwordConfirmation
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -38,6 +56,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   name="lastname"
                   type="text"
                   placeholder="Doe"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
                   required
                 />
                 <FieldError message={errors.lastname} />
@@ -50,6 +70,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   type="text"
                   autoComplete="given-name"
                   placeholder="John"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
                   required
                 />
                 <FieldError message={errors.firstname} />
@@ -64,6 +86,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                 name="email"
                 autoComplete="email"
                 placeholder="adresse@exemple.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <FieldError message={errors.email} />
@@ -76,6 +100,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                 name="phone"
                 autoComplete="tel"
                 placeholder="6 00 00 00 00"
+                onValueChange={setPhone}
                 required
               />
               <FieldError message={errors.phone} />
@@ -112,6 +137,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   name="password"
                   type="password"
                   placeholder="••••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <FieldError message={errors.password} />
@@ -123,6 +150,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
                   name="passwordConfirmation"
                   type="password"
                   placeholder="••••••••••"
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
                   required
                 />
                 <FieldError message={errors.passwordConfirmation} />
@@ -133,7 +162,12 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
               Au moins 10 caractères, une majuscule et un caractère spécial.
             </p>
 
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              disabled={!canSubmit}
+              tooltip="Remplissez tous les champs pour créer votre compte"
+              className="w-full"
+            >
               Créer mon compte
             </Button>
           </FieldGroup>

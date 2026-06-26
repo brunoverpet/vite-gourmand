@@ -19,6 +19,8 @@ type Props = {
 export function EmployeeCreateDialog({ open, onOpenChange }: Props) {
   const form = useForm({ lastname: '', firstname: '', email: '' })
 
+  const canSubmit = !!form.data.lastname && !!form.data.firstname && !!form.data.email
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     form.post('/dashboard/employees', {
@@ -97,7 +99,8 @@ export function EmployeeCreateDialog({ open, onOpenChange }: Props) {
           <Button
             type="submit"
             form="employee-create-form"
-            disabled={form.processing}
+            disabled={!canSubmit || form.processing}
+            tooltip="Remplissez tous les champs requis"
           >
             {form.processing ? 'Création…' : 'Créer le compte'}
           </Button>
