@@ -37,6 +37,15 @@ export function MenuForm({ diets, themes, menu }: Props) {
     theme_id: menu?.theme.id ?? '',
   })
 
+  const canCreate =
+    !!form.data.title &&
+    !!form.data.description &&
+    !!form.data.diet_id &&
+    !!form.data.theme_id &&
+    !!form.data.min_people &&
+    !!form.data.price_per_people &&
+    !!form.data.stock
+
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     if (menu) {
@@ -119,6 +128,7 @@ export function MenuForm({ diets, themes, menu }: Props) {
               id="min_people"
               type="number"
               min={1}
+              placeholder="ex. 10"
               value={form.data.min_people}
               onChange={(e) => form.setData('min_people', e.target.value)}
               required
@@ -133,6 +143,7 @@ export function MenuForm({ diets, themes, menu }: Props) {
               type="number"
               min={0}
               step="0.01"
+              placeholder="ex. 45.00"
               value={form.data.price_per_people}
               onChange={(e) => form.setData('price_per_people', e.target.value)}
               required
@@ -146,6 +157,7 @@ export function MenuForm({ diets, themes, menu }: Props) {
               id="stock"
               type="number"
               min={0}
+              placeholder="ex. 5"
               value={form.data.stock}
               onChange={(e) => form.setData('stock', e.target.value)}
               required
@@ -154,11 +166,13 @@ export function MenuForm({ diets, themes, menu }: Props) {
           </Field>
         </div>
 
-        {(form.isDirty || !menu) && (
-          <Button type="submit" disabled={form.processing} className="w-fit">
-            {menu ? 'Enregistrer les modifications' : 'Créer le menu'}
-          </Button>
-        )}
+        <Button
+          type="submit"
+          disabled={form.processing || (menu ? !form.isDirty : !canCreate)}
+          className="w-fit"
+        >
+          {menu ? 'Enregistrer les modifications' : 'Créer le menu'}
+        </Button>
       </FieldGroup>
     </form>
   )
