@@ -31,10 +31,7 @@ export function MenuGrid({ menus }: Props) {
 
   if (menus.length === 0) {
     return (
-      <EmptyState
-        title="Aucun menu"
-        description="Aucun menu ne correspond à votre recherche."
-      />
+      <EmptyState title="Aucun menu" description="Aucun menu ne correspond à votre recherche." />
     )
   }
 
@@ -44,7 +41,10 @@ export function MenuGrid({ menus }: Props) {
         {menus.map((menu) => {
           const src = menu.pictures?.[0] ? imageUrl(menu.pictures[0].imagePath) : null
           return (
-            <div key={menu.id} className="group relative rounded-lg overflow-hidden aspect-[3/2] bg-muted">
+            <div
+              key={menu.id}
+              className="group relative rounded-lg overflow-hidden aspect-[3/2] bg-muted"
+            >
               <Link
                 route="admin_menus.edit"
                 routeParams={{ id: menu.id }}

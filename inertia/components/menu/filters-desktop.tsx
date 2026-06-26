@@ -53,7 +53,9 @@ export default function FiltersDesktop({
 
       <div className="divide-y divide-border">
         <div className="py-8">
-          <h3 className="text-label-caps text-muted-foreground mb-4">Nombre de personnes minimum</h3>
+          <h3 className="text-label-caps text-muted-foreground mb-4">
+            Nombre de personnes minimum
+          </h3>
           <MinPeopleSlider value={minPeople} onChange={onMinPeopleChange} />
         </div>
 

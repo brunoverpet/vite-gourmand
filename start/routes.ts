@@ -37,7 +37,6 @@ router
 
 router
   .group(() => {
-
     router
       .group(() => {
         router

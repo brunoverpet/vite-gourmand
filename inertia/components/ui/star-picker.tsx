@@ -23,8 +23,14 @@ export function StarPicker({ selected, onSelect }: Props) {
             onMouseEnter={() => setHovered(star)}
             onMouseLeave={() => setHovered(0)}
             onKeyDown={(e) => {
-              if (e.key === 'ArrowRight' && star < 5) { e.preventDefault(); onSelect(star + 1) }
-              if (e.key === 'ArrowLeft' && star > 1) { e.preventDefault(); onSelect(star - 1) }
+              if (e.key === 'ArrowRight' && star < 5) {
+                e.preventDefault()
+                onSelect(star + 1)
+              }
+              if (e.key === 'ArrowLeft' && star > 1) {
+                e.preventDefault()
+                onSelect(star - 1)
+              }
             }}
             className="transition-colors"
           >

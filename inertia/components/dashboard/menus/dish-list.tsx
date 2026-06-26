@@ -24,9 +24,7 @@ export function DishList({ menuId, dishes, allergens }: Props) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Plats</h2>
-        <Button onClick={() => setAddOpen(true)}>
-          Ajouter un plat
-        </Button>
+        <Button onClick={() => setAddOpen(true)}>Ajouter un plat</Button>
       </div>
       {dishes.length === 0 ? (
         <EmptyState

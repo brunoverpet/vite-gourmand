@@ -20,9 +20,7 @@ export function OrderActions({ order }: { order: Order }) {
       <EditOrderDialog order={order} />
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive">
-            Annuler
-          </Button>
+          <Button variant="destructive">Annuler</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>

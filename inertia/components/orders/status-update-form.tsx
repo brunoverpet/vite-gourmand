@@ -93,9 +93,7 @@ export function StatusUpdateForm({ order }: { order: Order }) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirm}>
-              Confirmer
-            </AlertDialogAction>
+            <AlertDialogAction onClick={handleConfirm}>Confirmer</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

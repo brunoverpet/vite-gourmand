@@ -18,7 +18,17 @@ type Props = {
   allowDecimals?: boolean
 }
 
-export function StatsBarChart({ title, description, highlight, data, dataKey, label, color, valueFormatter, allowDecimals = true }: Props) {
+export function StatsBarChart({
+  title,
+  description,
+  highlight,
+  data,
+  dataKey,
+  label,
+  color,
+  valueFormatter,
+  allowDecimals = true,
+}: Props) {
   const chartConfig = {
     [dataKey]: { label, color },
   } satisfies ChartConfig
@@ -54,12 +64,7 @@ export function StatsBarChart({ title, description, highlight, data, dataKey, la
       <ChartContainer config={chartConfig} className="h-[300px] w-full">
         <BarChart accessibilityLayer data={data}>
           <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="menuTitle"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
+          <XAxis dataKey="menuTitle" tickLine={false} tickMargin={10} axisLine={false} />
           <YAxis
             tickLine={false}
             axisLine={false}

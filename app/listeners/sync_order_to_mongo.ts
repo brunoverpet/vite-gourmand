@@ -10,7 +10,7 @@ export default class SyncOrderToMongo {
       menuId: event.order.menuId,
       menuTitle: event.order.menu.title,
       totalPrice: Number(event.order.totalAmount),
-      orderDate: event.order.orderDate.toJSDate()
+      orderDate: event.order.orderDate.toJSDate(),
     })
   }
-} 
+}

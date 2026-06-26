@@ -32,10 +32,7 @@ export function DishGrid({ dishes }: Props) {
 
   if (dishes.length === 0) {
     return (
-      <EmptyState
-        title="Aucun plat"
-        description="Aucun plat ne correspond à votre recherche."
-      />
+      <EmptyState title="Aucun plat" description="Aucun plat ne correspond à votre recherche." />
     )
   }
 
@@ -45,14 +42,21 @@ export function DishGrid({ dishes }: Props) {
         {dishes.map((dish) => {
           const src = imageUrl(dish.photoPath)
           return (
-            <div key={dish.id} className="group relative rounded-lg overflow-hidden aspect-[3/2] bg-muted">
+            <div
+              key={dish.id}
+              className="group relative rounded-lg overflow-hidden aspect-[3/2] bg-muted"
+            >
               <Link
                 route="admin_dishes.edit"
                 routeParams={{ id: dish.id }}
                 className="block w-full h-full"
               >
                 {src ? (
-                  <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  <img
+                    src={src}
+                    alt=""
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <ImageOffIcon className="size-6 text-muted-foreground/30" />
@@ -75,7 +79,10 @@ export function DishGrid({ dishes }: Props) {
                   {dish.allergens.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1.5">
                       {dish.allergens.slice(0, 3).map((a) => (
-                        <Badge key={a.id} className="text-xs bg-black/40 backdrop-blur-sm text-white border-0 max-w-[7rem] truncate hover:bg-black/40">
+                        <Badge
+                          key={a.id}
+                          className="text-xs bg-black/40 backdrop-blur-sm text-white border-0 max-w-[7rem] truncate hover:bg-black/40"
+                        >
                           {a.label}
                         </Badge>
                       ))}

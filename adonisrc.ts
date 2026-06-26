@@ -62,7 +62,7 @@ export default defineConfig({
     () => import('#providers/api_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/drive/drive_provider'),
-    () => import('#providers/mongo_provider')
+    () => import('#providers/mongo_provider'),
   ],
 
   /*
@@ -77,7 +77,7 @@ export default defineConfig({
     () => import('#start/routes'),
     () => import('#start/kernel'),
     () => import('#start/validator'),
-    () => import('#start/events')
+    () => import('#start/events'),
   ],
 
   /*

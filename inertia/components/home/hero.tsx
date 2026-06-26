@@ -40,9 +40,7 @@ export default function Hero() {
           <p className="text-label-caps text-muted-foreground mb-4">
             Traiteur événementiel à Bordeaux depuis 2001
           </p>
-          <h1 className="text-h1 text-primary">
-            Cuisinés avec soin. Livrés avec amour.
-          </h1>
+          <h1 className="text-h1 text-primary">Cuisinés avec soin. Livrés avec amour.</h1>
           <p className="text-body-lg text-muted-foreground mt-4">
             Noël, Pâques, mariages, repas d&apos;entreprise — des menus raffinés livrés à domicile.
           </p>

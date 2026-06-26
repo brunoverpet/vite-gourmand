@@ -72,11 +72,7 @@ export default function MenusEdit({ menu, selectedDishIds, diets, themes, dishes
 
       <Separator />
 
-      <DishPicker
-        menuId={menu.id}
-        dishes={dishes}
-        selectedIds={selectedDishIds}
-      />
+      <DishPicker menuId={menu.id} dishes={dishes} selectedIds={selectedDishIds} />
 
       <MenuDeleteDialog
         menuId={menu.id}

@@ -89,11 +89,7 @@ export function EmployeeCreateDialog({ open, onOpenChange }: Props) {
         </form>
 
         <DialogFooter>
-          <Button
-            variant="outline"
-            onClick={() => onOpenChange(false)}
-            disabled={form.processing}
-          >
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={form.processing}>
             Annuler
           </Button>
           <Button

@@ -29,23 +29,17 @@ export function MenuDeleteDialog({ menuId, menuTitle, open, onOpenChange }: Prop
           <AlertDialogTitle>Supprimer le menu</AlertDialogTitle>
           <AlertDialogDescription>
             Vous allez supprimer{' '}
-            <span className="font-medium text-foreground">&laquo;&nbsp;{menuTitle}&nbsp;&raquo;</span>.
-            Cette action est irréversible.
+            <span className="font-medium text-foreground">
+              &laquo;&nbsp;{menuTitle}&nbsp;&raquo;
+            </span>
+            . Cette action est irréversible.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button
-            variant="outline"
-            onClick={() => onOpenChange(false)}
-            disabled={form.processing}
-          >
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={form.processing}>
             Annuler
           </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={form.processing}
-          >
+          <Button variant="destructive" onClick={handleDelete} disabled={form.processing}>
             Supprimer
           </Button>
         </AlertDialogFooter>

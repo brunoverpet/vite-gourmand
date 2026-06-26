@@ -43,9 +43,7 @@ export function EditOrderDialog({ order }: { order: Order }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          Modifier
-        </Button>
+        <Button variant="outline">Modifier</Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg overflow-visible">
         <DialogHeader>

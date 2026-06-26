@@ -11,7 +11,8 @@ export function ProfilePasswordForm() {
     passwordConfirmation: '',
   })
 
-  const isEmpty = !form.data.currentPassword || !form.data.password || !form.data.passwordConfirmation
+  const isEmpty =
+    !form.data.currentPassword || !form.data.password || !form.data.passwordConfirmation
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

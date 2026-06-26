@@ -17,7 +17,9 @@ export default function HomePublic({ menus, notices }: HomeProps) {
     <>
       <Hero />
       <section className="mt-20 mx-auto px-6 max-w-7xl">
-        <p className="text-label-caps text-primary" aria-hidden="true">Le catalogue</p>
+        <p className="text-label-caps text-primary" aria-hidden="true">
+          Le catalogue
+        </p>
         <h2 className="text-h2">Nos menus du moment</h2>
         <p className="text-muted-foreground mt-2">
           Une sélection renouvelée selon les saisons, pensée pour chaque type d&apos;événement.
@@ -55,7 +57,9 @@ export default function HomePublic({ menus, notices }: HomeProps) {
           />
           <div className="bg-secondary py-5 md:rounded-l-2xl md:rounded-r-none md:w-1/2 md:flex md:items-center">
             <div className="mx-6 max-w-prose">
-              <p className="text-label-caps text-primary" aria-hidden="true">Notre histoire</p>
+              <p className="text-label-caps text-primary" aria-hidden="true">
+                Notre histoire
+              </p>
               <h2 className="text-h2">25 ans de passion à Bordeaux</h2>
               <p className="text-muted-foreground mt-4 leading-relaxed">
                 Julie et José ont fondé Vite &amp; Gourmand en 2001. Ce qui a commencé comme une
@@ -73,7 +77,9 @@ export default function HomePublic({ menus, notices }: HomeProps) {
       </section>
 
       <section className="mt-20 px-6 max-w-7xl mx-auto">
-        <p className="text-label-caps text-primary" aria-hidden="true">Avis client</p>
+        <p className="text-label-caps text-primary" aria-hidden="true">
+          Avis client
+        </p>
         <h2 className="text-h2">Ce qu&apos;ils en disent</h2>
         <div className="flex flex-col my-10 gap-5 md:flex-row">
           {notices.map((notice, i) => (

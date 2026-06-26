@@ -22,7 +22,9 @@ export function FooterOpeningHours() {
 
   return (
     <div>
-      <p className="text-label-caps text-primary-foreground/60 my-1" aria-hidden="true">Horaires</p>
+      <p className="text-label-caps text-primary-foreground/60 my-1" aria-hidden="true">
+        Horaires
+      </p>
       {sorted.map((h) => {
         const hours =
           h.isClosed || !h.openTime || !h.closeTime

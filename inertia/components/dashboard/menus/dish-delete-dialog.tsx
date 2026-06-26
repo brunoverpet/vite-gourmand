@@ -30,23 +30,17 @@ export function DishDeleteDialog({ menuId, dishId, dishTitle, open, onOpenChange
           <AlertDialogTitle>Supprimer le plat</AlertDialogTitle>
           <AlertDialogDescription>
             Vous allez supprimer{' '}
-            <span className="font-medium text-foreground">&laquo;&nbsp;{dishTitle}&nbsp;&raquo;</span>.
-            Ce plat sera retiré de tous les menus auxquels il appartient.
+            <span className="font-medium text-foreground">
+              &laquo;&nbsp;{dishTitle}&nbsp;&raquo;
+            </span>
+            . Ce plat sera retiré de tous les menus auxquels il appartient.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button
-            variant="outline"
-            onClick={() => onOpenChange(false)}
-            disabled={form.processing}
-          >
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={form.processing}>
             Annuler
           </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={form.processing}
-          >
+          <Button variant="destructive" onClick={handleDelete} disabled={form.processing}>
             Supprimer
           </Button>
         </AlertDialogFooter>

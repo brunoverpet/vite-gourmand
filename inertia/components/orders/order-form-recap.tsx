@@ -110,7 +110,9 @@ export function OrderFormRecap({
         <hr className="border-border my-1" />
         <div className="flex justify-between font-medium text-body">
           <span>Total TTC</span>
-          <span className="text-accent-text">{estimate ? `${estimate.total.toFixed(2)}€` : '—'}</span>
+          <span className="text-accent-text">
+            {estimate ? `${estimate.total.toFixed(2)}€` : '—'}
+          </span>
         </div>
       </div>
 

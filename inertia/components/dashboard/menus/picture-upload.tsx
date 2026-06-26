@@ -47,7 +47,11 @@ export function PictureUpload({ menuId, pictures }: Props) {
             key={picture.id}
             className="relative group aspect-square rounded-lg overflow-hidden border"
           >
-            <img src={`/uploads/${picture.imagePath}`} alt="" className="w-full h-full object-cover" />
+            <img
+              src={`/uploads/${picture.imagePath}`}
+              alt=""
+              className="w-full h-full object-cover"
+            />
             <button
               onClick={() => handleDelete(picture.id)}
               disabled={deletingId === picture.id || deleteForm.processing}

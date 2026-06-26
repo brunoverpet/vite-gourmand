@@ -82,11 +82,7 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
           <Button variant="outline" onClick={onClose} disabled={processing}>
             Retour
           </Button>
-          <Button
-            variant="destructive"
-                       onClick={handleSubmit}
-            disabled={!canSubmit || processing}
-          >
+          <Button variant="destructive" onClick={handleSubmit} disabled={!canSubmit || processing}>
             Confirmer l&apos;annulation
           </Button>
         </DialogFooter>

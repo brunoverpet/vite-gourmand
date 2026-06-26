@@ -39,7 +39,9 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
         className="flex items-center gap-1 px-2 py-1 text-body-sm text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
       >
         <ChevronLeftIcon className="size-4" aria-hidden="true" />
-        <span className="hidden sm:inline" aria-hidden="true">Précédent</span>
+        <span className="hidden sm:inline" aria-hidden="true">
+          Précédent
+        </span>
       </button>
 
       {/* Mobile: page X / Y */}
@@ -51,7 +53,11 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
       <div className="hidden sm:flex items-center gap-1">
         {pages.map((page, i) =>
           page === null ? (
-            <span key={`ellipsis-${i}`} className="flex size-8 items-center justify-center" aria-hidden="true">
+            <span
+              key={`ellipsis-${i}`}
+              className="flex size-8 items-center justify-center"
+              aria-hidden="true"
+            >
               <MoreHorizontalIcon className="size-4 text-muted-foreground" />
             </span>
           ) : (
@@ -79,7 +85,9 @@ export default function PaginationNav({ currentPage, lastPage, onPageChange }: P
         aria-label="Page suivante"
         className="flex items-center gap-1 px-2 py-1 text-body-sm text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
       >
-        <span className="hidden sm:inline" aria-hidden="true">Suivant</span>
+        <span className="hidden sm:inline" aria-hidden="true">
+          Suivant
+        </span>
         <ChevronRightIcon className="size-4" aria-hidden="true" />
       </button>
     </nav>
