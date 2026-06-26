@@ -28,20 +28,22 @@ export function GeneratedPasswordDialog({ password, open, onOpenChange }: Props)
         <DialogHeader>
           <DialogTitle>Compte créé avec succès</DialogTitle>
           <DialogDescription>
-            Communiquez ce mot de passe à l'employé. Il ne sera plus affiché après fermeture.
+            Communiquez ce mot de passe à l&apos;employé. Il ne sera plus affiché après fermeture.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center gap-2 rounded-lg border bg-muted/50 px-4 py-3">
           <code className="flex-1 font-mono text-sm tracking-widest select-all">{password}</code>
           <Button variant="ghost" size="icon-sm" onClick={handleCopy}>
-            {copied ? <CheckIcon className="size-4 text-green-600" /> : <CopyIcon className="size-4" />}
+            {copied ? (
+              <CheckIcon className="size-4 text-green-600" />
+            ) : (
+              <CopyIcon className="size-4" />
+            )}
             <span className="sr-only">Copier</span>
           </Button>
         </div>
         <DialogFooter>
-          <Button onClick={() => onOpenChange(false)}>
-            J'ai noté le mot de passe
-          </Button>
+          <Button onClick={() => onOpenChange(false)}>J&apos;ai noté le mot de passe</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

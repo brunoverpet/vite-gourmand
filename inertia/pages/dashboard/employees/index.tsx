@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { InertiaProps } from '~/types'
 import { Button } from '~/components/ui/button'
 import { EmployeeTable, type EmployeeItem } from '~/components/dashboard/employees/employee-table'
@@ -12,11 +12,7 @@ type IndexProps = InertiaProps<{
 
 export default function EmployeesIndex({ employes, generatedPassword }: IndexProps) {
   const [createOpen, setCreateOpen] = useState(false)
-  const [passwordDialogOpen, setPasswordDialogOpen] = useState(false)
-
-  useEffect(() => {
-    if (generatedPassword) setPasswordDialogOpen(true)
-  }, [generatedPassword])
+  const [passwordDialogOpen, setPasswordDialogOpen] = useState(!!generatedPassword)
 
   return (
     <div className="space-y-6">
@@ -25,9 +21,7 @@ export default function EmployeesIndex({ employes, generatedPassword }: IndexPro
           <h1 className="text-2xl font-semibold">Employés</h1>
           <p className="text-muted-foreground text-sm mt-1">{employes.length} employé(s)</p>
         </div>
-        <Button onClick={() => setCreateOpen(true)}>
-          Créer un employé
-        </Button>
+        <Button onClick={() => setCreateOpen(true)}>Créer un employé</Button>
       </div>
 
       <EmployeeTable employees={employes} />

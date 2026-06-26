@@ -37,6 +37,7 @@ export function DishPicker({ menuId, dishes, selectedIds }: Props) {
 
   useEffect(() => {
     form.setData('dish_ids', [...selected])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
   function handleSave() {
@@ -59,21 +60,24 @@ export function DishPicker({ menuId, dishes, selectedIds }: Props) {
       <Tabs defaultValue="entrées">
         <TabsList>
           <TabsTrigger value="entrées">
-            Entrées{selected.size > 0 && dishes.entrées.some((d) => selected.has(d.id)) && (
+            Entrées
+            {selected.size > 0 && dishes.entrées.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.entrées.filter((d) => selected.has(d.id)).length})
               </span>
             )}
           </TabsTrigger>
           <TabsTrigger value="plats">
-            Plats{dishes.plats.some((d) => selected.has(d.id)) && (
+            Plats
+            {dishes.plats.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.plats.filter((d) => selected.has(d.id)).length})
               </span>
             )}
           </TabsTrigger>
           <TabsTrigger value="desserts">
-            Desserts{dishes.desserts.some((d) => selected.has(d.id)) && (
+            Desserts
+            {dishes.desserts.some((d) => selected.has(d.id)) && (
               <span className="ml-1.5 text-xs opacity-70">
                 ({dishes.desserts.filter((d) => selected.has(d.id)).length})
               </span>
