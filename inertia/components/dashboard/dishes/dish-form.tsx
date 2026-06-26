@@ -55,6 +55,8 @@ export function DishForm({ allergens, dish }: Props) {
     )
   }
 
+  const canCreate = !!form.data.title && !!form.data.type && !!form.data.description
+
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     if (dish) {
@@ -71,6 +73,7 @@ export function DishForm({ allergens, dish }: Props) {
           <FieldLabel htmlFor="title">Nom du plat</FieldLabel>
           <Input
             id="title"
+            placeholder="ex. Tartare de bœuf"
             value={form.data.title}
             onChange={(e) => form.setData('title', e.target.value)}
             required
@@ -94,6 +97,7 @@ export function DishForm({ allergens, dish }: Props) {
           <FieldLabel htmlFor="description">Description</FieldLabel>
           <Textarea
             id="description"
+            placeholder="Décrivez le plat, ses ingrédients principaux…"
             value={form.data.description}
             onChange={(e) => form.setData('description', e.target.value)}
             rows={3}
@@ -161,11 +165,13 @@ export function DishForm({ allergens, dish }: Props) {
           </div>
         )}
 
-        {(form.isDirty || !dish) && (
-          <Button type="submit" disabled={form.processing} className="w-fit">
-            {dish ? 'Enregistrer les modifications' : 'Créer le plat'}
-          </Button>
-        )}
+        <Button
+          type="submit"
+          disabled={form.processing || (dish ? !form.isDirty : !canCreate)}
+          className="w-fit"
+        >
+          {dish ? 'Enregistrer les modifications' : 'Créer le plat'}
+        </Button>
       </FieldGroup>
     </form>
   )

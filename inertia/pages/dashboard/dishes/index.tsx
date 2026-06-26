@@ -34,7 +34,7 @@ export default function DishesIndex({ dishes, meta, filters }: IndexProps) {
           <p className="text-muted-foreground text-sm mt-1">{meta.total} plat(s)</p>
         </div>
         <Link route="admin_dishes.create">
-          <Button size="sm">Créer un plat</Button>
+          <Button>Créer un plat</Button>
         </Link>
       </div>
 
