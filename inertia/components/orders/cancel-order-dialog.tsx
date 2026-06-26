@@ -82,8 +82,7 @@ export function CancelOrderDialog({ order, open, onClose }: Props) {
           </Button>
           <Button
             variant="destructive"
-            size="sm"
-            onClick={handleSubmit}
+                       onClick={handleSubmit}
             disabled={!canSubmit || processing}
           >
             Confirmer l&apos;annulation
