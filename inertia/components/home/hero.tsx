@@ -1,5 +1,6 @@
 import { Link } from '@adonisjs/inertia/react'
-import { Button } from '~/components/ui/button'
+import { buttonVariants } from '~/components/ui/button'
+import { cn } from '~/lib/utils'
 
 export default function Hero() {
   return (
@@ -19,14 +20,15 @@ export default function Hero() {
               Cuisinés avec soin. Livrés avec amour.
             </h1>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild variant="outline">
-                <Link route="contact.render" className="text-primary-foreground">
-                  Nous contacter
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link route="menus.render">Voir nos menus</Link>
-              </Button>
+              <Link
+                route="contact.render"
+                className={cn(buttonVariants({ variant: 'outline' }), 'text-primary-foreground')}
+              >
+                Nous contacter
+              </Link>
+              <Link route="menus.render" className={cn(buttonVariants({ variant: 'default' }))}>
+                Voir nos menus
+              </Link>
             </div>
           </div>
         </div>
@@ -45,12 +47,12 @@ export default function Hero() {
             Noël, Pâques, mariages, repas d&apos;entreprise — des menus raffinés livrés à domicile.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Button asChild variant="outline">
-              <Link route="contact.render">Nous contacter</Link>
-            </Button>
-            <Button asChild>
-              <Link route="menus.render">Voir nos menus</Link>
-            </Button>
+            <Link route="contact.render" className={cn(buttonVariants({ variant: 'outline' }))}>
+              Nous contacter
+            </Link>
+            <Link route="menus.render" className={cn(buttonVariants({ variant: 'default' }))}>
+              Voir nos menus
+            </Link>
           </div>
         </div>
 

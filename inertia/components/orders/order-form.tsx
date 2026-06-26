@@ -174,21 +174,21 @@ export function OrderForm({ menu, user, estimate }: OrderFormProps) {
             <FieldGroup>
               <div className="grid grid-cols-2 gap-4">
                 <Field>
-                  <FieldLabel>Prénom</FieldLabel>
-                  <Input value={user?.firstname ?? ''} readOnly disabled />
+                  <FieldLabel htmlFor="order-firstname">Prénom</FieldLabel>
+                  <Input id="order-firstname" value={user?.firstname ?? ''} readOnly disabled />
                 </Field>
                 <Field>
-                  <FieldLabel>Nom</FieldLabel>
-                  <Input value={user?.lastname ?? ''} readOnly disabled />
+                  <FieldLabel htmlFor="order-lastname">Nom</FieldLabel>
+                  <Input id="order-lastname" value={user?.lastname ?? ''} readOnly disabled />
                 </Field>
               </div>
               <Field>
-                <FieldLabel>Email</FieldLabel>
-                <Input value={user?.email ?? ''} type="email" readOnly disabled />
+                <FieldLabel htmlFor="order-email">Email</FieldLabel>
+                <Input id="order-email" value={user?.email ?? ''} type="email" readOnly disabled />
               </Field>
               <Field>
-                <FieldLabel>Téléphone</FieldLabel>
-                <Input value={user?.phone ?? ''} readOnly disabled />
+                <FieldLabel htmlFor="order-phone">Téléphone</FieldLabel>
+                <Input id="order-phone" value={user?.phone ?? ''} readOnly disabled />
               </Field>
             </FieldGroup>
           </section>

@@ -14,7 +14,7 @@ export default function AuthLayout({ children, title, description }: AuthLayoutP
       <div className="hidden md:flex md:w-1/2 relative overflow-hidden">
         <img
           src="/assets/story.webp"
-          alt="Vite & Gourmand"
+          alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-primary/75" />

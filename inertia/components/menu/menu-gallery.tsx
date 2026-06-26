@@ -19,10 +19,12 @@ export function MenuGallery({ pictures, activeImage, alt, onSelect }: Props) {
 
       {pictures && pictures.length > 1 && (
         <div className="flex gap-3 mt-3 overflow-x-auto pb-1">
-          {pictures.map((pic) => (
+          {pictures.map((pic, index) => (
             <button
               key={pic.id}
               onClick={() => onSelect(pic.imagePath)}
+              aria-label={`Photo ${index + 1} de ${alt}`}
+              aria-pressed={activeImage === pic.imagePath}
               className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all duration-300 hover:scale-110 ${
                 activeImage === pic.imagePath ? 'border-primary' : 'border-transparent'
               }`}

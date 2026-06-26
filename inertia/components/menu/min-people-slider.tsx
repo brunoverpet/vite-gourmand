@@ -23,6 +23,7 @@ export function MinPeopleSlider({ value, onChange }: Props) {
           onChange(val)
         }}
         className="mb-2"
+        aria-label="Nombre minimum de personnes"
       />
       <p className="text-body-sm text-muted-foreground mt-3">
         {displayValue > 1 ? `${displayValue} personnes minimum` : 'Tous'}
