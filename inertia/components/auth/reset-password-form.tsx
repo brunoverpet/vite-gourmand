@@ -42,11 +42,11 @@ export function ResetPasswordForm({ id, className, ...props }: ResetPasswordForm
               <FieldError message={errors.passwordConfirmation} />
             </Field>
 
-            <Button type="submit" className="sm:h-10">Changer le mot de passe</Button>
+            <Button type="submit">Changer le mot de passe</Button>
 
             <FieldSeparator />
 
-            <Button variant="outline" type="button" className="sm:h-10" asChild>
+            <Button variant="outline" type="button" asChild>
               <Link route="session.render">Se connecter</Link>
             </Button>
           </FieldGroup>

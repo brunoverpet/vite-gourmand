@@ -38,13 +38,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
               <FieldError message={errors.password} />
             </Field>
 
-            <Button type="submit" className="sm:w-fit sm:mx-auto sm:h-10">
+            <Button type="submit" className="sm:w-fit sm:mx-auto">
               Se connecter
             </Button>
 
             <FieldSeparator />
 
-            <Button variant="outline" type="button" className="sm:w-fit sm:mx-auto sm:h-10" asChild>
+            <Button variant="outline" type="button" className="sm:w-fit sm:mx-auto" asChild>
               <Link route="request_password_reset.show">Mot de passe oublié</Link>
             </Button>
           </FieldGroup>

@@ -25,12 +25,12 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
               />
               <FieldError message={errors.email} />
             </Field>
-            <Button type="submit" className="sm:h-10">Réinitialiser mon mot de passe</Button>
+            <Button type="submit">Réinitialiser mon mot de passe</Button>
             <FieldSeparator />
           </FieldGroup>
         )}
       </Form>
-      <Button variant="outline" type="button" className="sm:h-10" asChild>
+      <Button variant="outline" type="button" asChild>
         <Link route="session.render">Se connecter</Link>
       </Button>
     </div>

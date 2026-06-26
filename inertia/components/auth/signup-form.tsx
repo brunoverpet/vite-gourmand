@@ -133,7 +133,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<'div'>)
               Au moins 10 caractères, une majuscule et un caractère spécial.
             </p>
 
-            <Button type="submit" className="w-full sm:h-10">
+            <Button type="submit" className="w-full">
               Créer mon compte
             </Button>
           </FieldGroup>
