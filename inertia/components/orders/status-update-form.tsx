@@ -52,7 +52,7 @@ export function StatusUpdateForm({ order }: { order: Order }) {
   return (
     <>
       <Select onValueChange={handleSelect} disabled={processing}>
-        <SelectTrigger className="h-auto w-fit border-0 bg-transparent p-0 shadow-none focus:ring-0 gap-1.5 [&>svg]:text-muted-foreground">
+        <SelectTrigger className="h-auto w-fit border-0 bg-transparent p-0 shadow-none gap-1.5 [&>svg]:text-muted-foreground">
           <StatusBadge
             status={order.status}
             labels={ORDER_STATUS_LABELS}

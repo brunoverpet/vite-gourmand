@@ -63,7 +63,7 @@ export default function Navbar() {
             Vite & Gourmand
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <NavLink key={link.href} href={link.href}>
                 {link.label}
@@ -93,6 +93,8 @@ export default function Navbar() {
               isTransparent ? 'text-primary-foreground' : 'text-foreground'
             )}
             aria-label="Ouvrir le menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <Menu className="size-5" />
           </Button>

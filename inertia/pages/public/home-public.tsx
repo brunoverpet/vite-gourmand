@@ -49,7 +49,7 @@ export default function HomePublic({ menus, notices }: HomeProps) {
         <div className="md:flex md:h-130">
           <img
             src="/assets/story.webp"
-            alt=""
+            alt="Julie et José en cuisine, fondateurs de Vite & Gourmand à Bordeaux"
             className="rounded-t-2xl w-full md:w-1/2 md:rounded-l-none md:rounded-r-2xl md:h-full md:object-cover"
           />
           <div className="bg-secondary py-5 md:rounded-l-2xl md:rounded-r-none md:w-1/2 md:flex md:items-center">
