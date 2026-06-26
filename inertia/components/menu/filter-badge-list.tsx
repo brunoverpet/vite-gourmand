@@ -26,16 +26,25 @@ export function FilterBadgeList({
         return (
           <Badge
             key={item.id}
+            role="button"
+            tabIndex={0}
             variant={active ? 'default' : 'outline'}
+            aria-pressed={active}
             className={cn(
               badgeClassName,
               withHoverEffect &&
                 (active ? 'hover:bg-primary/80' : 'hover:bg-primary/10 hover:border-primary/30')
             )}
             onClick={() => onToggle(item.label)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onToggle(item.label)
+              }
+            }}
           >
             {item.label}
-            {active && <X className="w-3 h-3" />}
+            {active && <X className="w-3 h-3" aria-hidden="true" />}
           </Badge>
         )
       })}

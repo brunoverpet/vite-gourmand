@@ -8,7 +8,7 @@ type Props = {
 export function FieldError({ message, className }: Props) {
   if (!message) return null
   return (
-    <div role="status" aria-live="polite" className={cn('text-destructive text-sm', className)}>
+    <div role="alert" aria-live="assertive" className={cn('text-destructive text-sm', className)}>
       {message}
     </div>
   )

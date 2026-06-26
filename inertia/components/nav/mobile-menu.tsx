@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link } from '@adonisjs/inertia/react'
 import { X } from 'lucide-react'
 import { Button } from '~/components/ui/button'
@@ -18,6 +19,23 @@ type Props = {
 }
 
 export function MobileMenu({ isOpen, onClose, isStaff, isClient }: Props) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      closeButtonRef.current?.focus()
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!isOpen) return
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
+
   return (
     <div
       id="mobile-menu"
@@ -35,6 +53,7 @@ export function MobileMenu({ isOpen, onClose, isStaff, isClient }: Props) {
           Vite & Gourmand
         </Link>
         <Button
+          ref={closeButtonRef}
           variant="ghost"
           size="icon"
           onClick={onClose}

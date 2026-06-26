@@ -20,15 +20,15 @@ export default function Footer({}: FooterProps) {
   return (
     <footer className="bg-primary text-primary-foreground py-10 px-6">
       <p className="text-h4 md:text-center">Vite & Gourmand</p>
-      <p className="text-primary-foreground/80 md:text-center">
+      <p className="text-primary-foreground md:text-center">
         Traiteur événementiel à Bordeaux depuis 2001.
       </p>
       <hr className="mx-auto border-border w-1/2 my-4 md:w-1/12" />
       <div className="md:flex gap-20 justify-center">
         <FooterOpeningHours />
         <hr className="mx-auto border-border w-1/2 my-4 md:hidden" />
-        <nav aria-label="Navigation principale">
-          <p className="text-label-caps text-primary-foreground/80 my-1">Navigation</p>
+        <nav aria-label="Navigation du site">
+          <p className="text-label-caps text-primary-foreground my-1">Navigation</p>
           {FOOTER_LINKS.map((link) => (
             <div key={link.href} className="flex flex-row gap-1">
               <NavLink href={link.href} className="text-primary-foreground">
@@ -40,7 +40,7 @@ export default function Footer({}: FooterProps) {
       </div>
       <hr className="mx-auto border-border w-1/2 my-4 md:w-1/12" />
       <nav aria-label="Liens légaux" className="text-center">
-        <p className="text-label-caps text-primary-foreground/80 my-1">Légal</p>
+        <p className="text-label-caps text-primary-foreground my-1">Légal</p>
         {LEGAL_LINKS.map((link) => (
           <div key={link.href} className="flex flex-row gap-1 md:justify-center">
             <NavLink href={link.href} className="text-primary-foreground">
@@ -50,7 +50,7 @@ export default function Footer({}: FooterProps) {
         ))}
       </nav>
       <hr className="mx-auto border-border w-1/2 my-4 md:w-1/12" />
-      <p className="text-center text-caption text-primary-foreground/70">
+      <p className="text-center text-caption text-primary-foreground/90">
         © 2001 – 2026 Vite & Gourmand
       </p>
     </footer>

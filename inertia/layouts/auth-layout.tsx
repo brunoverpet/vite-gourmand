@@ -24,7 +24,7 @@ export default function AuthLayout({ children, title, description }: AuthLayoutP
             <br />
             livré chez vous.
           </p>
-          <p className="text-primary-foreground/70 text-sm">Vite &amp; Gourmand · Bordeaux</p>
+          <p className="text-primary-foreground/90 text-sm">Vite &amp; Gourmand · Bordeaux</p>
         </div>
       </div>
 
@@ -39,11 +39,11 @@ export default function AuthLayout({ children, title, description }: AuthLayoutP
 
           <FieldDescription className="text-center">
             En créant un compte, vous acceptez nos{' '}
-            <a href="#" className="underline underline-offset-4 hover:text-foreground">
+            <a href="/cgv" className="underline underline-offset-4 hover:text-foreground">
               conditions d&apos;utilisation
             </a>{' '}
             et notre{' '}
-            <a href="#" className="underline underline-offset-4 hover:text-foreground">
+            <a href="/legal-notices" className="underline underline-offset-4 hover:text-foreground">
               politique de confidentialité
             </a>
             .

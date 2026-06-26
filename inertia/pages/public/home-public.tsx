@@ -89,7 +89,7 @@ export default function HomePublic({ menus, notices }: HomeProps) {
 
       <section className="my-20 max-w-7xl mx-auto px-6">
         <h2 className="text-h3 text-center">Prêt à commander ?</h2>
-        <p className="text-primary/70 mx-3 text-center">Commandez en quelques clics.</p>
+        <p className="text-muted-foreground mx-3 text-center">Commandez en quelques clics.</p>
         <div className="flex justify-center mt-4">
           <Link route="menus.render" className={cn(buttonVariants({ variant: 'outline' }))}>
             Voir nos menus

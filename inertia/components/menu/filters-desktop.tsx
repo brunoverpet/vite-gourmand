@@ -53,12 +53,12 @@ export default function FiltersDesktop({
 
       <div className="divide-y divide-border">
         <div className="py-8">
-          <p className="text-label-caps text-muted-foreground mb-4">Nombre de personnes minimum</p>
+          <h3 className="text-label-caps text-muted-foreground mb-4">Nombre de personnes minimum</h3>
           <MinPeopleSlider value={minPeople} onChange={onMinPeopleChange} />
         </div>
 
         <div className="py-8">
-          <p className="text-label-caps text-muted-foreground mb-3">Prix / personne</p>
+          <h3 className="text-label-caps text-muted-foreground mb-3">Prix / personne</h3>
           <PriceRangeInputs
             priceMin={priceMin}
             priceMax={priceMax}
@@ -68,7 +68,7 @@ export default function FiltersDesktop({
         </div>
 
         <div className="py-8">
-          <p className="text-label-caps text-muted-foreground mb-3">Thèmes</p>
+          <h3 className="text-label-caps text-muted-foreground mb-3">Thèmes</h3>
           <FilterBadgeList
             items={themes}
             selected={selectedThemes}
@@ -79,7 +79,7 @@ export default function FiltersDesktop({
         </div>
 
         <div className="py-8">
-          <p className="text-label-caps text-muted-foreground mb-3">Régime</p>
+          <h3 className="text-label-caps text-muted-foreground mb-3">Régime</h3>
           <FilterBadgeList
             items={diets}
             selected={selectedDiets}

@@ -15,10 +15,11 @@ export function StarRating({
   inactiveClass = 'text-amber-200 fill-none',
 }: Props) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-0.5" aria-label={`Note : ${note} sur 5`}>
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
+          aria-hidden="true"
           className={cn(
             size === 'md' ? 'size-5' : 'w-4 h-4',
             star <= note ? activeClass : inactiveClass
