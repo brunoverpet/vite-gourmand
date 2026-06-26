@@ -18,7 +18,6 @@ export type ScannedRoutes = {
     'request_password_reset': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'reset_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
     'dashboard.change-password': { paramsTuple?: []; params?: {} }
     'change_password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
@@ -56,6 +55,7 @@ export type ScannedRoutes = {
     'client_orders.cancel': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.show': { paramsTuple?: []; params?: {} }
     'profile.update': { paramsTuple?: []; params?: {} }
+    'profile.update_password': { paramsTuple?: []; params?: {} }
     'register_notice': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
   }
@@ -69,7 +69,6 @@ export type ScannedRoutes = {
     'session.render': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
     'dashboard.change-password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'admin_menus.index': { paramsTuple?: []; params?: {} }
@@ -97,7 +96,6 @@ export type ScannedRoutes = {
     'session.render': { paramsTuple?: []; params?: {} }
     'request_password_reset.show': { paramsTuple?: []; params?: {} }
     'reset_password.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-    'home': { paramsTuple?: []; params?: {} }
     'dashboard.change-password': { paramsTuple?: []; params?: {} }
     'order.render': { paramsTuple: [ParamValue]; params: {'menuId': ParamValue} }
     'admin_menus.index': { paramsTuple?: []; params?: {} }
@@ -140,6 +138,7 @@ export type ScannedRoutes = {
     'admin_employees.toggle_active': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'client_orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.update': { paramsTuple?: []; params?: {} }
+    'profile.update_password': { paramsTuple?: []; params?: {} }
   }
   DELETE: {
     'admin_menus.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

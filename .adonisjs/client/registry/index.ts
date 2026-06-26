@@ -90,12 +90,6 @@ const routes = {
     tokens: [{"old":"/reset-password/:id","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['reset_password']['types'],
   },
-  'home': {
-    methods: ["GET","HEAD"],
-    pattern: '/dashboard',
-    tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
-    types: placeholder as Registry['home']['types'],
-  },
   'dashboard.change-password': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard/change-password',
@@ -317,6 +311,12 @@ const routes = {
     pattern: '/dashboard/profile',
     tokens: [{"old":"/dashboard/profile","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.update']['types'],
+  },
+  'profile.update_password': {
+    methods: ["PATCH"],
+    pattern: '/dashboard/profile/password',
+    tokens: [{"old":"/dashboard/profile/password","type":0,"val":"dashboard","end":""},{"old":"/dashboard/profile/password","type":0,"val":"profile","end":""},{"old":"/dashboard/profile/password","type":0,"val":"password","end":""}],
+    types: placeholder as Registry['profile.update_password']['types'],
   },
   'register_notice': {
     methods: ["POST"],

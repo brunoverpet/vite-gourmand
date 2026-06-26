@@ -28,7 +28,6 @@ export interface ApiDefinition {
   resetPassword: typeof routes['reset_password'] & {
     show: typeof routes['reset_password.show']
   }
-  home: typeof routes['home']
   dashboard: {
     changePassword: typeof routes['dashboard.change-password']
   }
@@ -93,6 +92,7 @@ export interface ApiDefinition {
   profile: {
     show: typeof routes['profile.show']
     update: typeof routes['profile.update']
+    updatePassword: typeof routes['profile.update_password']
   }
   registerNotice: typeof routes['register_notice']
 }

@@ -175,18 +175,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/reset_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'home': {
-    methods: ["GET","HEAD"]
-    pattern: '/dashboard'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-      errorResponse: unknown
-    }
-  }
   'dashboard.change-password': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard/change-password'
@@ -629,6 +617,18 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/auth/user').updateProfileValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['update']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'profile.update_password': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/profile/password'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/user').updatePasswordProfileValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/user').updatePasswordProfileValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['updatePassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/profile/profile_controller').default['updatePassword']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'register_notice': {
