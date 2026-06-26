@@ -1,7 +1,7 @@
 import { Form } from '@adonisjs/inertia/react'
 import { useState } from 'react'
 import { Button } from '~/components/ui/button'
-import { Field, FieldGroup } from '~/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '~/components/ui/field'
 import { FieldError } from '~/components/ui/field-error'
 import { StarPicker } from '~/components/ui/star-picker'
 import { Textarea } from '~/components/ui/textarea'

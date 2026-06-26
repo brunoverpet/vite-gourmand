@@ -2,7 +2,6 @@ import { router } from '@inertiajs/react'
 import { StatsBarChart } from '~/components/dashboard/stats-bar-chart'
 import { DatePickerFilter } from '~/components/ui/date-picker-filter'
 import { FilterSelect } from '~/components/ui/filter-select'
-import { Button } from '~/components/ui/button'
 import type { InertiaProps } from '~/types'
 import { Data } from '@generated/data'
 
