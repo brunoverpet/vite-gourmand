@@ -17,8 +17,9 @@ type ShowProps = InertiaProps<{
 export default function Show({ menu }: ShowProps) {
   const [activeImage, setActiveImage] = useState(menu.pictures?.[0]?.imagePath ?? null)
 
+  const uniqueDishes = Array.from(new Map((menu.dishes ?? []).map((d) => [d.id, d])).values())
   const dishesByType = DISH_TYPE_ORDER.reduce<Record<string, Data.Menus.Dish[]>>((acc, type) => {
-    const dishes = (menu.dishes ?? []).filter((d) => d.type === type)
+    const dishes = uniqueDishes.filter((d) => d.type === type)
     if (dishes.length > 0) acc[type] = dishes
     return acc
   }, {})

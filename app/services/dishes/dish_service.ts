@@ -82,6 +82,6 @@ export class DishService {
 
   async syncMenuDishes(menuId: string, dishIds: string[]) {
     const menu = await Menu.findOrFail(menuId)
-    await menu.related('dishes').sync(dishIds)
+    await menu.related('dishes').sync([...new Set(dishIds)])
   }
 }
