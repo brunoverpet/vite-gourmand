@@ -71,7 +71,7 @@ function Button({
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <span className="inline-flex">{button}</span>
+            <span className="inline-flex w-fit">{button}</span>
           </TooltipTrigger>
           <TooltipContent side="bottom" sideOffset={6}>{tooltip}</TooltipContent>
         </Tooltip>
