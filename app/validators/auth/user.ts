@@ -86,6 +86,7 @@ updateProfileValidator.messagesProvider = sharedMessages
  * Validator for password change from the profile page
  */
 export const updatePasswordProfileValidator = vine.create({
+  currentPassword: vine.string(),
   password: password().confirmed({ confirmationField: 'passwordConfirmation' }),
 })
 updatePasswordProfileValidator.messagesProvider = sharedMessages

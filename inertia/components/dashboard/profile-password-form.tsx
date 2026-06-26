@@ -10,11 +10,25 @@ export function ProfilePasswordForm() {
       {({ errors }) => (
         <FieldGroup>
           <Field>
+            <FieldLabel htmlFor="currentPassword">Mot de passe actuel</FieldLabel>
+            <Input
+              id="currentPassword"
+              name="currentPassword"
+              type="password"
+              placeholder="Votre mot de passe actuel"
+              autoComplete="current-password"
+              required
+            />
+            <FieldError message={errors.currentPassword} />
+          </Field>
+
+          <Field>
             <FieldLabel htmlFor="password">Nouveau mot de passe</FieldLabel>
             <Input
               id="password"
               name="password"
               type="password"
+              placeholder="Au moins 10 caractères, une majuscule, un caractère spécial"
               autoComplete="new-password"
               required
             />
@@ -27,6 +41,7 @@ export function ProfilePasswordForm() {
               id="passwordConfirmation"
               name="passwordConfirmation"
               type="password"
+              placeholder="Répétez le nouveau mot de passe"
               autoComplete="new-password"
               required
             />
