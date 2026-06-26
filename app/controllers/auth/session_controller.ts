@@ -21,7 +21,7 @@ export default class SessionController {
 
     await auth.use('web').login(user)
     session.flash('info', 'Bienvenue sur votre espace client.')
-    return response.redirect().toIntendedRoute('home')
+    return response.redirect().toIntendedRoute('orders_management.index')
   }
 
   async destroy({ auth, response }: HttpContext) {
