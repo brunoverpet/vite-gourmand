@@ -17,7 +17,7 @@ export default class AdminStatsController {
     const to = request.input('to')
 
     const stats = await this.getStatsAction.execute(menuId, from, to)
-    const menus = await this.menuService.getAllMenusAdmin()
+    const menus = await this.menuService.getAllMenus()
     return inertia.render('dashboard/statistics/index', {
       stats,
       menus: MenuTransformer.transform(menus),

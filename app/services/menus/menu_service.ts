@@ -103,6 +103,10 @@ export class MenuService {
       .paginate(params.page ?? 1, 8)
   }
 
+  async getAllMenus() {
+    return await Menu.query().preload('diet').preload('theme').orderBy('title', 'asc')
+  }
+
   async getMenuForEdit(id: string) {
     return await Menu.query()
       .where('id', id)
