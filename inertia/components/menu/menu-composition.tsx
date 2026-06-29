@@ -37,15 +37,6 @@ export function MenuComposition({ dishesByType }: Props) {
                   <div className="flex flex-col gap-1 min-w-0">
                     <p className="text-body font-medium">{dish.title}</p>
                     <p className="text-body-sm text-muted-foreground">{dish.description}</p>
-                    {dish.allergens && dish.allergens.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {dish.allergens.map((a) => (
-                          <Badge key={a.id} variant="outline" className="text-xs py-0.5">
-                            {a.label}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </li>
               ))}

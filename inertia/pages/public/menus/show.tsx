@@ -18,6 +18,9 @@ export default function Show({ menu }: ShowProps) {
   const [activeImage, setActiveImage] = useState(menu.pictures?.[0]?.imagePath ?? null)
 
   const uniqueDishes = Array.from(new Map((menu.dishes ?? []).map((d) => [d.id, d])).values())
+  const uniqueAllergens = Array.from(
+    new Map(uniqueDishes.flatMap((d) => d.allergens ?? []).map((a) => [a.id, a])).values()
+  )
   const dishesByType = DISH_TYPE_ORDER.reduce<Record<string, Data.Menus.Dish[]>>((acc, type) => {
     const dishes = uniqueDishes.filter((d) => d.type === type)
     if (dishes.length > 0) acc[type] = dishes
@@ -77,9 +80,23 @@ export default function Show({ menu }: ShowProps) {
             </div>
           )}
 
+          {/* Allergènes */}
+          {uniqueAllergens.length > 0 && (
+            <div className="mt-8 p-4 rounded-xl bg-muted/50 border border-border">
+              <p className="text-label-caps text-muted-foreground mb-2">Allergènes présents</p>
+              <div className="flex flex-wrap gap-1.5">
+                {uniqueAllergens.map((a) => (
+                  <Badge key={a.id} variant="outline">
+                    {a.label}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* CTA desktop */}
           <div className="hidden md:block mt-10">
-            <Button size="lg" className="w-full" asChild>
+            <Button className="w-full" asChild>
               <Link route="order.render" routeParams={{ menuId: menu.id }}>
                 Commander ce menu
               </Link>
