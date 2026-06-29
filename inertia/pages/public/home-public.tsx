@@ -3,8 +3,7 @@ import type { Data } from '@generated/data'
 import Hero from '~/components/home/hero'
 import ReviewCard from '~/components/home/review-card'
 import CardMenu from '~/components/menu/card-menu'
-import { buttonVariants } from '~/components/ui/button'
-import { cn } from '~/lib/utils'
+import { Button } from '~/components/ui/button'
 import type { InertiaProps } from '~/types'
 
 type HomeProps = InertiaProps<{
@@ -42,9 +41,9 @@ export default function HomePublic({ menus, notices }: HomeProps) {
           ))}
         </div>
         <div className="flex justify-center">
-          <Link route="menus.render" className={cn(buttonVariants({ variant: 'outline' }))}>
-            Voir nos menus
-          </Link>
+          <Button asChild>
+            <Link route="menus.render">Voir nos menus</Link>
+          </Button>
         </div>
       </section>
 
@@ -97,9 +96,9 @@ export default function HomePublic({ menus, notices }: HomeProps) {
         <h2 className="text-h3 text-center">Prêt à commander ?</h2>
         <p className="text-muted-foreground mx-3 text-center">Commandez en quelques clics.</p>
         <div className="flex justify-center mt-4">
-          <Link route="menus.render" className={cn(buttonVariants({ variant: 'outline' }))}>
-            Voir nos menus
-          </Link>
+          <Button asChild variant="outline">
+            <Link route="menus.render">Voir nos menus</Link>
+          </Button>
         </div>
       </section>
     </>

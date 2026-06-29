@@ -96,7 +96,7 @@ export default function Show({ menu }: ShowProps) {
 
           {/* CTA desktop */}
           <div className="hidden md:block mt-10">
-            <Button className="w-full" asChild>
+            <Button size="lg" className="w-full" asChild>
               <Link route="order.render" routeParams={{ menuId: menu.id }}>
                 Commander ce menu
               </Link>
