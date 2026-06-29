@@ -19,6 +19,9 @@ export default class UserSeeder extends BaseSeeder {
         isActive: true,
         passwordChange: true,
         passwordReset: false,
+        phone: '+33600000001',
+        address: '12 Rue Sainte-Catherine',
+        city: 'Bordeaux',
       },
       {
         email: 'employe@vite-gourmand.fr',
@@ -29,6 +32,9 @@ export default class UserSeeder extends BaseSeeder {
         isActive: true,
         passwordChange: true,
         passwordReset: false,
+        phone: '+33600000002',
+        address: '5 Cours du Médoc',
+        city: 'Bordeaux',
       },
       {
         email: 'client@vite-gourmand.fr',
@@ -39,6 +45,9 @@ export default class UserSeeder extends BaseSeeder {
         isActive: true,
         passwordChange: false,
         passwordReset: false,
+        phone: '+33600000003',
+        address: '8 Allée de Tourny',
+        city: 'Bordeaux',
       },
     ])
   }

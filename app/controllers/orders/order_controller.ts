@@ -83,21 +83,21 @@ export default class OrderController {
       if (!longitude || !latitude || !zipcode || !numberOfPeople) return undefined
       const distanceMeters = await this.deliveryFeeService.calculateDistance(longitude, latitude)
       const deliveryFee = this.deliveryFeeService.calculateFees(distanceMeters, zipcode)
-      const menuPrice = this.priceCalculatorService.calculateMenuPrice(
+      const basePrice = pricePerPeople * numberOfPeople
+      const reducedPrice = this.priceCalculatorService.calculateMenuPrice(
         pricePerPeople,
         minPeople,
         numberOfPeople
       )
+      const hasReduction = numberOfPeople >= minPeople + 5
+      const savedAmount = hasReduction ? Math.round((basePrice - reducedPrice) * 100) / 100 : 0
       return {
         distanceKm: Math.round(distanceMeters / 1000),
         deliveryFee: Math.round(deliveryFee * 100) / 100,
-        menuPrice: Math.round(menuPrice * 100) / 100,
-        total: Math.round((menuPrice + deliveryFee) * 100) / 100,
-        hasReduction: numberOfPeople >= minPeople + 5,
-        savedAmount:
-          numberOfPeople >= minPeople + 5
-            ? Math.round(pricePerPeople * numberOfPeople * 0.1 * 100) / 100
-            : 0,
+        menuPrice: Math.round(basePrice * 100) / 100,
+        total: Math.round((reducedPrice + deliveryFee) * 100) / 100,
+        hasReduction,
+        savedAmount,
       }
     }
   }
