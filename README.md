@@ -99,3 +99,14 @@ Les fichiers SQL sont disponibles dans `database/schema/` :
 
 - `pg-schema.sql` — création des tables (CREATE TABLE, contraintes, clés étrangères)
 - `pg-data.sql` — jeu de données de test (INSERT INTO)
+
+## Documentation
+
+### Modèle Conceptuel de Données
+![MCD](docs/MCD.svg)
+
+### Diagramme d'utilisation
+![Diagramme d'utilisation](docs/diagram-use-cases.svg)
+
+### Diagramme de séquence
+![Diagramme de séquence](docs/diagram-sequence.svg)

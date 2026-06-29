@@ -3,8 +3,8 @@ sequenceDiagram
     actor Client
     participant Front as Interface (Front-End)
     participant Back as Serveur (Back-End)
-    participant BDD as Base de données (MySQL)
-    participant Queue as File d'attente (Queue / Redis)
+    participant BDD as Base de données (PostgreSQL)
+    participant Queue as File d'attente (AdonisJS Queue)
     participant Mail as Serveur Mail (SMTP)
 
     Client->>Front: Clic sur "Envoyer la commande"
@@ -17,15 +17,12 @@ sequenceDiagram
     Back->>BDD: Enregistrement de la commande (INSERT)
     BDD-->>Back: Confirmation de l'enregistrement
     
-    %% Le serveur délègue la tâche instantanément et n'attend pas le mail
     Back->>Queue: Dispatch du Job "SendOrderEmail"
     
-    %% Le serveur répond TOUT DE SUITE au client
     Back-->>Front: Réponse HTTP 201 (Succès JSON)
     deactivate Back
     
     Front-->>Client: Message de confirmation à l'écran
 
-    %% La suite se passe en arrière-plan (Asynchrone)
     Note over Queue, Mail: Traitement asynchrone (Background Job)
     Queue->>Mail: Le Worker exécute le Job et envoie les e-mails
