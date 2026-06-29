@@ -103,7 +103,7 @@ Les fichiers SQL sont disponibles dans `database/schema/` :
 ## Documentation
 
 ### Modèle Conceptuel de Données
-![MCD](docs/MCD.svg)
+![MCD](docs/mcd.svg)
 
 ### Diagramme d'utilisation
 ![Diagramme d'utilisation](docs/diagram-use-cases.svg)
