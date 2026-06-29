@@ -16,7 +16,7 @@ export default class extends BaseSeeder {
       const main = mains[index % mains.length]
       const dessert = desserts[index % desserts.length]
 
-      await menu.related('dishes').attach([starter.id, main.id, dessert.id])
+      await menu.related('dishes').sync([starter.id, main.id, dessert.id])
     }
   }
 }

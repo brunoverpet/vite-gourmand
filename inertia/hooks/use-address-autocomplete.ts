@@ -25,8 +25,9 @@ export function useAddressAutocomplete(initialAddress = '', initialCity = '') {
 
   useEffect(() => {
     if (!initialAddress) return
+    const query = initialCity ? `${initialAddress} ${initialCity}` : initialAddress
     fetch(
-      `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(initialAddress)}&terr=METROPOLE&maximumResponses=1`
+      `https://data.geopf.fr/geocodage/completion/?text=${encodeURIComponent(query)}&terr=METROPOLE&maximumResponses=1`
     )
       .then((r) => r.json())
       .then((data) => {

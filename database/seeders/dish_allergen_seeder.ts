@@ -10,7 +10,7 @@ export default class extends BaseSeeder {
     for (const dish of dishes) {
       const shuffled = allergens.sort(() => Math.random() - 0.5)
       const picked = shuffled.slice(0, Math.floor(Math.random() * 3) + 1)
-      await dish.related('allergens').attach(picked.map((a) => a.id))
+      await dish.related('allergens').sync(picked.map((a) => a.id))
     }
   }
 }
