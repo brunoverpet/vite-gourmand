@@ -1,0 +1,19 @@
+@component('emails/layout', { title: 'Bienvenue chez Vite & Gourmand' })
+  <h1 class="title">Ravi de vous compter parmi nous, {{ user.firstname }} !</h1>
+
+  <p class="text">Bonjour {{ user.firstname }} {{ user.lastname }},</p>
+
+  <p class="text">
+    Votre compte a été créé avec succès sur
+    <strong>Vite & Gourmand</strong>
+    . Vous pouvez dès à présent vous connecter pour passer vos commandes.
+  </p>
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/login" class="button" target="_blank">Me connecter à mon compte</a>
+  </p>
+
+  <p class="text" style="font-size: 13px; color: #6b6460;">
+    Si vous n'êtes pas à l'origine de cette inscription, vous pouvez ignorer ce message.
+  </p>
+@end

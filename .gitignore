@@ -22,5 +22,9 @@ yarn-error.log
 .idea
 .vscode
 
+# AI config — never commit
+.claude/
+CLAUDE.md
+
 # Platform specific
 .DS_Store

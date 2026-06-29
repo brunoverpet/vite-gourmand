@@ -4,6 +4,52 @@
  */
 
 export const controllers = {
-  NewAccount: () => import('#controllers/new_account_controller'),
-  Session: () => import('#controllers/session_controller'),
+  auth: {
+    ChangePassword: () => import('#controllers/auth/change_password_controller'),
+    Register: () => import('#controllers/auth/register_controller'),
+    RequestPasswordReset: () => import('#controllers/auth/request_password_reset_controller'),
+    ResetPassword: () => import('#controllers/auth/reset_password_controller'),
+    Session: () => import('#controllers/auth/session_controller'),
+  },
+  contact: {
+    Contact: () => import('#controllers/contact/contact_controller'),
+  },
+  dishes: {
+    AdminDishes: () => import('#controllers/dishes/admin_dishes_controller'),
+  },
+  employees: {
+    AdminEmployees: () => import('#controllers/employees/admin_employees_controller'),
+  },
+  HomePublic: () => import('#controllers/home_public_controller'),
+  legals: {
+    Cgv: () => import('#controllers/legals/cgv_controller'),
+    LegalNotices: () => import('#controllers/legals/legal_notices_controller'),
+  },
+  menus: {
+    AdminMenus: () => import('#controllers/menus/admin_menus_controller'),
+    MenuDishes: () => import('#controllers/menus/menu_dishes_controller'),
+    Menus: () => import('#controllers/menus/menus_controller'),
+    Pictures: () => import('#controllers/menus/pictures_controller'),
+  },
+  notice: {
+    RegisterNotice: () => import('#controllers/notice/register_notice_controller'),
+    ValidateNotice: () => import('#controllers/notice/validate_notice_controller'),
+  },
+  openingHours: {
+    OpeningHours: () => import('#controllers/opening_hours/opening_hours_controller'),
+  },
+  orders: {
+    CancelOrder: () => import('#controllers/orders/cancel_order_controller'),
+    ClientOrders: () => import('#controllers/orders/client_orders_controller'),
+    Order: () => import('#controllers/orders/order_controller'),
+    OrderMaterialLoan: () => import('#controllers/orders/order_material_loan_controller'),
+    OrderStatus: () => import('#controllers/orders/order_status_controller'),
+    OrdersManagement: () => import('#controllers/orders/orders_management_controller'),
+  },
+  profile: {
+    Profile: () => import('#controllers/profile/profile_controller'),
+  },
+  statistics: {
+    AdminStats: () => import('#controllers/statistics/admin_stats_controller'),
+  },
 }

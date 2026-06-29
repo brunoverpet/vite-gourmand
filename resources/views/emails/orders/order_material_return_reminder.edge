@@ -1,0 +1,27 @@
+@component('emails/layout', { title: 'Retour du matériel — Vite & Gourmand' })
+  <h1 class="title">Retour du matériel prêté</h1>
+
+  <p class="text">Bonjour {{ order.user.firstname }},</p>
+
+  <p class="text">
+    Votre commande
+    <strong>{{ order.orderNumber }}</strong>
+    a bien été livrée. Nous vous rappelons que du matériel vous a été prêté dans le cadre de cette prestation.
+  </p>
+
+  <p class="text">
+    Conformément à nos CGV, vous disposez de
+    <strong>10 jours ouvrés</strong>
+    à compter de la réception de cet e-mail pour nous restituer le matériel. Passé ce délai, des frais de
+    <strong>600 €</strong>
+    vous seront automatiquement facturés.
+  </p>
+
+  <p class="text">Pour toute question, n'hésitez pas à nous contacter en répondant à cet e-mail.</p>
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">
+      Voir ma commande
+    </a>
+  </p>
+@end

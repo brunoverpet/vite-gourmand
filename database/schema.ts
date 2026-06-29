@@ -7,19 +7,284 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AllergenSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = AllergenSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DietSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = DietSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DishAllergenSchema extends BaseModel {
+  static $columns = ['allergenId', 'createdAt', 'dishId', 'id', 'updatedAt'] as const
+  $columns = DishAllergenSchema.$columns
+  @column()
+  declare allergenId: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dishId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DishMenuSchema extends BaseModel {
+  static $columns = ['createdAt', 'dishId', 'id', 'menuId', 'updatedAt'] as const
+  $columns = DishMenuSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dishId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare menuId: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class DishSchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'id', 'photoPath', 'title', 'type', 'updatedAt'] as const
+  $columns = DishSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare photoPath: string
+  @column()
+  declare title: string
+  @column()
+  declare type: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class MenuSchema extends BaseModel {
+  static $columns = ['conditions', 'createdAt', 'description', 'dietId', 'id', 'minPeople', 'pricePerPeople', 'stock', 'themeId', 'title', 'updatedAt'] as const
+  $columns = MenuSchema.$columns
+  @column()
+  declare conditions: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column()
+  declare dietId: string | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare minPeople: number
+  @column()
+  declare pricePerPeople: string
+  @column()
+  declare stock: number
+  @column()
+  declare themeId: string | null
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class NoticeSchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'id', 'note', 'orderId', 'status', 'updatedAt'] as const
+  $columns = NoticeSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare description: string
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare note: number
+  @column()
+  declare orderId: string | null
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OpeningHourSchema extends BaseModel {
+  static $columns = ['closeTime', 'createdAt', 'dayOfWeek', 'id', 'isClosed', 'openTime', 'updatedAt'] as const
+  $columns = OpeningHourSchema.$columns
+  @column()
+  declare closeTime: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare dayOfWeek: number
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare isClosed: boolean | null
+  @column()
+  declare openTime: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderStatusHistorySchema extends BaseModel {
+  static $columns = ['changedAt', 'createdAt', 'id', 'orderId', 'status', 'updatedAt'] as const
+  $columns = OrderStatusHistorySchema.$columns
+  @column.dateTime()
+  declare changedAt: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare orderId: string | null
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderSchema extends BaseModel {
+  static $columns = ['cancellationReason', 'contactMode', 'createdAt', 'deliveryAddress', 'deliveryCity', 'deliveryFees', 'deliveryTime', 'deliveryZipcode', 'eventDate', 'id', 'materialLoan', 'materialReturn', 'menuId', 'menuPrice', 'numberOfPeople', 'orderDate', 'orderNumber', 'reductionAmount', 'status', 'totalAmount', 'updatedAt', 'userId'] as const
+  $columns = OrderSchema.$columns
+  @column()
+  declare cancellationReason: string | null
+  @column()
+  declare contactMode: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare deliveryAddress: string
+  @column()
+  declare deliveryCity: string
+  @column()
+  declare deliveryFees: string
+  @column()
+  declare deliveryTime: string
+  @column()
+  declare deliveryZipcode: string
+  @column.date()
+  declare eventDate: DateTime
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare materialLoan: boolean | null
+  @column()
+  declare materialReturn: boolean | null
+  @column()
+  declare menuId: string | null
+  @column()
+  declare menuPrice: string
+  @column()
+  declare numberOfPeople: number
+  @column.dateTime()
+  declare orderDate: DateTime
+  @column()
+  declare orderNumber: string
+  @column()
+  declare reductionAmount: string
+  @column()
+  declare status: string
+  @column()
+  declare totalAmount: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: string | null
+}
+
+export class PictureSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'imagePath', 'menuId', 'updatedAt'] as const
+  $columns = PictureSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare imagePath: string
+  @column()
+  declare menuId: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class RoleSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = RoleSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class ThemeSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'label', 'updatedAt'] as const
+  $columns = ThemeSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: string
+  @column()
+  declare label: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
+  static $columns = ['address', 'city', 'country', 'createdAt', 'email', 'firstname', 'id', 'isActive', 'lastname', 'password', 'passwordChange', 'passwordReset', 'phone', 'roleId', 'updatedAt'] as const
   $columns = UserSchema.$columns
+  @column()
+  declare address: string | null
+  @column()
+  declare city: string | null
+  @column()
+  declare country: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()
   declare email: string
   @column()
-  declare fullName: string | null
+  declare firstname: string
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+  @column()
+  declare isActive: boolean
+  @column()
+  declare lastname: string
   @column({ serializeAs: null })
   declare password: string
+  @column()
+  declare passwordChange: boolean
+  @column()
+  declare passwordReset: boolean
+  @column()
+  declare phone: string | null
+  @column()
+  declare roleId: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

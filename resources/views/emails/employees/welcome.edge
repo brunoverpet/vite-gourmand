@@ -1,0 +1,19 @@
+@component('emails/layout', { title: 'Votre compte employé Vite & Gourmand' })
+  <h1 class="title">Bonjour {{ employe.firstname }} {{ employe.lastname }},</h1>
+
+  <p class="text">
+    Un compte employé vient d'être créé pour vous sur
+    <strong>Vite & Gourmand</strong>.
+  </p>
+
+  <p class="text">
+    Votre identifiant de connexion est votre adresse e-mail :
+    <strong>{{ employe.email }}</strong>
+  </p>
+
+  <p class="text">Pour obtenir votre mot de passe, rapprochez-vous de l'administrateur.</p>
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/login" class="button" target="_blank">Accéder à la connexion</a>
+  </p>
+@end

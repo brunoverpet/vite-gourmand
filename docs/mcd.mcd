@@ -1,0 +1,26 @@
+ROLE: id_role, label VARCHAR(50)
+OPEN_HOURS: id_open_hours, day_of_week INT, open_time TIME, close_time TIME, is_closed BOOLEAN
+ORDER_STATUS_HISTORY: id_status_history, status VARCHAR(30), changed_at TIMESTAMP
+TRACKS, 11 ORDER_STATUS_HISTORY, 0N ORDER
+DIET: id_diet, label VARCHAR(50)
+MATCHES, 11 MENU, 0N DIET
+PICTURE: id_picture, image_path VARCHAR(255)
+ALLERGEN: id_allergen, label VARCHAR(100)
+
+HAS, 11 USER, 0N ROLE
+USER: id_user, firstname VARCHAR(100), lastname VARCHAR(100), email VARCHAR(255), password VARCHAR(255), phone VARCHAR(20), address VARCHAR(255), city VARCHAR(100), country VARCHAR(100), is_active BOOLEAN, password_change BOOLEAN, password_reset BOOLEAN
+PLACES, 11 ORDER, 0N USER
+ORDER: id_order, order_number VARCHAR(30), order_date TIMESTAMP, event_date DATE, delivery_time TIME, delivery_address VARCHAR(255), delivery_city VARCHAR(100), delivery_zipcode VARCHAR(10), number_of_people INT, menu_price DECIMAL(10,2), reduction_amount DECIMAL(10,2), total_amount DECIMAL(10,2), delivery_fees DECIMAL(10,2), status VARCHAR(30), cancellation_reason VARCHAR(100), contact_mode VARCHAR(30), material_loan BOOLEAN, material_return BOOLEAN
+CHOOSES, 11 ORDER, 0N MENU
+MENU: id_menu, title VARCHAR(100), min_people INT, price_per_people DECIMAL(10,2), description VARCHAR(255), conditions VARCHAR(255), stock INT
+BELONGS_TO, 11 PICTURE, 0N MENU
+HAS_ALLERGEN, 0N DISH, 0N ALLERGEN
+
+:
+:
+NOTICE: id_notice, note INT, description VARCHAR(255), status VARCHAR(50)
+CONCERNS, 11 NOTICE, 01 ORDER
+THEME: id_theme, label VARCHAR(50)
+SUITS, 11 MENU, 0N THEME
+COMPOSES, 0N MENU, 0N DISH
+DISH: id_dish, title VARCHAR(100), type VARCHAR(20), description VARCHAR(255), photo_path VARCHAR(255)

@@ -1,6 +1,8 @@
 import app from '@adonisjs/core/services/app'
 import { type HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
+import { errors as authErrors } from '@adonisjs/auth'
+// import { errors as bouncerErrors } from '@adonisjs/bouncer'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
@@ -14,15 +16,15 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * codes. You might want to enable them in production only, but feel
    * free to enable them in development as well.
    */
-  protected renderStatusPages = app.inProduction
+  protected renderStatusPages = true
 
   /**
    * Status pages is a collection of error code range and a callback
    * to return the HTML contents to send as a response.
    */
   protected statusPages: Record<StatusPageRange, StatusPageRenderer> = {
-    '404': (_, { inertia }) => inertia.render('errors/not_found', {}),
-    '500..599': (_, { inertia }) => inertia.render('errors/server_error', {}),
+    '404': (_, { inertia }) => inertia.render('errors/not-found', {}),
+    '500..599': (_, { inertia }) => inertia.render('errors/server-error', {}),
   }
 
   /**
@@ -30,15 +32,39 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    if (error instanceof authErrors.E_INVALID_CREDENTIALS) {
+      ctx.session.flash({
+        error: 'Email ou mot de passe incorrect',
+      })
+      return ctx.response.redirect().back()
+    }
+
+    // if (error instanceof bouncerErrors.E_AUTHORIZATION_FAILURE) {
+    //   const message = error.response?.message || 'Accès refusé'
+    //
+    //   if (this.shouldRedirectOnGet(ctx)) {
+    //     ctx.session.flash('error', { title: 'Accès refusé', description: message })
+    //     return ctx.response.redirect().back()
+    //   }
+    //
+    //   return ctx.response
+    //     .status(403)
+    //     .send(await ctx.inertia.render('errors/forbidden', { message }))
+    // }
+
     return super.handle(error, ctx)
   }
 
-  /**
-   * The method is used to report error to the logging service or
-   * the a third party error monitoring service.
-   *
-   * @note You should not attempt to send a response from this method.
-   */
+  protected ignoreStatuses = [400, 401, 403, 422]
+
+  protected context(ctx: HttpContext) {
+    return {
+      requestId: ctx.request.id(),
+      userId: ctx.auth.user?.id,
+      url: ctx.request.url(),
+    }
+  }
+
   async report(error: unknown, ctx: HttpContext) {
     return super.report(error, ctx)
   }

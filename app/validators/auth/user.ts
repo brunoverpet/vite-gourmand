@@ -1,0 +1,100 @@
+import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import type { Infer } from '@vinejs/vine/types'
+
+// =============================================================================
+// 1. BASE RULES & SHARED FIELDS
+// =============================================================================
+const email = () => vine.string().email().maxLength(254)
+
+const password = () =>
+  vine
+    .string()
+    .trim()
+    .minLength(10)
+    .maxLength(32)
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>_#-+=\[\]]).+$/)
+
+const sharedUserSchema = {
+  lastname: vine.string().minLength(3).maxLength(20),
+  firstname: vine.string().minLength(3).maxLength(20),
+}
+
+// =============================================================================
+// 2. CENTRALIZED ERROR MESSAGES
+// =============================================================================
+const sharedMessages = new SimpleMessagesProvider({
+  'password.regex':
+    'Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial.',
+  'password.minLength': 'Le mot de passe doit faire au moins 10 caractères.',
+  'database.unique': 'Cette adresse email est déjà utilisée.',
+  'mobile': 'Numéro de téléphone invalide.',
+})
+
+// =============================================================================
+// 3. VALIDATOR COMPILATION
+// =============================================================================
+
+/**
+ * Validator for public self-registration (Clients)
+ */
+export const registerValidator = vine.create({
+  ...sharedUserSchema,
+  email: email().unique({ table: 'users', column: 'email' }),
+  password: password().confirmed({
+    confirmationField: 'passwordConfirmation',
+  }),
+  phone: vine
+    .string()
+    .trim()
+    .mobile({ locale: ['fr-FR'] }),
+  address: vine.string().trim().minLength(5).maxLength(255),
+  city: vine.string().trim().minLength(2).maxLength(100),
+})
+registerValidator.messagesProvider = sharedMessages
+
+/**
+ * Validator for backoffice user creation (Admin/Manager)
+ */
+export const adminCreateEmployeValidator = vine.create({
+  ...sharedUserSchema,
+  email: email().unique({ table: 'users', column: 'email' }),
+})
+adminCreateEmployeValidator.messagesProvider = sharedMessages
+
+/**
+ * Validator for client profile update (nom, prénom, email, téléphone)
+ */
+export const updateProfileValidator = vine.withMetaData<{ userId: string }>().create({
+  ...sharedUserSchema,
+  email: email().unique({
+    table: 'users',
+    column: 'email',
+    filter: (db, _value, field) => {
+      db.whereNot('id', field.meta.userId)
+    },
+  }),
+  phone: vine
+    .string()
+    .trim()
+    .mobile({ locale: ['fr-FR'] }),
+  address: vine.string().trim().minLength(5).maxLength(255),
+  city: vine.string().trim().minLength(2).maxLength(100),
+})
+updateProfileValidator.messagesProvider = sharedMessages
+
+/**
+ * Validator for password change from the profile page
+ */
+export const updatePasswordProfileValidator = vine.create({
+  currentPassword: vine.string(),
+  password: password().confirmed({ confirmationField: 'passwordConfirmation' }),
+})
+updatePasswordProfileValidator.messagesProvider = sharedMessages
+
+// =============================================================================
+// 4. EXPORTED TYPES
+// =============================================================================
+export type RegisterPayload = Infer<typeof registerValidator>
+export type AdminCreateEmployePayload = Infer<typeof adminCreateEmployeValidator>
+export type UpdateProfilePayload = Infer<typeof updateProfileValidator>
+export type UpdatePasswordProfilePayload = Infer<typeof updatePasswordProfileValidator>

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-29T14:22:25.246Z",
+  "connection": "pg",
+  "dumpPath": "database/schema/pg-schema.sql",
+  "schemaTableName": "adonis_schema",
+  "schemaVersionsTableName": "adonis_schema_versions",
+  "squashedMigrationNames": [
+    "database/migrations/1761135277160_create_roles_table",
+    "database/migrations/1781681161731_create_themes_table",
+    "database/migrations/1781681254208_create_diets_table",
+    "database/migrations/1781681280193_create_allergens_table",
+    "database/migrations/1781683535705_create_menus_table",
+    "database/migrations/1781684340295_create_dishes_table",
+    "database/migrations/1781684647559_create_dish_menus_table",
+    "database/migrations/1781684654395_create_dish_allergens_table",
+    "database/migrations/1781695382219_create_pictures_table",
+    "database/migrations/1761885935168_create_users_table",
+    "database/migrations/1781961412086_create_orders_table",
+    "database/migrations/1782113134549_create_order_status_histories_table",
+    "database/migrations/1782142301425_create_notices_table",
+    "database/migrations/1782285734012_create_opening_hours_table"
+  ]
+}

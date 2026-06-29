@@ -6,13 +6,90 @@
 /// <reference path="./manifest.d.ts" />
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
-import type UserTransformer from '#transformers/user_transformer'
+import type AuthUserTransformer from '#transformers/auth/user_transformer'
+import type DishesDishAdminTransformer from '#transformers/dishes/dish_admin_transformer'
+import type MenusAllergenTransformer from '#transformers/menus/allergen_transformer'
+import type MenusDietTransformer from '#transformers/menus/diet_transformer'
+import type MenusDishTransformer from '#transformers/menus/dish_transformer'
+import type MenusMenuAdminTransformer from '#transformers/menus/menu_admin_transformer'
+import type MenusMenuDetailTransformer from '#transformers/menus/menu_detail_transformer'
+import type MenusMenuTransformer from '#transformers/menus/menu_transformer'
+import type MenusThemeTransformer from '#transformers/menus/theme_transformer'
+import type NoticesNoticeTransformer from '#transformers/notices/notice_transformer'
+import type OpeningHoursOpeningHoursTransformer from '#transformers/opening_hours/opening_hours_transformer'
+import type OrdersClientOrderTransformer from '#transformers/orders/client_order_transformer'
+import type OrdersOrderManagementTransformer from '#transformers/orders/order_management_transformer'
+import type PictureTransformer from '#transformers/picture_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
 export namespace Data {
-  export type User = InferData<UserTransformer>
-  export namespace User {
-    export type Variants = InferVariants<UserTransformer>
+  export namespace Auth {
+    export type User = InferData<AuthUserTransformer>
+    export namespace User {
+      export type Variants = InferVariants<AuthUserTransformer>
+    }
+  }
+  export namespace Dishes {
+    export type DishAdmin = InferData<DishesDishAdminTransformer>
+    export namespace DishAdmin {
+      export type Variants = InferVariants<DishesDishAdminTransformer>
+    }
+  }
+  export namespace Menus {
+    export type Allergen = InferData<MenusAllergenTransformer>
+    export namespace Allergen {
+      export type Variants = InferVariants<MenusAllergenTransformer>
+    }
+    export type Diet = InferData<MenusDietTransformer>
+    export namespace Diet {
+      export type Variants = InferVariants<MenusDietTransformer>
+    }
+    export type Dish = InferData<MenusDishTransformer>
+    export namespace Dish {
+      export type Variants = InferVariants<MenusDishTransformer>
+    }
+    export type MenuAdmin = InferData<MenusMenuAdminTransformer>
+    export namespace MenuAdmin {
+      export type Variants = InferVariants<MenusMenuAdminTransformer>
+    }
+    export type MenuDetail = InferData<MenusMenuDetailTransformer>
+    export namespace MenuDetail {
+      export type Variants = InferVariants<MenusMenuDetailTransformer>
+    }
+    export type Menu = InferData<MenusMenuTransformer>
+    export namespace Menu {
+      export type Variants = InferVariants<MenusMenuTransformer>
+    }
+    export type Theme = InferData<MenusThemeTransformer>
+    export namespace Theme {
+      export type Variants = InferVariants<MenusThemeTransformer>
+    }
+  }
+  export namespace Notices {
+    export type Notice = InferData<NoticesNoticeTransformer>
+    export namespace Notice {
+      export type Variants = InferVariants<NoticesNoticeTransformer>
+    }
+  }
+  export namespace OpeningHours {
+    export type OpeningHours = InferData<OpeningHoursOpeningHoursTransformer>
+    export namespace OpeningHours {
+      export type Variants = InferVariants<OpeningHoursOpeningHoursTransformer>
+    }
+  }
+  export namespace Orders {
+    export type ClientOrder = InferData<OrdersClientOrderTransformer>
+    export namespace ClientOrder {
+      export type Variants = InferVariants<OrdersClientOrderTransformer>
+    }
+    export type OrderManagement = InferData<OrdersOrderManagementTransformer>
+    export namespace OrderManagement {
+      export type Variants = InferVariants<OrdersOrderManagementTransformer>
+    }
+  }
+  export type Picture = InferData<PictureTransformer>
+  export namespace Picture {
+    export type Variants = InferVariants<PictureTransformer>
   }
   export type SharedProps = InferSharedProps<InertiaMiddleware>
 }

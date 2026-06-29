@@ -1,0 +1,21 @@
+@component('emails/layout', { title: 'Votre commande est terminée — Vite & Gourmand' })
+  <h1 class="title">Votre commande est terminée !</h1>
+
+  <p class="text">Bonjour {{ order.user.firstname }},</p>
+
+  <p class="text">
+    Nous espérons que votre événement s'est déroulé à merveille. Votre commande
+    <strong>{{ order.orderNumber }}</strong>
+    est désormais clôturée.
+  </p>
+
+  <p class="text">
+    Votre avis nous est précieux ! Connectez-vous à votre espace client pour noter et commenter votre expérience.
+  </p>
+
+  <p style="margin: 28px 0;">
+    <a href="{{ appUrl }}/dashboard/my-orders/{{ order.id }}" class="button" target="_blank">
+      Laisser mon avis
+    </a>
+  </p>
+@end

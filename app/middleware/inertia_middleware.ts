@@ -1,10 +1,12 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
-import UserTransformer from '#transformers/user_transformer'
+import UserTransformer from '#transformers/auth/user_transformer'
+import { OpeningHoursService } from '#services/opening_hours/opening_hours_service'
+import OpeningHoursTransformer from '#transformers/opening_hours/opening_hours_transformer'
 import BaseInertiaMiddleware from '@adonisjs/inertia/inertia_middleware'
 
 export default class InertiaMiddleware extends BaseInertiaMiddleware {
-  share(ctx: HttpContext) {
+  async share(ctx: HttpContext) {
     /**
      * The share method is called everytime an Inertia page is rendered. In
      * certain cases, a page may get rendered before the session middleware
@@ -20,6 +22,13 @@ export default class InertiaMiddleware extends BaseInertiaMiddleware {
      */
     const error = session?.flashMessages.get('error') as string
     const success = session?.flashMessages.get('success') as string
+    const info = session?.flashMessages.get('info') as string
+
+    let openingHours: ReturnType<typeof OpeningHoursTransformer.transform> = []
+    try {
+      const hours = await new OpeningHoursService().getOpeningHours()
+      openingHours = OpeningHoursTransformer.transform(hours)
+    } catch {}
 
     /**
      * Data shared with all Inertia pages. Make sure you are using
@@ -30,8 +39,10 @@ export default class InertiaMiddleware extends BaseInertiaMiddleware {
       flash: ctx.inertia.always({
         error,
         success,
+        info,
       }),
       user: ctx.inertia.always(auth?.user ? UserTransformer.transform(auth.user) : undefined),
+      openingHours: ctx.inertia.always(openingHours),
     }
   }
 

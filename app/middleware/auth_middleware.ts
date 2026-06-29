@@ -20,6 +20,13 @@ export default class AuthMiddleware {
     } = {}
   ) {
     await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
+
+    if (!ctx.auth.user!.isActive) {
+      await ctx.auth.use('web').logout()
+      ctx.session.flash('error', 'Votre compte a été désactivé. Contactez un administrateur.')
+      return ctx.response.redirect().toRoute('session.render')
+    }
+
     return next()
   }
 }
