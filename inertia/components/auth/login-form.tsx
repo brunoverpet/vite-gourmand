@@ -51,20 +51,21 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
             <FieldError message={form.errors.password} />
           </Field>
 
-          <Button
-            type="submit"
-            disabled={!canSubmit || form.processing}
-            tooltip="Saisissez votre email et mot de passe"
-            className="sm:w-fit sm:mx-auto"
-          >
-            Se connecter
-          </Button>
+          <div className="flex flex-col items-center gap-4">
+            <Button
+              type="submit"
+              disabled={!canSubmit || form.processing}
+              tooltip="Saisissez votre email et mot de passe"
+            >
+              Se connecter
+            </Button>
 
-          <FieldSeparator />
+            <FieldSeparator className="w-full" />
 
-          <Button variant="outline" type="button" className="sm:w-fit sm:mx-auto" asChild>
-            <Link route="request_password_reset.show">Mot de passe oublié</Link>
-          </Button>
+            <Button variant="outline" type="button" asChild>
+              <Link route="request_password_reset.show">Mot de passe oublié</Link>
+            </Button>
+          </div>
         </FieldGroup>
       </form>
     </div>
