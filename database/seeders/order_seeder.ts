@@ -17,6 +17,8 @@ const STATUSES_PAST_ACCEPTED = [
 
 export default class OrderSeeder extends BaseSeeder {
   async run() {
+    await OrderStat.deleteMany({})
+
     const client = await User.findByOrFail('email', 'client@vite-gourmand.fr')
     const menus = await Menu.all()
 
