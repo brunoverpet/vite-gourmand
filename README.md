@@ -102,6 +102,9 @@ Les fichiers SQL sont disponibles dans `database/schema/` :
 
 ## Documentation
 
+### Gestion de projet
+[docs/gestion-projet.md](docs/gestion-projet.md)
+
 ### Modèle Conceptuel de Données
 ![MCD](docs/mcd.svg)
 
