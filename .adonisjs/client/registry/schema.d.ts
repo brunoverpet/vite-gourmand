@@ -31,6 +31,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/home_public_controller').default['render']>>>
     }
   }
+  'legal_notices.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/legal-notices'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/legals/legal_notices_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/legals/legal_notices_controller').default['render']>>>
+    }
+  }
+  'cgv.render': {
+    methods: ["GET","HEAD"]
+    pattern: '/cgv'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/legals/cgv_controller').default['render']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/legals/cgv_controller').default['render']>>>
+    }
+  }
   'contact.render': {
     methods: ["GET","HEAD"]
     pattern: '/contact'

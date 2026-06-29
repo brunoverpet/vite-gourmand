@@ -8,6 +8,12 @@ export interface ApiDefinition {
     }
   }
   homePublic: typeof routes['home-public']
+  legalNotices: {
+    render: typeof routes['legal_notices.render']
+  }
+  cgv: {
+    render: typeof routes['cgv.render']
+  }
   contact: typeof routes['contact'] & {
     render: typeof routes['contact.render']
   }

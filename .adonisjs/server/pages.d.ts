@@ -39,5 +39,7 @@ declare module '@adonisjs/inertia/types' {
     'public/menus/index': ExtractProps<(typeof import('../../inertia/pages/public/menus/index.tsx'))['default']>
     'public/menus/show': ExtractProps<(typeof import('../../inertia/pages/public/menus/show.tsx'))['default']>
     'public/orders/index': ExtractProps<(typeof import('../../inertia/pages/public/orders/index.tsx'))['default']>
+    'public/legal-notices': ExtractProps<(typeof import('../../inertia/pages/public/legal-notices.tsx'))['default']>
+    'public/cgv': ExtractProps<(typeof import('../../inertia/pages/public/cgv.tsx'))['default']>
   }
 }

@@ -18,6 +18,18 @@ const routes = {
     tokens: [{"old":"/","type":0,"val":"/","end":""}],
     types: placeholder as Registry['home-public']['types'],
   },
+  'legal_notices.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/legal-notices',
+    tokens: [{"old":"/legal-notices","type":0,"val":"legal-notices","end":""}],
+    types: placeholder as Registry['legal_notices.render']['types'],
+  },
+  'cgv.render': {
+    methods: ["GET","HEAD"],
+    pattern: '/cgv',
+    tokens: [{"old":"/cgv","type":0,"val":"cgv","end":""}],
+    types: placeholder as Registry['cgv.render']['types'],
+  },
   'contact.render': {
     methods: ["GET","HEAD"],
     pattern: '/contact',

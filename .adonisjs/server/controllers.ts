@@ -48,4 +48,8 @@ export const controllers = {
   statistics: {
     AdminStats: () => import('#controllers/statistics/admin_stats_controller'),
   },
+  legals: {
+    Cgv: () => import('#controllers/legals/cgv_controller'),
+    LegalNotices: () => import('#controllers/legals/legal_notices_controller'),
+  },
 }

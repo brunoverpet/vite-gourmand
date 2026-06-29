@@ -6,6 +6,8 @@ export type ScannedRoutes = {
   ALL: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'home-public': { paramsTuple?: []; params?: {} }
+    'legal_notices.render': { paramsTuple?: []; params?: {} }
+    'cgv.render': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
     'contact': { paramsTuple?: []; params?: {} }
     'menus.render': { paramsTuple?: []; params?: {} }
@@ -62,6 +64,8 @@ export type ScannedRoutes = {
   GET: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'home-public': { paramsTuple?: []; params?: {} }
+    'legal_notices.render': { paramsTuple?: []; params?: {} }
+    'cgv.render': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
     'menus.render': { paramsTuple?: []; params?: {} }
     'menus.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -89,6 +93,8 @@ export type ScannedRoutes = {
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'home-public': { paramsTuple?: []; params?: {} }
+    'legal_notices.render': { paramsTuple?: []; params?: {} }
+    'cgv.render': { paramsTuple?: []; params?: {} }
     'contact.render': { paramsTuple?: []; params?: {} }
     'menus.render': { paramsTuple?: []; params?: {} }
     'menus.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

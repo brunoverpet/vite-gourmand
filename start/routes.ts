@@ -13,6 +13,9 @@ import { Roles } from '#enums/roles'
 import router from '@adonisjs/core/services/router'
 
 router.get('/', [controllers.HomePublic, 'render']).as('home-public')
+router.get('legal-notices', [controllers.legals.LegalNotices, 'render'])
+router.get('cgv', [controllers.legals.Cgv, 'render'])
+
 router.get('contact', [controllers.contact.Contact, 'render'])
 router.post('contact', [controllers.contact.Contact, 'handle'])
 
