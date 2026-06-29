@@ -75,22 +75,24 @@ export default function HomePublic({ menus, notices }: HomeProps) {
         </div>
       </section>
 
-      <section className="mt-20 px-6 max-w-7xl mx-auto">
-        <p className="text-label-caps text-primary" aria-hidden="true">
-          Avis client
-        </p>
-        <h2 className="text-h2">Ce qu&apos;ils en disent</h2>
-        <div className="flex flex-col my-10 gap-5 md:flex-row">
-          {notices.map((notice, i) => (
-            <ReviewCard
-              key={i}
-              rating={notice.note}
-              comment={notice.description}
-              author={notice.author ?? ''}
-            />
-          ))}
-        </div>
-      </section>
+      {notices.length > 0 && (
+        <section className="mt-20 px-6 max-w-7xl mx-auto">
+          <p className="text-label-caps text-primary" aria-hidden="true">
+            Avis client
+          </p>
+          <h2 className="text-h2">Ce qu&apos;ils en disent</h2>
+          <div className="flex flex-col my-10 gap-5 md:flex-row">
+            {notices.map((notice, i) => (
+              <ReviewCard
+                key={i}
+                rating={notice.note}
+                comment={notice.description}
+                author={notice.author ?? ''}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="my-20 max-w-7xl mx-auto px-6">
         <h2 className="text-h3 text-center">Prêt à commander ?</h2>
