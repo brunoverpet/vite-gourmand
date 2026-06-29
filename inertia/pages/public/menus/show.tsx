@@ -14,8 +14,9 @@ type ShowProps = InertiaProps<{
   menu: Data.Menus.MenuDetail
 }>
 
-export default function Show({ menu }: ShowProps) {
+export default function Show({ menu, user }: ShowProps) {
   const [activeImage, setActiveImage] = useState(menu.pictures?.[0]?.imagePath ?? null)
+  const canOrder = !user || user.role === 'user'
 
   const uniqueDishes = Array.from(new Map((menu.dishes ?? []).map((d) => [d.id, d])).values())
   const uniqueAllergens = Array.from(
@@ -95,24 +96,28 @@ export default function Show({ menu }: ShowProps) {
           )}
 
           {/* CTA desktop */}
-          <div className="hidden md:block mt-10">
-            <Button size="lg" className="w-full" asChild>
-              <Link route="order.render" routeParams={{ menuId: menu.id }}>
-                Commander ce menu
-              </Link>
-            </Button>
-          </div>
+          {canOrder && (
+            <div className="hidden md:block mt-10">
+              <Button size="lg" className="w-full" asChild>
+                <Link route="order.render" routeParams={{ menuId: menu.id }}>
+                  Commander ce menu
+                </Link>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* CTA sticky mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t border-border">
-        <Button size="lg" className="w-full" asChild>
-          <Link route="order.render" routeParams={{ menuId: menu.id }}>
-            Commander ce menu
-          </Link>
-        </Button>
-      </div>
+      {canOrder && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t border-border">
+          <Button size="lg" className="w-full" asChild>
+            <Link route="order.render" routeParams={{ menuId: menu.id }}>
+              Commander ce menu
+            </Link>
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
