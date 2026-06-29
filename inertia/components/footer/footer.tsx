@@ -13,7 +13,7 @@ const FOOTER_LINKS = [
 
 const LEGAL_LINKS = [
   { label: 'Mentions légales', href: '/legal-notices' },
-  { label: 'CGV', href: '/cgv' },
+  { label: 'Conditions générales de vente', href: '/cgv' },
 ]
 
 export default function Footer({}: FooterProps) {
