@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "pnpm": {
-    "onlyBuiltDependencies": ["@swc/core", "better-sqlite3", "esbuild"]
-  },
   "license": "UNLICENSED",
   "engines": {
     "node": ">=24.0.0"
