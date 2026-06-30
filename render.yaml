@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: vite-gourmand
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3333
+      - key: HOST
+        value: 0.0.0.0
+      - key: TZ
+        value: UTC
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_URL
+        sync: false
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: LOG_LEVEL
+        value: info
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: DRIVE_DISK
+        value: fs
+      - key: MAIL_MAILER
+        value: resend
+      - key: MAIL_FROM_NAME
+        sync: false
+      - key: MAIL_FROM_ADDRESS
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
