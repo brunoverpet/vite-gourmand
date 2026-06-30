@@ -28,6 +28,7 @@ RUN apk --no-cache add curl
 WORKDIR /app
 COPY --from=production-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app
+COPY --from=build /app/storage /app/storage
 
 EXPOSE 3333
 
