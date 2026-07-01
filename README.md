@@ -134,6 +134,9 @@ Les fichiers SQL sont disponibles dans `database/schema/` :
 ### Gestion de projet
 [docs/gestion-projet.md](docs/gestion-projet.md)
 
+### Charte graphique
+[docs/charte-graphique.pdf](docs/charte-graphique.pdf)
+
 ### Modèle Conceptuel de Données
 ![MCD](docs/mcd.svg)
 
