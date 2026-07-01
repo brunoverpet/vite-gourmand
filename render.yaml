@@ -36,12 +36,10 @@ services:
       - key: DRIVE_DISK
         value: fs
       - key: MAIL_MAILER
-        value: resend
+        value: smtp
       - key: MAIL_FROM_NAME
         sync: false
       - key: MAIL_FROM_ADDRESS
-        sync: false
-      - key: RESEND_API_KEY
         sync: false
       - key: SMTP_HOST
         sync: false
