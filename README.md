@@ -137,6 +137,9 @@ Les fichiers SQL sont disponibles dans `database/schema/` :
 ### Charte graphique
 [docs/charte-graphique.pdf](docs/charte-graphique.pdf)
 
+### Manuel d'utilisation
+[docs/manuel-utilisation.pdf](docs/manuel-utilisation.pdf)
+
 ### Modèle Conceptuel de Données
 ![MCD](docs/mcd.svg)
 
